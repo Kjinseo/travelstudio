@@ -234,6 +234,34 @@ $(".delete_travel > #no-btn").click(function () {
 
 
 
+var alias= location.href.split('?')[1]
+console.log(encodeURI(alias, "UTF-8"))
 
+$.getJSON('/member/header.json', function(result) {
+	console.log(result);
+	 mno=result.data.loginMember;
+	console.log(mno)
+	console.log(result.data.loginMember)
+	if(mno!=undefined){
+		$('#slide_icon').css('display','inline-block');
+		$('#start-my-journey').off('click');
+		$('#start-my-journey').click(function(){
+		   location.href="/desktop/article/write.html"
+		    //Other code etc.
+		});
+	}else{
+		$('#start-my-journey').off('click');
+		$('#start-my-journey').click(function(){
+		   location.href="/desktop/login/login.html"
+		    //Other code etc.
+		    selectLoginUserPost()
+		});
+	}
+	    var template = Handlebars.compile($('#tbody-template4').html())
+	    var generatedHTML = template(result.data.loginMember) // 템플릿 함수에 데이터를 넣고 HTML을 생성한다.
+//	    tbody.text('') // tbody의 기존 tr 태그들을 지우고
+	    $('.slide_bar_content').append(generatedHTML) // 새 tr 태그들로 설정한다.
+	    
 
+}) 
 
