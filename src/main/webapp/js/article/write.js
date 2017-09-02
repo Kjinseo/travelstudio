@@ -796,7 +796,7 @@ $('#write_save_btn').click(function() {
 	}
 });
 $('#title_fileupload').fileupload({
-	url: '../post/add.json',        // 서버에 요청할 URL
+	url: '/post/add.json',        // 서버에 요청할 URL
 	dataType: 'json',         // 서버가 보낸 응답이 JSON임을 지정하기
 	sequentialUploads: false,  // 여러 개의 파일을 업로드 할 때 순서대로 요청하기.
 	singleFileUploads: true, // 한 요청에 여러 개의 파일을 전송시키기.
@@ -809,14 +809,11 @@ $('#title_fileupload').fileupload({
 		processalways: function(e, data) {
 			savecount=1;
 			console.log('fileuploadprocessalways()...');
-			console.log($(this).val())
-			console.log(data.files);
 			for (var i = 0; i < data.files.length; i++) {
 				try {
 					if (data.files[i].preview.toDataURL) {
-						console.log($("#text_parent_" + aaa))
 						var a = data.files[i].preview.toDataURL()
-						console.log(a)
+						
 						var img = new Image();
 						img.src = a;
 						$(".blank-one").css("background-image", "url('" + img.src + "')");
@@ -891,7 +888,7 @@ function picnosearch(data){
 	console.log(onlyPath1)
 	for(i=0;i<onlyPath1.length;i++){
 		$.ajaxSettings.traditional = true;
-		$.post('../picture/searchthispicture.json', {
+		$.post('/picture/searchthispicture.json', {
 			'path': onlyPath1[i]
 		}, function(result) {
 			var pictureparentno;
@@ -963,7 +960,7 @@ function finaladd(data){
 function addAllphoto(data){
  
 	$.ajaxSettings.traditional = true;
-	$.post('../detail/addAllphoto.json', {
+	$.post('/detail/addAllphoto.json', {
 		'picnoandparentno': picnoparentno
 	}, function(result) {
 		console.log(result);
@@ -978,7 +975,7 @@ function addAllphoto(data){
  
 function noBackgroundSave(){
 	jQuery.ajaxSettings.traditional = true;
-	$.post('../post/add.json', {
+	$.post('/post/add.json', {
 		title : decodeURIComponent(fititle.val()),
 		sdt: fisdt.val(),
 		edt: fiedt.val(),
@@ -992,7 +989,7 @@ function noBackgroundSave(){
 /* 민섭 파일 전체 올리기*/
  
 $('#fileAllUpload').fileupload({
-	url: '../File/upload3.json',        // 서버에 요청할 URL
+	url: '/File/upload3.json',        // 서버에 요청할 URL
 	dataType: 'json',         // 서버가 보낸 응답이 JSON임을 지정하기
 	sequentialUploads: true,  // 여러 개의 파일을 업로드 할 때 순서대로 요청하기.
 	singleFileUploads: false, // 한 요청에 여러 개의 파일을 전송시키기.
@@ -1563,7 +1560,7 @@ var dataa=[]
  
 function delPhotoTransm() {
 	$.ajaxSettings.traditional = true;
-	$.post('../picture/delete.json', {
+	$.post('/picture/delete.json', {
 		'deletePhoto' : deletePhoto 
 	}, function(result) {
 		console.log(result);
