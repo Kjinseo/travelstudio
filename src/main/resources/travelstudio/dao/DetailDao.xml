@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="travelstudio.dao.DetailDao">
+  
+  <resultMap type="detail" id="detailMap">
+    <id column="picno" property="picno"/>
+    <result column="postno" property="postno"/>
+    <result column="srtno" property="srtno"/>
+    <result column="cont" property="cont"/>
+    <result column="date" property="date"/>
+    <result column="lati" property="lati"/>
+    <result column="longit" property="longit"/>
+    <result column="writer" property="writer"/>
+    <result column="adrs" property="address"/>
+  </resultMap> 
+
+   <insert id="insert" parameterType="detail"> 
+    insert into detail(picno, writer,srtno)
+    values(#{picno},#{writer},#{srtno})
+  </insert>
+  
+   <insert id="insert_map" parameterType="detail"> 
+    insert into detail(lati, longit, writer, srtno)
+    values(#{lati},#{longit}, #{writer}, #{srtno})
+  </insert>
+  
+   <select id="selectList" resultMap="detailMap" parameterType="map">
+    select lati, longit, postno from detail where postno = 1;
+    
+  </select> 
+  
+  
+  <update id="insertDetailByEmail" parameterType="detail" >
+  update detail set postno= #{postno} where writer=#{writer}
+  </update>
+  
+  
+  
+  <update id="deleteEmail" parameterType="String" >
+  update detail set writer="" where writer=#{writer}
+  </update>
+  
+   <insert id="insertDetailContent" parameterType="detail"> 
+    insert into detail(cont, postno, srtno)
+    values(#{cont},#{postno}, #{srtno})
+  </insert>
+  
+ <insert id="insertDetailCaption" parameterType="detail"> 
+    insert into detail(capt, postno, srtno)
+    values(#{capt},#{postno}, #{srtno})
+  </insert>
+    
+  <insert id="insertDetailDate" parameterType="detail"> 
+    insert into detail(date, postno, srtno)
+    values(#{date},#{postno}, #{srtno})
+  </insert>
+   
+   <insert id="insertDetailLocation" parameterType="detail"> 
+    insert into detail(adrs, postno, srtno)
+    values(#{address},#{postno}, #{srtno})
+  </insert>
+   
+  <select id="selectedOneDetail" resultMap="detailMap" parameterType="String">
+  select * from detail where postno=#{postno} order by srtno asc
+  </select>
+  
+ <select id="selectAddress" resultMap="detailMap" parameterType="Integer">
+    select d.adrs
+    from post p inner join detail d on p.postno=d.postno
+    where mno=#{mno}
+  </select>
+  
+   <select id="carouselNation" resultMap="detailMap" parameterType="int">
+      select d.adrs
+      from post p inner join detail d on p.postno=d.postno
+      where mno=#{mno}
+    </select> 
+  
+   <insert id="addAllphoto" parameterType="detail"> 
+    insert into detail(picno, writer, srtno)
+    values(#{picno},#{writer},#{srtno})
+  </insert>
+  
+  <select id="picnosearch" resultMap="detailMap" parameterType="int">
+    select picno from detail where postno=#{postno} and picno > 0
+  </select>
+  
+  <delete id="deletePicture" parameterType="int">
+    delete from pic
+    where picno=#{picno}
+  </delete>
+  
+  <delete id="deleteDetail" parameterType="int">
+    delete from detail
+    where postno=#{postno}
+  </delete>
+  
+  <delete id="deletePost" parameterType="int">
+    delete from post
+    where postno=#{postno}
+  </delete>
+
+</mapper>
+
+
+
+

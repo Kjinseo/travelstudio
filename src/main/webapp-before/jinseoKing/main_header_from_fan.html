@@ -1,0 +1,194 @@
+<header id="main_header">
+  <div id="mh" class="container-fluid" style="background-color: white">
+    <div class="container">
+      <div id="logo" style="display: inline-block">
+        <a class="ha" href="main.html"><img class="himg" style="width:180px;"
+          src="images/logo1.png"/></a> <span id="menu">
+          <ul class="hul" style="float:right;">
+            <li class="hli"><a href="mypage.html" class="ha" id="1"
+              style="color: black; cursor: pointer">Home</a></li>
+            <li class="hli" style="color: black" data-toggle="modal"
+              data-target="#join"><a class="ha" id="2"
+              style="color: black; cursor: pointer">회원가입</a></li>
+            <li class="hli">
+            <button id="login1" class="btn btn-default"
+                style="background-color: #fa507b; color: white; margin-bottom: 5px;"
+                data-toggle="modal" data-target="#login">로그인</button>
+             <button id="logout1" class="btn btn-default"
+                style="background-color: #fa507b; color: white; margin-bottom: 5px; right: 0px;"
+                data-toggle="modal" data-target="#logout">로그아웃</button>
+            </li>
+          </ul>
+        </span>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<!-- 회원가입 모달-->
+<div class="modal fade" id="join" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true"
+  style="position: center;">
+  <div class="modal-dialog joinmodal">
+    <div class="modal-content"
+      style="width: 80%; height: 140%; position: center;">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">×</span><span class="sr-only">Close</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel" style="text-align: center">
+          <b>회원가입</b>
+        </h4>
+      </div>
+
+      <div class="modal-body">
+        <div style="vertical-align: top; width: 130%;">
+          <div style="text-align: center; padding-top: 3%;">
+            <form class="form-horizontal">
+
+              <div class="form-group form-inline">
+                <div class="col-sm-11 main-id" style="margin-left: 2px;">
+                  <button type="button" class="btn btn-warning col-sm-3"
+                    id="fi-id-check-add" value='${cookie.id.value}'
+                    style="float: right;">중복확인</button>
+                  <input type="text" class="form-control" id="fi-id-add"
+                    name="id" placeholder="아이디">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-10 main-id" style="left: 5%; right: 15%">
+                  <input type="text" class="form-control" id="fi-nickname-add"
+                    name="nickname" placeholder="닉네임">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-10 main-pwd" style="left: 5%; right: 15%">
+                  <input type="password" class="form-control"
+                    id="fi-password-add" name="password" placeholder="비밀번호">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-10 main-pwd" style="left: 5%; right: 15%">
+                  <input type="password" class="form-control"
+                    id="fi-password-check-add" name="" placeholder="비밀번호 확인">
+                </div>
+              </div>
+            </form>
+          </div>
+
+
+          <hr style="border: 1px solid red; top: 0%;">
+
+          <section style="float: left; padding-bottom: 2%; height: 30%;">
+            <p>
+              <b>소셜 회원가입</b>
+            </p>
+            <img src="images/facebook.png" onClick="facebookRegister()"
+              style="width: 40%; height: auto; margin-left: 6%; cursor: pointer;" />
+
+            <a id="custom-login-btn"> <img onClick="kakaoRegister()"
+              src="images/kakao_join.png" style="width: 40%; height: auto;" />
+            </a>
+
+          </section>
+        </div>
+      </div>
+
+
+      <div class="modal-footer" style="margin-top: 26%;">
+        <button type="button" class="btn btn-default"
+          style="background-color: #fa507b; color: white;"
+          data-dismiss="modal">취소</button>
+        <button id="add-btn" type="button" class="btn btn-default"
+          style="background-color: #fa507b; color: white;">가입</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- 로그인 모달 -->
+<div class="modal fade" id="login" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true"
+  style="position: center;">
+  <div class="modal-dialog loginmodal">
+    <div class="modal-content"
+      style="width: 75%; height: 185%; position: center;">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">×</span><span class="sr-only">Close</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel" style="text-align: center">
+          <b>로그인</b>
+        </h4>
+      </div>
+
+      <div class="modal-body">
+        <div style="vertical-align: top; width: 130%;">
+          <div style="text-align: center; padding-top: 3%;">
+            <form class="form-horizontal">
+
+              <div class="form-group">
+                <div class="col-sm-10 main-id" style="left: 5%; right: 15%">
+                  <input type="text" class="form-control" name="id" id="fi-id"
+                    placeholder="아이디">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-10 main-pwd" style="left: 5%; right: 15%">
+                  <input type="password" class="form-control" id="fi-password"
+                    placeholder="비밀번호">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class=" col-sm-6">
+                  <div class="checkbox">
+                    <label style="float: left; margin-left: 12%;"> 
+                    <input type="checkbox" onclick="checkCookie()" name='saveId' id="fi-saveId">
+                      아이디 기억하기
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+
+
+          <hr style="border: 1px solid red; top: 0%;">
+
+
+
+
+          <section style="float: left; padding-bottom: 2%;">
+            <p>
+              <b>소셜 로그인</b>
+            </p>
+            <img src="images/face_login.png" onClick="facebooklogin()"
+              style="width: 75%; height: auto; margin-left: 10%; cursor: pointer;" onClick="facebooklogin();"/>
+            <a id="custom-login-btn" onclick="kakaoLogin();"> <img src="images/kakao_login.png"
+              style="width: 75%; height: auto; margin-left: 10%; cursor: pointer; padding-top: 1%;" />
+            </a>
+          </section>
+
+        </div>
+      </div>
+
+
+      <div class="modal-footer" style="margin-top: 39%;">
+        <button type="button" class="btn btn-default"
+          style="background-color: #fa507b; color: white;"
+          data-dismiss="modal">취소</button>
+        <button id="login-btn" id="mypage" type="button"
+          class="btn btn-default"
+          style="background-color: #fa507b; color: white;">로그인</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="js/mainLogin.js"></script>
+<script src="js/m_facebook_login.js"></script>
+<script src="js/m_kakao_login.js"></script>
+
+

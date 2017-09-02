@@ -1,0 +1,616 @@
+@import url(https://fonts.googleapis.com/css?family=Ropa+Sans);
+
+*, *:before, *:after {
+-moz-box-sizing: border-box;
+-webkit-box-sizing: border-box;
+box-sizing: border-box;
+}
+img, a, abbr, acronym, address, applet,
+article, aside, audio, b, big, blockquote,
+body, canvas, caption, center, cite, code,
+dd, del, details, dfn, div, dl, dt, em,
+embed, fieldset, figcaption, figure, footer,
+form, h1, h2, h3, h4, h5, h6, header, hgroup,
+html, i, iframe, img, ins, kbd, label, legend, li,
+mark, menu, nav, object, ol, output, p, pre, q, ruby,
+s, samp, section, small, span, strike, strong, sub,
+summary, sup, table, tbody, td, tfoot, th, thead,
+time, tr, tt, u, ul, var, video {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+
+
+}
+a {
+  color: inherit;
+}
+a:link {
+  border: none;
+  outline: 0;
+}
+
+a:-webkit-any-link {
+  /*color: -webkit-link;*/
+  cursor: auto;
+  text-decoration: none;
+}
+
+.blank-one {
+  /*position: relative;*/
+  background: url('img/travel.jpg') center center no-repeat fixed;
+  text-align: center;
+  width: 100%;
+  height: 500px;
+  font-family: 'Ropa Sans', sans-serif;
+  margin-bottom: 20px;
+  vertical-align: center;
+  
+
+}
+
+.help_btn {
+  /*position: ;*/
+  width: 130px;
+  height: 50px;
+  margin: 30px auto 0;
+  background-color: #4265EE;
+  color: white;
+  font-weight: 600;
+  font-size: 20px;
+  border-radius: 30px;
+  line-height: 50px;
+  opacity: .8;
+}
+
+.blank-one h2 {
+font-size: 80px;
+/*position:*/
+height: 100px;
+text-transform: uppercase;
+color: rgb(255, 255, 255);
+text-shadow: 1px 1px 2px #000;
+line-height: 60vh; /*이전 설정 50vh*/
+display: inline-block;
+
+}
+
+
+/*로그인 시 슬라이드바 CSS*/
+/*슬라이드 바 전체*/
+.slide_bar {
+  background-color: white;
+  width: 320px;
+  height: 100%;
+  position: fixed;
+  left: -320px;
+  z-index: 999;
+}
+
+/* 슬라이드 바 취소 버튼*/
+.slide_bar_cancel {
+  padding: 10px 0;
+}
+.icon_wrap {
+  display: inline-block;
+}
+#cancel_icon {
+  float: right;
+  padding-right: 15px;
+  
+  display: inline-block;
+}
+#cancel_icon, #slide_icon:hover {
+  cursor: pointer;
+
+}
+#slide_icon{
+   margin-left:345px;
+   float:none;
+}
+/*슬라이드 바 취소 버튼 끝  */
+
+/*슬라이드 바 전체 컨텐츠 div*/
+.member_slide {
+  width: 100%;
+  margin: 20px 0 ;
+}
+
+.member_slide .member_info {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+
+.member_slide .member_info .user_photo {
+  position: relative;
+  padding: 30px 0;
+  text-align: center;
+}
+
+.member_slide .member_info .user_photo img {
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+}
+
+.member_slide .member_info .user_id {
+  text-align: center;
+}
+
+.member_slide .member_info .user_url {
+  text-align: center;
+  color: gray;
+}
+
+.member_slide .member_info .user_mypage {
+  text-align: center;
+  background-color: #4a4a4a;
+  width: 150px;
+  height: 35px;
+  color: white;
+  border-radius: 30px;
+  margin: 30px auto 0;
+  vertical-align: center;
+  font-size: 80%
+}
+
+.user_mypage {
+line-height: 35px;
+}
+
+.user_nation {
+  height: 30px;
+  text-align: center;
+  margin-top: 20px;
+  list-style: none;
+  padding-top: 2px;
+  overflow: hidden;
+}
+
+.user_nation li {
+  width: 20px;
+  display: inline-block;
+}
+
+.user_nation img {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  vertical-align: middle;
+}
+
+ .user_visited {
+   width: 210px;
+   font-weight: 600;
+   font-size: 18px;
+   color: #767676;
+   text-align: center;
+   margin: 25px auto 0;
+   padding-bottom: 30px;
+ }
+
+  .user_visited .user_write {
+    display: inline-block;
+    width: 100px;
+  }
+
+  .user_visited .user_visited_count {
+    display: inline-block;
+    width: 100px;
+  }
+
+  .counting {
+    display: block;
+    margin-top: 10px;
+    font-size: 130%;
+    color: black;
+  }
+
+.slide_bar_classify{
+  width: 80%;
+  color: #d2d2d2;
+}
+.slide_bar_menu {
+  padding-top: 30px;
+  text-align: center;
+}
+
+.slide_bar_menu li {
+  margin-bottom: 20px;
+  font-size: 95%;
+  font-weight: 400;
+  color: #767676;
+}
+
+/*슬라이드 메뉴 끝*/
+
+/*슬라이드 메뉴 호출시 화면 커버*/
+.cover_dimmed {
+  background-color: #000;
+  opacity: 0.5;
+  z-index: 990;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  display: none;
+}
+/*커버 끝*/
+
+
+
+#header_line {
+  box-sizing: border-box;
+  position: relative;
+  height: 15%;
+  width: 100%;
+  border-bottom: solid 1px #d2d2d2;
+}
+/*header*/
+  body {
+      margin: 0;
+    }
+
+    header {
+      border: 1px solid #c9d1dd;
+      width: 100%;
+      height: 70px;
+      z-index: 100;
+      background-color: white;
+    }
+
+    #logo {
+      max-height: 55px;
+      margin-top: 7px;
+      mar-left: 20px;
+      display: inline;
+    }
+
+    #search_bar {
+      border: 1px solid white;
+      border-bottom: 1px solid gray;
+      font-size: 25px;
+      font-weight: 600;
+      margin-left: 10%;
+      margin-top: 17px;
+      display: inline;
+      position: absolute;
+      width: 500px;
+      height: 40px;
+    }
+
+    #search_icon {
+      position: absolute;
+      margin-left: 695px;
+      margin-top: 19px;
+      background-color: white;
+      border: none;
+    }
+
+     ::-webkit-input-placeholder {
+      color: #aeb5c1;
+    }
+
+    #start-my-journey {
+      border: 1px solid black;
+      width: 140px;
+      height: 40px;
+      border-radius: 20px;
+      background-color: white;
+      margin-left: 938px;
+      margin-top: 13px;
+      margin-bottom: 15px;
+      font-size: 17px;
+      position: absolute;
+      display: inline;
+    }
+
+/*  */
+/* .header-container{
+  border: 1px solid white;
+  width: 100%;
+  height: 110px;
+
+
+}
+
+.in-header-container{
+  border:1px solid white;
+  width: 1024px;
+  height: 90px;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+i{
+  margin-top: 7px;
+  margin-left: 10px;
+}
+
+#edit-start-button{
+  border: 2px solid black;
+  background-color: white;
+  border-radius: 5px;
+  float: right;
+  width: 120px;
+  height: 40px;
+  margin-top:40px;
+  font-weight: bold;
+}
+
+#search-bar {
+  display: inline-block;
+  border: 1px solid white;
+  border-bottom: 1px solid black;
+  width: 700px;
+  height: 40px;
+  margin-left: 70px;
+  margin-top: 10px;
+}
+
+#logo{
+  display: inline-block;
+  height: 40px;
+  margin-top: 30px;
+} */
+/*여기까지 header*/
+/*Body*/
+.container_main {
+  /*border: solid black 1px;*/
+  width: 1024px;
+  height:100%;
+  margin: auto;
+}
+
+/* 여행기 슬라이드 블럭*/
+.slide_wrap {
+  width: 1024px;
+  height: 414px;
+  /*border: solid red 1px;*/
+}
+
+.box_slide_title {
+  box-sizing: border-box;
+  position: relative;
+  float: left;
+  width: 260px;
+  height:100%;
+  border-top: 1px solid #010101;
+  padding: 38px 20px 28px 0;
+  /*border: solid black 1px;*/
+}
+.slide_wrap
+.box_slide_title .titl {
+  font-size: 23px;
+  color: #000;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.slide_wrap
+.box_slide_title .sub_titl {
+
+  font-size: 38px;
+  color: #000;
+  font-weight: 300;
+  letter-spacing: -.5px;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+.slide_wrap
+.box_slide_title .ment {
+  font-size: 18px;
+  height: 138px;
+  overflow: hidden;
+  color: #8a8a8a;
+  font-weight: 400;
+  line-height: 1.5;
+  /*border: solid 1px blue;*/
+}
+
+.slide_wrap
+.box_slide_title .more a {
+  /*display: inline-block;*/
+  font-size: 17.5px;
+  color: #4265EE;
+  font-weight: 700;
+  font-family: "Noto Sans KR";
+}
+
+.slide_wrap .box_slide_main {
+    width: 762px;
+    height: 100%;
+    float: right;
+    /*border: solid 1px red;*/
+    overflow: hidden;
+}
+
+.slide_wrap .box_slide_main .item {
+  float: left;
+  position: relative;
+  margin-left: 10px;
+  width: 242px;
+  height: 100%;
+  /*border: solid 1px black;*/
+}
+
+.slide_wrap .box_slide_main .item .item_thumb {
+max-height: 215px;
+}
+
+.slide_wrap .box_slide_main .item .item_thumb img{
+max-width: none;
+width: 242px;
+height: 215px;
+}
+
+.slide_wrap .box_slide_main .item .item_in{
+height: 161px;
+position: relative;
+padding: 10px 10px 10px 0;
+}
+
+.slide_wrap .box_slide_main .item .titl{
+width: 100%;
+max-height: 48px;
+overflow: hidden;
+word-wrap: break-word;
+font-size: 20px;
+margin-bottom: 10px;
+letter-spacing: -.5px;
+line-height: 1.2;
+font-family: "Noto Sans KR"
+}
+
+.slide_wrap .box_slide_main .item .tag {
+  width: 100%;
+  height: 34px;
+  min-height: 34px;
+  overflow: hidden;
+  word-wrap: break-word;
+  font-size: 14px;
+  font-weight: 500;
+  color: #8b8b8b;
+  margin-bottom: 18px;
+  line-height: 1.3;
+	
+}
+
+
+
+.box_slide_main .bottom_msg {
+  width: 249px;
+  height: 35px;
+  position: absolute;
+  bottom: 0;
+}
+
+.box_slide_main .bottom_msg .circle_photo{
+margin-bottom: 2px;
+}
+.circle_photo {
+  display: inline-block;
+  min-width: 33px;
+  height: 33px;
+  border-radius: 33px;
+  /*background: url(../img/img_circle_photo.png) center no-repeat;*/
+  margin-right: 3px;
+  background-size: cover;
+  vertical-align: middle;
+}
+
+/*여행 작가 라인*/
+.travel_writer {
+  position: relative;
+  width: 1024px;
+  /*border: solid 5px gray;*/
+  padding: 30px auto 0;
+  margin-bottom: 30px;
+  background-color: #f2f9fb;
+  
+}
+
+.travel_writer .travel_writer_titl {
+  float:center;
+  width: 700px;
+  height: 130px;
+  /*border: solid 1px black;*/
+  margin: 20px auto 20px;
+  /*margin-top: 20px;*/
+  text-align: center;
+}
+
+.travel_writer .travel_writer_titl .pc_text {
+  float: none;
+  font-size: 29px;
+  font-weight: 600;
+  padding-top: 15px;
+}
+
+.travel_writer .travel_writer_titl .pc_text span {
+  color: #4265EE;
+  font-weight: 900;
+}
+
+.travel_writer .travel_writer_slide {
+  width: 1024px;
+  margin-bottom: 20px;
+
+}
+.travel_writer_slide {
+  box-sizing: border-box;
+  width: 900px;
+  /*height: 200px;*/
+  /*z-index: 9999;*/
+  padding: 0 20px;
+}
+.travel_writer_slide .item {
+  box-sizing: border-box;
+  width: 190px;
+  height: 260px;
+  /*border: solid 1px blue;*/
+  /*padding-bottom: 20px;*/
+
+}
+
+.owl-stage-outer {
+  display: inline-block;
+  width: 800px;
+  margin-left: 100px;
+}
+
+.travel_writer_slide .travel_writer_photozone {
+  width: 160px;
+  height: 130px;
+  /*border: 1px solid blue;*/
+  margin-bottom: 10px;
+}
+
+.travel_writer_slide .travel_writer_photozone img {
+  width: 130px;
+  height: 130px;
+  border-radius: 100%;
+  margin: 0px auto;
+}
+
+.travel_writer_slide .travel_writer_id {
+  /*position: absolute;*/
+  /*z-index: 999;*/
+  width: 160px;
+  text-align: center;
+  margin: 0 0 10px 0;
+  font-size: 15px;
+}
+
+.travel_writer_slide .travel_writer_intro {
+  margin: 10px 0;
+}
+
+.travel_writer_slide .travel_writer_flag {
+  height: 30px;
+  border-top: solid 1px #d2d2d2;
+}
+
+.travel_writer_slide .travel_writer_flag img{
+  float: left;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+}
+
+.item{
+	float: left;
+	position: inline-block;
+}
+
+
+
+

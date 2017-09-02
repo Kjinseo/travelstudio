@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+<style>
+body{
+  /*z-index:1;
+  margin-top: 40px;
+  margin-left: 40px;
+  padding-top:60px;
+  padding-left: 20px;
+  background-color: #FAFAFA;
+  border:black 2px solid;
+  border-top-right-radius:5px;
+  border-top-left-radius:5px;
+  border-bottom-right-radius: 30px;
+  border-bottom-left-radius: 30px;
+  padding 1px;
+  /*background-color: yellow;*/
+  height:445px;
+  width:280px;*/
+}
+#li{
+  z-index: 2;
+  position: absolute;
+  height: 50px;
+  width:230px;
+  font-size: 35px;
+  margin:-5px auto 20px auto;
+  background-color: #CCFFFF;
+  /*436450 어두운색*/
+  border:3px black solid;
+  color:black;
+  text-align:right;
+}
+#li2{
+  z-index: 2;
+  position: absolute;
+  height: 50px;
+  width:230px;
+  font-size: 35px;
+  margin:-5px auto 20px auto;
+  background-color: #CCFFFF;
+margin-top: 10px;
+  /*436450 어두운색*/
+  border:3px black solid;
+  color:black;
+  text-align:right;
+}
+#he{
+  height:6px;
+}
+#bind{
+  margin-top:50px;
+}
+.aa{
+}
+/*#c2{
+border:black 1px solid;
+  border-top-right-radius:5px;
+  border-top-left-radius:5px;
+  position: absolute;
+  overflow: hidden;
+  width: 278px;
+  height:130px;
+  margin-left:-21px;
+  margin-top:-61px;
+  margin-bottom: 20px;
+  background-color: #E8DEDE;
+  z-index: 0;
+}*/
+.selected{
+  margin-top: 40px;
+  background-color:yellow;
+  font-weight:bold;
+  color:black;
+}
+#timeout{
+  position:absolute;
+  margin-top: -20px;
+  margin-left: 250px;
+  font-size:30px;
+  font-weight:bold;
+}
+.aa{
+background-color:yellow;
+height: 40px;
+width:230px;
+font-size: 30px;
+margin:auto;
+/*background-color: #CCFFFF;*/
+margin-top: 10px;
+margin-top: 10px;
+margin-left: 0px;
+/*436450 어두운색*/
+border:3px black solid;
+color:black;
+text-align:left;
+}
+#select-btn{
+  /*background-color:#E8DEDE;*/
+  height: 50px;
+  width:100px;
+  font-size: 35px;
+  /*margin:-5px auto 20px auto;*/
+  /*background-color: #CCFFFF;*/
+  margin-top: 50px;
+  margin-left: 60px;
+  /*436450 어두운색*/
+  border:3px black solid;
+  color:black;
+  text-align:center;
+}
+.bb{
+  /*background-color:yellow;*/
+  height: 40px;
+  width:230px;
+  font-size: 35px;
+  margin-top:-46px;
+  /*background-color: #CCFFFF;*/
+  border-top-coloer:yellow;
+  margin-left: 0px;
+  /*436450 어두운색*/
+  border:3px black solid;
+  color:black;
+  text-align:right;
+}
+</style>
+  </head>
+<body><div id="c1"></div>
+
+
+ <div id="c2"></div>
+
+ <input id="li" type="text"><p id="he"></p>
+ <span id='timeout'></span>
+ <div id ="bind">
+ <div class="aa" id="ad">총개수</div><div class ="bb" id="total"></div>
+ <div class="aa">성공</div><div class ="bb" id="good"></div>
+ <div class="aa">실패</div><div class ="bb" id="bad"></div>
+ <input id="li2" onkeyup="enterkey();" type="text"><p id="he"></p>
+ </div>
+
+
+ <div id=posi>
+   <button type="button" class="btn btn-primary" id="select-btn">시작</button>
+   <p id="timeout"></p>
+</div>
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
+<script type="text/javascript">
+"use strict"
+var words=[];
+var li = document.querySelector("#li")
+var li2 = document.querySelector("#li2")
+var good1 = document.querySelector("#good")
+var bad1 = document.querySelector("#bad")
+var total = document.querySelector("#total")
+var sel = document.querySelector("#select-btn")
+var timeout = document.querySelector("#timeout")
+var totalcount = 0
+var bad=0
+var i=0;
+var good=0
+// function aa(){
+// var xhr = new XMLHttpRequest();
+//     xhr.open('GET', 'words.js');
+//     xhr.onreadystatechange = function(){
+//         if(xhr.readyState == 4 && xhr.status == 200){
+//           var data = xhr.responseText;
+//           var parseData = JSON.parse(data);
+//
+//           for(i=0;i<=parseData. words.length;i++){
+//           words[i]=parseData.words[i];
+//           }
+//         }
+//     }
+//     xhr.send();
+//     dis1()
+// }
+
+// document.querySelector('input').addEventListener('click', function(event){
+//     var xhr = new XMLHttpRequest();
+//     xhr.open('GET', './time.php');
+//     xhr.onreadystatechange = function(){
+//         if(xhr.readyState === 4 && xhr.status === 200){
+//             var _tzs = xhr.responseText;
+//             var tzs = _tzs.split(',');
+//             var _str = '';
+//             for(var i = 0; i< tzs.length; i++){
+//                 _str += '<li>'+tzs[i]+'</li>';
+//             }
+//             _str = '<ul>'+_str+'</ul>';
+//             document.querySelector('#timezones').innerHTML = _str;
+//         }
+//     }
+//     xhr.send();
+// });
+
+var httpRequest;
+ makeRequest('./words.json');
+function makeRequest(url) {
+      httpRequest = new XMLHttpRequest();
+    if (!httpRequest) {
+      alert('Giving up :( Cannot create an XMLHTTP instance');
+      return false;
+    }
+    httpRequest.onreadystatechange = alertContents;
+    httpRequest.open('GET', url);
+    httpRequest.send();
+  }
+  function alertContents() {
+    if (httpRequest.readyState === 4) {
+      if (httpRequest.status === 200) {
+        var data = httpRequest.responseText
+                  var parseData = JSON.parse(data);
+                  for(i=0;i<=parseData.words.length;i++){
+                  words[i]=parseData.words[i];
+                  }
+      } else {
+        alert('There was a problem with the request.');
+      }
+    }
+  }
+sel.addEventListener('click',function(){
+  var count = 20
+  good=0;
+  bad=0;
+  totalcount=0;
+  dis1()
+  var interval2 = setInterval(function() {
+    timeout.innerHTML=count--
+    if(count==0){
+    }
+  }, 1000)
+  setTimeout(function() {
+    clearInterval(interval2)
+    exit()
+  }, 21500)
+})
+function exit(){
+alert("끝났습니다\n 성공:"+good)
+  good=0;
+  bad=0;
+  totalcount=0;
+li.value = "";
+  total.innerHTML=totalcount
+  good1.innerHTML=good
+  bad1.innerHTML=bad
+}
+function dis1(){
+  var rand = Math.floor(Math.random()*8);
+  display(rand);
+}
+function display(i){
+var value=parseInt(i);
+total.innerHTML =totalcount
+good1.innerHTML=good
+bad1.innerHTML=bad
+li.value = words[value];
+}
+  function enterkey() {
+          if (window.event.keyCode == 13) {
+               check2();
+          }
+  }
+function check2(){
+      if(li.value==li2.value){
+        li2.value=""
+        ++good;
+        good1.innerHTML =good
+        i++
+        dis1()
+      }
+        else{
+          li2.value=""
+          bad++;
+          bad1.innerHTML=bad
+          i++
+        dis1()
+    }
+    ++totalcount
+    total.innerHTML =totalcount
+  }
+</script>
+</body>
+</html>

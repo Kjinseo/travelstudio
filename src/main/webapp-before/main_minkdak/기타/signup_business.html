@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>signup</title>
+    <link rel="stylesheet" href="./font-awesome-4.7.0/css/font-awesome.min.css">
+    <style>
+    *
+    {
+        box-sizing:         border-box;
+        /*-moz-box-sizing:    border-box;
+        -webkit-box-sizing: border-box;*/
+    }
+
+    body
+    {
+      margin: 0;
+      padding: 0;
+      background: #fff;
+      font-family: arial, sans-serif;
+    }
+
+
+    /*배경 크기 조정*/
+    .user-card
+    {
+      border: solid 1px red;
+    	width: 800px;
+    	height: 650px;
+    	margin: 50px auto;
+      position: relative;
+    	background: #fff;
+    	box-shadow:         0 1px 3px 0 rgba(0,0,0,0.08);
+    	-moz-box-shadow:    0 1px 3px 0 rgba(0,0,0,0.08);
+    	-webkit-box-shadow: 0 1px 3px 0 rgba(0,0,0,0.08);
+      border-radius:         5px;
+      -moz-border-radius:    5px;
+      -webkit-border-radius: 5px;
+    }
+
+
+    input
+    {
+    	width: 100%;
+    	height: 40px;
+    	border-radius:         3px;
+    	-moz-border-radius:    3px;
+    	-webkit-border-radius: 3px;
+    	border: 1px solid #dee3e4;
+    	padding: 3px 12px;
+    	margin: 6px 0;
+    }
+
+    input:focus
+    {
+
+    	border: 1px solid #03b3b5;
+    	transition:         all .5s ease-in-out;
+    	-o-transition:      all .5s ease-in-out;
+    	-moz-transition:    all .5s ease-in-out;
+    	-webkit-transition: all .5s ease-in-out;
+    }
+
+    /*박스 설정*/
+    /*.signup-box
+    {
+      position: relative;
+    	top: 0;
+      margin-left: 5px
+    	right: 80%;
+    	width: 100%;
+    	height: calc(100% - 25px);
+    	background: #fff;
+      radius: 5px;
+      border-radius:         5px;
+      -moz-border-radius:    5px;
+      -webkit-border-radius: 5px;
+    }*/
+
+    .signup-box{
+    	/*padding: 20px 0px;*/
+    	right: 0px;
+    }
+
+    .signup
+    {
+    	text-align: center;
+    	color: #fff;
+    	background: #03b3b5;
+    	line-height: 30px;
+    	opacity: 0.95;
+    }
+
+    .signup:hover {
+      opacity: 1;
+      cursor: pointer;
+    }
+
+
+
+    /**** footer *****/
+
+    .user-card .footer
+    {
+    	position: absolute;
+    	bottom: 0;
+    	right: 0;
+    	width: 100%;
+    	height: 25px;
+    	text-align: center;
+    	color: #666;
+    	font-size: 13px;
+    	font-family: sans-serif;
+    }
+
+
+    #titl_signup {
+      text-align: center;
+      font-size: 130%;
+      width: 100%;
+      height: 80px;
+      background: #03b3b5;
+      padding-top: 20px;
+      color: #fff;
+      opacity: 0.5;
+    }
+    .signup-set {
+      border: 1px solid blue;
+    }
+    .signup-form {
+      box-sizing: border-box;
+      position: relative;
+      padding: 20px 30px;
+      /*border: 1px solid red;*/
+      /*border-right: 1px solid #dee3e4;*/
+      top: 5px;
+      width: 350px;
+      /*height: 390px;*/
+    }
+    .business {
+      margin: 7px 0 ;
+    }
+
+    .detail-form {
+      position: relative;
+      padding: 20px 10px;
+      border: solid red 1px;
+      /*top: 5px;*/
+      width: 430px;
+      left: 360px;
+      bottom: 195px;
+
+    }
+
+    #close {
+      background: #03b3b5;
+      opacity: 0.5;
+
+    }
+    #close_btn  {
+      margin-left: 96%;
+      margin-top: 2%;
+      color: white;
+      opacity: 0.5;
+    }
+    .basic {
+      position: static;
+      /*right: 100px;*/
+      width: 280px;
+    }
+
+    .business {
+      /*position: relative;*/
+      left: 50%;
+      bottom: 150px;
+    }
+
+    #b_name, #ceo_name, #part_name{
+      width: 180px;
+      right: 70%;
+    }
+    #ptt_number, #part_number {
+      width: 220px;
+    }
+    #post_number {
+      width: 180px;
+    }
+
+    /*우편 주소 검색 아이콘*/
+    .fa-search {
+      cursor: pointer;
+    }
+    /*화면 분리*/
+    .divide {
+      height: 400px;
+      width: 1px;
+      border-right: solid 1px #dee3e4;
+    }
+    #sign_btn {
+      position: static;
+      bottom: 80%;
+      width: 70%;
+    }
+    </style>
+  </head>
+  <body>
+
+
+    <div class="user-card round5">
+    	<div class="signup-box">
+        <div id="close">
+          <i class="fa fa-times" id="close_btn" aria-hidden="true"></i>
+        </div>
+        <div type="text" id="titl_signup">Sign Up!</div>
+        <div class="signup-form" name="sign" action="">
+          <input class="basic" type="email" name="email" class="email" placeholder="이메일" />
+          <input class="basic" type="password" name="password" class="password" placeholder="암호" />
+          <input class="basic" type="password" name="confirm-password" class="confirm-password" placeholder="암호 확인" />
+       </div>
+        <div class="devide"></div>
+        <div class="detail-form" name="sign" action="">
+          <input class="business" type="text" id="b_name" placeholder="업체명" />
+          <input class="business" type="text" id="b_number" placeholder="사업자 등록번호 10자리를 입력하세요" />
+          <input class="business" type="text" id="ceo_name" placeholder="대표자명" />
+          <input class="business" type="text" id="ptt_number" placeholder="대표 전화번호" />
+          <input class="business" type="text" id="part_name" placeholder="담당자명" />
+          <input class="business" type="text" id="part_number" placeholder="담당자 번호" />
+          <input class="business" type="text" id="post_number" placeholder="우편번호" />
+          <i class="fa fa-search" aria-hidden="true"></i>
+          <input class="business" type="text" id="basic_addr" placeholder="기본 주소" />
+          <input class="business" type="text" id="detail_addr" placeholder="상세 주소" />
+        </div>
+      </div>
+      <input type="submit" id="sign_btn" name="signup" value="가입하기" href="#" class="signup" />
+</div>
+
+        <!-- <div class="dif-box">
+          <div type="text" id="titl_signup">다른 계정으로 가입하기</div>
+        </div> -->
+
+
+  </body>
+</html>

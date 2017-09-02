@@ -1,0 +1,450 @@
+-- 멤버
+DROP TABLE IF EXISTS MEMBER RESTRICT;
+
+-- 게시글
+DROP TABLE IF EXISTS POST RESTRICT;
+
+-- 카테고리
+DROP TABLE IF EXISTS CATEGORY RESTRICT;
+
+-- 댓글
+DROP TABLE IF EXISTS REPLY RESTRICT;
+
+-- 좋아요
+DROP TABLE IF EXISTS GOOD RESTRICT;
+
+-- 공지
+DROP TABLE IF EXISTS NOTICE RESTRICT;
+
+-- QnA
+DROP TABLE IF EXISTS QnA RESTRICT;
+
+-- 게시판 공유
+DROP TABLE IF EXISTS COWORK RESTRICT;
+
+-- 사진
+DROP TABLE IF EXISTS PIC RESTRICT;
+
+-- 세부내용
+DROP TABLE IF EXISTS DETAIL RESTRICT;
+
+-- 구독
+DROP TABLE IF EXISTS FOllOW RESTRICT;
+
+-- 신고
+DROP TABLE IF EXISTS REPORT RESTRICT;
+
+-- 임시 테이블
+DROP TABLE IF EXISTS Temporary RESTRICT;
+
+-- 멤버
+CREATE TABLE MEMBER (
+	MNO   INTEGER     NOT NULL COMMENT '회원번호', -- 회원번호
+	EMAIL VARCHAR(40) NOT NULL COMMENT '이메일', -- 이메일
+	PWD   VARCHAR(50) NOT NULL COMMENT '암호', -- 암호
+	ALIAS VARCHAR(50) NOT NULL COMMENT '닉네임', -- 닉네임
+	INTRO TEXT        NULL     COMMENT '자기소개', -- 자기소개
+	PATH  VARCHAR(50) NULL     COMMENT '사진' -- 사진
+)
+COMMENT '멤버';
+
+-- 멤버
+ALTER TABLE MEMBER
+	ADD CONSTRAINT PK_MEMBER -- 멤버 기본키
+		PRIMARY KEY (
+			MNO -- 회원번호
+		);
+
+-- 멤버 유니크 인덱스
+CREATE UNIQUE INDEX UIX_MEMBER
+	ON MEMBER ( -- 멤버
+		EMAIL ASC, -- 이메일
+		ALIAS ASC  -- 닉네임
+	);
+
+-- 멤버 인덱스
+CREATE INDEX IX_MEMBER
+	ON MEMBER( -- 멤버
+		ALIAS ASC -- 닉네임
+	);
+
+-- 멤버 인덱스2
+CREATE INDEX IX_MEMBER2
+	ON MEMBER( -- 멤버
+		EMAIL ASC -- 이메일
+	);
+
+ALTER TABLE MEMBER
+	MODIFY COLUMN MNO INTEGER NOT NULL AUTO_INCREMENT COMMENT '회원번호';
+
+-- 게시글
+CREATE TABLE POST (
+	POSTNO INTEGER      NOT NULL COMMENT '게시글 일련번호', -- 게시글 일련번호
+	TITLE  VARCHAR(255) NOT NULL COMMENT '제목', -- 제목
+	BADGE  VARCHAR(255) NULL     COMMENT '국가뱃지', -- 국가뱃지
+	TAG    VARCHAR(100) NULL     COMMENT '태그', -- 태그
+	SDT    DATE         NULL     COMMENT '출발일', -- 출발일
+	EDT    DATE         NULL     COMMENT '도착일', -- 도착일
+	PDT    DATETIME     NOT NULL COMMENT '등록일', -- 등록일
+	CONT   TEXT         NULL     COMMENT '내용', -- 내용
+	PUBLIC CHAR(1)      NULL     COMMENT '공개여부', -- 공개여부
+	MNO    INTEGER      NOT NULL COMMENT '회원번호', -- 회원번호
+	GOOD   INTEGER      NULL     COMMENT '좋아요 누적' -- 좋아요 누적
+)
+COMMENT '게시글';
+
+-- 게시글
+ALTER TABLE POST
+	ADD CONSTRAINT PK_POST -- 게시글 기본키
+		PRIMARY KEY (
+			POSTNO -- 게시글 일련번호
+		);
+
+-- 게시글 인덱스
+CREATE INDEX IX_POST
+	ON POST( -- 게시글
+		TITLE ASC -- 제목
+	);
+
+-- 게시글 인덱스2
+CREATE INDEX IX_POST2
+	ON POST( -- 게시글
+		TAG ASC -- 태그
+	);
+
+ALTER TABLE POST
+	MODIFY COLUMN POSTNO INTEGER NOT NULL AUTO_INCREMENT COMMENT '게시글 일련번호';
+
+-- 카테고리
+CREATE TABLE CATEGORY (
+	CAT VARCHAR(255) NOT NULL COMMENT '카테고리명' -- 카테고리명
+)
+COMMENT '카테고리';
+
+-- 댓글
+CREATE TABLE REPLY (
+	RENO   INTEGER  NOT NULL COMMENT '댓글번호', -- 댓글번호
+	POSTNO INTEGER  NOT NULL COMMENT '게시글 일련번호', -- 게시글 일련번호
+	MNO    INTEGER  NOT NULL COMMENT '회원번호', -- 회원번호
+	CONT   TEXT     NOT NULL COMMENT '내용', -- 내용
+	DATE   DATETIME NOT NULL COMMENT '일시' -- 일시
+)
+COMMENT '댓글';
+
+-- 댓글
+ALTER TABLE REPLY
+	ADD CONSTRAINT PK_REPLY -- 댓글 기본키
+		PRIMARY KEY (
+			RENO -- 댓글번호
+		);
+
+ALTER TABLE REPLY
+	MODIFY COLUMN RENO INTEGER NOT NULL AUTO_INCREMENT COMMENT '댓글번호';
+
+-- 좋아요
+CREATE TABLE GOOD (
+	MNO    INTEGER NOT NULL COMMENT '회원번호', -- 회원번호
+	POSTNO INTEGER NOT NULL COMMENT '게시글 일련번호', -- 게시글 일련번호
+	GCNT   INTEGER NULL     COMMENT '좋아요' -- 좋아요
+)
+COMMENT '좋아요';
+
+-- 좋아요
+ALTER TABLE GOOD
+	ADD CONSTRAINT PK_GOOD -- 좋아요 기본키
+		PRIMARY KEY (
+			MNO,    -- 회원번호
+			POSTNO  -- 게시글 일련번호
+		);
+
+-- 공지
+CREATE TABLE NOTICE (
+	NONO    INTEGER      NOT NULL COMMENT '공지글번호', -- 공지글번호
+	TITLE   VARCHAR(255) NOT NULL COMMENT '제목', -- 제목
+	CONT    TEXT         NOT NULL COMMENT '내용', -- 내용
+	POST_DT DATETIME     NOT NULL COMMENT '게시일' -- 게시일
+)
+COMMENT '공지';
+
+-- 공지
+ALTER TABLE NOTICE
+	ADD CONSTRAINT PK_NOTICE -- 공지 기본키
+		PRIMARY KEY (
+			NONO -- 공지글번호
+		);
+
+ALTER TABLE NOTICE
+	MODIFY COLUMN NONO INTEGER NOT NULL AUTO_INCREMENT COMMENT '공지글번호';
+
+-- QnA
+CREATE TABLE QnA (
+	RENO  INTEGER      NOT NULL COMMENT '질문번호', -- 질문번호
+	TITLE VARCHAR(255) NOT NULL COMMENT '제목', -- 제목
+	CONT  TEXT         NOT NULL COMMENT '내용', -- 내용
+	QDT   DATETIME     NOT NULL COMMENT '등록일', -- 등록일
+	REPLY TEXT         NULL     COMMENT '답변', -- 답변
+	MNO   INTEGER      NOT NULL COMMENT '회원번호' -- 회원번호
+)
+COMMENT 'QnA';
+
+-- QnA
+ALTER TABLE QnA
+	ADD CONSTRAINT PK_QnA -- QnA 기본키
+		PRIMARY KEY (
+			RENO -- 질문번호
+		);
+
+ALTER TABLE QnA
+	MODIFY COLUMN RENO INTEGER NOT NULL AUTO_INCREMENT COMMENT '질문번호';
+
+-- 게시판 공유
+CREATE TABLE COWORK (
+	MNO     INTEGER NOT NULL COMMENT '친구회원번호', -- 친구회원번호
+	POSTNO  INTEGER NOT NULL COMMENT '게시글 일련번호', -- 게시글 일련번호
+	CONFIRM INTEGER NOT NULL DEFAULT 0 COMMENT '확인' -- 확인
+)
+COMMENT '게시판 공유';
+
+-- 게시판 공유
+ALTER TABLE COWORK
+	ADD CONSTRAINT PK_COWORK -- 게시판 공유 기본키
+		PRIMARY KEY (
+			MNO,    -- 친구회원번호
+			POSTNO  -- 게시글 일련번호
+		);
+
+-- 사진
+CREATE TABLE PIC (
+	PICNO  INTEGER      NOT NULL COMMENT '사진일련번호', -- 사진일련번호
+	PATH   VARCHAR(255) NOT NULL COMMENT '사진경로', -- 사진경로
+	TIME   DATETIME     NULL     COMMENT '시간', -- 시간
+	DETAIL VARCHAR(255) NULL     COMMENT 'detail설명', -- detail설명
+	LATI   FLOAT        NULL     COMMENT '위도', -- 위도
+	LONGIT FLOAT        NULL     COMMENT '경도', -- 경도
+	SNO    INTEGER      NULL     COMMENT '사진정렬번호' -- 사진정렬번호
+)
+COMMENT '사진';
+
+-- 사진
+ALTER TABLE PIC
+	ADD CONSTRAINT PK_PIC -- 사진 기본키
+		PRIMARY KEY (
+			PICNO -- 사진일련번호
+		);
+
+ALTER TABLE PIC
+	MODIFY COLUMN PICNO INTEGER NOT NULL AUTO_INCREMENT COMMENT '사진일련번호';
+
+-- 세부내용
+CREATE TABLE DETAIL (
+	MPTO   INTEGER      NOT NULL COMMENT '세부내용일련번호', -- 세부내용일련번호
+	PICNO  INTEGER      NULL     COMMENT '사진일련번호', -- 사진일련번호
+	POSTNO INTEGER      NULL     COMMENT '게시글 일련번호', -- 게시글 일련번호
+	CONT   TEXT         NULL     COMMENT '내용', -- 내용
+	DATE   DATE         NULL     COMMENT '날짜', -- 날짜
+	LATI   FLOAT        NULL     COMMENT '위도', -- 위도
+	LONGIT FLOAT        NULL     COMMENT '경도', -- 경도
+	CAPT   VARCHAR(255) NULL     COMMENT '캡션', -- 캡션
+	ADRS   VARCHAR(255) NOT NULL COMMENT '주소', -- 주소
+	WRITER VARCHAR(50)  NULL     COMMENT '작성자', -- 작성자
+	SRTNO  INTEGER      NULL     COMMENT '사진정렬번호' -- 사진정렬번호
+)
+COMMENT '세부내용';
+
+-- 세부내용
+ALTER TABLE DETAIL
+	ADD CONSTRAINT PK_DETAIL -- 세부내용 기본키
+		PRIMARY KEY (
+			MPTO -- 세부내용일련번호
+		);
+
+ALTER TABLE DETAIL
+	MODIFY COLUMN MPTO INTEGER NOT NULL AUTO_INCREMENT COMMENT '세부내용일련번호';
+
+-- 구독
+CREATE TABLE FOllOW (
+	MNO    INTEGER NOT NULL COMMENT '회원번호', -- 회원번호
+	MNO2   INTEGER NOT NULL COMMENT '대상자', -- 대상자
+	POSTNO INTEGER NULL     COMMENT '마지막으로읽은게시글일련번호' -- 마지막으로읽은게시글일련번호
+)
+COMMENT '구독';
+
+-- 구독
+ALTER TABLE FOllOW
+	ADD CONSTRAINT PK_FOllOW -- 구독 기본키
+		PRIMARY KEY (
+			MNO,  -- 회원번호
+			MNO2  -- 대상자
+		);
+
+-- 신고
+CREATE TABLE REPORT (
+	MNO    INTEGER NOT NULL COMMENT '회원번호', -- 회원번호
+	RENO   INTEGER NOT NULL COMMENT '댓글번호', -- 댓글번호
+	REPORT DATE    NOT NULL COMMENT '신고일', -- 신고일
+	RECONT TEXT    NOT NULL COMMENT '신고내용' -- 신고내용
+)
+COMMENT '신고';
+
+-- 신고
+ALTER TABLE REPORT
+	ADD CONSTRAINT PK_REPORT -- 신고 기본키
+		PRIMARY KEY (
+			MNO,  -- 회원번호
+			RENO  -- 댓글번호
+		);
+
+-- 임시 테이블
+CREATE TABLE Temporary (
+)
+COMMENT '임시 테이블';
+
+-- 게시글
+ALTER TABLE POST
+	ADD CONSTRAINT FK_MEMBER_TO_POST -- 멤버 -> 게시글
+		FOREIGN KEY (
+			MNO -- 회원번호
+		)
+		REFERENCES MEMBER ( -- 멤버
+			MNO -- 회원번호
+		);
+
+-- 댓글
+ALTER TABLE REPLY
+	ADD CONSTRAINT FK_MEMBER_TO_REPLY -- 멤버 -> 댓글
+		FOREIGN KEY (
+			MNO -- 회원번호
+		)
+		REFERENCES MEMBER ( -- 멤버
+			MNO -- 회원번호
+		);
+
+-- 댓글
+ALTER TABLE REPLY
+	ADD CONSTRAINT FK_POST_TO_REPLY -- 게시글 -> 댓글
+		FOREIGN KEY (
+			POSTNO -- 게시글 일련번호
+		)
+		REFERENCES POST ( -- 게시글
+			POSTNO -- 게시글 일련번호
+		);
+
+-- 좋아요
+ALTER TABLE GOOD
+	ADD CONSTRAINT FK_MEMBER_TO_GOOD -- 멤버 -> 좋아요
+		FOREIGN KEY (
+			MNO -- 회원번호
+		)
+		REFERENCES MEMBER ( -- 멤버
+			MNO -- 회원번호
+		);
+
+-- 좋아요
+ALTER TABLE GOOD
+	ADD CONSTRAINT FK_POST_TO_GOOD -- 게시글 -> 좋아요
+		FOREIGN KEY (
+			POSTNO -- 게시글 일련번호
+		)
+		REFERENCES POST ( -- 게시글
+			POSTNO -- 게시글 일련번호
+		);
+
+-- QnA
+ALTER TABLE QnA
+	ADD CONSTRAINT FK_MEMBER_TO_QnA -- 멤버 -> QnA
+		FOREIGN KEY (
+			MNO -- 회원번호
+		)
+		REFERENCES MEMBER ( -- 멤버
+			MNO -- 회원번호
+		);
+
+-- 게시판 공유
+ALTER TABLE COWORK
+	ADD CONSTRAINT FK_POST_TO_COWORK -- 게시글 -> 게시판 공유
+		FOREIGN KEY (
+			POSTNO -- 게시글 일련번호
+		)
+		REFERENCES POST ( -- 게시글
+			POSTNO -- 게시글 일련번호
+		);
+
+-- 게시판 공유
+ALTER TABLE COWORK
+	ADD CONSTRAINT FK_MEMBER_TO_COWORK -- 멤버 -> 게시판 공유
+		FOREIGN KEY (
+			MNO -- 친구회원번호
+		)
+		REFERENCES MEMBER ( -- 멤버
+			MNO -- 회원번호
+		);
+
+-- 세부내용
+ALTER TABLE DETAIL
+	ADD CONSTRAINT FK_PIC_TO_DETAIL -- 사진 -> 세부내용
+		FOREIGN KEY (
+			PICNO -- 사진일련번호
+		)
+		REFERENCES PIC ( -- 사진
+			PICNO -- 사진일련번호
+		);
+
+-- 세부내용
+ALTER TABLE DETAIL
+	ADD CONSTRAINT FK_POST_TO_DETAIL -- 게시글 -> 세부내용
+		FOREIGN KEY (
+			POSTNO -- 게시글 일련번호
+		)
+		REFERENCES POST ( -- 게시글
+			POSTNO -- 게시글 일련번호
+		);
+
+-- 구독
+ALTER TABLE FOllOW
+	ADD CONSTRAINT FK_MEMBER_TO_FOllOW -- 멤버 -> 구독
+		FOREIGN KEY (
+			MNO -- 회원번호
+		)
+		REFERENCES MEMBER ( -- 멤버
+			MNO -- 회원번호
+		);
+
+-- 구독
+ALTER TABLE FOllOW
+	ADD CONSTRAINT FK_MEMBER_TO_FOllOW2 -- 멤버 -> 구독2
+		FOREIGN KEY (
+			MNO2 -- 대상자
+		)
+		REFERENCES MEMBER ( -- 멤버
+			MNO -- 회원번호
+		);
+
+-- 구독
+ALTER TABLE FOllOW
+	ADD CONSTRAINT FK_POST_TO_FOllOW -- 게시글 -> 구독
+		FOREIGN KEY (
+			POSTNO -- 마지막으로읽은게시글일련번호
+		)
+		REFERENCES POST ( -- 게시글
+			POSTNO -- 게시글 일련번호
+		);
+
+-- 신고
+ALTER TABLE REPORT
+	ADD CONSTRAINT FK_MEMBER_TO_REPORT -- 멤버 -> 신고
+		FOREIGN KEY (
+			MNO -- 회원번호
+		)
+		REFERENCES MEMBER ( -- 멤버
+			MNO -- 회원번호
+		);
+
+-- 신고
+ALTER TABLE REPORT
+	ADD CONSTRAINT FK_REPLY_TO_REPORT -- 댓글 -> 신고
+		FOREIGN KEY (
+			RENO -- 댓글번호
+		)
+		REFERENCES REPLY ( -- 댓글
+			RENO -- 댓글번호
+		);

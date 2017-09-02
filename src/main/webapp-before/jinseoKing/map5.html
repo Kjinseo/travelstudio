@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Accessing arguments in UI events</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 300px;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      
+     
+            #hear{
+      z-index: 100;
+      }
+      
+      
+      
+      
+      
+      /*2번 지도*/
+       #map2 {
+         height: 600px;
+        width: 800px;
+        
+      }
+      /* Optional: Makes the sample page fill the window. */
+     
+      #floating-panel {
+        position: absolute;
+        top: 10px;
+        left: 25%;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+      }
+      #floating-panel {
+        position: absolute;
+        top: 600px;
+        left: 50%;
+        margin-left: -180px;
+        width: 350px;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+      }
+      #latlng {
+        width: 225px;
+      }
+      
+      
+      
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <button id="save" onclick="saveMap(); createMap();">save</button>
+    <dlv id="here"></dlv>
+    <!-- 2번 지도 -->
+     <div id="floating-panel">
+  <script id="map-template" type="text/x-handlebars-template">
+{{#each list}}
+      <input id="latlng" type="text" value="{{lati}}, {{longit}}">
+      <input id="submit" type="button" value="Reverse Geocode">
+{{/each}}
+</script>
+    </div>
+    <div id="map2"></div>
+  <div id="newMap"></div>
+    <script>
+    var latNum;
+    var lngNum;
+    var center;
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 10,
+          center: {lat:37.566535, lng: 126.9779692}
+        });
+
+        map.addListener('click', function(e) {
+          placeMarkerAndPanTo(e.latLng, map);
+          latNum=map.center.lat()
+		      lngNum=map.center.lng()
+          console.log(map.center.lat())
+          console.log(map.center.lng())
+          console.log(latNum);
+          console.log(lngNum);
+        });
+      }
+
+      function placeMarkerAndPanTo(latLng, map) {
+        var marker = new google.maps.Marker({
+          position: latLng,
+          map: map,
+        });
+          
+           
+        map.panTo(latLng);
+          map.setZoom(14);
+        
+    
+      }
+      
+      
+      /**/
+      function initMap2(mapDelId,slati,slongit) {
+        var map2 = new google.maps.Map(document.getElementById(mapDelId), {
+          zoom: 8,
+          center: {lat: 40.731, lng: -73.997}
+        });
+        var geocoder = new google.maps.Geocoder;
+        var infowindow = new google.maps.InfoWindow;
+		
+       /* window.onload=geocodeLatLng(geocoder, map2, infowindow);*/
+       geocodeLatLng(geocoder, map2, infowindow,slati,slongit)
+      }
+
+      function geocodeLatLng(geocoder, map2, infowindow,slati,slongit) {
+    	 
+        var input = document.getElementById('latlng').value;
+        
+        /* var latlngStr = input.split(',', 2); */
+        var latlng = {lat: parseFloat(slati), lng: parseFloat(slongit)};
+        geocoder.geocode({'location': latlng}, function(results, status) {
+          if (status === 'OK') {
+            if (results[1]) {
+              map2.setZoom(14);
+              map2.setCenter(results[0].geometry.location);
+              var marker = new google.maps.Marker({
+                position: latlng,
+                map: map2
+              });
+              
+             
+              infowindow.setContent(results[1].formatted_address);
+              infowindow.open(map2, marker);
+       
+            } else {
+              window.alert('No results found');
+            }
+          } else {
+            window.alert('Geocoder failed due to: ' + status);
+          }
+        });
+      }
+      /*지도를 여러개 생성하는 함수*/
+
+		    
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvJO_nbwEqokghhsnj7oj_uQPgnjFoa84&callback=initMap">
+    </script>
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="./node_modules/handlebars/dist/handlebars.min.js"></script>
+    <script src="./map3.js"></script>
+    <script>
+    /*지도 복사하는 함수*/
+    var body33=$('#newMap')
+    console.log($('#newMap'))
+    	 var mapcount=3;
+    function createMap(){
+    	slati=latNum.toFixed(8);
+  	  slongit=lngNum.toFixed(8);
+  	$("<div id='map"+mapcount+"' style='width:300px; height:300px; border:1px solid black;'>").appendTo($('#newMap'))
+  		/* $("<div class='map5'>").appendTo($('#newMap')) */
+  		/* $("<div class='map5'>").insertAfter(body33) */
+    /* $("<div id='map'"+mapcount+">").appendTo(body33) */
+    console.log("aaaa")
+     var mapDelId='map'+mapcount
+     console.log(mapDelId,slati,slongit)
+    /*  $.getJSON('/travelstudio/detail/list.json', function(result) {
+   console.log(result.data.list); 
+   
+
+  }) // getJSON(*/
+  initMap2(mapDelId,slati,slongit)
+    mapcount++
+  	  
+    };
+    var slati;
+    var slongit;
+    function saveMap(){
+  	  console.log("위치 데이터 넘어감");
+    	$.post('../detail/addMap.json', {
+            'lati': latNum.toFixed(8),
+            'longit': lngNum.toFixed(8)
+            
+          }, function(result) {
+        	  
+          	console.log("위도 경도 넘어간다.");
+            location.href = 'map.html'
+          }, 'json')  
+        }
+    </script>
+  </body>
+</html>

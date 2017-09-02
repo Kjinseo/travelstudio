@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="initial-scale=1.0">
+  <meta charset="utf-8">
+  <title>travel_log</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" type="text/css" href="./main.css"> -->
+  <link rel="stylesheet" href="/css/font-awesome-4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link href='http://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'><!-- 웹폰트 -->
+  <link rel="stylesheet" type="text/css" href="/css/article/inner_article.css">
+</head>
+
+<body>
+ 
+
+  <!--글쓰기랑 이이디 클래스 이름 똑같음-->
+  <div class="header" id="header">
+  <img src="/image/slidecall.png" id="slide_icon">
+    <a href="../main/main.html"><img id="logo" src="/image/ourlogo.png"></a>
+    <input type="search" id="search_bar" placeholder="검색">
+    <button id="search_icon" class="fa fa-search fa-2x" onclick="search()" aria-hidden="true"></button>
+    <button type="button" id="start-my-journey">여행기 작성</button>
+  </div> 
+  <br>
+  
+  
+<div id="blank-one" class="blank-one"></div>
+  
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- The Close Button -->
+  <span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span>
+
+  <!-- Modal Content (The Image) -->
+  <img class="modal-content" id="img01" src="">내용내용
+  
+  <!-- Modal Caption (Image Text) -->
+  <div id="caption"></div>
+</div>
+
+  <!--내용상자-->
+  <div class="container_main">
+
+<div class="without_heart_main">
+
+<div id="text_box">
+
+</div>
+
+</div><!--whole_collage-->
+<a id="gotop"href="#top" title="맨 위로가는 버튼"></i>▲TOP</a>
+</div>
+</div>
+<br>
+
+<a id="list_heart" href="javascript:;"><i id="list_heart_1" class="fa fa-heart-o fa-3x" aria-hidden="true"></i></a><span id="heart-count"></span>
+
+
+<!--글쓴이 프로필-->
+
+<div id="profile_box">
+
+	
+
+</div>
+<div class="sub_box"></div>
+	<div class="comment_container">
+		<div class="title_comment_container">댓글</div>
+		<div>
+		<li>
+			<div id="replyer"></div> 
+			<span class="content_reply">
+			<div id="textarea_plus_button">
+				<textarea id="text_reply" rows="5" cols="86"
+					placeholder="작가와 직접 소통하세요."></textarea>
+				<span><button type="summit" id="send_btn">확인</button></span>
+			</div>
+			</span>
+		</li>
+	</div>
+</div>
+
+<!--내용상자-->
+
+<script id="content-template-2" type="text/x-handlebars-template">
+	{{#each list}}
+	<div class="day1">
+	  <div class="travel_day">
+		  <div id="travel_detail_date_{{srtno}}"></div>
+		  <div id="travel_detail_place_{{srtno}}" class="travel_detail_date"></div>
+		</div>
+		<div class="text_parent" id=text_parent_{{srtno}}>
+	
+		{{#if writer}}
+			<div id="whole_collage1" class="whole_collage">
+				<img src={{writer}} style="width:700px; height:600px;"></img>
+			</div>
+		{{/if}}
+	
+		{{#if cont}}
+		<br>
+			<div class="content_text"><p class="content">{{cont}}</p></div>
+		{{/if}}
+	
+		{{#if picno}}
+		  <div id="whole_collage{{picno}}_{{srtno}}" class="whole_collage"></div>
+		</div>
+		{{/if}}
+		{{#if lati}}
+		<div style='width:809px; height:380px; border:1px solid white; margin-bottom: 70px;' id="map{{srtno}}" data-lati={{lati}} data-longit={{longit}}"}></div>
+		{{/if}}
+	</div>
+	{{/each}}
+</script>
+
+<script id="content-template-3" type="text/x-handlebars-template">
+	{{#selectedPost}}
+  <textarea disabled>{{title}}</textarea>
+  <div class="bb">
+    <a href="#" class="write_select_date_start">
+      <p class="write_start_date">{{sdt}}</p>
+      <p>~</p>
+      <p class="write_end_date">{{edt}}</p>
+    </a>
+    <hr id="aa">
+  </div>
+  <div class="tags">
+    <span class="tag_hash">{{tag}}</span>
+  </div>
+  <img src="/image/KR.png" id="KR_flag">
+  <div class="faces">
+    <div class="face">
+      <a href="#"><img src="{{path}}" ></a>
+    </div>
+    <div class="face2">
+      <a href="#"><img src="{{path}}" id="Emma"></a>
+    </div>
+  </div>
+	{{/selectedPost}}
+</script>
+
+
+
+<script id="content-template-4" type="text/x-handlebars-template">
+	{{#each info}}
+	<div class="author_pic">
+	  <a href="#"><img id="author" src="{{path}}"></a>
+	</div>
+	<p class="alias">{{alias}}</p><br>
+	<p id="short_intro">{{intro}}</p>
+	{{/each}}
+</script>
+
+<script id="comment-template-write" type="text/x-handlebars-template">
+	<img src="{{path}}">
+</script>
+
+<script id="comment-template" type="text/x-handlebars-template">
+	{{#each list}}
+	<li id="posted">
+		<div id="replyer">
+			<img src="{{path}}">
+		</div> <span class="content_reply">
+		<a id="id">{{alias}}</a>
+		<span id="posted_date">{{date}}</span>
+		<div id="posted_command_wrap">
+			<div class="command_box">
+				<p id="inner_command">{{cont}}</p>
+			</div>
+			<span><a href="../mypage/report.html" id="singo">신고</a></span>
+	    <button type="button" id="delete_btn">삭제</button>
+		</div>
+	</span>
+	</li>
+	{{/each}}
+</script>
+
+<!--구글지도-->
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvJO_nbwEqokghhsnj7oj_uQPgnjFoa84&libraries=places"></script>
+<script src="/node_modules/jquery/dist/jquery.min.js"></script>
+<script src="/node_modules/handlebars/dist/handlebars.min.js"></script>
+<script src="/js/article/inner_article.js"></script>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="travelstudio.dao.CoworkDao">
+  
+  <resultMap type="cowork" id="coworkMap">
+    <id column="mno" property="mno"/>
+    <result column="postno" property="postno"/>
+    <result column="confirm" property="confirm"/>
+  </resultMap> 
+
+ <insert id="invite" parameterType="cowork">
+    insert into cowork(mno, postno) values(#{mno}, #{postno})
+  </insert>
+  
+  
+  <delete id="delete" parameterType="cowork">
+    delete from cowork where mno=#{mno} and postno=#{postno}
+  </delete>
+  
+  <select id="coworkCheck" resultMap="coworkMap"  parameterType="int">
+    select * from cowork where mno=#{mno}
+  </select>
+  
+  <update id="acceptCowork" parameterType="map">
+    update cowork set
+    confirm = 1 where mno=#{mno} and postno=#{pno}
+  </update>
+  
+  <delete id="refuseCowork" parameterType="map">
+    delete from cowork where mno=#{mno} and postno=#{pno}
+  </delete>
+ 
+</mapper>
+
+
+
+

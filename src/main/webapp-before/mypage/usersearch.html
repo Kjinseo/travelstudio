@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<style>
+/*div{
+border: 1px solid black;
+}*/
+#header{
+  height: 121px;
+}
+#container{
+width: 1220px;
+height:1000px;
+margin-left: 20%;
+}
+#write{
+width: 140px;
+height: 40px;
+}
+#header-s{
+  margin-left: 65%;
+}
+#header-padding{
+  width: 5px;
+}
+#mypage{
+  padding-left: 50px;
+  width:100%;
+  height: 100%;
+  padding-right: 50px;
+}
+#profile{
+  margin-top: 80px;
+  margin-left: 20px;
+}
+.profile_photo{
+  width:169px;
+  height:171px;
+  display: inline-block;
+
+}
+
+.profile_photo > img{
+  width:130px;
+  height:130px;
+
+}
+
+
+.profile_desc{
+  margin-left: 15px;
+  margin-top: 30px;
+  height:120px;
+  display: inline-block;
+}
+.user_name{
+  font-size: 25px;
+  margin-top: 10px;
+}
+.info_write{
+  width:110px;
+  display: inline-block;
+}
+.info_nation{
+width:110px;
+display: inline-block;
+}
+ul > li > img{
+  width:27px;
+  height:27px;
+  display: inline;
+}
+ul> li{
+  display: inline;
+}
+#aa{
+  display: inline-block;
+  height:30px;
+}
+.user_desc{
+  margin-top: px;
+}
+
+.dot{
+  width:27px;
+  height: 27px;
+}
+.card_bottom > img{
+  margin-top: 5px;
+  width: 33px;
+  height: 33px;
+}
+.travel_item{
+  width:255px;
+  display: inline-block;
+}
+.list_img{
+  width:250px;
+  height:200px;
+}
+.travle_list > li{
+  margin-left: auto;
+  margin-right: auto;
+}
+.cont_card{
+  margin-top: 130px;
+}
+div.card_title span{
+  width: 230px;
+  height: 30px;
+}
+.card_bottom> span{
+  width: 200px;
+}
+.mypage_list_heart{
+  margin-top: 10px;
+  float: right;
+}
+.list_title > a{
+  font: black;
+}
+.fa fa-align-justify{
+  display: inline-block;
+  float: right;
+}
+.list_title{
+  display: inline-block;
+  width: 200px;
+  font-size: 22px;
+}
+
+
+.header-container{
+  border: 1px solid white;
+  width: 100%;
+  height: 150px;
+  padding: 10px;
+}
+.in-header-container{
+  border:1px solid white;
+  width: 1024px;
+  height: 130px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+}
+i{
+  margin-top: 7px;
+  margin-left: 10px;
+}
+#edit-start-button{
+  border: 2px solid black;
+  background-color: white;
+  border-radius: 5px;
+  float: right;
+  width: 120px;
+  height: 40px;
+  margin-top:40px;
+  font-weight: bold;
+}
+/* #search-bar {
+  border: 1px solid white;
+  border-bottom: 2px solid black;
+  width: 500px;
+  height: 40px;
+  margin-left: 100px;
+  margin-top: 40px;
+}
+#logo{
+  height: 100px;
+  margin-bottom: 20px;
+}
+.cate{
+display: inline-block;
+float:right;
+align: right;
+padding-right: 4px;
+width: 30px;
+}
+ */
+.user_one_info{
+  width: 50%;
+  display: inline-block;
+
+}
+.user_one_photo{
+  width: 50%;
+  float:right;
+  display: inline-block;
+  margin-top: 25px;
+}
+.user_one_photo > img{
+  height:135px;
+  width: 170px;
+  margin-right: 15px;
+}
+.user_one{
+  height:auto;
+}
+.search_user_hr{
+  background-color: black;
+  color: black;
+}
+.in-header-container>img{
+  height:70px;
+  width:200px;
+}
+
+    </style>
+  </head>
+<body>
+  <header class="header">
+      <img id="logo" src="./pictures/ourlogo.png">
+      <input type="search" id="search_bar" placeholder="검색">
+      <button id="search_icon" class="fa fa-search fa-2x" aria-hidden="true"></button>
+      <button type="button" id="start-my-journey">여행기 작성</button>
+    </header>
+
+    <hr class="search_user_hr">
+  <!-- <hr style="margin-top:-8px;"> -->
+<div id="container">
+  
+
+
+<a href="#">
+    <div class="user_one">
+    <div class="user_one_info">
+    <div class="profile_photo">
+      <img src="./usercircle.png"></img>
+    </div>
+    <div class="profile_desc">
+      <div class="user_desc">
+        <span class="user_name">swanpurple
+        </span>
+      </div>
+
+
+  <div style="padding-top:5px;">
+    <div class="info_write">
+      <span class="fa fa-file-text-o fa-2x" aria-hidden="true"></span>
+      <span class="tit_info">여행기</span>
+      <span class="txt_num">3</span>
+    </div>
+    <div class="info_nation">
+      <span class="fa fa-map-marker fa-2x" aria-hidden="true"></span>
+      <span class="tit_info">여행국가</span>
+      <span class="txt_num">3</span>
+    </div>
+
+    <ul style="display:inline-block">
+     <!--  <li><img src="./korea.jpg"</li>
+      <li><img src="./italy.jpg"</li>
+      <li><img src="./spain.png"</li> -->
+    </ul>
+  </div>
+
+  </div>
+</div>
+
+<div class="user_one_photo">
+<img src="./Georgia.jpg"></img>
+<img src="./Georgia.jpg"></img>
+</div>
+</div>
+</a>
+  <hr>
+
+
+      <div class="user_one">
+      <div class="user_one_info">
+      <div class="profile_photo">
+        <img src="./usercircle.png"></img>
+      </div>
+      <div class="profile_desc">
+        <div class="user_desc">
+          <span class="user_name">swanpurple
+          </span>
+        </div>
+
+
+    <div style="padding-top:5px;">
+      <div class="info_write">
+        <span class="fa fa-file-text-o fa-2x" aria-hidden="true"></span>
+        <span class="tit_info">여행기</span>
+        <span class="txt_num">3</span>
+      </div>
+      <div class="info_nation">
+        <span class="fa fa-map-marker fa-2x" aria-hidden="true"></span>
+        <span class="tit_info">여행국가</span>
+        <span class="txt_num">3</span>
+      </div>
+
+      <ul style="display:inline-block">
+        <li><img src="./korea.jpg"</li>
+        <li><img src="./italy.jpg"</li>
+        <li><img src="./spain.png"</li>
+      </ul>
+    </div>
+
+    </div>
+  </div>
+
+  <div class="user_one_photo">
+  <img src="./Georgia.jpg"></img>
+  <img src="./Georgia.jpg"></img>
+  </div>
+  </div>
+
+    <hr>
+
+
+          <div class="user_one">
+          <div class="user_one_info">
+          <div class="profile_photo">
+            <img src="./usercircle.png"></img>
+          </div>
+          <div class="profile_desc">
+            <div class="user_desc">
+              <span class="user_name">swanpurple
+              </span>
+            </div>
+
+
+        <div style="padding-top:5px;">
+          <div class="info_write">
+            <span class="fa fa-file-text-o fa-2x" aria-hidden="true"></span>
+            <span class="tit_info">여행기</span>
+            <span class="txt_num">3</span>
+          </div>
+          <div class="info_nation">
+            <span class="fa fa-map-marker fa-2x" aria-hidden="true"></span>
+            <span class="tit_info">여행국가</span>
+            <span class="txt_num">3</span>
+          </div>
+
+          <ul style="display:inline-block">
+            <li><img src="./korea.jpg"</li>
+            <li><img src="./italy.jpg"</li>
+            <li><img src="./spain.png"</li>
+          </ul>
+        </div>
+
+        </div>
+      </div>
+
+      <div class="user_one_photo">
+      <img src="./Georgia.jpg"></img>
+      <img src="./Georgia.jpg"></img>
+      </div>
+      </div>
+
+        <hr>
+
+
+
+
+
+              <div class="user_one">
+              <div class="user_one_info">
+              <div class="profile_photo">
+                <img src="./usercircle.png"></img>
+              </div>
+              <div class="profile_desc">
+                <div class="user_desc">
+                  <span class="user_name">swanpurple
+                  </span>
+                </div>
+
+
+            <div style="padding-top:5px;">
+              <div class="info_write">
+                <span class="fa fa-file-text-o fa-2x" aria-hidden="true"></span>
+                <span class="tit_info">여행기</span>
+                <span class="txt_num">3</span>
+              </div>
+              <div class="info_nation">
+                <span class="fa fa-map-marker fa-2x" aria-hidden="true"></span>
+                <span class="tit_info">여행국가</span>
+                <span class="txt_num">3</span>
+              </div>
+
+              <ul style="display:inline-block">
+                <li><img src="./korea.jpg"</li>
+                <li><img src="./italy.jpg"</li>
+                <li><img src="./spain.png"</li>
+              </ul>
+            </div>
+
+            </div>
+          </div>
+
+          <div class="user_one_photo">
+          <img src="./Georgia.jpg"></img>
+          <img src="./Georgia.jpg"></img>
+          </div>
+          </div>
+
+            <hr>
+
+
+</div><!--searchuser-->
+
+
+
+
+
+</div><!--container-->
+
+
+<script src="node_modules/jquery/dist/jquery.min.js"></script>
+<script>
+
+</script>
+</body>
+</html>

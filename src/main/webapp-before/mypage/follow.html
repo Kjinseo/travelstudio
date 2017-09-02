@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Hello World!</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="mypage.css">
+
+<style>
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+body, table, div, p, textarea {font-family:'Nanum Gothic';}
+
+    </style>
+  </head>
+<body>
+    <div id="modal"></div>
+  <!-- <div class="header-container">
+        <div class="in-header-container">
+         <img src="logo1.PNG" id="logo">
+        <input id="search-bar" type="text" name="search" placeholder="search">
+
+      <i class="fa fa-search fa-2x" aria-hidden="true"></i>
+      <button type="button" id="edit-start-button">start
+      </div>
+    </div> -->
+    
+    
+     <header class="header">
+    <img id="logo" src="./pictures/ourlogo.png">
+    <input type="search" id="search_bar" placeholder="검색">
+    <button id="search_icon" class="fa fa-search fa-2x" aria-hidden="true"></button>
+    <button type="button" id="start-my-journey" onclick="location.href='./write2.html'">여행기 작성</button>
+  </header>
+    
+    
+
+  <!-- <hr style="margin-top:-8px;"> -->
+<div id="container">
+  <div id="mypage">
+    <div id="profile">
+      <div style="margin-left:40px;">
+      <div class="profile_photo">
+        <img id="user-img"></img>
+      </div>
+      <div class="profile_desc">
+        <div class="user_desc">
+          
+        </div>
+
+
+    <div style="padding-top:5px;">
+      <div class="info_write">
+        <span class="fa fa-file-text-o fa-2x" aria-hidden="true"></span>
+        <span class="tit_info">여행기</span>
+        <span class="txt_num">3</span>
+      </div>
+      <div class="info_nation">
+        <span class="fa fa-map-marker fa-2x" aria-hidden="true"></span>
+        <span class="tit_info">여행국가</span>
+        <span class="txt_num">3</span>
+      </div>
+
+      <ul style="display:inline-block">
+        <li><img src="./KR.png"></li>
+        <li><img src="./TH.png"></li>
+        <li><img src="./GB.png"></li>
+      </ul>
+
+
+    </div>
+</div>
+</div>
+<div class="cont_card">
+  <div class="inner_card">
+  <ul class="travle_list">
+<!--     <li class="travel_item">
+      <div class="item_card">
+        <div><i id="lock" class="fa fa-lock fa-2x" aria-hidden="true"></i></div>
+      <div class="img_card">
+        <a href="#">
+          <img class="list_img" src="./Turkey.jpg"></img>
+        </a>
+      </div>
+      <div class="card_desc">
+<div class="card_title">
+  <div class="list_title"><a href="#">첫번째33333 여행기</a></div>
+  <div class="cate">
+      <nav>
+      <a class="dropdown-toggle" href="javascript:;" title="Menu"><i class="fa fa-align-justify" aria-hidden="true"></i></a>
+      <ul class="dropdown">
+        <li><a class="invite_f" href="javascript:;" onclick="test1('modal'); test('invite_f_container');">친구 초대하기</a></li><br>
+
+
+        <li><a class="share_travel"href="javascript:;"  onclick="test1('modal'); test('share_wrap');">여행기 공유하기</a></li><br>
+        <li><a class="delete_travel" href="javascript:;" onclick="test1('modal'); test('delete_wrap');">여행기 삭제하기</a></li><br>
+        <li><a class="lock_travel" href="javascript:;" onclick="test1('lock')">나만 보기</a></li><br>
+      </ul>
+      </nav>
+</div>
+</div>
+<div class="card_bottom">
+  <img src="./usercircle.png"></img>
+  <span>swanpurple</span>
+    <div class="mypage_list_heart">
+  <i class="fa fa-heart-o" aria-hidden="true"></i>
+  <span class="heart_num">3</span>
+</div>
+</div>
+      </div>
+    </div>
+    </li>
+
+
+    <li class="travel_item">
+      <div class="item_card">
+        <div><i id="lock" class="fa fa-lock fa-2x" aria-hidden="true"></i></div>
+      <div class="img_card">
+        <a href="#">
+          <img class="list_img" src="./Turkey.jpg"></img>
+        </a>
+      </div>
+      <div class="card_desc">
+  <div class="card_title">
+  <div class="list_title"><a href="#">첫번째33333 여행기</a></div>
+  <div class="cate">
+      <nav>
+      <a class="dropdown-toggle" href="javascript:;" title="Menu"><i class="fa fa-align-justify" aria-hidden="true"></i></a>
+      <ul class="dropdown">
+        <li><a class="invite_f" href="javascript:;" onclick="test1('modal'); test('invite_f_container');">친구 초대하기</a></li><br>
+
+
+        <li><a class="share_travel"href="javascript:;"  onclick="test1('modal'); test('share_wrap');">여행기 공유하기</a></li><br>
+        <li><a class="delete_travel" href="javascript:;" onclick="test1('modal'); test('delete_wrap');">여행기 삭제하기</a></li><br>
+        <li><a class="lock_travel" href="javascript:;" onclick="test1('lock')">나만 보기</a></li><br>
+      </ul>
+      </nav>
+  </div>
+  </div>
+  <div class="card_bottom">
+  <img src="./usercircle.png"></img>
+  <span>swanpurple</span>
+    <div class="mypage_list_heart">
+  <i class="fa fa-heart-o" aria-hidden="true"></i>
+  <span class="heart_num">3</span>
+  </div>
+  </div>
+      </div>
+    </div>
+    </li> 
+
+
+    <li class="travel_item">
+      <div class="item_card">
+        <div><i id="lock" class="fa fa-lock fa-2x" aria-hidden="true"></i></div>
+      <div class="img_card">
+        <a href="#">
+          <img class="list_img" src="./Turkey.jpg"></img>
+        </a>
+      </div>
+      <div class="card_desc">
+<div class="card_title">
+  <div class="list_title"><a href="#">첫번째33333 여행기</a></div>
+  <div class="cate">
+      <nav>
+      <a class="dropdown-toggle" href="javascript:;" title="Menu"><i class="fa fa-align-justify" aria-hidden="true"></i></a>
+      <ul class="dropdown">
+        <li><a class="invite_f" href="javascript:;" onclick="test1('modal'); test('invite_f_container');">친구 초대하기</a></li><br>
+
+
+        <li><a class="share_travel"href="javascript:;"  onclick="test1('modal'); test('share_wrap');">여행기 공유하기</a></li><br>
+        <li><a class="delete_travel" href="javascript:;" onclick="test1('modal'); test('delete_wrap');">여행기 삭제하기</a></li><br>
+        <li><a class="lock_travel" href="javascript:;" onclick="test1('lock')">나만 보기</a></li><br>
+      </ul>
+      </nav>
+</div>
+</div>
+<div class="card_bottom">
+  <img src="./usercircle.png"></img>
+  <span>swanpurple</span>
+    <div class="mypage_list_heart">
+  <i class="fa fa-heart-o" aria-hidden="true"></i>
+  <span class="heart_num">3</span>
+</div>
+</div>
+      </div>
+    </div>
+    </li>
+-->
+
+
+
+            <script id="content-template" type="text/x-handlebars-template">
+{{#each list}}
+            <li class="travel_item">
+              <div class="item_card">
+                <div><i id="lock" class="fa fa-lock fa-2x" aria-hidden="true"></i></div>
+              <div class="img_card">
+                <a href="../mypage/inner_article.html?postno={{postno}}">
+                  <img class="list_img" src="../{{cont}}"></img>
+                </a>
+              </div>
+              <div class="card_desc">
+        <div class="card_title">
+          <div class="list_title"><a href="#">{{title}}</a></div>
+          <div class="cate">
+              <nav>
+              <a class="dropdown-toggle" href="javascript:;" title="Menu"><i class="fa fa-align-justify" aria-hidden="true"></i></a>
+              <ul class="dropdown">
+                <li><a class="invite_f" href="javascript:;" onclick="test1('modal'); test('invite_f_container');">친구 초대하기</a></li><br>
+
+
+                <li><a class="share_travel"href="javascript:;"  onclick="test1('modal'); test('share_wrap');">여행기 공유하기</a></li><br>
+                <li><a class="delete_travel" href="javascript:;" onclick="test1('modal'); test('delete_wrap');">여행기 삭제하기</a></li><br>
+                <li><a class="lock_travel" href="javascript:;" onclick="test1('lock')">나만 보기</a></li><br>
+              </ul>
+              </nav>
+        </div>
+        </div>
+        <div class="card_bottom">
+          <img src="../upload/{{path}}" style='border-radius:100%'></img>
+          <span>{{alias}}</span>
+            <div class="mypage_list_heart">
+          <i class="fa fa-heart-o" aria-hidden="true"></i>
+          <span class="heart_num">3</span>
+        </div>
+        </div>
+              </div>
+            </div>
+            </li>
+{{/each}}
+		       </script>
+
+
+
+
+            <li class="travel_item">
+              <div class="item_card">
+                <div><i id="lock" class="fa fa-lock fa-2x" aria-hidden="true"></i></div>
+              <div class="img_card">
+                <a href="#">
+                  <img class="list_img" src="./Turkey.jpg"></img>
+                </a>
+              </div>
+              <div class="card_desc">
+        <div class="card_title">
+          <div class="list_title"><a href="#">첫번째33333 여행기</a></div>
+          <div class="cate">
+              <nav>
+              <a class="dropdown-toggle" href="javascript:;" title="Menu"><i class="fa fa-align-justify" aria-hidden="true"></i></a>
+              <ul class="dropdown">
+                <li><a class="invite_f" href="javascript:;" onclick="test1('modal'); test('invite_f_container');">친구 초대하기</a></li><br>
+
+
+                <li><a class="share_travel"href="javascript:;"  onclick="test1('modal'); test('share_wrap');">여행기 공유하기</a></li><br>
+                <li><a class="delete_travel" href="javascript:;" onclick="test1('modal'); test('delete_wrap');">여행기 삭제하기</a></li><br>
+                <li><a class="lock_travel" href="javascript:;" onclick="test1('lock')">나만 보기</a></li><br>
+              </ul>
+              </nav>
+        </div>
+        </div>
+        <div class="card_bottom">
+          <img src="./usercircle.png"></img>
+          <span>swanpurple</span>
+            <div class="mypage_list_heart">
+          <i class="fa fa-heart-o" aria-hidden="true"></i>
+          <span class="heart_num">3</span>
+        </div>
+        </div>
+              </div>
+            </div>
+            </li>
+
+
+ 
+</ul>
+  </div>
+
+
+</div>
+
+
+
+
+<div id='invite_f_container'>
+  <div class='content_a'>
+    <h4>참여자</h4>
+    <div class="join_user_list">
+      <img src="./usercircle.png"></img>
+    </div>
+    <hr>
+    <h4>여행가 찾기</h4>
+    <form class="f_search">
+  <input type="text" id="f_search-bar" placeholder="ID를 입력해주세요">
+  <a href="#"><img class="f_search-icon" src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png"></a>
+</form>
+
+<br>
+<br>
+<div class="save_btn"><button type="button" id="close1-btn" onclick="test1('modal'); test('invite_f_container');">나가기</button></div>
+  </div>
+</div>
+
+
+
+
+
+<div id='delete_wrap'>
+    <h4>여행기를 삭제하시겠습니까?</h4>
+
+<div class="delete_wrap_btns"><button type="button" id="no-btn" onclick="test1('modal'); test('delete_wrap');">아니요</button> <button type="button" id="yes-btn" onclick="test1('modal'); test('delete_wrap');">예</button></div>
+</div>
+
+
+
+
+
+
+
+<div id="share_wrap">
+  <div class="sns_share">SNS로 공유하기
+  </div>
+
+  <div class="buttons">
+    <button id="facebook_button"><i id="facebook_share" class="fa fa-facebook fa-2x" aria-hidden="true"></i></button>
+    <button id="twitter_button"><i id="twitter_share" class="fa fa-twitter fa-2x" aria-hidden="true"></i></button>
+  </div>
+  <hr>
+
+<div class="link_copy">
+  <div id="word_copy">링크 복사하기</div>
+  <form>
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Search">
+      <div class="input-group-btn">
+        <button class="btn btn-default" type="submit">
+          <i class="glyphicon glyphicon-search"></i>
+        </button>
+      </div>
+    </div>
+  </form>
+<button id="close2_button" onclick="test1('modal'); test('share_wrap');">나가기</button>
+</div>
+
+</div>
+
+
+<script src="./node_modules/jquery/dist/jquery.min.js"></script>
+<script>
+
+$(function() {
+
+// Dropdown toggle
+$('.dropdown-toggle').click(function(){
+  $(this).next('.dropdown').toggle();
+});
+
+$(document).click(function(e) {
+  var target = e.target;
+  if (!$(target).is('.dropdown-toggle') && !$(target).parents().is('.dropdown-toggle')) {
+    $('.dropdown').hide();
+  }
+});
+
+});
+
+
+function test1(idMyDiv) {
+  var objDiv = document.getElementById(idMyDiv);
+  if (objDiv.style.display == "inline-block") {
+    objDiv.style.display = "none";
+  } else {
+    objDiv.style.display = "inline-block";
+  }
+}
+
+function test(idMyDiv) {
+  var objDiv = document.getElementById(idMyDiv);
+  if (objDiv.style.display == "inline-block") {
+    objDiv.style.display = "none";
+  } else {
+    objDiv.style.display = "inline-block";
+  }
+}
+
+//
+// $('.invite_f').on('click', function(){
+//   $('.wrap').toggleClass('active');
+//
+//   return false;
+// });
+//
+// $(".wrap > div").click(function () {
+//         $('.wrap').toggleClass('active');
+//     });
+
+
+
+
+    $('.delete_travel').on('click', function(){
+      $('.wrap11, #b').toggleClass('active');
+
+      return false;
+    });
+
+    $(".delete_travel > #no-btn").click(function () {
+            $('.wrap11, #b').toggleClass('active');
+        });
+
+
+</script>
+
+<script id="user-info-template" type="text/x-handlebars-template">
+  <span class="user_name">{{alias}}</span> 
+  <a href="#" class="fa fa-cog fa-2x" id="mysetting"></a>
+</script>
+<script src="./node_modules/jquery/dist/jquery.min.js"></script>
+<script src="./node_modules/handlebars/dist/handlebars.min.js"></script>
+<script src="./mypage.js" charset="utf-8"></script>
+
+<script>
+"use strict"
+
+/* $('#fileupload').fileupload({
+    url: '../member/upload2.json',        // 서버에 요청할 URL
+    dataType: 'json', /* "서버가 보낸 데이터가 JSON 문자열이다. 자바스크립트 객체로 바꿔라." 라는 의미
+    done: function (e, data) { // 서버에서 응답이 오면 호출된다. 각 파일 별로 호출된다.
+      console.log('done()...');
+      console.log(data.result);
+      var file = data.result.fileList[0];
+      $.each(data.result.fileList, function(index, file) {
+        $('<p/>').text(file.filename + " : " + file.filesize).appendTo(document.body);
+      });
+    }
+});
+
+$.getJSON('../member/detail.json',{'no':no},function(result){w
+	  let str = result.data.memberPhoto;
+	  var path = window.location.pathname;
+	  console.log(path)
+	  console.log(str)
+	  $('.card_bottom').css({
+	      'background': 'url("/upload/' + str +'")'
+	  })
+	}) */
+
+</script>
+</body>
+</html>

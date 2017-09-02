@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0">
+<meta charset="utf-8">
+<title>travel_log</title>
+<link rel="stylesheet" href="/css/code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/css/font-awesome-4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="/css/article/write.css">
+</head>
+<body>
+  <div class="caption_modal">
+    <div class="caption_pop_wrap">
+      <div class="pop_tit">캡션 내용을 입력하세요</div>
+      <div class="txt_area">
+       <textarea id="cap-txt" placeholder=""></textarea>
+      </div>
+      <button class="btn_common btn_white" id="capt-cancel">취소하기</button>
+      <button class="btn_common" id="capt-save">저장하기</button>
+    </div>
+  </div>
+    <button class="innerClick" style="display:none;"></button>
+    
+    <!-- 슬라이드바 -->
+   <div class="slide_bar">
+    <div class="slide_bar_cancel">
+      <a href="#"><img src="/image/cancel.png" id="cancel_icon"></a>
+    </div>
+    <!-- 슬라이드 메뉴바 호출 -->
+       <div class="slide_bar_content">
+  </div>
+  <!-- 슬라이드 메뉴바 호출 끝 -->
+
+</div>
+<div class="cover_dimmed"></div>
+  <header class="header">
+   <img src="/imageslidecall.png" id="slide_icon">
+    <a href="/desktop/main/main.html"><img id="logo"
+      src="/image/ourlogo.png"></a>
+    <p id="title_of_article">여행기 제목</p>
+    <button type="button" id="finish-my-journey">나가기</button>
+    <button type="button" id="write_save_btn">저장하기</button>
+  </header>
+
+  <div id="modal"></div>
+  <div id="blank-one" class="blank-one">
+    <div class="icons">
+      <a href="javascript:title_file_browse()"><div>
+          <span><i id="icons_i" class="fa fa-picture-o fa-3x"
+            aria-hidden="true"></i></span><br> <span class="title_hidden">표지사진</span><input
+            id="title_fileupload" type="file" name="files"
+            style="display: none"></input>
+        </div></a><br> <a href="#"><div>
+          <span><i id="icons_i" class="fa fa-lock fa-3x"
+            aria-hidden="true"></i></span><br> <span class="title_hidden">모두에게
+            공개</span>
+        </div></a><br> <a href="#"><div>
+          <span><i id="icons_i" class="fa fa-calendar-check-o fa-3x"
+            aria-hidden="true"></i></span><br> <span class="title_hidden">자동
+            날짜 기록</span>
+        </div></a><br>
+        <a href="javascript:file_browse_none()" id="fileAllup"><div>
+          <span><i id="icons_i" class="fa fa-files-o fa-3x" aria-hidden="true"></i>
+          <input type="file" id="fileAllUpload" name="files" style="display: none" multiple></input> 
+          </span>
+          <br> <span class="title_hidden">전체 사진 올리기</span>
+        </div></a><br>
+    </div>
+    <textarea id="wirte_title" placeholder="여행기 제목을 입력해 주세요"></textarea>
+    <div class="bb">
+      <i class="fa fa-calendar fa-2x" aria-hidden="true"></i> <a href="#"
+        class="write_select_date_start"> <input class="write_start_date"
+        type="text" placeholder="여행 시작일" id="datepicker">
+        <div id="write_data_arrow" class="write_data_arrow">
+          <i class="fa fa-arrow-right " aria-hidden="true"></i>
+        </div> <input class="write_end_date" type="text" placeholder="여행 종료일"
+        id="datepicker1"></a>
+      <hr id="aa">
+    </div>
+
+  </div>
+  <div class="header" id="header"></div>
+
+  <div class="container_main">
+    <div class="day_list">
+      <div class="day1">
+        <div class="write_day">
+          <!-- <h2> -->
+            <!-- <button id="write_save_btn">aaa</button> -->
+            <input class="travel_d_day" type="text" placeholder="일차"></input>
+<!--             1일차
+          </h2> -->
+         
+          <!-- <i class="fa fa-pencil-square-o" aria-hidden="true"></i> -->
+          <input class="travel_detail_date" type="text" id="detail-date-div-0" placeholder="날짜" onclick="datePick()"></input>
+          <input class="gpsInfo" id="location-info-0" placeholder="여행지"></input>
+        </div>
+        
+        <div class="text_parent" id="text_parent_0" onclick='showControlBox(0,id)' data-btn=false data-textparent="0">
+          <div class="tool_box">
+            <a href="#" onclick="test('testdiv'); return false;">
+            <span id="ab" class="fa fa-plus-circle fa-2x" aria-hidden="true"></span>
+            </a>
+            <div id="testdiv" style="display: none">
+              <a href="javascript:file_browse(0)" class='bbbb'>
+              <img id="testdiv_1" src="/image/image.png">
+              <input value='0' type="file" style="display: none" name="files" class="file1_0 file1" multiple></input>
+              </a> 
+              <a href="#" onclick="test('map_container'); test1('modal'); return false;">
+              <img id="showMapModal" src="/image/marker.png"></a> 
+              <a href="#" returnfalse;">
+              <img id="testdiv_2" src="/image/route.png"></img>
+              </a> 
+              <a href="javascript:;" onclick="createtextbox(0)">
+              <i class="fa fa-pencil" aria-hidden="true"></i>
+              </a>
+            </div>
+            <br>
+          </div>
+
+        </div>
+      </div>
+
+
+
+    </div>
+    <br> <a href="#" onclick="adddiv(); return false;"><i
+      id="write_addition" class="fa fa-plus-circle fa-3x"
+      aria-hidden="true"></i></a>
+  
+
+          <!--모달 맵 시작  -->
+<div id="map_container">
+            <br>
+            <h3>여행지를 추가하세요</h3>
+            
+            <hr>
+          <div id="mapPlusSearchbox">
+            
+            <input id="pac-input" class="controls" type="text"
+              placeholder="장소를 검색하세요" value="">
+              <button id="cleanSearchBox">X</button>
+            <div id="map"></div>
+          </div>
+
+            <div class="buttons">
+              <button type="button" id="cancel-login"
+                onclick="test('map_container'); test1('modal');">취소</button>
+              <button type="button"
+                onclick="saveMap(); createMap(); test('map_container'); test1('modal');"
+                id="saveMap-summit">등록</button>
+            </div>
+          <hr>
+          </div>
+<!-- 모달 맵 끝 -->
+
+
+
+
+  </div>
+
+
+  <div class="edit_react_window">
+    <div class="edit_window">
+      <div class="edit_input">
+
+        <div class="files_container">
+          <div class="table_files" id="tbfiles">
+            <div class="files_date">2017. 07. 23,
+              계곡9999999999999999dfdfasdfsda99999999999</div>
+
+            <div class="files_wrap">
+
+              <a href="#" onclick="checked('checked_mark');">
+                <div class="file" type="image">
+                  <div class="file_icon">
+                    <img class="thumb" src='/image/img/vally.jpg'
+                      style="background-size: contain;">
+                  </div>
+                  <div class="name">vally.jpg</div>
+                </div>
+                <div id="checked_mark" style="display: none"></div>
+              </a> <a href="#" onclick="checked('checked_mark2');">
+                <div class="file" type="image">
+                  <div class="file_icon">
+                    <img class="thumb" src='/image/vally.jpg'
+                      style="background-size: contain;">
+                  </div>
+                  <div class="name">vally.jpg</div>
+                </div>
+                <div id="checked_mark2" style="display: none"></div>
+
+              </a> <a href="#" onclick="checked('checked_mark3');">
+                <div class="file" type="image">
+                  <div class="file_icon">
+                    <img class="thumb" src='/image/vally.jpg'
+                      style="background-size: contain;">
+                  </div>
+                  <div class="name">vally.jpg</div>
+                </div>
+                <div id="checked_mark3" style="display: none"></div>
+
+              </a> <a href="#" onclick="checked('checked_mark4');">
+                <div class="file" type="image">
+                  <div class="file_icon">
+                    <img class="thumb" src='/image/FR.png'
+                      style="background-size: contain;">
+                  </div>
+                  <div class="name">vally.jpg</div>
+                </div>
+                <div id="checked_mark4" style="display: none"></div>
+
+              </a> <a href="#" onclick="checked('checked_mark5');">
+                <div class="file" type="image">
+                  <div class="file_icon">
+                    <img class="thumb" src='/image/FR.png'
+                      style="background-size: contain;">
+                  </div>
+                  <div class="name">vally.jpg</div>
+                </div>
+                <div id="checked_mark5" style="display: none"></div>
+
+              </a> <a href="#" onclick="checked('checked_mark6');">
+                <div class="file" type="image">
+                  <div class="file_icon">
+                    <img class="thumb" src='/image/FR.png'
+                      style="background-size: contain;">
+                  </div>
+                  <div class="name">vally.jpg</div>
+                </div>
+                <div id="checked_mark6" style="display: none"></div>
+
+              </a> <a href="#" onclick="checked('checked_mark7');">
+                <div class="file" type="image">
+                  <div class="file_icon">
+                    <img class="thumb" src='/image/FR.png'
+                      style="background-size: contain;">
+                  </div>
+                  <div class="name">vally.jpg</div>
+                </div>
+                <div id="checked_mark7" style="display: none"></div>
+
+              </a> <a href="#" onclick="checked('checked_mark8');">
+                <div class="file" type="image">
+                  <div class="file_icon">
+                    <img class="thumb" src='/image/FR.png'
+                      style="background-size: contain;">
+                  </div>
+                  <div class="name">vally.jpg</div>
+                </div>
+                <div id="checked_mark8" style="display: none"></div>
+              </a> <a href="#" onclick="checked('checked_mark9');">
+                <div class="file" type="image">
+                  <div class="file_icon">
+                    <img class="thumb" src='img/dlfqks.jpg'
+                      style="background-size: contain;">
+                  </div>
+                  <div class="name">vally.jpg</div>
+                </div>
+                <div id="checked_mark9" style="display: none"></div>
+              </a>
+            </div>
+            <!-- files_wrap -->
+
+          </div>
+          <!-- "table_files" -->
+        </div>
+
+        <!--"files_container"-->
+        <div class="edit_settings">
+          <div class="contents">
+            <div class="contents_wrap">
+              <div class="group">
+                <div class="edit_group">새 그룹</div>
+                <div class="edit_ungroup">해제</div>
+                <div class="edit_delete">삭제</div>
+              </div>
+              <div class="save">
+                <div class="edit_save">저장</div>
+                <div class="edit_cancel">취소</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- edit_settings -->
+      </div>
+    </div>
+  </div>
+  </div>
+  <div id="images-div"></div>
+  
+  
+<script id="dayplus-template" type="text/x-handlebars-template">
+{{#each aa}}
+      <div class="day1">
+        <div class='write_day'>
+                  
+                  <input class="travel_d_day" type="text" placeholder="일차"></input>
+                  <input class='travel_detail_date' type="text" id='detail-date-div-{{count}}'placeholder="날짜" onclick="datePick()">
+                  <input class='gpsInfo' id='location-info-{{count}}' onclick="egitLocation()" placeholder="여행지"></input></div>
+                  <div class='text_parent' id='text_parent_{{count}}' data-textparent='{{count}}'onclick='showControlBox({{count}})'>
+
+                  <div class='tool_box'>
+                  <a href='#' onclick="test('testdiv{{count}}'); return false;">
+                  <span id='ab{{count}}' class='fa fa-plus-circle fa-2x' aria-hidden='true'></span></a>
+                  <div id='testdiv{{count}}' style='display: none'>
+                  <a href='javascript:file_browse({{count}})' multiple><img id='testdiv_1' src='/image/image.png'><input value={{count}} type='file' style='display: none' name='files' class='file1_{{count}} file1' multiple></input></a>
+                  <a href='#' onclick="test('map_container'); test1('modal'); return false;"><img id='showMapModal' src='/image/marker.png'></a> 
+                  <a href='#' return false;'><img id='testdiv_2' src='/image/route.png'></img></a>
+                  <a href='javascript:;' onclick='createtextbox({{count}})'><i class='fa fa-pencil' aria-hidden='true'></i></a>
+                  </div><br></div></div></div>  
+{{/each}}
+           </script>
+  <script id="addbtn-dayplus-template" type="text/x-handlebars-template">
+{{#each insertDiv}}
+      <div class="day1">
+        <div class='write_day'>
+                  <h2><button  id='day_btn{{count}}>+ 일차</button>1일차<h2>"
+                  <i class='fa fa-pencil-square-o' aria-hidden='true'></i>
+                  <input class='travel_detail_date' type="text" id='detail-date-div-{{count}}'placeholder="날짜" onclick="datePick()">
+                  <input class='gpsInfo' id='location-info-{{count}}' onclick="egitLocation()" placeholder="여행지"></input></div>
+                  <div class='text_parent' id='text_parent_{{count}}' data-textparent='{{count}}'onclick='showControlBox({{count}})'>
+
+                  <div class='tool_box'>
+                  <a href='#' onclick="test('testdiv{{count}}'); return false;">
+                  <span id='ab{{count}}' class='fa fa-plus-circle fa-2x' aria-hidden='true'></span></a>
+                  <div id='testdiv{{count}}' style='display: none'>
+                  <a href='javascript:file_browse({{count}})' multiple><img id='testdiv_1' src='/image/image.png'><input value={{count}} type='file' style='display: none' name='files' class='file1_{{count}} file1' multiple></input></a>
+                  <a href='#' onclick="test('map_container'); test1('modal'); return false;"><img id='showMapModal' src='/image/marker.png'></a> 
+                  <a href='#' return false;'><img id='testdiv_2' src='/image/route.png'></img></a>
+                  <a href='javascript:;' onclick='createtextbox({{count}})'><i class='fa fa-pencil' aria-hidden='true'></i></a>
+                  </div><br></div></div></div>  
+{{/each}}
+           </script>
+           
+            <script id="tbody-template4" type="text/x-handlebars-template">
+
+    <div class="member_slide">
+        <div class="member_info">
+          <div class="user_photo">
+            <img src="/upload/{{path}}">
+          </div>
+          <div class="user_id">{{alias}}</div>
+          <div class="user_url">{{email}}</div>
+     
+          <a href="/desktop/mypage/mypage.html"><div class="user_mypage">마이페이지</div></a>
+          <a href="/desktop/subscribe/subscribe.html" ><div id="subscribe">구독</div></a>
+          <div class="user_nation">
+         
+          </div>
+          
+  
+
+          <div class="user_visited">
+            <div class="user_write">
+              <img src="/image/textbook.png" alt="">
+              <span>여행기</span>
+              <div class="counting1"></div>
+            </div>
+            <div class="user_visited_count">
+              <img src="/image/aeroplane.png" alt="">
+              <span>여행국가</span>
+
+              <div class="counting2"></div>
+            </div>
+          </div>
+          <hr class="slide_bar_classify">
+
+          <div class="slide_bar_menu">
+            <ul class="list_menu">
+              <li><a href="#">공지사항</a></li>
+              <li><a href="/desktop/login/find_pwd.html">비밀번호 변경</a></li>
+              <li><a href="#">탈퇴하기</a></li>
+              <li><a href="#">로그아웃</a></li>
+            </ul>
+          </div>
+
+        </div>
+      </div>  
+</script>
+  <!-- container_main 태그 -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvJO_nbwEqokghhsnj7oj_uQPgnjFoa84&libraries=places" async defer></script>
+  <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="/node_modules/jquery-ui-dist/jquery-ui.min.js"></script>
+  <script src="/node_modules/handlebars/dist/handlebars.min.js"></script>
+  <script src="/node_modules/blueimp-file-upload/js/vendor/jquery.ui.widget.js"></script>
+  <script src="/node_modules/blueimp-load-image/js/load-image.all.min.js"></script>
+  <script src="/node_modules/blueimp-canvas-to-blob/js/canvas-to-blob.js"></script>
+  <script src="/node_modules/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="/node_modules/blueimp-file-upload/js/jquery.iframe-transport.js"></script>
+  <script src="/node_modules/blueimp-file-upload/js/jquery.fileupload.js"></script>
+  <script src="/node_modules/blueimp-file-upload/js/jquery.fileupload-process.js"></script>
+  <script src="/node_modules/blueimp-file-upload/js/jquery.fileupload-image.js"></script>
+  <script src="/js/article/write.js"></script>
+  
+</body>
+</html>

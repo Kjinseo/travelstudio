@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>header</title>
+<link rel="stylesheet" href="/css/font-awesome-4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/main/list/list.css">
+</head>
+<body>
+	<!--여기서부터 header html-->
+<header class="header">
+    <img id="logo" src="./pictures/ourlogo.png">
+    <input type="search" id="search_bar" placeholder="검색">
+    <button id="search_icon" class="fa fa-search fa-2x" onclick="search()" aria-hidden="true"></button>
+    <button type="button" id="start-my-journey">여행기 작성</button>
+    <div class="searchSelect">
+<a href="#" class="essayclick"><div class="contentSerchList">여행기</div></a>
+<a href="#" class="userclick"><div class="membersearchList">사용자</div></a>
+</div>
+  </header>
+
+	<!--여기까지 header -->
+
+	<!--여기서부터 content-container-->
+
+
+	<ul>
+		<div class="content-container">
+
+					<script id="content-template" type="text/x-handlebars-template">
+{{#each list}}
+			<li>
+					<div class="dis_picture">
+<div id="holding_search-list-picture">
+							<img id="search-list-picture" src="/image/{{cont}}"> 
+	</div>						
+						
+							<div class="face_pic">
+							<img id="circle_pic_user" src="/upload/{{path}}"></img>
+							<span id="user_alias">{{alias}}</span>
+            </div>
+						
+					</div>
+					<div id="wrap">
+		       <div class="display-card">
+							<a href="/desktop/article/inner_article.html?postno={{postno}}"  style="text-decoration:none"><div class="display_title_of_post">{{title}}</div>
+							<div class="display_content_of_post">{{cont}}</div>
+							<br> <br>
+						</div>
+						<br> 
+						<br>
+						<div class="root">
+							<a href="#">
+								<div class="bubble connect">
+									<span id="myspan">인천국제공항<span>
+								</div>
+								<div class="bubble connect">
+									<span id="myspan">비엔나 공항<span>
+								</div>
+								<div class="bubble connect">
+									<span id="myspan">호스텔<span>
+								</div>
+								<div class="bubble noconnect">
+									<span id="myspan">벨베데레궁<span>
+								</div>
+							</a>
+						</div>
+            
+            <div id="tags">#{{tag}}
+            <div>
+
+						<div class="user_photo">
+            
+							<div class="travel_period">{{sdt}} ~ {{edt}}</div>
+              <i id="heart" class="fa fa-heart-o  fa-lg" aria-hidden="true"></i>
+           
+							
+						</div>
+
+				</div>
+			</li>
+{{/each}}
+		       </script>
+		</div>
+
+	</ul>
+<br>
+
+<!-- <a href="./mypage.html?{{email}}"> -->
+	<script id="content-template2" type="text/x-handlebars-template">
+{{#each info}}
+    <div class="user_one">
+    <div class="user_one_info">
+
+    <div class="profile_photo">
+      <img id="circle_profile" src="/upload/{{path}}"></img>
+    </div>
+<div id="holding"  data-mno='{{mno}}'>
+    <div class="profile_desc">
+      <div class="user_desc">
+        <span class="user_name">{{alias}}
+        </span>
+      </div>
+
+  <div style="padding-top:5px;">
+    <div class="info_write" name='{{mno}}'>
+      <span class="fa fa-file-text-o fa-2x" aria-hidden="true"></span>
+      <span class="tit_info">여행기</span>
+      <span class="txt_num travel_num">0</span>
+    </div>
+    <div class="info_nation" data-mno='{{mno}}'>
+      <span class="fa fa-map-marker fa-2x" aria-hidden="true"></span>
+      <span class="tit_info2">여행국가</span>
+
+      <span class="txt_num">3</span>
+    </div>
+    
+    <div class="member_visit_{{mno}}">
+    </div>
+
+   
+  </div>
+ </div>
+</div>
+</div>
+
+
+</div >
+</a>
+  
+{{/each}}
+</script>
+		       
+<div id="traveled_country">
+<script id="flag-template" type="text/x-handlebars-template">
+{{#each flag_list}}
+      <ul style=none;>
+        <li id="mmm{{mno}}"><img src='{{address}}'></li>
+      </ul>
+{{/each}}
+</script>
+</div>
+
+
+	<!--여기서부터 footer html-->
+	<div class="footer"></div>
+	<!-- 여기까지 footer-->
+
+
+	<script src="/node_modules/jquery/dist/jquery.min.js"></script>
+	
+	<script src="/node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="/node_modules/handlebars/dist/handlebars.min.js"></script>
+	<script src="/js/main/list/list.js"></script>
+</body>
+</html>

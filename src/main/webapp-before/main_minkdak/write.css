@@ -1,0 +1,1006 @@
+@import url(https://fonts.googleapis.com/css?family=Ropa+Sans);
+
+*, *:before, *:after {
+-moz-box-sizing: border-box;
+-webkit-box-sizing: border-box;
+box-sizing: border-box;
+}
+
+
+
+
+
+
+.edit_react_window {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 992;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  /*display: none;*/
+
+}
+
+.help_btn {
+
+  background-color: black;
+}
+
+
+.edit_window {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  /*box-sizing: border-box;*/
+  position: fixed;
+  width: 1300px;
+  height: 700px;
+  background-color: rgba(255, 255, 255, 1);
+  margin: 50px auto 0;
+  z-index: 999;
+  vertical-align: middle;
+  text-align: center;
+  /*display: none;*/
+}
+
+.edit_input {
+  position: relative;
+  /*float: left;*/
+  /*box-sizing: border-box;*/
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  float:none;
+  width: 1284px;
+  height: 685px;
+  border: 1px solid #D0D0D0;
+  text-align: center;
+  color: #767676;
+  margin-bottom: 20px;
+}
+
+.edit_settings {
+  /*display: inline-block;*/
+  /*position: absolute;*/
+  top: 0;
+  right: 0;
+  float: right;
+  border-left: solid 1px  #D0D0D0;
+  width: 150px;
+  height: 100%;
+  /*margin-top: 30%;*/
+  list-style: none;
+  line-height: 1.3;
+  padding: auto;
+}
+
+.contents_wrap {
+  position: relative;
+  height: auto;
+  top: 50%;
+  transform: translate(0, -50%);
+
+}
+.edit_settings .contents {
+  position: relative;
+  height: 685px;
+  text-align: center;
+  vertical-align: middle;
+  margin: auto 0;
+}
+
+a:link {
+  border:none;
+  text-decoration: none;
+  outline: 0
+}
+
+.edit_settings .contents .group {
+  position: relative;
+  margin-bottom: 100px;
+}
+
+
+.edit_settings .contents .group div {
+  cursor: pointer;
+  border-radius: 15px;
+  width: 100px;
+  height: 30px;
+  line-height: 28px;
+  font-weight: 600;
+  background-color: #fff;
+  border: 1px solid #767676;
+  color: #767676;
+  margin: 10px auto;
+}
+
+
+.edit_settings .contents .save {
+  margin-bottom: 50px;
+}
+
+.edit_settings .contents .save div {
+  cursor: pointer;
+  border-radius: 15px;
+  width: 100px;
+  height: 30px;
+  line-height: 28px;
+  font-weight: 600;
+  background-color: #fff;
+  border: 1px solid #767676;
+  color: #767676;
+  margin: 10px auto;
+}
+
+.edit_settings li {
+  /*display: inline-block;*/
+  color: #4265EE;
+  font-weight: 600;
+  opacity: 0.7;
+  margin: 10px 0 0 10px;
+  vertical-align: center
+}
+
+
+/*.edit_group, .edit_settings img {
+  display: inline-block;
+
+}*/
+
+.edit_done {
+  position: absolute;
+}
+
+/*파일 나열 되는 곳*/
+.files_container {
+  position: relative;
+  /*display: inline-block;*/
+  float: left;
+  width: 1130px;
+  height: 685px;
+  overflow: auto;
+}
+div {
+  /*border: solid 1px red;*/
+
+}
+div[class*=table_files] {
+  width: 1119px;
+  height: 179px;
+  /*padding-right: 14px*/
+  /*position: absolute;*/
+  text-align: left;
+
+}
+
+.files_container div[class*=table_files] .file {
+  /*float: left;*/
+  width: 100px;
+  height: 124px;
+  margin: 10px 0 10px 14px;
+  /*border: solid 1px green;*/
+  border-bottom: 1px solid #E7E8EA;
+  overflow: hidden;
+  background: transparent;
+  display: inline-block;
+}
+.files_container div[class*=table_files] .file_icon {
+  /*position: absolute;*/
+  /*background: transparent;*/
+  /*float:left;*/
+background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 100px;
+  height: 100px;
+}
+
+div[class*=table_files] .file_icon .thumb {
+  height: 100%;
+  background: transparent center center no-repeat;
+  float: left;
+  /*margin-top: 15%;*/
+  overflow: hidden;
+}
+
+.files_container div[class*=table_files] .name {
+  width: 100px;
+  height: 20px;
+  text-align: center;
+  /*vertical-align: center;*/
+  font-size: 80%;
+  /*margin: 7px;*/
+}
+
+.files_container div[class*=table_files] div[class*=files_date]  {
+  /*position: fixed;*/
+  /*float: left;*/
+  font-weight: 600;
+  width: 180px;
+  /*max-width: 170px;*/
+  height: 20px;
+  max-height: 20px;
+  /*margin-top: 20px;*/
+  overflow:hidden;
+  display: inline-block;
+  padding-left: 13px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+  /*border: 1px blue solid;*/
+
+}
+
+
+.files_container div[class*=table_files] .files_wrap{
+  /*border: 1px blue solid;*/
+  display:inline-block;
+  padding: 0 14px;
+  width: 1100px;
+}
+
+
+/*파일 나열 끝*/
+
+
+div[id*=ab] {
+  margin-left: -87px;
+  margin-top: 30px;
+  position: absolute;
+  display: inline-block;
+  z-index: 30;
+  width: 64px;
+  height: 64px;
+  opacity: 0.6;
+  background-repeat: no-repeat;
+  background-image: url("./img/checked.PNG");
+}
+
+
+/* /*  */ */
+
+img, a, abbr, acronym, address, applet,
+article, aside, audio, b, big, blockquote,
+body, canvas, caption, center, cite, code,
+dd, del, details, dfn, div, dl, dt, em,
+embed, fieldset, figcaption, figure, footer,
+form, h1, h2, h3, h4, h5, h6, header, hgroup,
+html, i, iframe, img, ins, kbd, label, legend, li,
+mark, menu, nav, object, ol, output, p, pre, q, ruby,
+s, samp, section, small, span, strike, strong, sub,
+summary, sup, table, tbody, td, tfoot, th, thead,
+time, tr, tt, u, ul, var, video {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+a {
+  color: inherit;
+}
+a:link {
+  border: none;
+  outline: 0;
+}
+
+a:-webkit-any-link {
+  /*color: -webkit-link;*/
+  cursor: auto;
+  text-decoration: none;
+}
+
+.blank-one {
+  /*position: relative;*/
+  background: url('img/travel.jpg') center center no-repeat fixed;
+  text-align: center;
+  width: 100%;
+  height: 500px;
+  font-family: 'Ropa Sans', sans-serif;
+  margin-bottom: 20px;
+  vertical-align: center;
+
+}
+
+.help_btn {
+  /*position: ;*/
+  width: 130px;
+  height: 50px;
+  margin: 30px auto 0;
+  background-color: #4265EE;
+  color: white;
+  font-weight: 600;
+  font-size: 20px;
+  border-radius: 30px;
+  line-height: 50px;
+  opacity: .8;
+}
+
+.blank-one h2 {
+font-size: 80px;
+/*position:*/
+height: 100px;
+text-transform: uppercase;
+color: rgb(255, 255, 255);
+text-shadow: 1px 1px 2px #000;
+line-height: 60vh; /*이전 설정 50vh*/
+display: inline-block;
+
+}
+
+
+/*로그인 시 슬라이드바 CSS*/
+/*슬라이드 바 전체*/
+.slide_bar {
+  background-color: white;
+  width: 320px;
+  height: 100%;
+  position: fixed;
+  left: -320px;
+  z-index: 999;
+}
+
+/* 슬라이드 바 취소 버튼*/
+.slide_bar_cancel {
+  padding: 10px 0;
+}
+.icon_wrap {
+  display: inline-block;
+}
+#cancel_icon {
+  float: right;
+  padding-right: 15px;
+  display: inline-block;
+}
+#cancel_icon, #slide_icon:hover {
+  cursor: pointer;
+
+}
+/*슬라이드 바 취소 버튼 끝  */
+
+/*슬라이드 바 전체 컨텐츠 div*/
+.member_slide {
+  width: 100%;
+  margin: 20px 0 ;
+}
+
+.member_slide .member_info {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+
+.member_slide .member_info .user_photo {
+  position: relative;
+  padding: 30px 0;
+  text-align: center;
+}
+
+.member_slide .member_info .user_photo img {
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+}
+
+.member_slide .member_info .user_id {
+  text-align: center;
+}
+
+.member_slide .member_info .user_url {
+  text-align: center;
+  color: gray;
+}
+
+.member_slide .member_info .user_mypage {
+  text-align: center;
+  background-color: #4a4a4a;
+  width: 150px;
+  height: 35px;
+  color: white;
+  border-radius: 30px;
+  margin: 30px auto 0;
+  vertical-align: center;
+  font-size: 80%
+}
+
+.user_mypage {
+line-height: 35px;
+}
+
+.user_nation {
+  height: 30px;
+  text-align: center;
+  margin-top: 20px;
+  list-style: none;
+  padding-top: 2px;
+  overflow: hidden;
+}
+
+.user_nation li {
+  width: 20px;
+  display: inline-block;
+}
+
+.user_nation img {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  vertical-align: middle;
+}
+
+ .user_visited {
+   width: 210px;
+   font-weight: 600;
+   font-size: 18px;
+   color: #767676;
+   text-align: center;
+   margin: 25px auto 0;
+   padding-bottom: 30px;
+ }
+
+  .user_visited .user_write {
+    display: inline-block;
+    width: 100px;
+  }
+
+  .user_visited .user_visited_count {
+    display: inline-block;
+    width: 100px;
+  }
+
+  .counting {
+    display: block;
+    margin-top: 10px;
+    font-size: 130%;
+    color: black;
+  }
+
+.slide_bar_classify{
+  width: 80%;
+  color: #d2d2d2;
+}
+.slide_bar_menu {
+  padding-top: 30px;
+  text-align: center;
+}
+
+.slide_bar_menu li {
+  margin-bottom: 20px;
+  font-size: 95%;
+  font-weight: 400;
+  color: #767676;
+}
+
+/*슬라이드 메뉴 끝*/
+
+/*슬라이드 메뉴 호출시 화면 커버*/
+.cover_dimmed {
+  background-color: #000;
+  opacity: 0.5;
+  z-index: 990;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  display: none;
+}
+/*커버 끝*/
+
+
+
+#header_line {
+  box-sizing: border-box;
+  position: relative;
+  height: 15%;
+  width: 100%;
+  border-bottom: solid 1px #d2d2d2;
+}
+/*header*/
+.header-container{
+  border: 1px solid white;
+  width: 100%;
+  height: 110px;
+
+
+}
+
+.in-header-container{
+  border:1px solid white;
+  width: 1220px;
+  height: 90px;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+i{
+  margin-top: 7px;
+  margin-left: 10px;
+}
+
+#edit-start-button{
+  border: 2px solid black;
+  background-color: white;
+  border-radius: 5px;
+  float: right;
+  width: 120px;
+  height: 40px;
+  margin-top:40px;
+  font-weight: bold;
+}
+
+#search-bar {
+  display: inline-block;
+  border: 1px solid white;
+  border-bottom: 1px solid black;
+  width: 700px;
+  height: 40px;
+  margin-left: 70px;
+  margin-top: 10px;
+}
+
+#logo{
+  display: inline-block;
+  height: 40px;
+  margin-top: 30px;
+}
+/*여기까지 header*/
+/*Body*/
+.container_main {
+  /*border: solid black 1px;*/
+  width: 1220px;
+  height:100%;
+  margin: auto;
+}
+
+/* 여행기 슬라이드 블럭*/
+.slide_wrap {
+  width: 1220px;
+  height: 414px;
+  /*border: solid red 1px;*/
+}
+
+.box_slide_title {
+  box-sizing: border-box;
+  position: relative;
+  float: left;
+  width: 288px;
+  height:100%;
+  border-top: 1px solid #010101;
+  padding: 38px 20px 28px 0;
+  /*border: solid black 1px;*/
+}
+.slide_wrap
+.box_slide_title .titl {
+  font-size: 23px;
+  color: #000;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.slide_wrap
+.box_slide_title .sub_titl {
+
+  font-size: 38px;
+  color: #000;
+  font-weight: 300;
+  letter-spacing: -.5px;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+.slide_wrap
+.box_slide_title .ment {
+  font-size: 18px;
+  height: 138px;
+  overflow: hidden;
+  color: #8a8a8a;
+  font-weight: 400;
+  line-height: 1.5;
+  /*border: solid 1px blue;*/
+}
+
+.slide_wrap
+.box_slide_title .more a {
+  /*display: inline-block;*/
+  font-size: 17.5px;
+  color: #4265EE;
+  font-weight: 700;
+  font-family: "Noto Sans KR";
+}
+
+.slide_wrap .box_slide_main {
+    width: 932px;
+    height: 100%;
+    float: left;
+    /*border: solid 1px red;*/
+    overflow: hidden;
+}
+
+.slide_wrap .box_slide_main .item {
+  float: left;
+  position: relative;
+  margin-left: 22px;
+  width: 288px;
+  height: 100%;
+  /*border: solid 1px black;*/
+}
+
+.slide_wrap .box_slide_main .item .item_thumb {
+max-height: 215px;
+}
+
+.slide_wrap .box_slide_main .item .item_thumb img{
+max-width: none;
+width: 288px;
+height: 215px;
+}
+
+.slide_wrap .box_slide_main .item .item_in{
+height: 161px;
+position: relative;
+padding: 10px 10px 10px 0;
+}
+
+.slide_wrap .box_slide_main .item .titl{
+width: 100%;
+max-height: 48px;
+overflow: hidden;
+word-wrap: break-word;
+font-size: 20px;
+margin-bottom: 10px;
+letter-spacing: -.5px;
+line-height: 1.2;
+font-family: "Noto Sans KR"
+}
+
+.slide_wrap .box_slide_main .item .tag {
+  width: 75%;
+  height: 34px;
+  min-height: 34px;
+  overflow: hidden;
+  word-wrap: break-word;
+  font-size: 14px;
+  font-weight: 500;
+  color: #8b8b8b;
+  margin-bottom: 18px;
+  line-height: 1.3;
+}
+
+.box_slide_main .bottom_msg {
+  width: 249px;
+  height: 35px;
+  position: absolute;
+  bottom: 0;
+}
+
+.box_slide_main .bottom_msg .circle_photo{
+margin-bottom: 2px;
+}
+.circle_photo {
+  display: inline-block;
+  min-width: 33px;
+  height: 33px;
+  border-radius: 33px;
+  /*background: url(../img/img_circle_photo.png) center no-repeat;*/
+  margin-right: 3px;
+  background-size: cover;
+  vertical-align: middle;
+}
+
+/*여행 작가 라인*/
+.travel_writer {
+  position: relative;
+  width: 1220px;
+  /*border: solid 5px gray;*/
+  padding: 30px auto 0;
+  margin-bottom: 30px;
+  background-color: #f2f9fb;
+}
+
+.travel_writer .travel_writer_titl {
+  float:center;
+  width: 700px;
+  height: 130px;
+  /*border: solid 1px black;*/
+  margin: 20px auto 20px;
+  /*margin-top: 20px;*/
+  text-align: center;
+}
+
+.travel_writer .travel_writer_titl .pc_text {
+  float: none;
+  font-size: 29px;
+  font-weight: 600;
+  padding-top: 15px;
+}
+
+.travel_writer .travel_writer_titl .pc_text span {
+  color: #4265EE;
+  font-weight: 900;
+}
+
+.travel_writer .travel_writer_slide {
+  width: 1220px;
+  margin-bottom: 20px;
+
+}
+.travel_writer_slide {
+  box-sizing: border-box;
+  width: 900px;
+  /*height: 200px;*/
+  /*z-index: 9999;*/
+  padding: 0 20px;
+}
+.travel_writer_slide .item {
+  box-sizing: border-box;
+  width: 190px;
+  height: 260px;
+  /*border: solid 1px blue;*/
+  /*padding-bottom: 20px;*/
+
+}
+
+.owl-stage-outer {
+  display: inline-block;
+  width: 1000px;
+  margin-left: 100px;
+}
+
+.travel_writer_slide .travel_writer_photozone {
+  width: 160px;
+  height: 130px;
+  /*border: 1px solid blue;*/
+  margin-bottom: 10px;
+}
+
+.travel_writer_slide .travel_writer_photozone img {
+  width: 130px;
+  height: 130px;
+  border-radius: 100%;
+  margin: 0px auto;
+}
+
+.travel_writer_slide .travel_writer_id {
+  /*position: absolute;*/
+  /*z-index: 999;*/
+  width: 160px;
+  text-align: center;
+  margin: 0 0 10px 0;
+  font-size: 15px;
+}
+
+.travel_writer_slide .travel_writer_intro {
+  margin: 10px 0;
+}
+
+.travel_writer_slide .travel_writer_flag {
+  height: 30px;
+  border-top: solid 1px #d2d2d2;
+}
+
+.travel_writer_slide .travel_writer_flag img{
+  float: left;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+}
+
+/*---------------------------*/
+
+
+.edit_react_window {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 992;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  display: none;
+
+}
+
+.help_btn {
+
+  background-color: black;
+}
+
+
+.edit_window {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  /*box-sizing: border-box;*/
+  position: fixed;
+  width: 1000px;
+  height: 700px;
+  background-color: rgba(255, 255, 255, 1);
+  margin: 50px auto 0;
+  z-index: 999;
+  vertical-align: middle;
+  text-align: center;
+  /*display: none;*/
+}
+
+.edit_input {
+  position: relative;
+  /*float: left;*/
+  /*box-sizing: border-box;*/
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  float:none;
+  width: 950px;
+  height: 665px;
+  border: 1px solid #D0D0D0;
+  text-align: center;
+  color: #767676;
+  margin-bottom: 20px;
+}
+
+.edit_settings {
+  position: relative;
+  float: right;
+  border-left: solid 1px  #D0D0D0;
+  width: 150px;
+  height: 100%;
+  /*margin-top: 30%;*/
+  list-style: none;
+  line-height: 1.3;
+  padding: auto;
+}
+
+.edit_settings .contents {
+  position: relative;
+  top: 45%;
+  height: 665px;
+  /*padding-top: 30%;*/
+  /*padding-bottom: auto;*/
+  text-align: center;
+  vertical-align: middle;
+  margin: auto 0;
+}
+
+.edit_settings .contents .group {
+  position: absolute;
+  /*line-height: 300px;*/
+  border: 1px red solid;
+  /*margin-top: 100%;*/
+  /*margin-bottom: auto;*/
+}
+
+
+.edit_settings .contents .group div {
+  border-radius: 15px;
+  width: 100px;
+  height: 30px;
+  line-height: 28px;
+  font-weight: 600;
+  background-color: #fff;
+  border: 1px solid #4265EE;
+  color: #4265EE;
+  margin: 10px 24.5px;
+}
+
+.edit_settings .contents .save div {
+  border-radius: 15px;
+  width: 100px;
+  height: 30px;
+  line-height: 28px;
+  font-weight: 600;
+  background-color: #4265EE;
+  /*border: 1px solid #fff;*/
+  color: #fff;
+  margin: 10px 24.5px;
+}
+
+.edit_settings li {
+  /*display: inline-block;*/
+
+  color: #4265EE;
+  font-weight: 600;
+  opacity: 0.7;
+  margin: 10px 0 0 10px;
+  vertical-align: center
+}
+
+
+.edit_group, .edit_settings img {
+  display: inline-block;
+
+}
+
+.edit_done {
+  position: absolute;
+}
+
+/*파일 나열 되는 곳*/
+.files_container {
+  /*box-sizing: inherit;*/
+  float: left;
+  width: 798px;
+  height: 665px;
+}
+
+.files_container #tbfiles {
+  /*border: solid 1px red;*/
+  width: 100%;
+  /*height: 10px;*/
+  text-align: left;
+
+}
+
+.files_container #tbfiles tbody tr{
+  position: relative;
+  float: left;
+  width: 76px;
+  height: auto;
+  margin: 5px;
+  /*border: solid 1px green;*/
+  border-bottom: 1px solid #E7E8EA;
+  overflow: hidden;
+  background: transparent;
+}
+
+.files_container #tbfiles tr .file_icon {
+  position: relative;
+  background: transparent;
+  float:left;
+  background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)),
+		 url('img/plain.png');
+  background-size: contain;
+}
+
+#tbfiles tr .file_icon .thumb{
+  width: 76px;
+  height: 76px;
+  background: transparent center center no-repeat;
+  float: left;
+}
+
+.files_container #tbfiles tr .name {
+  width: 76px;
+  position: relative;
+  text-align: center;
+  font-size: 50%;
+}
+
+.files_container #tbfiles th{
+  position: relative;
+  float: left;
+  width: auto;
+  height: auto;
+  margin: 5px;
+  border-bottom: 1px solid #E7E8EA;
+  overflow: hidden;
+  background: transparent;
+}
+
+
+
+/*사진 체크 in 이미지*/
+.file_icon input[type="checkbox"]{
+    display:none;
+}
+.file_icon input[type="checkbox"] + label{
+    cursor:pointer;
+}
+.file_icon input[type="checkbox"]:checked + label{
+    background:#0080FF;
+}
+.file_icon input[type="checkbox"]:checked + label:before{
+    position:absolute;
+    content:'';
+    top:25%;
+    left:25%;
+    width:50%;
+    height:50%;
+    background:url("img/checked.png");
+    background-repeat:no-repeat;
+    background-size: 100% 100%;
+    opacity:0.8;
+  }
+  /*사진 체크 in 이미지 끝*/
+/*파일 나열 끝*/

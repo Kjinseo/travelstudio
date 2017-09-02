@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="./font-awesome-4.7.0/css/font-awesome.min.css">
+    <style>
+    *
+    {
+        box-sizing:         border-box;
+        /*-moz-box-sizing:    border-box;
+        -webkit-box-sizing: border-box;*/
+    }
+
+    body
+    {
+      margin: 0;
+      padding: 0;
+      background: #fff;
+      font-family: arial, sans-serif;
+    }
+
+    a
+    {
+      text-decoration: none
+    }
+
+    h1
+    {
+      color: #ddd;
+      padding: 20px 20px;
+      font: 10px 40px;
+      margin: 0;
+      display: inline-block
+    }
+
+    .by
+    {
+      color: #a7a7a7;
+      font-size: 16px;
+      margin: 33px 0px;
+      display: inline-block
+    }
+
+    .heart
+    {
+      color: brown;
+      display: inline-block;
+      font-size: 20px;
+      animation: heart 0.7s ease-in-out infinite;
+    }
+
+    header a
+    {
+      color: #03b3b5;
+      font-size: 22px;
+      margin: 28px 10px;
+      display: inline-block
+    }
+
+    header a:hover
+    {
+      text-decoration: underline
+    }
+
+    .user-card
+    {
+      border: solid 1px gray;
+    	width: 350px;
+    	height: 450px;
+    	margin: 50px auto;
+      position: relative;
+    	background: #fff;
+    	overflow: hidden;
+    	box-shadow:         0 1px 3px 0 rgba(0,0,0,0.08);
+    	-moz-box-shadow:    0 1px 3px 0 rgba(0,0,0,0.08);
+    	-webkit-box-shadow: 0 1px 3px 0 rgba(0,0,0,0.08);
+      border-radius:         5px;
+      -moz-border-radius:    5px;
+      -webkit-border-radius: 5px;
+    }
+
+    input
+    {
+    	width: 100%;
+    	height: 40px;
+    	border-radius:         3px;
+    	-moz-border-radius:    3px;
+    	-webkit-border-radius: 3px;
+    	border: 1px solid #dee3e4;
+    	padding: 3px 12px;
+    	margin: 6px 0;
+    }
+
+    input:focus
+    {
+    	outline: none;
+    	border: 1px solid #03b3b5;
+    	transition:         all .5s ease-in-out;
+    	-o-transition:      all .5s ease-in-out;
+    	-moz-transition:    all .5s ease-in-out;
+    	-webkit-transition: all .5s ease-in-out;
+    }
+
+    .login-box
+    {
+    	position: absolute;
+    	top: 0;
+    	right: 0;
+    	width: 100%;
+    	height: calc(100% - 25px);
+    	background: #fff;
+      border-radius:         5px;
+      -moz-border-radius:    5px;
+      -webkit-border-radius: 5px;
+    }
+
+    .login-box{
+    	/*padding: 20px 0px;*/
+    	right: 0px;
+    }
+
+    .login
+    {
+    	text-align: center;
+    	color: #fff;
+    	background: #03b3b5;
+    	line-height: 30px;
+    	opacity: 0.95;
+    }
+
+    .login:hover{
+      opacity: 1;
+      cursor: pointer;
+    }
+
+    .or
+    {
+    	display: block;
+    	width: 100%;
+    	height: 1px;
+    	border-bottom: 1px solid #dee3e4;
+    	position: relative;
+    	margin: 20px 0;
+    }
+
+    .or:before
+    {
+    	content: 'or';
+    	width: 40px;
+    	height: 18px;
+    	position: absolute;
+    	top: -5px;
+    	right: calc(50% - 20px);
+    	background-color: #fff;
+    	text-align: center;
+    	line-height: 10px;
+    	color: #555
+    }
+
+
+
+    .login-with-fb
+    {
+      position: relative;
+      background: #03b3b5;
+    	width: 50%;
+    	height: 40px;
+    	display: block;
+    	margin: 15px 0;
+    	color: #fff;
+    	line-height: 40px;
+    	font-size: 14px;
+      left: 3px;
+    	opacity: .95;
+      border-radius:         3;
+      -moz-border-radius:    3px;
+      -webkit-border-radius: 30px 0 0 30px;
+      border-right: 1px solid #fff;
+    }
+    
+    .login-with-kt
+    {
+      position: relative;
+      background: #03b3b5;
+    	width: 50%;
+    	height: 40px;
+    	display: block;
+    	margin-top: 15px;
+    	color: #fff;
+    	line-height: 40px;
+    	font-size: 14px;
+    	opacity: .95;
+      left: 137px;
+      bottom: 55px;
+      border-radius:         3;
+      -moz-border-radius:    3px;
+      -webkit-border-radius: 0 30px 30px 0;
+    }
+
+    .login-with-fb:hover,
+    .login-with-kt:hover
+    {
+    	opacity: 1;
+    }
+
+    .login-with-fb
+    {
+    	/*background: #527EBF*/
+      background: #03b3b5
+    }
+
+    .login-with-kt
+    {
+    	/*background: #f9e81e;*/
+      /*color: #391818;*/
+    }
+
+    .login-with-fb .icon,
+    .login-with-kt .fa
+    {
+    	float: left;
+    	font-size: 21px;
+    	width: 50px;
+    	height: 26px;
+    	margin: 7px;
+    	padding: 2px;
+    	text-align: center;
+      color: #fff;
+    }
+
+
+    /**** footer *****/
+
+    .user-card .footer
+    {
+    	position: absolute;
+    	bottom: 0;
+    	right: 0;
+    	width: 100%;
+    	height: 25px;
+    	text-align: center;
+    	color: #666;
+    	font-size: 13px;
+    	font-family: sans-serif;
+      bottom: 10%;
+    }
+
+    .footer a
+    {
+    	color: #03b3b5;
+    }
+
+    @keyframes heart{
+      0%{
+        transform:         scale(1, 1);
+        -ms-transform:     scale(1, 1);
+        -webkit-transform: scale(1, 1);
+      }
+      50%{
+        transform:         scale(1.5, 1.5);
+        -ms-transform:     scale(1.5, 1.5);
+        -webkit-transform: scale(1.5, 1.5);
+      }
+      100%{
+        transform:         scale(1, 1);
+        -ms-transform:     scale(1, 1);
+        -webkit-transform: scale(1, 1);
+      }
+    }
+    #titl_login {
+      text-align: center;
+      font-size: 130%;
+      width: 100%;
+      height: 80px;
+      background: #03b3b5;
+      padding-top: 20px;
+      color: #fff;
+      opacity: 0.5;
+    }
+    .login-form {
+      padding: 20px 40px;
+    }
+
+    #close {
+      background: #03b3b5;
+      opacity: 0.5;
+    }
+    #close_btn  {
+      margin-left: 93%;
+      margin-top: 2%;
+      color: white;
+      opacity: 0.5;
+    }
+    </style>
+  </head>
+  <body>
+
+
+    <div class="user-card round5">
+    	<div class="login-box">
+        <div id="close"><i class="fa fa-times" id="close_btn" aria-hidden="true"></i></div>
+
+        <div type="text" id="titl_login">Login</div>
+        <form class="login-form" name="login" action="">
+    			<input type="email" name="username" class="username" placeholder="이메일" />
+    			<input type="password" name="password" class="password" placeholder="암호" />
+    			<input type="submit" name="login" value="로그인" class="login" />
+
+    		<div class="or"></div>
+
+<a href="#" class="login-with-fb"><span class="icon fa fa-facebook"></span>페이스북</a>
+<a href="#" class="login-with-kt"><span class="fa fa-commenting-o" aria-hidden="true"></span>카카오톡</a>
+      </form>
+    	</div>
+
+    	<!-- Card Footer -->
+
+    	<div class="footer">
+    		<span>아직 회원이 아니시라면? </span><a class="toggle-link" href="#">Sign Up</a>
+    	</div>
+    </div>
+
+  </body>
+</html>

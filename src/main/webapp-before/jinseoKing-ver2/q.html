@@ -1,0 +1,7 @@
+<form id="form1" name="form1" action="board7ReplySave" method="post">
+    <input type="hidden" id="brdno1" name="brdno" value="<c:out value="${boardInfo.brdno}"/>">
+    <input type="hidden" id="reno1" name="reno">
+    작성자: <input type="text" id="rewriter1" name="rewriter" size="20" maxlength="20"> <br/>
+    <textarea id="rememo1" name="rememo" rows="3" cols="60" maxlength="500" placeholder="댓글을 달아주세요."></textarea>
+    <a href="#" onclick="fn_formSubmit()">저장</a>
+</form>

@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>header</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+<style>
+/*여기서부터 header css*/
+.header-container{
+  border: 1px solid white;
+  width: 100%;
+  height: 150px;
+
+
+}
+
+.in-header-container{
+  border:1px solid white;
+  width: 1024px;
+  height: 100px;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+i{
+  margin-top: 7px;
+  margin-left: 10px;
+}
+
+#edit-start-button{
+  border: 2px solid black;
+  background-color: white;
+  border-radius: 20px;
+  float: right;
+  width: 120px;
+  height: 40px;
+  margin-top:40px;
+  font-weight: bold;
+
+}
+
+#search-bar {
+  border: 1px solid white;
+  border-bottom: 1px solid black;
+  width: 700px;
+  height: 40px;
+  margin-left: 70px;
+  margin-top: 40px;
+}
+
+#logo{
+  height: 60px;
+  margin-bottom: 20px;
+}
+
+/*여기까지 header*/
+
+.content-container{
+  border: 1px solid white;
+  border-bottom:1px solid gray;
+padding-left: 50px;
+  width:1024px;
+  height:310px;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+
+
+/*여기서부터 검색 리스트*/
+
+
+ul {
+    list-style-type:none;
+}
+
+
+
+.display-card{
+  border: 1px solid white;
+  float: left;
+  display: inline;
+  margin-left: -30px;
+
+}
+
+/*사진에 대해*/
+#search-list-picture{
+  height: 200px;
+
+
+
+}
+
+.picture_frame{
+  border: 1px solid white;
+  display: inline;
+  margin-top: 20px;
+}
+
+.picture_frame >img{
+  margin-top: 40px;;
+}
+
+/*사진에 대해-끝*/
+
+/*보여지는 부분 게시물 */
+.display_title_of_post{
+  border:1px solid white;
+  font-size: 25px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+
+}
+
+
+/*보여지는 부분 게시물 */
+
+.root{
+  margin-bottom: 15px;
+}
+span#myspan {
+font-size:12px;
+font-family:arial;
+font-weight:bold;
+vertical-align:3px;
+text-align:center;
+margin-left:10px;
+margin-right:10px;
+color:#2bd2db;
+}
+.bubble
+{
+  border-radius:10px ;
+	height: 20px;
+  background:white;
+  border: solid 1px #2bd2db;
+  display:inline-block;
+  margin-right:15px;
+}
+
+div.connect:after
+{
+  content:"";
+  height:1px;
+  width:100%;
+  background:#2bd2db;
+  display:block;
+  position:relative;
+  left:calc(100% );
+  top:-13px;
+  z-index:-1;
+}
+
+#circle_pic_user{
+  height:50px;
+  border-radius:50%;
+
+
+  display: inline-block;
+}
+
+.user_photo{
+  display: inline;
+  margin-top: -10px;
+  margin-left: 10px;
+  width:300px;
+
+}
+
+.fa fa-heart-o fa-2x{
+margin-top: 10px;
+margin-left: 100px;
+}
+
+
+
+/*여기서부터 footer css*/
+.footer{
+
+  width: 100%;
+  height: 300px;
+  margin-bottom: 0px;
+
+  background-color: #5b687a;
+}
+
+
+
+.travel_period{
+margin-left: 400px;
+}
+.dis_picture{
+float:right;
+}
+.heart{
+  display: inline;
+  margin-left: 240px;
+}
+
+.travel_period{
+  font-style: italic;
+  color: #b1bcbc;
+  font-weight: bold;
+  font-size: 15px;
+
+}
+
+#list_heart > img{
+  width: 30px;
+  height:30px;
+}
+
+
+
+#list_heart_1{
+  color: #fc5549;
+}
+</style>
+
+
+  </head>
+  <body>
+    <!--여기서부터 header html-->
+    <div class="header-container">
+      <div class="in-header-container">
+       <img src="logo.PNG" id="logo">
+      <input id="search-bar" type="text" name="search" placeholder="search">
+
+    <i class="fa fa-search fa-2x" aria-hidden="true"></i>
+    <button type="button" id="edit-start-button">start
+    </div>
+    <hr>
+  </div>
+
+  <!--여기까지 header -->
+
+<!--여기서부터 content-container-->
+
+<!--
+<br>
+<div class="travel_period">2016.03.16.2017.03.16
+</div> -->
+<ul>
+<div class="content-container">
+
+
+  <li>
+<div>
+      <div class="dis_picture">
+    <div class="picture_frame">
+      <img id="search-list-picture" src="mrbike.PNG">
+      <img id="search-list-picture" src="mrbike.PNG">
+    </div>
+    <div class="travel_period">2016.03.16 ~ 2017.03.16
+    </div>
+  </div>
+    <div>
+  <div class="display-card">
+    <a href="../inner_article.html"><div class="display_title_of_post">자전거로 국경을 넘다</div></a>
+      <div class="display_content_of_post">그정도의 가치를 지닌거 같은 자전거를 타고 돈콘섬까지<br>
+                                          정말 오래달렸다. 리피폭포를 보기위해서 였는데 중간중간<br>
+                                          정확치도않은 이정표를 보며 두시간...
+</div>
+<br>
+<br>
+
+<div class="root">
+<a href="#">
+<div class="bubble connect"><span id="myspan">인천국제공항<span></div>
+<div class="bubble connect"><span id="myspan">비엔나 공항<span></div>
+<div class="bubble connect"><span id="myspan">호스텔<span></div>
+<div class="bubble noconnect"><span id="myspan">벨베데레궁<span></div>
+  </a>
+
+</div>
+
+
+<div class="user_photo">
+  <img id="circle_pic_user" src="Emma.jpg"> Emma
+
+
+</div>
+<div class="heart">
+
+<a id="list_heart" href="#"><i id="list_heart_1" class="fa fa-heart-o fa-2x" aria-hidden="true"></i></a>
+
+<div>
+
+</div>
+  </div>
+
+
+</div>
+</li>
+</div>
+
+
+
+
+
+
+<!--여기까지 content-container-->
+
+<div class="content-container">
+
+
+  <li>
+<div>
+      <div class="dis_picture">
+    <div class="picture_frame">
+      <img id="search-list-picture" src="mrbike.PNG">
+      <img id="search-list-picture" src="mrbike.PNG">
+    </div>
+    <div class="travel_period">2016.03.16 ~ 2017.03.16
+    </div>
+  </div>
+    <div>
+  <div class="display-card">
+    <div class="display_title_of_post">자전거로 국경을 넘다</div>
+      <div class="display_content_of_post">그정도의 가치를 지닌거 같은 자전거를 타고 돈콘섬까지<br>
+                                          정말 오래달렸다. 리피폭포를 보기위해서 였는데 중간중간<br>
+                                          정확치도않은 이정표를 보며 두시간...
+</div>
+<br>
+<br>
+
+<div class="root">
+<a href="#">
+<div class="bubble connect"><span id="myspan">인천국제공항<span></div>
+<div class="bubble connect"><span id="myspan">비엔나 공항<span></div>
+<div class="bubble connect"><span id="myspan">호스텔<span></div>
+<div class="bubble noconnect"><span id="myspan">벨베데레궁<span></div>
+  </a>
+
+</div>
+
+
+<div class="user_photo">
+  <img id="circle_pic_user" src="Emma.jpg"> Emma
+
+
+</div>
+<div class="heart">
+
+<a id="list_heart" href="javascript:;"><i id="list_heart_1" class="fa fa-heart-o fa-2x" aria-hidden="true"></i></a>
+
+<div>
+
+</div>
+  </div>
+
+
+</div>
+</li>
+</div>
+
+
+<!--***************-->
+
+<div class="content-container">
+
+
+  <li>
+<div>
+      <div class="dis_picture">
+    <div class="picture_frame">
+      <img id="search-list-picture" src="mrbike.PNG">
+      <img id="search-list-picture" src="mrbike.PNG">
+    </div>
+    <div class="travel_period">2016.03.16 ~ 2017.03.16
+    </div>
+  </div>
+    <div>
+  <div class="display-card">
+    <div class="display_title_of_post">자전거로 국경을 넘다</div>
+      <div class="display_content_of_post">그정도의 가치를 지닌거 같은 자전거를 타고 돈콘섬까지<br>
+                                          정말 오래달렸다. 리피폭포를 보기위해서 였는데 중간중간<br>
+                                          정확치도않은 이정표를 보며 두시간...
+</div>
+<br>
+<br>
+
+<div class="root">
+<a href="#">
+<div class="bubble connect"><span id="myspan">인천국제공항<span></div>
+<div class="bubble connect"><span id="myspan">비엔나 공항<span></div>
+<div class="bubble connect"><span id="myspan">호스텔<span></div>
+<div class="bubble noconnect"><span id="myspan">벨베데레궁<span></div>
+  </a>
+
+</div>
+
+
+<div class="user_photo">
+  <img id="circle_pic_user" src="Emma.jpg"> Emma
+
+
+</div>
+<div class="heart">
+<i class="fa fa-heart-o fa-2x" aria-hidden="true"></i>
+<div>
+
+</div>
+  </div>
+
+
+</div>
+</li>
+</div>
+
+<div class="content-container">
+
+
+  <li>
+<div>
+      <div class="dis_picture">
+    <div class="picture_frame">
+      <img id="search-list-picture" src="mrbike.PNG">
+      <img id="search-list-picture" src="mrbike.PNG">
+    </div>
+    <div class="travel_period">2016.03.16 ~ 2017.03.16
+    </div>
+  </div>
+    <div>
+  <div class="display-card">
+    <div class="display_title_of_post">자전거로 국경을 넘다</div>
+      <div class="display_content_of_post">그정도의 가치를 지닌거 같은 자전거를 타고 돈콘섬까지<br>
+                                          정말 오래달렸다. 리피폭포를 보기위해서 였는데 중간중간<br>
+                                          정확치도않은 이정표를 보며 두시간...
+</div>
+<br>
+<br>
+
+<div class="root">
+<a href="#">
+<div class="bubble connect"><span id="myspan">인천국제공항<span></div>
+<div class="bubble connect"><span id="myspan">비엔나 공항<span></div>
+<div class="bubble connect"><span id="myspan">호스텔<span></div>
+<div class="bubble noconnect"><span id="myspan">벨베데레궁<span></div>
+  </a>
+
+</div>
+
+
+<div class="user_photo">
+  <img id="circle_pic_user" src="Emma.jpg"> Emma
+
+
+</div>
+<div class="heart">
+<i class="fa fa-heart-o fa-2x" aria-hidden="true"></i>
+<div>
+
+</div>
+  </div>
+
+
+</div>
+</li>
+</div>
+</ul>
+
+
+
+<!--여기서부터 footer html-->
+  <div class="footer">
+  </div>
+  <!-- 여기까지 footer-->
+
+
+<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+<script>
+
+
+
+   $("#list_heart").on({
+     'click':function(){
+
+      //  class="fa fa-heart fa-2x"
+      //  class="fa fa-heart-o fa-2x"
+       var color = ($('#list_heart>i').attr('class') === 'fa fa-heart-o fa-2x')
+              ? 'fa fa-heart fa-2x'
+              : 'fa fa-heart-o fa-2x';
+
+
+  $('#list_heart_1').attr('class',color);
+      }
+   })
+
+//
+//   $("#list_heart").on({
+//     'click': function() {
+//          var src = ($("#list_heart > img").attr('src') == 'white.png')
+//             ? 'white.png'
+//             : 'red.png';
+//          $("img" ).attr('src', src);
+//        }
+// });
+
+</script>
+
+  </body>
+</html>

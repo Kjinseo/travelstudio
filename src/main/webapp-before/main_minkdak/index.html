@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="UTF-8">
+ <link rel="stylesheet" href="./font-awesome-4.7.0/css/font-awesome.min.css">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+ integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+ <title>Login</title>
+
+ <style>
+ p {
+   text-align: center;
+   /*border: solid red 1px;*/
+   margin-top: auto;
+   margin-bottom: 5%;
+   font-size: 200%;
+ }
+ input {
+   radius: 30px;
+   /*border: none;*/
+   border-radius: 30px;
+   margin: auto;
+ }
+ .whole_container {
+   border: solid red 1px;
+   width: 70%;
+   height: 1080px;
+   margin: auto;
+   background-color: gray;
+ }
+ .header_ctn {
+   background-color: #0555BE;
+   border-top-left-radius: 27px;
+   border-top-right-radius: 27px;
+   color: white;
+ }
+ .container {
+   border: black solid 1px;
+   border-radius: 30px;
+   width: 350px;
+   height: 430px;
+   margin: 50px auto;
+   padding: auto;
+   background-color: white;
+ }
+.login {
+  margin: 5px;
+}
+.input {
+  text-align: center;
+  padding: 5%;
+}
+.dif_login{
+  text-align: center;
+
+}
+#id_input {
+  margin-bottom: 3%;
+}
+#sign_up {
+  padding: auto;
+}
+#sign_up {
+  text-align: center;
+  font-size: 70%;
+  padding-bottom: 5%;
+}
+#sign_link {
+  color: #FFADF0;
+}
+#close {
+  padding-left: 92%;
+  padding-top: 3%;
+}
+#find_pw{
+  text-align: left;
+  margin-left: 70%;
+  font-size: 70%;
+  margin-bottom: 5%;
+}
+#fb_login {
+  background-color: #355EFF;
+  height: 70%;
+  font-size: 80%;
+  text-align:center;
+}
+#kt_login {
+  background-color: #F4FF0B;
+  height: 70%;
+  font-size: 80%;
+  text-align:center;
+  color: #533C09;
+}
+#nv_login {
+  background-color: #18DE02;
+  height: 70%;
+  font-size: 80%;
+  text-align:center;
+
+}
+
+#norm_login {
+  background-color: #E780D4;
+  margin-top: 5%;
+}
+
+ </style>
+</head>
+<body>
+
+<div class="whole_container">
+<div class="container">
+  <div class="header_ctn">
+  <i class="fa fa-times" id="close" aria-hidden="true"></i>
+    <p>로그인</p>
+  <div id="sign_up">아직회원이 아니시라면 <a href="#" id='sign_link'>회원가입</a></div>
+  </div>
+
+<div class="input">
+  <input type="email" id="id_input" class="form-control" id="exampleInputEmail1" placeholder="이메일을 입력하세요">
+  <input type="password" id="pw_input" class="form-control"  placeholder="암호를 입력하세요">
+</div>
+<div id="find_pw"><a href="#">비밀번호 찾기</a></div>
+
+<div class="dif_login">
+  <button type="button" class="btn btn-primary btn-lg btn-block" id="fb_login">페이스북 계정으로 로그인</button>
+  <button type="button" class="btn btn-primary btn-lg btn-block" id="kt_login">카카오톡 계정으로 로그인</button>
+  <button type="button" class="btn btn-primary btn-lg btn-block" id="nv_login">네이버 메일로 로그인</button>
+  <button type="button" class="btn btn-primary" id="norm_login">로그인</button><br>
+</div>
+</div>
+
+</div>
+</body>
+</html>

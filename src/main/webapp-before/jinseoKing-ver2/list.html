@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>header</title>
+<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="./font-awesome-4.7.0/css/font-awesome.min.css">
+
+<style>
+/*여기서부터 header css*/
+body {
+      margin: 0;
+    }
+
+    header {
+      border: 1px solid #c9d1dd;
+      width: 100%;
+      height: 70px;
+      z-index: 100;
+      background-color: white;
+    }
+
+    #logo {
+      max-height: 55px;
+      margin-top: 7px;
+      margin-left: 345px;
+      display: inline;
+    }
+
+    #search_bar {
+      border: 1px solid white;
+      border-bottom: 1px solid gray;
+      font-size: 25px;
+      font-weight: 600;
+      margin-left: 10%;
+      margin-top: 17px;
+      display: inline;
+      position: absolute;
+      width: 500px;
+      height: 40px;
+    }
+
+    #search_icon {
+      position: absolute;
+      margin-left: 695px;
+      margin-top: 19px;
+      background-color: white;
+      border: none;
+    }
+
+     ::-webkit-input-placeholder {
+      color: #aeb5c1;
+    }
+
+    #start-my-journey {
+      border: 1px solid black;
+      width: 140px;
+      height: 40px;
+      border-radius: 20px;
+      background-color: white;
+      margin-left: 938px;
+      margin-top: 13px;
+      margin-bottom: 15px;
+      font-size: 17px;
+      position: absolute;
+      display: inline;
+    }
+
+/*여기까지 header*/
+.content-container {
+	border: 1px solid white;
+	
+	padding-left: 50px;
+	width: 1200px;
+	height: 310px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/*여기서부터 검색 리스트*/
+ul {
+	list-style-type: none;
+}
+
+.display-card {
+	border: 1px solid white;
+	display: inline;
+	margin-left: -30px;
+}
+
+/*사진에 대해*/
+#search-list-picture {
+	height: 180px;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	border-radius: 2px;
+ 
+
+}
+
+.picture_frame {
+	border: 1px solid white;
+	display: inline;
+	margin-top: 20px;
+}
+
+.picture_frame>img {
+	margin-top: 40px;;
+}
+
+/*사진에 대해-끝*/
+
+/*보여지는 부분 게시물 */
+.display_title_of_post {
+	border: 1px solid white;
+	font-size: 25px;
+	margin-bottom: 20px;
+	decoration: none;
+	
+	
+}
+
+/*보여지는 부분 게시물 */
+.root {
+
+	margin-top: -60px;
+
+}
+
+span#myspan {
+	font-size: 12px;
+	font-family: arial;
+	font-weight: bold;
+	vertical-align: 3px;
+	text-align: center;
+	margin-left: 10px;
+	margin-right: 10px;
+	color: #2bd2db;
+}
+
+.bubble {
+	border-radius: 10px;
+	height: 20px;
+	background: white;
+	border: solid 1px #2bd2db;
+	display: inline-block;
+	margin-right: 15px;
+}
+
+div.connect:after {
+	content: "";
+	height: 1px;
+	width: 100%;
+	background: #2bd2db;
+	display: block;
+	position: relative;
+	left: calc(100%);
+	top: -13px;
+	z-index: -1;
+}
+
+#circle_pic_user {
+	height: 50px;
+	display: inline-block;
+	
+	
+}
+
+
+
+.face_pic {
+	border: 1xp solid white;
+	width: 50px;
+	height: 50px;
+	overflow: hidden;
+	margin-left:5px;
+	margin-top:3px;
+	border-radius: 50%;
+}
+
+
+
+/*여기서부터 footer css*/
+/*
+.footer {
+	width: 100%;
+	height: 100px;
+	margin-bottom: 0px;
+	background-color: #5b687a;
+	margin-top:200px;
+}
+*/
+
+.travel_period {
+	
+	margin-top: 20px;
+	
+}
+
+.dis_picture {
+	float: right;
+	width:300px;
+}
+
+
+
+.travel_period {
+	font-style: italic;
+	color: #b1bcbc;
+	font-weight: bold;
+	font-size: 15px;
+}
+
+
+
+
+
+#wrap{
+border-bottom: 1px solid #babdc1;
+height: 300px;
+margin-top: 20px;
+margin-left: -35px;
+width: 1150px;
+
+}
+
+.display_content_of_post{
+  width:700px;
+  height: 43px;
+  overflow: hidden;
+}
+
+#tags{
+font-size: 17px;
+color:#a4a6a8;
+font-style: italic;
+margin-top:20px;
+}
+
+#heart{
+margin-left: 620px;
+margin-bottom: 20px;
+color:#fc8f8f;
+}
+
+
+ a:link { color: black; text-decoration: none;}
+ a:visited { color: black; text-decoration: none;}
+ a:hover { color: black; text-decoration: none;}
+
+출처: http://it77.tistory.com/126 [시원한물냉의 사람사는 이야기]
+
+</style>
+
+
+</head>
+<body>
+	<!--여기서부터 header html-->
+<header class="header">
+    <img id="logo" src="./pictures/ourlogo.png">
+    <input type="search" id="search_bar" placeholder="검색">
+    <button id="search_icon" class="fa fa-search fa-2x" aria-hidden="true"></button>
+    <button type="button" id="start-my-journey">여행기 작성</button>
+  </header>
+
+	<!--여기까지 header -->
+
+	<!--여기서부터 content-container-->
+
+
+	<ul>
+		<div class="content-container">
+
+					<script id="content-template" type="text/x-handlebars-template">
+{{#each list}}
+			<li>
+					<div class="dis_picture">
+						<div class="picture_frame">
+							<img id="search-list-picture" src="./pictures/mrbike.PNG"> 
+							
+						</div>
+<div class="face_pic">
+							<img id="circle_pic_user" src="./pictures/emma.jpg">
+            </div>
+						
+					</div>
+					<div id="wrap">
+		       <div class="display-card">
+							<a href="../inner_article.html style="text-decoration:none"><div class="display_title_of_post">{{title}}</div>
+							<div class="display_content_of_post">{{cont}}</div>
+							<br> <br>
+						</div>
+
+
+						<br> 
+						<br>
+
+						<div class="root">
+							<a href="#">
+								<div class="bubble connect">
+									<span id="myspan">인천국제공항<span>
+								</div>
+								<div class="bubble connect">
+									<span id="myspan">비엔나 공항<span>
+								</div>
+								<div class="bubble connect">
+									<span id="myspan">호스텔<span>
+								</div>
+								<div class="bubble noconnect">
+									<span id="myspan">벨베데레궁<span>
+								</div>
+							</a>
+
+						</div>
+            
+            <div id="tags">#{{tag}}
+            <div>
+
+						<div class="user_photo">
+            
+							<div class="travel_period">{{sdt}} ~ {{edt}}</div>
+              <i id="heart" class="fa fa-heart-o  fa-lg" aria-hidden="true"></i>
+           
+					
+
+
+							
+						</div>
+
+				</div>
+			</li>
+{{/each}}
+		       </script>
+		</div>
+
+	</ul>
+<br>
+
+
+	<!--여기서부터 footer html-->
+	<div class="footer"></div>
+	<!-- 여기까지 footer-->
+
+
+	<script src="./node_modules/jquery/dist/jquery.min.js"></script>
+	<script>
+
+
+
+ 
+
+</script>
+	<script src="./node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="./node_modules/handlebars/dist/handlebars.min.js"></script>
+	<script src="./list.js"></script>
+</body>
+</html>

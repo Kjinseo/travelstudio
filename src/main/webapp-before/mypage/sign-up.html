@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>header</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+<style>
+
+.header-container{
+  border: 1px solid white;
+  width: 100%;
+  height: 150px;
+
+
+}
+
+.in-header-container{
+  border:1px solid white;
+  width: 1024px;
+  height: 100px;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+i{
+  margin-top: 7px;
+  margin-left: 10px;
+}
+
+#edit-start-button{
+  border: 2px solid black;
+  background-color: white;
+  border-radius: 5px;
+  float: right;
+  width: 120px;
+  height: 40px;
+  margin-top:40px;
+  font-weight: bold;
+}
+
+#search-bar {
+  border: 1px solid white;
+  border-bottom: 1px solid black;
+  width: 700px;
+  height: 40px;
+  margin-left: 70px;
+  margin-top: 40px;
+}
+
+#logo{
+  height: 60px;
+  margin-bottom: 20px;
+}
+/*여기까지 header*/
+
+/*여기서부터 로그인--*/
+.sign-in-container{
+  border: 1px solid white;
+  width: 600px;
+  height: 700px;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+
+#login-letter{
+  text-align: center;
+  font-size: 40px;
+}
+
+#login-slogan{
+  font-size: 20px;
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+.login-input-box{
+  border: 1px solid white;
+  width: 550px;
+  height: 200px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 40px;
+
+}
+#title-email, #title-password, #title-id,#title-password2{
+  font-size: 15px;
+  font-weight: bold;
+  color:#6a787c;
+  margin-left: 5px;
+}
+
+#email-input, #password-input, #id-input,#password2-input{
+  border: 1px solid white;
+  border-bottom: 1px solid gray;
+  width: 100%;
+  height: 40px;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 25px;
+
+
+
+}
+
+
+/*여기서부터 로그인 버튼 등 */
+.login-button-box{
+  border: 1px solid white;
+  width: 550px;
+  height: 100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#signup-btn, #login-summit{
+  border: 2px solid #6a7991;
+  width: 272px;
+  height: 50px;
+  border-radius: 25px;
+  font-size: 17px;
+  margin-top:150px;
+  margin-left: 140px;
+  margin-bottom: 15px;
+}
+
+#signup-btn {
+  color: white;
+  font-weight: bold;
+  background-color: #6a7991;
+}
+
+ #login-summit {
+   color:  #6a7991;
+   font-weight: bold;
+   background-color: white;
+ }
+
+#find-password, #sign-up{
+  text-decoration: underline;
+  font-size: 17px;
+}
+
+#find-password{
+  margin: 40px;
+  margin-left: 100px;
+
+}
+
+/*여기서부터 footer*/
+.footer{
+margin-top:50px;
+  width: 100%;
+  height: 300px;
+  margin-bottom: 0px;
+  margin-top: 5%;
+  background-color: #5b687a;
+
+}
+.login-button-box>div{
+  margin-left: 130px;
+}
+::-webkit-input-placeholder { color:lightgray; }
+
+</style>
+
+
+  </head>
+  <body>
+    <div class="header-container">
+      <!--<img id="logo" src="logo2.PNG">-->
+      <div class="in-header-container">
+       <a href="login.html"><img src="logo1.PNG" id="logo"></a>
+      <input id="search-bar" type="text" name="search" placeholder="search">
+
+    <i class="fa fa-search fa-2x" aria-hidden="true"></i>
+    <button type="button" id="edit-start-button">start
+    </div>
+    <hr>
+  </div>
+<!--header-->
+
+<!-- sign in-->
+<div class="sign-in-container">
+  <p id="login-letter">회원 가입</p>
+  <p id="login-slogan"> 사진찍는 여행기 블라블라</p>
+  <div class="login-input-box">
+    <p id="title-id">별명</p>
+    <input type="sumit" id="id-input" placeholder="별명">
+    <p id="title-email">이메일</p>
+    <input type="sumit" id="email-input" placeholder="이메일">
+    <p id="title-password">비밀번호</p>
+    <input type="password" id="password-input" placeholder="비밀번호">
+    <p id="title-password2">비밀번호 확인</p>
+    <input type="password" id="password2-input" placeholder="비밀번호 확인">
+
+  </div>
+<br>
+  <div class="login-button-box">
+    <button type="button" id="signup-btn">회원 가입</button>
+<br>
+<div>
+    <span>이미 회원이세요?</span><a id="find-password" href="#">로그인 하기</a>
+</div>
+
+  </div>
+</div>
+
+<!--footer-->
+<div class="footer">
+  <h1>footer</h1>
+</div>
+<script src="./node_modules/jquery/dist/jquery.min.js"></script>
+<script src="./node_modules/handlebars/dist/handlebars.min.js"></script>
+<script src="./sign-up.js"></script>
+  </body>
+</html>

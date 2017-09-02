@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>header</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./font-awesome-4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <style>
+    .header-container {
+      border: 1px solid white;
+      width: 100%;
+      height: 150px;
+    }
+
+    .in-header-container {
+      border: 1px solid white;
+      width: 1024px;
+      height: 100px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    i {
+      margin-top: 7px;
+      margin-left: 10px;
+    }
+
+    #edit-start-button {
+      border: 2px solid black;
+      background-color: white;
+      border-radius: 5px;
+      float: right;
+      width: 120px;
+      height: 40px;
+      margin-top: 40px;
+      font-weight: bold;
+    }
+
+    #search-bar {
+      border: 1px solid white;
+      border-bottom: 1px solid black;
+      width: 700px;
+      height: 40px;
+      margin-left: 70px;
+      margin-top: 40px;
+    }
+
+    #logo {
+      height: 60px;
+      margin-bottom: 20px;
+    }
+    /*여기까지 header*/
+    /*여기서부터 로그인--*/
+
+    .sign-in-container {
+      border: 1px solid white;
+      width: 600px;
+      height: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+
+    #login-letter {
+      text-align: center;
+      font-size: 40px;
+    }
+
+    #login-slogan {
+      font-size: 20px;
+      text-align: center;
+      padding-bottom: 30px;
+    }
+
+    .login-input-box {
+      border: 1px solid white;
+      width: 550px;
+      height: 200px;
+      margin-right: auto;
+      margin-left: auto;
+      margin-bottom: 40px;
+    }
+
+    #title-email,
+    #title-password,
+    #title-id,
+    #title-password2 {
+      font-size: 15px;
+      font-weight: bold;
+      color: #6a787c;
+      margin-left: 5px;
+    }
+
+    #email-input,
+    #password-input,
+    #id-input,
+    #password2-input {
+      border: 1px solid white;
+      border-bottom: 1px solid gray;
+      width: 100%;
+      height: 40px;
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 25px;
+    }
+    /*여기서부터 로그인 버튼 등 */
+
+    .login-button-box {
+      border: 1px solid white;
+      width: 550px;
+      height: 100px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    #facebook-login,
+    #login-summit {
+      border: 2px solid #6a7991;
+      width: 272px;
+      height: 50px;
+      border-radius: 25px;
+      font-size: 17px;
+      margin-top: 30px;
+      margin-left: 100px;
+      margin-bottom: 15px;
+    }
+
+    #facebook-login {
+      color: white;
+      font-weight: bold;
+      background-color: #6a7991;
+    }
+
+    #login-summit {
+      color: #6a7991;
+      font-weight: bold;
+      background-color: white;
+    }
+
+    #find-password,
+    #sign-up {
+      text-decoration: underline;
+      font-size: 17px;
+    }
+
+    #find-password {
+      margin: 40px;
+      margin-left: 100px;
+    }
+    /*여기서부터 footer*/
+
+    .footer {
+      margin-top: 50px;
+      width: 100%;
+      height: 300px;
+      margin-bottom: 0px;
+      margin-top: 5%;
+      background-color: #5b687a;
+    }
+
+    .login-button-box>div {
+      margin-left: 130px;
+    }
+
+    ::-webkit-input-placeholder {
+      color: lightgray;
+    }
+
+
+    .left-con {
+      display: inline-block;
+      line-height: 20px;
+      margin-right: 50px;
+      margin-left: -120px;
+      text-align: left;
+
+    }
+
+    .right-con {
+
+      display: inline-block;
+      position: absolute;
+      text-align: left;
+    }
+
+    .report-container {
+      vertical-align: top;
+      padding: 10px;
+      border:1px solid #b5c5dd;
+      background-color: #dcdfe5;
+      width:500px;
+      margin-left: 50px;
+    }
+
+
+    #two-container{
+      margin-top: 30px;
+      text-align: center;
+      vertical-align: top;
+
+    }
+    textarea.autosize { margin-top:70px; margin-left: 30px; min-height: 200px; width: 90%}
+  </style>
+
+
+</head>
+
+<body>
+  <div class="header-container">
+    <!--<img id="logo" src="logo2.PNG">-->
+    <div class="in-header-container">
+      <a href="login.html"><img src="logo1.PNG" id="logo"></a>
+      <input id="search-bar" type="text" name="search" placeholder="search">
+
+      <i class="fa fa-search fa-2x" aria-hidden="true"></i>
+      <button type="button" id="edit-start-button">start
+    </div>
+    <hr>
+  </div>
+<!--header-->
+
+<!-- sign in-->
+<div class="sign-in-container">
+  <p id="login-letter">신고하기</p>
+  <div class="report-container">
+<div id='two-container'>
+    <div class=left-con>
+    <input type="radio" name="chk_info" value="HTML">영리목적/홍보성<br>
+<input type="radio" name="chk_info" value="CSS" checked="checked">욕설/인신공격<br>
+<input type="radio" name="chk_info" value="웹디자인">개인정보노출<br>
+<input type="radio" name="chk_info" value="웹디자인">기타<br>
+</div>
+<div class=right-con>
+<input type="radio" name="chk_info" value="HTML">불법정보<br>
+<input type="radio" name="chk_info" value="CSS" checked="checked">음란/선정성<br>
+<input type="radio" name="chk_info" value="웹디자인">같은내용도배<br>
+</div><br>
+</div>
+<textarea class="autosize" onkeydown="resize(this)" onkeyup="resize(this)" placeholder="기타 사유를 입력해 주세요"></textarea>
+
+<button type="button" id="facebook-login">신고하기</button>
+    </div>
+    <br>
+    <div class="login-button-box">
+      <br>
+      <div>
+      </div>
+
+    </div>
+  </div>
+
+  <!--footer-->
+  <div class="footer">
+    <h1>footer</h1>
+  </div>
+
+</body>
+
+</html>

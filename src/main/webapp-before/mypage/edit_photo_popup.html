@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="./OwlCarousel/dist/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="./OwlCarousel/dist/assets/owl.theme.default.min.css">
+    <link rel="stylesheet" type="text/css" href="./edit_photo_popup.css">
+    <style>
+
+    </style>
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="./OwlCarousel/dist/owl.carousel.min.js"></script>
+  </head>
+  <body>
+    <div class="edit_react_window">
+    <div class="color_classify"></div>
+    <div class="edit_window">
+      <div class="edit_input">
+        <div class="files_container">
+            <table class="table_files" id="tbfiles">
+              <thead>
+                <tr>
+                  <th>2017. 07. 19</th>
+                  <th>, 인천</th>
+                </tr>
+              </thead>
+              <tbody id="selectable">
+                <tr  type="image">
+                  <td class="file_icon">
+                    <input type='checkbox' id='check' name='2' value=''>
+                    <label for='check'>
+                    <div class="thumb" style="background-size: contain; background-image: url(img/vally.jpg)">
+                    </div>
+                  </label>
+                  </td>
+                  <td class="name">vally.jpg</td>
+                </tr>
+
+                <tr class="file ui-state-default" type="image">
+                  <td class="file_icon">
+                    <input type='checkbox' id='check2' name='2' value=''>
+                     <label for='check2'>
+                    <div class="thumb" style="background-size: contain; background-image: url(img/vally.jpg)">
+                    </div>
+                    </label>
+                  </td>
+                  <td class="name">vally.jpg</td>
+                </tr>
+
+                <tr class="file ui-state-default" type="image">
+                  <td class="file_icon">
+                    <input type='checkbox' id='check3' name='2' value=''>
+                     <label for='check3'>
+                    <div class="thumb" style="background-size: contain; background-image: url(img/vally.jpg)">
+                    </div>
+                    </label>
+                  </td>
+                  <td class="name">vally.jpg</td>
+                </tr>
+
+                <tr class="file ui-state-default" type="image">
+                  <td class="file_icon">
+                    <input type='checkbox' id='check4' name='2' value=''>
+                     <label for='check4'>
+                    <div class="thumb" style="background-size: contain; background-image: url(img/vally.jpg)">
+                    </div>
+                    </label>
+                  </td>
+                  <td class="name">vally.jpg</td>
+                </tr>
+
+                <tr class="file ui-state-default" type="image">
+                  <td class="file_icon">
+                    <input type='checkbox' id='check5' name='2' value=''>
+                     <label for='check5'>
+                    <div class="thumb" style="background-size: contain; background-image: url(img/vally.jpg)">
+                    </div>
+                    </label>
+                  </td>
+                  <td class="name">vally.jpg</td>
+                </tr>
+
+                <tr class="file ui-state-default" type="image">
+                  <td class="file_icon">
+                    <input type='checkbox' id='check6' name='2' value=''>
+                     <label for='check6'>
+                    <div class="thumb" style="background-size: contain; background-image: url(img/vally.jpg)">
+                    </div>
+                    </label>
+                  </td>
+                  <td class="name">vally.jpg</td>
+                </tr>
+
+                <tr class="file ui-state-default" type="image">
+                  <td class="file_icon">
+                    <input type='checkbox' id='check7' name='2' value=''>
+                     <label for='check7'>
+                    <div class="thumb" style="background-size: contain; background-image: url(img/vally.jpg)">
+                    </div>
+                    </label>
+                  </td>
+                  <td class="name">vally.jpg</td>
+                </tr>
+
+                <tr class="file ui-state-default" type="image">
+                  <td class="file_icon">
+                    <input type='checkbox' id='check8' name='2' value=''>
+                     <label for='check8'>
+                    <div class="thumb" style="background-size: contain; background-image: url(img/vally.jpg)">
+                    </div>
+                    </label>
+                  </td>
+                  <td class="name">vally.jpg</td>
+                </tr>
+
+                <tr class="file ui-state-default" type="image">
+                  <td class="file_icon">
+                    <input type='checkbox' id='check9' name='2' value=''>
+                     <label for='check9'>
+                    <div class="thumb" style="background-size: contain; background-image: url(img/vally.jpg)">
+                    </div>
+                    </label>
+                  </td>
+                  <td class="name">vally.jpg</td>
+                </tr>
+
+
+              </tbody>
+            </table>
+        </div>
+          <div class="edit_settings">
+            <div class="contents">
+              <!-- <div class=""> -->
+                <div class="group">
+                  <a href="#"><div class="edit_group">새 그룹</div></a>
+                  <a href="#"><div class="edit_ungroup">그룹</div></a>
+                </div>
+                <div class="save">
+                  <a href="#"><div class="edit_save">저장</div></a>
+                  <a href="#"><li class="edit_cancel">취소</li></a>
+                </div>
+              <!-- </div> -->
+          </div>
+        </div>
+        </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( "#selectable" ).selectable();
+  } );
+  </script>
+  </body>
+</html>

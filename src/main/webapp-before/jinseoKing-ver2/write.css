@@ -1,0 +1,724 @@
+@import url(https://fonts.googleapis.com/css?family=Ropa+Sans);
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+
+
+
+
+.edit_react_window {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 992;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  display: none;
+
+}
+
+.help_btn {
+
+  background-color: black;
+}
+
+
+.edit_window {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  /*box-sizing: border-box;*/
+  position: fixed;
+  width: 1300px;
+  height: 700px;
+  background-color: rgba(255, 255, 255, 1);
+  margin: 50px auto 0;
+  z-index: 999;
+  vertical-align: middle;
+  text-align: center;
+  /*display: none;*/
+}
+
+.edit_input {
+  position: relative;
+  /*float: left;*/
+  /*box-sizing: border-box;*/
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  float:none;
+  width: 1284px;
+  height: 685px;
+  border: 1px solid #D0D0D0;
+  text-align: center;
+  color: #767676;
+  margin-bottom: 20px;
+}
+
+.edit_settings {
+  /*display: inline-block;*/
+  /*position: absolute;*/
+  top: 0;
+  right: 0;
+  float: right;
+  border-left: solid 1px  #D0D0D0;
+  width: 150px;
+  height: 100%;
+  /*margin-top: 30%;*/
+  list-style: none;
+  line-height: 1.3;
+  padding: auto;
+}
+
+.contents_wrap {
+  position: relative;
+  height: auto;
+  top: 50%;
+  transform: translate(0, -50%);
+
+}
+.edit_settings .contents {
+  position: relative;
+  height: 685px;
+  text-align: center;
+  vertical-align: middle;
+  margin: auto 0;
+}
+
+a:link {
+  border:none;
+  text-decoration: none;
+  outline: 0
+}
+
+.edit_settings .contents .group {
+  position: relative;
+  margin-bottom: 100px;
+}
+
+
+.edit_settings .contents .group div {
+  cursor: pointer;
+  border-radius: 15px;
+  width: 100px;
+  height: 30px;
+  line-height: 28px;
+  font-weight: 600;
+  background-color: #fff;
+  border: 1px solid #767676;
+  color: #767676;
+  margin: 10px auto;
+}
+
+
+.edit_settings .contents .save {
+  margin-bottom: 50px;
+}
+
+.edit_settings .contents .save div {
+  cursor: pointer;
+  border-radius: 15px;
+  width: 100px;
+  height: 30px;
+  line-height: 28px;
+  font-weight: 600;
+  background-color: #fff;
+  border: 1px solid #767676;
+  color: #767676;
+  margin: 10px auto;
+}
+
+.edit_settings li {
+  /*display: inline-block;*/
+  color: #4265EE;
+  font-weight: 600;
+  opacity: 0.7;
+  margin: 10px 0 0 10px;
+  vertical-align: center
+}
+
+
+/*.edit_group, .edit_settings img {
+  display: inline-block;
+
+}*/
+
+.edit_done {
+  position: absolute;
+}
+
+/*파일 나열 되는 곳*/
+.files_container {
+  position: relative;
+  /*display: inline-block;*/
+  float: left;
+  width: 1130px;
+  height: 685px;
+  overflow: auto;
+}
+#text_parent {
+/*   border: solid 1px red; */
+
+}
+div[class*=table_files] {
+  width: 1119px;
+  height: 179px;
+  /*padding-right: 14px*/
+  /*position: absolute;*/
+  text-align: left;
+
+}
+
+.files_container div[class*=table_files] .file {
+  /*float: left;*/
+  width: 100px;
+  height: 124px;
+  margin: 10px 0 10px 14px;
+  /*border: solid 1px green;*/
+  border-bottom: 1px solid #E7E8EA;
+  overflow: hidden;
+  background: transparent;
+  display: inline-block;
+}
+.files_container div[class*=table_files] .file_icon {
+  /*position: absolute;*/
+  /*background: transparent;*/
+  /*float:left;*/
+background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 100px;
+  height: 100px;
+}
+
+div[class*=table_files] .file_icon .thumb {
+  height: 100%;
+  background: transparent center center no-repeat;
+  float: left;
+  /*margin-top: 15%;*/
+  overflow: hidden;
+}
+
+.files_container div[class*=table_files] .name {
+  width: 100px;
+  height: 20px;
+  text-align: center;
+  /*vertical-align: center;*/
+  font-size: 80%;
+  /*margin: 7px;*/
+}
+
+.files_container div[class*=table_files] div[class*=files_date]  {
+  /*position: fixed;*/
+  /*float: left;*/
+  font-weight: 600;
+  width: 180px;
+  /*max-width: 170px;*/
+  height: 20px;
+  max-height: 20px;
+  /*margin-top: 20px;*/
+  overflow:hidden;
+  display: inline-block;
+  padding-left: 13px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+  /*border: 1px blue solid;*/
+
+}
+
+
+.files_container div[class*=table_files] .files_wrap{
+  /*border: 1px blue solid;*/
+  display:inline-block;
+  padding: 0 14px;
+  width: 1100px;
+}
+
+
+/*파일 나열 끝*/
+
+
+div[id*=checked_mark] {
+  margin-left: -87px;
+  margin-top: 30px;
+  position: absolute;
+  display: inline-block;
+  z-index: 30;
+  width: 64px;
+  height: 64px;
+  opacity: 0.6;
+  background-repeat: no-repeat;
+  background-image: url("./img/checked.png");
+}
+
+/* /*  */ */
+body, table, div, p, textarea, span, h2 {
+  font-family: 'Nanum Gothic';
+}
+
+
+ body {
+      margin: 0;
+    }
+
+    header {
+      border: 1px solid #c9d1dd;
+      width: 100%;
+      height: 70px;
+      z-index: 100;
+      background-color: white;
+    }
+
+    #logo {
+      max-height: 55px;
+      margin-top: 7px;
+      margin-left: 345px;
+      display: inline;
+    }
+
+    #title_of_article {
+      border: 1px solid white;
+      font-size: 25px;
+      font-weight: bold;
+      margin-left: 21%;
+      margin-top: 11px;
+      display: inline;
+      position: absolute;
+    }
+
+    #start-my-journey {
+      border: 1px solid black;
+      width: 140px;
+      height: 40px;
+      border-radius: 20px;
+      background-color: white;
+      margin-left: 938px;
+      margin-top: 13px;
+      margin-bottom: 15px;
+      font-size: 17px;
+      position: absolute;
+      display: inline;
+    }
+.all_photo_select{
+  margin-top:30px;
+  margin-left: 340px;
+}
+
+
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+}
+
+a:link {
+  border: none;
+  outline: 0;
+}
+
+
+/*div{
+  border:1px solid black;
+}*/
+
+a:-webkit-any-link {
+  /*color: -webkit-link;*/
+  cursor: auto;
+  text-decoration: none;
+}
+
+.blank-one {
+  position: relative;
+  background: url('travel.jpg') center center no-repeat fixed;
+  text-align: center;
+  width: 100%;
+  height: 700px;
+  font-family: 'Ropa Sans', sans-serif;
+  margin-bottom: 20px;
+}
+
+.blank-one>i {
+  color: white;
+}
+
+#icons_i, .bb>i {
+  color: white;
+}
+
+.blank-one textarea {
+  font-size: 40px;
+  text-transform: uppercase;
+  width: 1000px;
+  color: rgb(255, 255, 255);
+  margin: 250px auto 0px auto;
+  text-shadow: 1px 1px 2px #000;
+  background-color: transparent;
+  border: none;
+  text-align: center;
+  font-style: white;
+  text-decoration-color: white;
+}
+
+.blank-one textarea-placeholder {
+  color: white;
+}
+
+::-webkit-input-placeholder {
+  color: gray;
+}
+
+#header {
+  box-sizing: border-box;
+  position: relative;
+  height: 15%;
+  width: 100%;
+  border-bottom: solid 1px #d2d2d2;
+}
+
+.container_main {
+  /*border: solid black 1px;*/
+  width: 1220px;
+  height: 100%;
+  margin: auto;
+  height: 1000px;
+}
+
+.icons {
+  width: 130px;
+  height: 400px;
+  position: absolute;
+  margin-left: 100px;
+  margin-top: 150px;
+}
+
+.icons>div1 {
+  position: absolute;
+  margin-left: 1000px;
+}
+
+.icons>a>i {
+  z-index: 1000;
+  width: 10px;
+  height: 10px;
+  margin-top: 45px;
+}
+
+.write_select_date_start>input {
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  color: white;
+  text-align: center;
+}
+
+.fa fa-calendar fa-2x {
+  color: white;
+}
+
+.write_select_date_start>div {
+  display: inline;
+}
+
+.fa fa-plus-circle {
+  -ms-transform: rotate(90deg); // IE 9 이상에서 사용
+  -webkit-transform: rotate(90deg); // 사파리, 크롬, 오페라 브라우저 사용
+  transform: rotate(90deg);
+}
+
+.write_day {
+  width: 170px;
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 15px;
+  height: 125px;
+}
+
+.write_day>div {
+  display: inline-block;
+  font-size: 10px;
+}
+
+.tool_box {
+  margin-top: 30px;
+  display: inline-block;
+}
+
+.tool_box>textarea {
+  width: 700px;
+  resize: none;
+}
+
+.travel_detail_date {
+  font-size: 15px;
+  display: inline-block;
+}
+
+.bb>#aa {
+  width: 40%;
+  border: 1px solid white;
+}
+
+.day_list {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  height: 125px;
+  display: inline-block;
+}
+
+.fa fa-plus-circle fa-3x:hover {}
+
+.icons>a>div:hover>.title_hidden {
+  visibility: visible;
+  color: white;
+}
+
+#write_data_arrow {
+  color: white;
+}
+
+.title_hidden {
+  visibility: hidden;
+  width: 500px;
+  resize: none;
+  border: none;
+}
+
+#write_addition {
+  display: none;
+  position: relative;
+  margin-top: 30px;
+  margin-left: 500px;
+}
+
+#testdiv>a>img {
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
+}
+
+#map_container {
+  display: none;
+  position: absolute;
+  z-index: 11;
+  background-color: white;
+  border: solid 1px gray;
+  border-radius: 1%;
+  height: 600px;
+  width: 800px;
+}
+
+#map_container>h3 {
+  text-align: center;
+}
+
+#route_container>h3 {
+  text-align: center;
+}
+
+#route_container {
+  display: none;
+  position: absolute;
+  z-index: 11;
+  background-color: white;
+  border: solid 1px gray;
+  border-radius: 1%;
+  height: 600px;
+  width: 800px;
+}
+
+
+/*.container_main > a >i{
+  display: block;
+}*/
+
+/*모달 지도*/
+#map{
+        height: 300px;
+      z-index: 100;
+      }
+/*2번 지도*/
+#map2 {
+     height: 380px;
+    width: 809px;
+    
+  } 
+  
+      #floating-panel {
+        position: absolute;
+        top: 600px;
+        left: 50%;
+        margin-left: -180px;
+        width: 350px;
+        height: 70px;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+      }
+      
+      
+      #latlng {
+        width: 225px;
+        height: 100px;
+        z-index: 101;
+      }
+           
+      
+
+.day1 {
+  margin-top: 30px;
+}
+
+div[id*='testdiv']>a>img {
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
+}
+
+i[id*='ab'] {
+  display: block;
+}
+
+.text_write_box {
+  margin-top: 15px;
+  border: none;
+}
+
+textarea {
+  overflow: hidden;
+  overflow-y: hidden;
+}
+
+textarea.autosize {
+  min-height: 50px;
+}
+
+button[id*='day_btn'] {
+  width: 100px;
+  height: 40px;
+  border-radius: 25px;
+  font-size: 17px;
+  border: white solid 2px;
+  margin-top: 40px;
+  margin-bottom: 15px;
+}
+
+
+/*
+.day_btn{
+  border: 2px solid #6a7991;
+  width: 100px;
+  height: 40px;
+  border-radius: 25px;
+  font-size: 17px;
+
+
+  margin-bottom: 15px;
+}*/
+
+
+/*search*/
+
+.add-on .input-group-btn>.btn {
+  border-left-width: 0;
+  left: -2px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+
+/* stop the glowing blue shadow */
+
+.add-on .form-control:focus {
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  border-color: #cccccc;
+}
+
+.form-control {
+  width: 20%
+}
+
+.navbar-nav>li>a {
+  border-right: 1px solid #ddd;
+  padding-bottom: 15px;
+  padding-top: 15px;
+}
+
+.navbar-nav:last-child {
+  border-right: 0
+}
+
+.search_bar {
+  float: right;
+  margin-right: 10px;
+}
+
+.search_list {
+  height: 320px;
+  width: 230px;
+}
+
+#testdiv {
+  display: none;
+}
+
+.search_list>li {
+  /*border-top:1px solid gray;*/
+  border-bottom: 1px solid gray;
+  list-style: none;
+  height: 60px;
+  margin-left: -40px;
+  padding: 10px;
+}
+
+.search_list>li>a>div {
+  margin-left: 5px;
+  font-size: 14px;
+  display: block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+#address {
+  font-size: 12px;
+}
+
+#modal {
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  position: fixed;
+  z-index: 10;
+  opacity: 0.8;
+  display: none;
+  margin: 0;
+}
+
+
+/*search 끝*/
+
+#cancel-login, #login-summit {
+  border: 2px solid #6a7991;
+  width: 200px;
+  height: 40px;
+  border-radius: 25px;
+  font-size: 17px;
+  margin-bottom: 15px;
+}
+
+#cancel-login {
+  color: white;
+  font-weight: bold;
+  margin-right: 30px;
+  background-color: #6a7991;
+}
+
+.buttons {
+  margin-left: 210px;
+  margin-top: 30px;
+}

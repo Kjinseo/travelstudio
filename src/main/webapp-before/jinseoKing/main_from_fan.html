@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fanduck</title>
+
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<link rel="stylesheet"
+	href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+<script src="node_modules/jquery/dist/jquery.min.js">
+</script>
+
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/footer.css" />
+<link rel="stylesheet" href="css/menu.css" />
+<link rel="stylesheet" href="css/header.css" />
+</head>
+
+<style>
+</style>
+
+
+<body>
+	<header id="main_header">
+		<script>
+			$("#main_header").load("main_header.html");
+		</script>
+	</header>
+
+	<section class="video" style="background-color: black;">
+		<div class="youtubeWrap">
+			<iframe width="760" height="315"
+				src="https://www.youtube.com/embed/Eb9wT1JxMwU?list=PLViFIAYgL5lZS0i-EM7LSlrGhbRE_H9o0&amp;autoplay=1&amp;loop=1"
+				frameborder="0" allowfullscreen autoplay=1></iframe>
+		</div>
+	</section>
+
+	<section class="about">
+		<p class="first" style="color: #fa507b;">
+			<b>당신이 좋아하는 영화인을 등록하세요</b>
+		</p>
+		<p class="second">영화인의 프로필을 등록하고 마음껏 덕질하세요</p>
+		<p class="second">영화인의 작품을 실시간으로 알림받는 서비스</p>
+	</section>
+
+	<hr>
+
+	<footer id="footer">
+		<script>
+			$("#footer").load("footer.html");
+		</script>
+	</footer>
+
+
+
+	<script src="node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="js/app-context.js"></script>
+	<script src="js/youtube.js"></script>
+	<script src="js/userinfo.js"></script>
+	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+
+	<script>
+		$('#mypage').click(function(event) {
+			event.preventDefault();
+			location.href = "mypage.html"
+		})
+		
+		
+	</script>
+</body>
+
+</html>

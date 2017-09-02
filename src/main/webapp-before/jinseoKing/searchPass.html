@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>header</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+<style>
+
+
+    body {
+      margin: 0;
+    }
+
+    header {
+      border: 1px solid #c9d1dd;
+      width: 100%;
+      height: 70px;
+      z-index: 100;
+      background-color: white;
+    }
+
+    #logo {
+      max-height: 55px;
+      margin-top: 7px;
+      margin-left: 420px;
+      display: inline;
+    }
+
+    #title_of_article {
+      border: 1px solid white;
+      font-size: 25px;
+      font-weight: bold;
+      margin-left: 21%;
+      margin-top: 11px;
+      display: inline;
+      position: absolute;
+    }
+
+    #start-my-journey {
+      border: 1px solid black;
+      width: 140px;
+      height: 40px;
+      border-radius: 20px;
+      background-color: white;
+      margin-left: 938px;
+      margin-top: 13px;
+      margin-bottom: 15px;
+      font-size: 17px;
+      position: absolute;
+      display: inline;
+    }
+
+/*여기까지 header*/
+
+/*여기서부터 로그인--*/
+.sign-in-container{
+  border: 1px solid white;
+  width: 700px;
+  height: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
+  margin-bottom: 120px;
+}
+
+
+#login-letter{
+  text-align: center;
+  font-size: 40px;
+}
+
+#login-slogan{
+  font-size: 20px;
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+.login-input-box{
+  border: 1px solid white;
+  width: 616px;
+  height: 100px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 40px;
+  margin-top: 25px;
+
+}
+#title-email{
+  font-size: 15px;
+  font-weight: bold;
+  color:#6a787c;
+  margin-left: 5px;
+}
+
+#email-input{
+  border: 1px solid white;
+  border-bottom: 1px solid gray;
+  width: 100%;
+  height: 40px;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 25px;
+}
+
+
+/*여기서부터 로그인 버튼 등 */
+.login-button-box{
+  border: 1px solid white;
+  width: 550px;
+  height: 100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#facebook-login{
+  border: 2px solid #6a7991;
+  width: 291px;
+  height: 58px;
+  border-radius: 31px;
+  font-size: 17px;
+  margin-bottom: 15px;
+  margin-left: 129px;
+  display: inline-block;
+}
+
+
+#facebook-login {
+  color: white;
+  font-weight: bold;
+  background-color: #6a7991;
+}
+
+
+/*여기서부터 footer*/
+.footer{
+
+  width: 100%;
+  height: 300px;
+  margin-bottom: 0px;
+  margin-top: 5%;
+  background-color: #5b687a;
+}
+
+
+
+</style>
+
+
+  </head>
+  <body>
+    <header class="header">
+    <img id="logo" src="./pictures/ourlogo.png">
+    <p id="title_of_article">여행기 제목</p>
+    <button type="button" id="start-my-journey">여행기 작성</button>
+  </header>
+<!--header-->
+
+<!-- sign in-->
+<div class="sign-in-container">
+  <p id="login-letter">비밀번호를 잊으셨나요?</p>
+  <p id="login-slogan"> 아래에 등록하신 이메일 주소를 입력해 주시면 <br>재설정을 위한 이메일을 보내드리겠습니다</p>
+  <div class="login-input-box">
+    <p id="title-email">이메일</p>
+    <input type="sumit" id="email-input" placeholder="이메일">
+
+    <p></p>
+  </div>
+
+  <div class="login-button-box">
+    <button type="button" id="facebook-login">이메일 받기</button>
+ 
+
+  </div>
+</div>
+
+<!--footer-->
+<div class="footer">
+  <h1>footer</h1>
+</div>
+<script src="./node_modules/jquery/dist/jquery.min.js"></script>
+<script src="./node_modules/handlebars/dist/handlebars.min.js"></script>
+<script src="./searchPass.js"></script>
+  </body>
+</html>

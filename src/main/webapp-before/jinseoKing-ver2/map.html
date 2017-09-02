@@ -1,0 +1,87 @@
+ <!DOCTYPE html>
+    <html>
+    <head>
+    <title>google map</title>
+    <meta charset="utf-8">
+    <style>
+    html,body,#map-canvas {
+            height: 600px;
+            margin: 0px;
+           width: 800px;
+           padding: 0px
+           
+  }
+  
+   #panel {
+     position: absolute;
+     top: 5px;
+     left: 50%;
+      margin-left: -180px;
+      z-index: 5;
+      background-color: #fff;
+      padding: 5px;
+      border: 1px solid #999;
+                  }
+   </style>
+   
+   
+   <!-- 화면에 지도 뿌려주기 -->
+   <script type="text/javascript" src="https://maps.googleapis.
+com/maps/api/js?key=AIzaSyAvJO_nbwEqokghhsnj7oj_uQPgnjFoa84&libraries=visualization&sensor=false"></script>
+   <script>
+   var map;
+   function initialize() {
+           var mapOptions = {
+                   zoom : 7,
+                   center : new google.maps.LatLng(37.5651, 
+126.98955), //서울
+                   mapTypeId : google.maps.MapTypeId.ROADMAP
+           };
+           map = new google.maps.Map(document.getElementById
+('map-canvas'), mapOptions);
+   }
+   google.maps.event.addDomListener(window, 'load', initialize);
+   
+   
+   
+   
+   <!--위치를 입력하면 지도에 핀을 꽂아주기-->
+   var geocoder;
+    function codeAddress() {//지역을 입력받아 위도, 경도로 변환하여 그 위치에 마커를 찍어주는 역할을 한다.
+      geocoder = new google.maps.Geocoder();
+      var address = document.getElementById('address').value;
+      geocoder.geocode( { 'address': address}, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                    var lat = results[0]['geometry']['location']['lat']();
+                    var lng = results[0]['geometry']['location']['lng']();
+                    
+                    console.log(lat);
+                    console.log(lng);
+                    map.setCenter(results[0].geometry.location);    
+                    var marker = new google.maps.Marker({
+                            map: map,
+                            position: results[0].geometry.location,
+                            draggable:false,
+                            animation:google.maps.Animation.DROP,
+                            title:address
+                    });
+                    
+            } else {
+              alert("장소를 찾을 수 없습니다.");
+            }
+      });
+    
+    }
+    
+   </script>
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="map.js"></script>
+   </head>
+   <body>
+      <div id="panel">
+                   <input id="address" type="textbox" value="Seoul"> 
+                   <input id="search_place" type="button" value="GO" onclick="codeAddress()">
+           </div>
+           <div id="map-canvas"></div>
+   </body>
+   </html>

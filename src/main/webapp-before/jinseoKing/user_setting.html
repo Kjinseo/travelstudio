@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>header</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+<style>
+
+  body {
+      margin: 0;
+    }
+
+    header {
+      border: 1px solid #c9d1dd;
+      width: 100%;
+      height: 70px;
+      z-index: 100;
+      background-color: white;
+    }
+
+    #logo {
+      max-height: 55px;
+      margin-top: 7px;
+      margin-left: 345px;
+      display: inline;
+    }
+
+    #search_bar {
+      border: 1px solid white;
+      border-bottom: 1px solid gray;
+      font-size: 25px;
+      font-weight: 600;
+      margin-left: 10%;
+      margin-top: 17px;
+      display: inline;
+      position: absolute;
+      width: 500px;
+      height: 40px;
+    }
+
+    #search_icon {
+      position: absolute;
+      margin-left: 695px;
+      margin-top: 19px;
+      background-color: white;
+      border: none;
+    }
+
+     ::-webkit-input-placeholder {
+      color: #aeb5c1;
+    }
+
+    #start-my-journey {
+      border: 1px solid black;
+      width: 140px;
+      height: 40px;
+      border-radius: 20px;
+      background-color: white;
+      margin-left: 938px;
+      margin-top: 13px;
+      margin-bottom: 15px;
+      font-size: 17px;
+      position: absolute;
+      display: inline;
+    }
+/*여기까지 header*/
+
+/*여기서부터 로그인--*/
+.user-setting-container{
+  width: 550px;
+  height: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
+
+}
+
+
+
+.user_setting_info{
+  border: 1px solid white;
+  width: 470px;
+  height: 200px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 40px;
+}
+
+#title-name, #title-int{
+  font-size: 15px;
+  font-weight: bold;
+  color:#6a787c;
+  margin-left: 5px;
+}
+
+#int-input, #name-input{
+  border: 1px solid white;
+  border-bottom: 1px solid gray;
+  width: 100%;
+  height: 40px;
+  font-size: 20px;
+  font-weight: 300;
+  margin-bottom: 25px;
+
+
+
+}
+
+
+/*여기서부터 로그인 버튼 등 */
+
+
+#save-btn{
+  border: 2px solid #6a7991;
+  width: 272px;
+  height: 50px;
+  border-radius: 25px;
+  font-size: 17px;
+  margin-bottom: 15px;
+  background-color: white;
+  font-weight: bold;
+}
+
+
+
+
+/*여기서부터 footer*/
+.footer{
+
+  width: 100%;
+  height: 300px;
+  margin-bottom: 0px;
+  margin-top: 5%;
+  background-color: #5b687a;
+
+}
+
+.user_photo_change{
+  margin-left: auto;
+  margin-right: auto;
+  height: 170px;
+  width: 170px;
+ background: url('./usercircle.png') center center no-repeat;
+  background-size: cover !important;
+ /* border: 1px solid red; */
+ border-radius: 100%;
+ 
+}
+
+.user_photo_change{
+  /* background-img:  */
+}
+
+.user_img {
+ position: relative;
+}
+
+.user_img > img {
+  position: absolute; 
+}
+
+.user_photo_change > a > img{
+  float:right ;
+  width: 30px;
+  margin-left: -40px;
+  margin-top: 120px;
+
+}
+.user_photo_change > a >.cam_img{
+  display: inline-block;
+}
+
+.cam_img{
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 999;
+}
+
+facebook-login{
+  margin-left: auto;
+  margin-right: auto;
+}
+.save_btn{
+  margin-top: 25px;
+  margin-left: auto;
+  margin-right: auto;
+  width:275px;
+  height: auto;
+}
+.user_setting_info{
+  align: center;
+}
+#file-up {
+  /* position: relative; */
+  z-index: 999;
+  float: none;
+}
+
+#file-up:hover {
+  pointer: cursor;
+}
+
+* {
+/*   border: solid 1px red; */
+} 
+.user_txt {
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    }
+    
+ #txt_alias {
+ font-size: 170%;
+ font-weight: 600;
+ margin-bottom: 0;
+ }
+ 
+ #txt_email {
+ font-size: 130%;
+ font-weight: 600;
+ }
+</style>
+
+
+  </head>
+  <body>
+     <header class="header">
+    <img id="logo" src="./pictures/ourlogo.png" >
+    <input type="search" id="search_bar" placeholder="검색">
+    <button id="search_icon" class="fa fa-search fa-2x" aria-hidden="true"></button>
+    <button type="button" id="start-my-journey">여행기 작성</button>
+  </header>
+
+<!--header-->
+
+<!-- sign in-->
+
+
+<div class="user-setting-container">
+<div>
+  <div class="user_photo_change">
+    <div class="user_img"></div>
+    <a href="#" id="file-up"><img  src="./camera.png"></img></a>
+    <input type="file" id="fileupload" name="files" style="display:none" multiple></input>
+  </div>
+  
+  <div class="user_txt">
+  <p id="txt_alias">1</p>
+  <p id="txt_email">1</p>
+  </div>
+
+  <div class="user_setting_info">
+    <p id="title-name">표시이름</p>
+    <input type="text" id="name-input" placeholder="닉네임">
+    <p id="title-int">본인소개</p>
+    <input type="text" id="int-input" placeholder="간단한 자기 소개를 입력해 주세요">
+  </div>
+  
+    <div class="save_btn"><button type="button" id="save-btn"  onClick="location.href='mypage.html';">저장하기</button></div>
+</div>
+</div>
+
+
+
+<!--footer-->
+<div class="footer">
+  <h1>footer</h1>
+</div>
+<script src="./node_modules/jquery/dist/jquery.min.js"></script>
+<script src='node_modules/jquery/dist/jquery.js'></script>
+<script src="node_modules/blueimp-file-upload/js/vendor/jquery.ui.widget.js"></script>
+<script src="node_modules/blueimp-load-image/js/load-image.all.min.js"></script>
+<script src="node_modules/blueimp-canvas-to-blob/js/canvas-to-blob.js"></script>
+<script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+<script src="node_modules/blueimp-file-upload/js/jquery.iframe-transport.js"></script>
+<script src="node_modules/blueimp-file-upload/js/jquery.fileupload.js"></script>
+<script src="node_modules/blueimp-file-upload/js/jquery.fileupload-process.js"></script> 
+<script src="node_modules/blueimp-file-upload/js/jquery.fileupload-image.js"></script>  
+<script src="./node_modules/handlebars/dist/handlebars.min.js"></script>
+<script src="./user_setting.js"></script>
+
+
+
+<script>
+"use strict"
+
+/* $('#fileupload').fileupload({
+  url: '../member/upload1.json',        // 서버에 요청할 URL
+  dataType: 'json',         // 서버가 보낸 응답이 JSON임을 지정하기
+  sequentialUploads: true,  // 여러 개의 파일을 업로드 할 때 순서대로 요청하기.
+  singleFileUploads: false, // 한 요청에 여러 개의 파일을 전송시키기.
+  autoUpload: false,        // 파일을 추가할 때 자동 업로딩 하지 않도록 설정.
+  disableImageResize: /Android(?!.*Chrome)|Opera/
+        .test(window.navigator && navigator.userAgent), // 안드로이드와 오페라 브라우저는 크기 조정 비활성 시키기
+  previewMaxWidth: 170,   // 미리보기 이미지 너비
+  previewMaxHeight: 170,  // 미리보기 이미지 높이 
+  previewCrop: true,      // 미리보기 이미지를 출력할 때 원본에서 지정된 크기로 자르기
+  processalways: function(e, data) {
+      console.log('fileuploadprocessalways()...');
+      console.log(data.files);
+      var imagesDiv = $('.user_img');
+      imagesDiv.html("");
+      for (var i = 0; i < data.files.length; i++) {
+        try {
+          if (data.files[i].preview.toDataURL) {
+            $("<img>").attr('src', data.files[i].preview.toDataURL()).css('width', '170px').css('border-radius', '100%').appendTo(imagesDiv);
+          }
+        } catch (err) {}
+      }
+      $('#save-btn').unbind("click");
+      $('#save-btn').click(function() {
+          data.submit();
+      });
+  }, 
+  submit: function (e, data) { // 서버에 전송하기 직전에 호출된다.
+    console.log('submit()...');
+     data.formData = {
+        name: $('#name').val(),
+        age: $('#age').val()
+        
+    }; 
+  }, 
+  done: function (e, data) { // 서버에서 응답이 오면 호출된다. 각 파일 별로 호출된다.
+    console.log('done()...');
+    console.log(data.result);
+    var file = data.result.fileList[0];
+    $('<p/>').text("name : " + data.result.name).appendTo(document.body);
+    $('<p/>').text("age : " + data.result.age).appendTo(document.body);
+    $.each(data.result.fileList, function(index, file) {
+      $('<p/>').text(file.filename + " : " + file.filesize).appendTo(document.body);
+    });
+  }
+}); */
+
+/* 
+ $('#user_img').fileupload({
+	url: '../profile/add.json'
+	datatype: 'json', 
+	done: function (e, data) {
+		console.log('done(): thumbnail');
+		console.log(data.result);
+		var file = data.result.fileList[0];
+		$.each(data.result.fileList, function(index, file) {
+			$('<p/>').text(file.filename + " : " + file.filesize).appendTo(documentbody);
+		})
+	}
+}) */
+
+
+/*    $.getJSON(contextRoot + '/collect/list.json', {'no': no}, function(result) {
+      if (result.data) {
+         console.log(result.data)
+      }
+   $('#user_img').text(result.data.list[0].title)   
+   $('#user_img').css({"background-image": "url("+result.data.list[0].picture+")"})
+   })  */
+</script>
+<script>
+
+
+
+/* $.getJSON('../member/detail.json',{'no':no},function(result){
+	let str = result.data.memberPhoto;
+	var path = window.location.pathname;
+	console.log(path)
+	console.log(str)
+	$('.user_photo_change').css({
+		  'background': 'url("/upload/' + str +'")'
+	})
+}) */
+
+
+$(document).ready(function() {
+	$("#file-up").click(function() {
+			$('#fileupload').click();
+			  
+	})
+})
+
+$("#file-up").removeAttr("href")
+</script>
+
+  </body>
+</html>

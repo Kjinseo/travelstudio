@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="travelstudio.dao.PictureDao">
+  
+  <resultMap type="picture" id="pictureMap">
+    <id column="picno" property="picno"/>
+    <result column="path" property="path"/>
+    <result column="date" property="date"/>
+    <result column="lati" property="lati"/>
+    <result column="longit" property="longit"/>
+  </resultMap> 
+
+<!--    <sql id="select1">
+    select *
+    from post
+  </sql> 
+   -->
+ <insert id="insert" parameterType="String" 
+          useGeneratedKeys="true" keyColumn="picno">
+    insert into pic(path)
+    values(#{filename})
+  </insert>
+  
+    <insert id="insert1" parameterType="picture" 
+          useGeneratedKeys="true" keyColumn="picno">
+    insert into pic(path, lati, longit, time)
+    values(#{path}, #{lati}, #{longit}, #{time})
+  </insert>
+  
+<!--    <insert id="insert2" parameterType="String"> 
+    insert into virtual(path)
+    values(#{filename})
+  </insert>
+   -->
+  <select id="selectPicNo" resultMap="pictureMap" parameterType="String">
+  	select picno from pic where path=#{path}
+  </select>
+  
+    <select id="selectByPost" resultMap="pictureMap" parameterType="String">
+  	select * from pic where picno=#{pictureno}
+  </select>
+ <!--  <select id="selectList" resultMap="postMap" parameterType="map">
+    <include refid="select1"/>
+    <if test="search != null">
+	    <where>
+	      <choose>
+		      <when test="search == 'email'">email = #{value}</when>
+		     </choose>
+	    </where>
+    </if>    
+    order by name asc 
+    limit #{startIndex}, #{pageSize}
+  </select>
+  
+  <select id="getWriteCount" resultMap="postMap" parameterType="map">
+  	select count(*) from post where mno=#{mno}
+  </select> -->
+  <!-- 
+  <select id="selectListByNames" resultMap="memberMap" parameterType="map">
+    <include refid="select1"/>
+    <if test="names != null">
+      <where>
+        name in 
+        <foreach collection="names" item="name" open="(" close=")" separator=",">
+          #{name}
+        </foreach>
+      </where> 
+    </if>    
+    order by name asc 
+    limit #{startIndex}, #{pageSize}
+  </select>
+  
+  <select id="selectOne" resultMap="memberMap" parameterType="int">
+    <include refid="select1"/> 
+    where mno = #{memberNo}
+  </select>
+  
+  <select id="selectOneByEmailPassword" resultMap="memberMap" parameterType="map">
+    <include refid="select1"/> 
+    where email=#{email} and pwd=password(#{password})
+  </select>
+  
+  <insert id="insert" parameterType="member" 
+          useGeneratedKeys="true" keyColumn="mno" keyProperty="no">
+    insert into memb(name,tel,email,pwd) 
+    values(#{name},#{tel},#{email},password(#{password}))
+  </insert>
+  
+  <update id="update" parameterType="member">
+    update memb set 
+      name=#{name}, 
+      tel=#{tel}, 
+      email=#{email}, 
+      pwd=password(#{password}) 
+    where mno=#{no}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+    delete from memb 
+    where mno=#{memberNo}
+  </delete> -->
+
+</mapper>
+
+
+
+

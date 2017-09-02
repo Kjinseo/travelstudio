@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>travel_log</title>
+  <style>
+  img, a, abbr, acronym, address, applet,
+  article, aside, audio, b, big, blockquote,
+  body, canvas, caption, center, cite, code,
+  dd, del, details, dfn, div, dl, dt, em,
+  embed, fieldset, figcaption, figure, footer,
+  form, h1, h2, h3, h4, h5, h6, header, hgroup,
+  html, i, iframe, img, ins, kbd, label, legend, li,
+  mark, menu, nav, object, ol, output, p, pre, q, ruby,
+  s, samp, section, small, span, strike, strong, sub,
+  summary, sup, table, tbody, td, tfoot, th, thead,
+  time, tr, tt, u, ul, var, video {
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+  }
+  a {
+    color: inherit;
+  }
+  a:link {
+    border: none;
+    outline: 0;
+  }
+
+  a:-webkit-any-link {
+    /*color: -webkit-link;*/
+    cursor: auto;
+    text-decoration: none;
+  }
+
+  #header {
+    box-sizing: border-box;
+    position: relative;
+    height: 15%;
+    width: 100%;
+    border-bottom: solid 1px #d2d2d2;
+  }
+  .container_main {
+    /*border: solid black 1px;*/
+    width: 1024px;
+    height:100%;
+    margin: auto;
+  }
+
+  .slide_wrap {
+    width: 1024px;
+    height: 414px;
+    /*border: solid red 1px;*/
+  }
+
+  .box_slide_title {
+    box-sizing: border-box;
+    position: relative;
+    float: left;
+    width: 260px;
+    height:100%;
+    border-top: 1px solid #010101;
+    padding: 38px 20px 28px 0;
+    /*border: solid black 1px;*/
+  }
+  .slide_wrap
+  .box_slide_title .titl {
+    font-size: 23px;
+    color: #000;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  .slide_wrap
+  .box_slide_title .sub_titl {
+
+    font-size: 38px;
+    color: #000;
+    font-weight: 300;
+    letter-spacing: -.5px;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .slide_wrap
+  .box_slide_title .ment {
+    font-size: 18px;
+    height: 138px;
+    overflow: hidden;
+    color: #8a8a8a;
+    font-weight: 400;
+    line-height: 1.5;
+    /*border: solid 1px blue;*/
+  }
+
+  .slide_wrap
+  .box_slide_title .more a {
+    /*display: inline-block;*/
+    font-size: 17.5px;
+    color: #ff7573;
+    font-weight: 700;
+    font-family: "Noto Sans KR";
+  }
+
+  .slide_wrap .box_slide_main {
+      width: 762px;
+      height: 100%;
+      float: right;
+      /*border: solid 1px red;*/
+      overflow: hidden;
+  }
+
+  .slide_wrap .box_slide_main .item {
+    float: left;
+    position: relative;
+    margin-left: 10px;
+    width: 242px;
+    height: 100%;
+    /*border: solid 1px black;*/
+}
+
+.slide_wrap .box_slide_main .item .item_thumb {
+  max-height: 215px;
+}
+
+.slide_wrap .box_slide_main .item .item_thumb img{
+  max-width: none;
+  width: 242px;
+  height: 215px;
+}
+
+.slide_wrap .box_slide_main .item .item_in{
+  height: 161px;
+  position: relative;
+  padding: 10px 10px 10px 0;
+}
+
+.slide_wrap .box_slide_main .item .titl{
+  width: 100%;
+  max-height: 48px;
+  overflow: hidden;
+  word-wrap: break-word;
+  font-size: 20px;
+  margin-bottom: 10px;
+  letter-spacing: -.5px;
+  line-height: 1.2;
+  font-family: "Noto Sans KR"
+}
+
+.slide_wrap .box_slide_main .item .tag {
+    width: 75%;
+    height: 34px;
+    min-height: 34px;
+    overflow: hidden;
+    word-wrap: break-word;
+    font-size: 14px;
+    font-weight: 500;
+    color: #8b8b8b;
+    margin-bottom: 18px;
+    line-height: 1.3;
+}
+
+.box_slide_main .bottom_msg {
+    width: 249px;
+    height: 35px;
+    position: absolute;
+    bottom: 0;
+}
+
+.box_slide_main .bottom_msg .circle_photo{
+  margin-bottom: 2px;
+}
+.circle_photo {
+    display: inline-block;
+    min-width: 33px;
+    height: 33px;
+    border-radius: 33px;
+    /*background: url(../img/img_circle_photo.png) center no-repeat;*/
+    margin-right: 3px;
+    background-size: cover;
+    vertical-align: middle;
+}
+  </style>
+</head>
+  <body>
+    <div class="header" id="header">
+    </div>
+    <div class="container_main">
+      <div class="slide_wrap">
+        <div class="box_slide_title">
+          <div class="titl">국내여행</div>
+          <div class="sub_titl">
+          시원한 여름을
+          </br>
+          위한 여행
+          </div>
+          <div class="ment">
+          <p>
+          더운 여름을
+          <br>
+          시원하게 나기 위한
+          <br>
+          노하우가 담긴 여행기
+          </p>
+          </div>
+          <div class="more">
+          <a href="#나는링크">+더보기</a>
+          </div>
+        </div>
+        <div class="box_slide_main">
+          <div class="item select_item">
+            <a href="#">
+              <div class="item_thumb">
+                <img src="vally.jpg" alt="응 계곡이야" class="hidden_mobile">
+              </div>
+              <div class="item_in">
+                <div class="titl"> 해갈된 가평 계곡에서</div>
+                <div class="tag">#가족여행 #가평 #계곡</div>
+                <div class="bottom_msg">
+                <i style="
+                background:url('https://image.withvolo.com/05ba592adabcde294bd49a2859e6c206/ff6b1126-21d0-4224-b42a-b548fc1ee7c5-709cc6d3345fc6424c2eed32705adb25efb52c88.jpg'); background-size:cover;"
+                alt="outofmap"
+                class="circle_photo">
+                </i>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <div class="item select_item">
+            <a href="#">
+              <div class="item_thumb">
+                <img src="vally.jpg" alt="응 계곡이야" class="hidden_mobile">
+              </div>
+              <div class="item_in">
+                <div class="titl"> 해갈된 가평 계곡에서</div>
+                <div class="tag">#가족여행 #가평 #계곡</div>
+                <div class="bottom_msg">
+                <i style="
+                background:url('https://image.withvolo.com/05ba592adabcde294bd49a2859e6c206/ff6b1126-21d0-4224-b42a-b548fc1ee7c5-709cc6d3345fc6424c2eed32705adb25efb52c88.jpg'); background-size:cover;"
+                alt="outofmap"
+                class="circle_photo">
+                </i>
+                </div>
+              </div>
+            </a>
+          </div>
+          <!-- 사진 한 박스 -->
+
+          <div class="item select_item">
+            <a href="#">
+              <div class="item_thumb">
+                <img src="vally.jpg" alt="응 계곡이야" class="hidden_mobile">
+              </div>
+              <div class="item_in">
+                <div class="titl"> 해갈된 가평 계곡에서</div>
+                <div class="tag">#가족여행 #가평 #계곡</div>
+                <div class="bottom_msg">
+                <i style="
+                background:url('https://image.withvolo.com/05ba592adabcde294bd49a2859e6c206/ff6b1126-21d0-4224-b42a-b548fc1ee7c5-709cc6d3345fc6424c2eed32705adb25efb52c88.jpg'); background-size:cover;"
+                alt="outofmap"
+                class="circle_photo">
+                </i>
+                </div>
+              </div>
+            </a>
+          </div>
+          <!-- 사진 한 박스 -->
+        </div>
+      </div>
+      <!-- 국내여행 전체 라인 -->
+
+      <div class="slide_wrap">
+        <div class="box_slide_title">
+          <div class="titl">국내여행</div>
+          <div class="sub_titl">
+          시원한 여름을
+          </br>
+          위한 여행
+          </div>
+          <div class="ment">
+          <p>
+          더운 여름을
+          <br>
+          시원하게 나기 위한
+          <br>
+          노하우가 담긴 여행기
+          </p>
+          </div>
+          <div class="more">
+          <a href="#나는링크">+더보기</a>
+          </div>
+        </div>
+        <div class="box_slide_main">
+          <div class="item select_item">
+            <a href="#">
+              <div class="item_thumb">
+                <img src="vally.jpg" alt="응 계곡이야" class="hidden_mobile">
+              </div>
+              <div class="item_in">
+                <div class="titl"> 해갈된 가평 계곡에서</div>
+                <div class="tag">#가족여행 #가평 #계곡</div>
+                <div class="bottom_msg">
+                <i style="
+                background:url('https://image.withvolo.com/05ba592adabcde294bd49a2859e6c206/ff6b1126-21d0-4224-b42a-b548fc1ee7c5-709cc6d3345fc6424c2eed32705adb25efb52c88.jpg'); background-size:cover;"
+                alt="outofmap"
+                class="circle_photo">
+                </i>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <div class="item select_item">
+            <a href="#">
+              <div class="item_thumb">
+                <img src="vally.jpg" alt="응 계곡이야" class="hidden_mobile">
+              </div>
+              <div class="item_in">
+                <div class="titl"> 해갈된 가평 계곡에서</div>
+                <div class="tag">#가족여행 #가평 #계곡</div>
+                <div class="bottom_msg">
+                <i style="
+                background:url('https://image.withvolo.com/05ba592adabcde294bd49a2859e6c206/ff6b1126-21d0-4224-b42a-b548fc1ee7c5-709cc6d3345fc6424c2eed32705adb25efb52c88.jpg'); background-size:cover;"
+                alt="outofmap"
+                class="circle_photo">
+                </i>
+                </div>
+              </div>
+            </a>
+          </div>
+          <!-- 사진 한 박스 -->
+
+          <div class="item select_item">
+            <a href="#">
+              <div class="item_thumb">
+                <img src="vally.jpg" alt="응 계곡이야" class="hidden_mobile">
+              </div>
+              <div class="item_in">
+                <div class="titl"> 해갈된 가평 계곡에서</div>
+                <div class="tag">#가족여행 #가평 #계곡</div>
+                <div class="bottom_msg">
+                <i style="
+                background:url('https://image.withvolo.com/05ba592adabcde294bd49a2859e6c206/ff6b1126-21d0-4224-b42a-b548fc1ee7c5-709cc6d3345fc6424c2eed32705adb25efb52c88.jpg'); background-size:cover;"
+                alt="outofmap"
+                class="circle_photo">
+                </i>
+                </div>
+              </div>
+            </a>
+          </div>
+          <!-- 사진 한 박스 -->
+        </div>
+      </div>
+      <!-- 국내여행 전체 라인 -->
+      <div class="slide_wrap">
+        <div class="box_slide_title">
+          <div class="titl">국내여행</div>
+          <div class="sub_titl">
+          시원한 여름을
+          </br>
+          위한 여행
+          </div>
+          <div class="ment">
+          <p>
+          더운 여름을
+          <br>
+          시원하게 나기 위한
+          <br>
+          노하우가 담긴 여행기
+          </p>
+          </div>
+          <div class="more">
+          <a href="#나는링크">+더보기</a>
+          </div>
+        </div>
+        <div class="box_slide_main">
+          <div class="item select_item">
+            <a href="#">
+              <div class="item_thumb">
+                <img src="vally.jpg" alt="응 계곡이야" class="hidden_mobile">
+              </div>
+              <div class="item_in">
+                <div class="titl"> 해갈된 가평 계곡에서</div>
+                <div class="tag">#가족여행 #가평 #계곡</div>
+                <div class="bottom_msg">
+                <i style="
+                background:url('https://image.withvolo.com/05ba592adabcde294bd49a2859e6c206/ff6b1126-21d0-4224-b42a-b548fc1ee7c5-709cc6d3345fc6424c2eed32705adb25efb52c88.jpg'); background-size:cover;"
+                alt="outofmap"
+                class="circle_photo">
+                </i>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <div class="item select_item">
+            <a href="#">
+              <div class="item_thumb">
+                <img src="vally.jpg" alt="응 계곡이야" class="hidden_mobile">
+              </div>
+              <div class="item_in">
+                <div class="titl"> 해갈된 가평 계곡에서</div>
+                <div class="tag">#가족여행 #가평 #계곡</div>
+                <div class="bottom_msg">
+                <i style="
+                background:url('https://image.withvolo.com/05ba592adabcde294bd49a2859e6c206/ff6b1126-21d0-4224-b42a-b548fc1ee7c5-709cc6d3345fc6424c2eed32705adb25efb52c88.jpg'); background-size:cover;"
+                alt="outofmap"
+                class="circle_photo">
+                </i>
+                </div>
+              </div>
+            </a>
+          </div>
+          <!-- 사진 한 박스 -->
+
+          <div class="item select_item">
+            <a href="#">
+              <div class="item_thumb">
+                <img src="vally.jpg" alt="응 계곡이야" class="hidden_mobile">
+              </div>
+              <div class="item_in">
+                <div class="titl"> 해갈된 가평 계곡에서</div>
+                <div class="tag">#가족여행 #가평 #계곡</div>
+                <div class="bottom_msg">
+                <i style="
+                background:url('https://image.withvolo.com/05ba592adabcde294bd49a2859e6c206/ff6b1126-21d0-4224-b42a-b548fc1ee7c5-709cc6d3345fc6424c2eed32705adb25efb52c88.jpg'); background-size:cover;"
+                alt="outofmap"
+                class="circle_photo">
+                </i>
+                </div>
+              </div>
+            </a>
+          </div>
+          <!-- 사진 한 박스 -->
+        </div>
+      </div>
+      <!-- 국내여행 전체 라인 -->      
+
+
+    </div>
+    <!-- container_main 태그 -->
+
+
+  </body>
+</html>

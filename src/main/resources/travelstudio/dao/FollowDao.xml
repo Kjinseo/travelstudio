@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="travelstudio.dao.FollowDao">
+  
+  <resultMap type="follow" id="followMap">
+    <id column="mno" property="mno"/>
+    <result column="mno2" property="mno2"/>
+    <result column="postno" property="postno"/>
+  </resultMap> 
+
+ <insert id="insert" parameterType="follow">
+    insert into follow(mno, mno2, postno) values(#{mno}, #{mno2}, #{postno})
+  </insert>
+  
+   <select id="searchBymnomno" resultMap="followMap" parameterType="follow">
+  	select * from follow where(mno=#{mno} and mno2=#{mno2})
+  </select> 
+  
+   <delete id="delete" parameterType="follow">
+    delete from follow 
+    where (mno=#{mno} and mno2=#{mno2})
+  </delete>
+  
+  
+  <select id="listByloginMember" resultMap="followMap" parameterType="int">
+  	select * from follow where mno=#{mno}
+  </select> 
+
+<select id="subMember" resultMap="followMap" parameterType="int">
+   select f.mno2, m.mno
+  from member m left join follow f on f.mno=m.mno
+  where m.mno=#{mno}; 
+</select>
+
+ 
+</mapper>
+
+
+
+

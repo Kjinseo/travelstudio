@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>travel_log</title>
+<link rel="stylesheet"
+	href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="write3.css">
+<link rel="stylesheet"
+	href="./font-awesome-4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+</head>
+<body>
+
+	<header class="header">
+		<a href="../main_minkdak/main.html"><img id="logo"
+			src="./pictures/ourlogo.png"></a>
+		<p id="title_of_article">여행기 제목</p>
+		<button type="button" id="start-my-journey">저장하기</button>
+	</header>
+
+	<div id="modal"></div>
+	<div id="blank-one" class="blank-one">
+		<div class="icons">
+			<a href="javascript:title_file_browse()"><div>
+					<span><i id="icons_i" class="fa fa-picture-o fa-3x"
+						aria-hidden="true"></i></span><br> <span class="title_hidden">표지사진</span><input
+						id="title_fileupload" type="file" name="files" style="display: none"></input>
+				</div></a><br> <a href="#"><div>
+					<span><i id="icons_i" class="fa fa-lock fa-3x"
+						aria-hidden="true"></i></span><br> <span class="title_hidden">모두에게
+						공개</span>
+				</div></a><br> <a href="#"><div>
+					<span><i id="icons_i" class="fa fa-calendar-check-o fa-3x"
+						aria-hidden="true"></i></span><br> <span class="title_hidden">자동
+						날짜 기록</span>
+				</div></a><br>
+		</div>
+		<textarea id="wirte_title" placeholder="여행기 제목을 입력해 주세요"></textarea>
+		<div class="bb">
+			<i class="fa fa-calendar fa-2x" aria-hidden="true"></i> <a href="#"
+				class="write_select_date_start"> <input class="write_start_date"
+				type="text" placeholder="여행 시작일" id="datepicker">
+				<div id="write_data_arrow" class="write_data_arrow">
+					<i class="fa fa-arrow-right " aria-hidden="true"></i>
+				</div> <input class="write_end_date" type="text" placeholder="여행 종료일"
+				id="datepicker1"></a>
+			<hr id="aa">
+		</div>
+
+	</div>
+	<div class="header" id="header"></div>
+	
+	
+  <div class="all_photo_select">
+    <a href="javascript:file_browse_none()" id="fileAllup"><i class="fa fa-picture-o fa-2x" aria-hidden="true"></i></a>
+    <input type="file" id="fileAllUpload" name="files" style="display:none" multiple></input>
+    
+    <a class="help_btn" href="#" onclick="test1('modal')"> <i
+      class="fa fa-object-group fa-2x" aria-hidden="true"></i></a>
+  </div>
+  
+	<div class="container_main">
+		<div class="day_list">
+			<div class="day1" onmouseover="onfocus1(ab);"
+				onmouseleave="onblur1(ab);">
+				<div class="write_day">
+					<h2>
+						<button id="write_save_btn">aaa</button>
+						1일차
+						<h2>
+							<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+							<div class="travel_detail_date">2017.05.05</div>
+				</div>
+
+				<div class="tool_box">
+					<a href="#" onclick="test('testdiv'); return false;"><span
+						id="ab" class="fa fa-plus-circle fa-2x" aria-hidden="true"></span></a>
+					<div id="testdiv" style="display: none">
+						<a href="javascript:file_browse(0)"><img id="testdiv_1" src="./image.png"><input value='0' type="file" style="display: none" name="files" class="file1_0 file1" multiple></input></a>
+						<a href="#" onclick="test('map_container'); test1('modal'); return false;"><img id="testdiv_2" src="./marker.png"></a> 
+						<a href="#" onclick="test('route_container'); test1('modal'); return false;">
+						<img id="testdiv_2" src="./route.png"></img></a>
+						<!-- <span><i class="fa fa-picture-o fa-2x" aria-hidden="true"></i></span><span><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></span><span><i class="fa fa-map fa-2x" aria-hidden="true"></i></span> -->
+
+					</div>
+					<br>
+					<div id="map_container">
+						<br>
+						<h3>여행지를 추가하세요</h3>
+						<br>
+						
+
+			<input id="pac-input" class="controls" type="text" placeholder="장소를 검색하세요">
+	<div id="map"></div>
+	<button id="save" onclick="saveMap();createMap();">save</button>
+
+						<div class="buttons">
+							<button type="button" id="cancel-login"
+								onclick="test('map_container'); test1('modal');">취소</button>
+							<button type="button"
+								onclick="test('map_container'); test1('modal');"
+								id="login-summit">등록</button>
+						</div>
+					</div>
+					<!-- map_container 끝 -->
+				
+
+
+	 
+   
+
+	<div id="newMap"></div>
+					<!-- 글작성 부분 -->
+					<div id="text_parent_0">
+						<textarea
+							onchange="addition_p('write_addition','testdiv'); cmaTextareaSize('cc', 30);"
+							onkeyup="cmaTextareaSize('cc', 30);" class="text_write_box"
+							id="cc" placeholder="내용을 입력하세요" onblur="onblur1(ab)"></textarea>
+					</div>
+					<!-- 글작성 addition_p를 호출한다 -->
+					<br>
+
+				</div>
+			</div>
+		</div>
+		
+	
+   
+    
+		<br> <a href="#" onclick="adddiv(); return false;"><i
+			id="write_addition" class="fa fa-plus-circle fa-3x"
+			aria-hidden="true"></i></a>
+
+
+
+
+
+
+
+	</div>
+
+
+	<div class="edit_react_window">
+		<div class="edit_window">
+			<div class="edit_input">
+
+				<div class="files_container">
+					<div class="table_files" id="tbfiles">
+						<div class="files_date">2017. 07. 23,
+							계곡9999999999999999dfdfasdfsda99999999999</div>
+
+						<div class="files_wrap">
+
+							<a href="#" onclick="checked('checked_mark');">
+								<div class="file" type="image">
+									<div class="file_icon">
+										<img class="thumb" src='./img/vally.jpg'
+											style="background-size: contain;">
+									</div>
+									<div class="name">vally.jpg</div>
+								</div>
+								<div id="checked_mark" style="display: none"></div>
+							</a> <a href="#" onclick="checked('checked_mark2');">
+								<div class="file" type="image">
+									<div class="file_icon">
+										<img class="thumb" src='./img/vally.jpg'
+											style="background-size: contain;">
+									</div>
+									<div class="name">vally.jpg</div>
+								</div>
+								<div id="checked_mark2" style="display: none"></div>
+
+							</a> <a href="#" onclick="checked('checked_mark3');">
+								<div class="file" type="image">
+									<div class="file_icon">
+										<img class="thumb" src='./img/vally.jpg'
+											style="background-size: contain;">
+									</div>
+									<div class="name">vally.jpg</div>
+								</div>
+								<div id="checked_mark3" style="display: none"></div>
+
+							</a> <a href="#" onclick="checked('checked_mark4');">
+								<div class="file" type="image">
+									<div class="file_icon">
+										<img class="thumb" src='./img/FR.png'
+											style="background-size: contain;">
+									</div>
+									<div class="name">vally.jpg</div>
+								</div>
+								<div id="checked_mark4" style="display: none"></div>
+
+							</a> <a href="#" onclick="checked('checked_mark5');">
+								<div class="file" type="image">
+									<div class="file_icon">
+										<img class="thumb" src='./img/FR.png'
+											style="background-size: contain;">
+									</div>
+									<div class="name">vally.jpg</div>
+								</div>
+								<div id="checked_mark5" style="display: none"></div>
+
+							</a> <a href="#" onclick="checked('checked_mark6');">
+								<div class="file" type="image">
+									<div class="file_icon">
+										<img class="thumb" src='./img/FR.png'
+											style="background-size: contain;">
+									</div>
+									<div class="name">vally.jpg</div>
+								</div>
+								<div id="checked_mark6" style="display: none"></div>
+
+							</a> <a href="#" onclick="checked('checked_mark7');">
+								<div class="file" type="image">
+									<div class="file_icon">
+										<img class="thumb" src='./img/FR.png'
+											style="background-size: contain;">
+									</div>
+									<div class="name">vally.jpg</div>
+								</div>
+								<div id="checked_mark7" style="display: none"></div>
+
+							</a> <a href="#" onclick="checked('checked_mark8');">
+								<div class="file" type="image">
+									<div class="file_icon">
+										<img class="thumb" src='./img/FR.png'
+											style="background-size: contain;">
+									</div>
+									<div class="name">vally.jpg</div>
+								</div>
+								<div id="checked_mark8" style="display: none"></div>
+							</a> <a href="#" onclick="checked('checked_mark9');">
+								<div class="file" type="image">
+									<div class="file_icon">
+										<img class="thumb" src='img/dlfqks.jpg'
+											style="background-size: contain;">
+									</div>
+									<div class="name">vally.jpg</div>
+								</div>
+								<div id="checked_mark9" style="display: none"></div>
+							</a>
+						</div>
+						<!-- files_wrap -->
+
+					</div>
+					<!-- "table_files" -->
+				</div>
+
+				<!--"files_container"-->
+				<div class="edit_settings">
+					<div class="contents">
+						<div class="contents_wrap">
+							<div class="group">
+								<div class="edit_group">새 그룹</div>
+								<div class="edit_ungroup">해제</div>
+								<div class="edit_delete">삭제</div>
+							</div>
+							<div class="save">
+								<div class="edit_save">저장</div>
+								<div class="edit_cancel">취소</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- edit_settings -->
+			</div>
+		</div>
+	</div>
+	</div>
+	<div id="images-div"></div>
+	<!-- container_main 태그 -->
+	<script src="./node_modules/jquery/dist/jquery.min.js"></script>
+	<script
+		src="./node_modules/blueimp-file-upload/js/vendor/jquery.ui.widget.js"></script>
+	<script src="./node_modules/handlebars/dist/handlebars.min.js"></script>
+	<script src="./node_modules/blueimp-load-image/js/load-image.all.min.js"></script>
+	<script src="./node_modules/blueimp-canvas-to-blob/js/canvas-to-blob.js"></script>
+	<script src="./node_modules/bootstrap/dist/js/bootstrap.js"></script>
+	<script
+		src="./node_modules/blueimp-file-upload/js/jquery.iframe-transport.js"></script>
+	<script src="./node_modules/blueimp-file-upload/js/jquery.fileupload.js"></script>
+	<script
+		src="./node_modules/blueimp-file-upload/js/jquery.fileupload-process.js"></script>
+	<script
+		src="./node_modules/blueimp-file-upload/js/jquery.fileupload-image.js"></script>
+	<script src="./write.js"></script>
+	<script src=""></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+   <script
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvJO_nbwEqokghhsnj7oj_uQPgnjFoa84&libraries=places"
+	async defer></script>
+	<script>
+  // 텍스트상자 크기 자동조절
+  function cmaTextareaSize(obj, bsize) { // 객체명, 기본사이즈
+      var sTextarea = document.getElementById(obj);
+      var csize = (sTextarea.scrollHeight >= bsize) ? sTextarea.scrollHeight+"px" : bsize+"px";
+      sTextarea.style.height = bsize+"px";
+      sTextarea.style.height = csize;
+  }
+// 끝
+
+// 작은 + 구현
+function test(idMyDiv) {
+  var objDiv = document.getElementById(idMyDiv);
+	// console.log(objDiv);
+	console.log($('#testdiv'));
+
+  if (objDiv.style.display == "inline-block") {
+    objDiv.style.display = "none";
+
+  } else {
+    objDiv.style.display = "inline-block";
+  }
+}
+
+
+
+function file_browse(a){
+	aaa=a;
+	$('.file1').click()
+		console.log($('.file1').click($(this)));
+	console.log(aaa)
+}
+function title_file_browse(){
+	$('#title_fileupload').click()
+}
+
+function file_browse_none(){
+    $('#fileAllup').click()
+    $('#fileAllUpload').click();
+  }
+/*모달창 띄우가*/
+function test1(idMyDiv) {
+  var objDiv = document.getElementById(idMyDiv);
+  if (objDiv.style.display == "inline-block") {
+    objDiv.style.display = "none";
+  } else {
+    objDiv.style.display = "inline-block";
+    console.log("test1()")
+ initAutocomplete();
+ console.log("initAutocomplete()")
+  }
+ 
+ 
+}
+var latNum;
+var lngNum;
+var center;
+var count = 0;
+
+function initAutocomplete() {
+	var map = new google.maps.Map(document.getElementById('map'), {
+		center : {
+			lat : -33.8688,
+			lng : 151.2195
+		},
+		zoom : 10,
+		mapTypeId : 'roadmap'
+	});
+		console.log("11111");
+
+var clickcount=0;
+var a;
+var b;
+	// Create the search box and link it to the UI element.
+	var input = document.getElementById('pac-input');
+	var searchBox = new google.maps.places.SearchBox(input);
+	map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+	// Bias the SearchBox results towards current map's viewport.
+	map.addListener('bounds_changed', function() {
+		searchBox.setBounds(map.getBounds());
+
+		console.log(map.center.lat());
+		console.log(map.center.lng());
+		map.addListener('click', function(e) {
+			if(clickcount==0){
+			placeMarkerAndPanTo(e.latLng, map);
+clickcount++;
+			}else{
+				marker.setMap(null);
+				
+				placeMarkerAndPanTo(e.latLng, map);
+			}
+
+			latNum = map.center.lat()
+			lngNum = map.center.lng()
+
+			console.log(latNum);
+			console.log(lngNum);
+
+		});
+		var marker=new google.maps.Marker();
+		function placeMarkerAndPanTo(latLng, map) {
+			 marker = new google.maps.Marker({
+				position : latLng,
+				map : map,
+			});
+
+			map.panTo(latLng);
+			map.setZoom(14);
+			console.log("마크 찍힘");
+			console.log(marker);
+
+		}
+		
+	
+	
+	});
+	
+	
+
+	var markers = [];
+	// Listen for the event fired when the user selects a prediction and retrieve
+	// more details for that place.
+	searchBox.addListener('places_changed', function() {
+		var places = searchBox.getPlaces();
+
+		if (places.length == 0) {
+			return;
+		}
+
+		// Clear out the old markers.
+		/*markers.forEach(function(marker) {
+		  marker.setMap(null);
+		});
+		markers = [];*/
+
+		// For each place, get the icon, name and location.
+		var bounds = new google.maps.LatLngBounds();
+		places.forEach(function(place) {
+			if (!place.geometry) {
+				console.log("Returned place contains no geometry");
+				return;
+			}
+			/*
+			var icon = {
+			  url: place.icon,
+			  size: new google.maps.Size(71, 71),
+			  origin: new google.maps.Point(0, 0),
+			  anchor: new google.maps.Point(17, 34),
+			  scaledSize: new google.maps.Size(25, 25)
+			};
+			 */
+			// Create a marker for each place.
+			/*   markers.push(new google.maps.Marker({
+			     map: map,
+			     icon: icon,
+			     title: place.name,
+			     position: place.geometry.location
+			   }));
+			 */
+
+			if (place.geometry.viewport) {
+				// Only geocodes have viewport.
+				bounds.union(place.geometry.viewport);
+			} else {
+				bounds.extend(place.geometry.location);
+			}
+		});
+		map.fitBounds(bounds);
+
+	});
+
+}
+  
+  /*2번 맵*/
+  	function initMap2(mapDelId, slati, slongit) {
+			var map2 = new google.maps.Map(document.getElementById(mapDelId), {
+				zoom : 8,
+				center : {
+					lat : 40.731,
+					lng : -73.997
+				}
+			});
+			var geocoder = new google.maps.Geocoder;
+			var infowindow = new google.maps.InfoWindow;
+
+			/* window.onload=geocodeLatLng(geocoder, map2, infowindow);*/
+			geocodeLatLng(geocoder, map2, infowindow, slati, slongit)
+		}
+
+		function geocodeLatLng(geocoder, map2, infowindow, slati, slongit) {
+
+			/* var input = document.getElementById('latlng').value;*/
+
+			/* var latlngStr = input.split(',', 2); */
+			var latlng = {
+				lat : parseFloat(slati),
+				lng : parseFloat(slongit)
+			};
+			geocoder.geocode({
+				'location' : latlng
+			}, function(results, status) {
+				if (status === 'OK') {
+					if (results[1]) {
+						map2.setZoom(14);
+						map2.setCenter(results[0].geometry.location);
+						var marker = new google.maps.Marker({
+							position : latlng,
+							map : map2
+						});																
+
+						infowindow.setContent(results[1].formatted_address);
+						infowindow.open(map2, marker);
+
+					}
+				}
+			});
+		}
+		
+		
+		var body33=$('#newMap')
+		console.log($('#newMap'))
+			 var mapcount=3;
+		function createMap(){
+			slati=latNum.toFixed(8);
+			  slongit=lngNum.toFixed(8);
+			$("<div id='map"+mapcount+"'style='width:809px; height:380px; border:1px solid white; margin-bottom: 70px;'>").appendTo($('#newMap'))
+				/* $("<div class='map5'>").appendTo($('#newMap')) */
+				/* $("<div class='map5'>").insertAfter(body33) */
+		/* $("<div id='map'"+mapcount+">").appendTo(body33) */
+		console.log("aaaa")
+		 var mapDelId='map'+mapcount
+		 console.log(mapDelId,slati,slongit)
+		/*  $.getJSON('/travelstudio/detail/list.json', function(result) {
+		console.log(result.data.list); 
+
+
+		}) // getJSON(*/
+		initMap2(mapDelId,slati,slongit)
+		mapcount++
+			  
+		};
+
+		var slati;
+		var slongit;
+		function saveMap(){
+			  console.log("위치 데이터 넘어감");
+			$.post('../detail/addMap.json', {
+		        'lati': latNum.toFixed(8),
+		        'longit': lngNum.toFixed(8)
+		        
+		      }, function(result) {
+		    	  
+		      	console.log("위도 경도 넘어간다.");
+		        location.href = 'map.html'
+		      }, 'json')  
+		    }
+		
+// 작은 + 끝
+
+// 큰 +버튼 생성
+function addition_p(aa, bb) {
+  var objDiv = document.getElementById(aa);
+  objDiv.style.display = "inline-block";
+ 
+
+}
+var count = 1;
+
+// 큰+버튼시 글상자창 추가
+		var tbody = $('.day_list')
+    function adddiv() {
+console.log(count)
+
+      $("<div class='day1' onmouseover='onfocus2(ab"+count+", day_btn"+count+")' onmouseleave='onblur2("+"ab"+count+", day_btn"+count+", testdiv"+count+")'>")
+      .html(
+        "<div class='write_day'> <button onclick='changebuttontoday(day_btn"+count+")' id='day_btn"+count+"'>+ 일차</button>"
+        + "<div class='travel_detail_date'></div></div><div class='tool_box'>"
+        + "<a href='#' onclick='test("
+        + '&#39;'
+        + "testdiv"
+        + count
+        + '&#39;'
+        + "); return false;'><span id='ab"+count+"' class='fa fa-plus-circle fa-2x' aria-hidden='true'></span></a>"
+        + "<div id='testdiv"+count+"' style='display:none'>"
+        + "<a href='javascript:file_browse("+count+")' onclick='test('testdiv_1'); return false;' multiple><img id='testdiv_1' src='./image.png'><input id='file' value="+count+" type='file' style='display:none' name='files' class='file1_"+count+" file1' multiple ></input></a>"
+        + "<a href='#' onclick='test("
+        + '&#39;'
+        + "map_container"
+        + '&#39;'
+        + "); test1("
+        + '&#39;'
+        + "modal"
+        + '&#39;'
+        + "); return false;'><img id='testdiv_2' src='./marker.png'></a>"
+        + "<a href='#' onclick='test('testdiv_3'); return false;'><img id='testdiv_2' src='./route.png'></img></a>"
+        + "</div><br><div id='text_parent_"+count+"'><textarea id='cc' onchange='addition_p("
+        + '&#39;'
+        + "write_addition"
+        + '&#39;'
+        + ",&#39;testdiv"+count+"&#39;);' onkeydown='resize(this)' onkeyup='resize(this)' class='text_write_box' placeholder='내용을 입력하세요'></textarea></div><br></div>")
+        .appendTo(tbody)
+        count++;
+
+
+        $('#write_addition').css('display', "none");
+
+
+        
+        
+      }
+
+			function resize(obj) {
+			  obj.style.height = "1px";
+			  obj.style.height = (12+obj.scrollHeight)+"px";
+			}
+
+// +일차 버튼 클릭시
+function changebuttontoday(ab){
+$('<h2>').html("2일차</h2><br><i class='fa fa-pencil-square-o' aria-hidden='true'></i>"
+  +"<div class='travel_detail_date' >2017.05.05</div><span id='"+$(ab).attr('id')+"'></span>").appendTo($(ab).closest('div'))
+ab.remove();
+}
+
+// 마우스 오버시 작은+와 +날짜 보이게
+function onfocus1(objDiv){
+  objDiv.style.display = "inline-block";
+}
+
+function onblur1(objDiv){
+objDiv.style.display = "none";
+if($("#testdiv").css("display")=="inline-block"){
+ $("#testdiv").css("display","none")
+}
+
+
+}
+			// if($(objDiv).attr('display')=="inline-block"){
+ 
+ function onfocus2(objDiv,bb){
+  $('#objDiv').show();
+objDiv.style.display = "inline-block";
+$('#bb').show();
+bb.style.display = "inline-block";
+}
+
+function onblur2(objDiv,bb,cc){
+  $('#objDiv').hide();
+objDiv.style.display = "none";
+console.log(bb)
+$('#bb').hide();
+bb.style.display = "none";
+$(cc).css("display","none")
+}  
+// 마우스 오버시 작은 + 와 날짜 보이게 끝
+
+
+
+
+/*  */
+		
+		
+	    var date = $('.files_date')
+    function checked(ab) {
+      var ac = document.getElementById(ab)
+      if ($(ac).css('display') == 'block') {
+        $(ac).css('display', 'none')
+        $(ac).removeClass();
+
+      } else {
+        $(ac).addClass('checked');
+        $(ac).css('display', 'inline-block')
+      }
+    }
+
+var a = 0;
+$(document).ready(function() {
+  $(".edit_group").click(function() {
+      $('<div>2017. 07. 29</div>').attr('class', 'files_date').appendTo($('<div class="table_files'+a+'" + >').insertAfter($('.table_files')));
+      $('.checked').parent().appendTo($('<div class="files_wrap">').appendTo($('.table_files'+a)));
+      // $('.checked').parent().appendTo($('<div class="files_wrap">').appendTo($('<div class="table_files'+i+'" + >').insertAfter($('.table_files'))));
+      $('.checked').css('display', 'none');
+
+      $('.checked').removeClass();
+
+      // if ($('.table_files') == $('.table_files' > 'div: empty')) {
+      //   $('.table_files').empty();
+      //   $('.files_container > div:empty').remove();
+      // } else {
+      // }
+$('.files_wrap:empty').parent().remove();
+      // $('.files_wrap > div:empty').parents().remove();
+      // .appendTo($('<div class="files_wrap">')
+      // $('.files_container > div:empty').remove();
+      a++
+    })
+})
+
+
+$(document).ready(function() {
+ $(".edit_ungroup").click(function() {
+  var divs = $('.checked').toArray();
+  console.log(divs[1])
+  for (i = 0; i < divs.length; i++) {
+    $('<div>aa</div>').attr('class', 'files_date').appendTo($('<div class="table_files' +a+'" + >').insertAfter($('.table_files')));
+    $(divs[i]).parent().appendTo($('<div class="files_wrap">').appendTo($('.table_files'+a)));
+    a++
+  }
+  $('.checked').css('display', 'none');
+  $('.checked').removeClass()
+  
+  $('.files_wrap:empty').parent().remove();
+})
+})
+
+$(document).ready(function() {
+  $(".edit_delete").click(function() {
+      $('.checked').parent().parent().empty();
+      $('.checked').parent().parent().remove();
+      $('.files_wrap:empty').parent().remove();
+  })
+
+})
+
+$(document).ready(function() {
+  $('.help_btn').click(function() {
+    $('.edit_react_window').show();
+    $('html, body').css({'overflow': 'hidden'});
+    $('body').on('scroll touchmove mousewheel', function(event) {
+      event.preventDefault();
+      event.stopPropagation();
+
+  //  return false;
+});
+
+  })
+})
+
+
+	</script>
+
+</body>
+</html>

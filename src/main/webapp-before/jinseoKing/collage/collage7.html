@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
+    <title>collage7</title>
+    <style>
+    /*7개*/
+    
+          .whole_collage6{
+        width:824px;
+        height:824px;
+        background-color: gray;
+      }
+
+      #big_collage{
+        width: 534px;
+        height: 534px;
+        overflow: hidden;
+        display: inline-block;
+      }
+
+      #big_collage img{
+        margin: 15px 0 0 15px;
+        max-height: 534px;
+      }
+
+      #two_collage{
+
+        display: inline-block;
+        height: 534px;
+        width:260px;
+      }
+
+      #inner_two_collage{
+        width: 260px;
+        height: 265px;
+        overflow: hidden;
+        display: inline-block;
+      }
+
+      #inner_two_collage img{
+        margin: 15px 0 0 15px;
+        max-height: 260px;
+      }
+
+      #bottom_three_collage{
+        width: 264px;
+        height: 260px;
+        overflow: hidden;
+        display: inline-block;
+      }
+
+      #bottom_three_collage img{
+        margin: 15px 0 0 15px;
+        max-height: 260px;
+      }
+    
+      .whole_collage7{
+        width:824px;
+        height:824px;
+        background-color: gray;
+      }
+
+      #quater_whole_collage{
+        width: 397px;
+        height: 397px;
+        overflow: hidden;
+        display: inline-block;
+      }
+
+      #quater_whole_collage img{
+        margin: 15px 0 0 15px;
+        max-height: 397px;
+      }
+
+      #inner_quater_whole_collage{
+        width: 193px;
+        height: 192px;
+        overflow: hidden;
+        display: inline-block;
+      }
+
+      #inner_quater_whole_collage img{
+        margin: 15px 0 0 15px;
+        max-height: 192px;
+      }
+      #whole_collage6{
+      margin-top:50px;}
+
+    </style>
+  </head>
+  
+  <body>
+
+    <!--7개-->
+    <div class="whole_collage7">
+      <div  id="quater_whole_collage">
+     <div id="inner_quater_whole_collage" class="dragable0" ><img src="mrbike.PNG"></div>
+     <div id="inner_quater_whole_collage" class="dragable1"><img src="ca.jpg"></div>
+     <div id="inner_quater_whole_collage" class="dragable2"><img src="mrbike.PNG"></div>
+     <div id="inner_quater_whole_collage" class="dragable3"><img src="ca.jpg"></div>
+      </div>
+
+
+      <div  id="quater_whole_collage" class="dragable4"><img id="img_4" src="mrbike.PNG"></div>
+      <div  id="quater_whole_collage" class="dragable5"><img id="img_4" src="ca.jpg"></div>
+      <div  id="quater_whole_collage" class="dragable6"><img id="img_4" src="mrbike.PNG"></div>
+  </div><!--whole_collage-->
+
+
+<br><br>
+<div class="whole_collage6">
+      
+      <div  id="big_collage" class="dragable00"><img id="img_4" src="ca.jpg"></div>
+
+      <div id="two_collage">
+     <div id="inner_two_collage" class="dragable01"><img src="mrbike.PNG"></div>
+     <div id="inner_two_collage" class="dragable02"><img src="mrbike.PNG"></div>
+      </div>
+
+    <div  id="bottom_three_collage" class="dragable03"><img id="img_4" src="ca.jpg"></div>
+    <div  id="bottom_three_collage" class="dragable04"><img id="img_4" src="ca.jpg"></div>
+    <div  id="bottom_three_collage" class="dragable05"><img id="img_4" src="ca.jpg"></div>
+  </div>whole_collage
+
+ 
+   <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+<script type="text/javascript" src="http://www.pureexample.com/js/lib/jquery.ui.touch-punch.min.js"></script>
+  
+  <script>
+  
+  
+ $(function () {
+        $(".whole_collage7,.whole_collage6").sortable({
+                connectWith: ".whole_collage7,.whole_collage6",
+                start: function (event, ui) {
+                        ui.item.toggleClass("highlight");
+                        console.log(this)
+                        console.log("start")
+                },
+                stop: function (event, ui) {
+                        ui.item.toggleClass("highlight");
+                        console.log(this)
+                        console.log("stop")
+                }
+        });
+         $(".whole_collage7-2,.whole_collage6").disableSelection(); 
+}); 
+ 
+</script>
+ </body>
+</html>

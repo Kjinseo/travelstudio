@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="travelstudio.dao.PostDao">
+  
+  <resultMap type="post" id="postMap">
+    <id column="postno" property="postno"/>
+    <result column="title" property="title"/>
+    <result column="badge" property="badge"/>
+    <result column="tag" property="tag"/>
+    <result column="sdt" property="sdt"/>
+    <result column="edt" property="edt"/>
+    <result column="cont" property="cont"/>
+    <result column="capt" property="capt"/>
+    <result column="detail" property="detail"/>
+    <result column="ispublic" property="ispublic"/>
+    <result column="mno" property="mno"/>
+    <result column="good" property="good"/>
+  </resultMap> 
+
+
+    <select id="info1" resultMap="postMap" parameterType="String">
+    select * from post natural join member where postno=#{number}
+  </select>
+  
+  <select id="search" resultMap="postMap" parameterType="String">
+    select * from post natural join member where title like concat('%',#{keyword},'%')
+  </select>
+    
+   
+  
+  <select id="selectOneUserPost" resultMap="postMap" parameterType="int">
+    select * from post natural join member where mno=#{number} order by postno desc
+  </select>
+    
+    <select id="requestedPost" resultMap="postMap" parameterType="int">
+    select * from post where postno=#{postno} order by postno desc
+  </select>
+    
+<insert id="insert" parameterType="post" useGeneratedKeys="true" keyColumn="postno" >
+    insert into post(postno, title, sdt, edt, cont, pdt, mno) 
+    values(null, #{title}, #{sdt},#{edt},#{cont},'2017-07-07',#{mno})
+    <selectKey keyProperty="postno" resultType="int">
+        SELECT LAST_INSERT_ID()
+    </selectKey>
+  </insert>
+  
+<!--   <update id="updateLike" parameterType="post" keyColumn="postno" >
+    update post set 
+    values(null, #{title}, #{sdt},#{edt},#{cont},'2017-07-07',#{mno})
+  </update> -->
+  
+  
+  <update id="updateLike" parameterType="post">
+    update post set good=#{good} where postno=#{postno}
+  </update>
+
+  
+  <select id="selectOne" resultMap="postMap" parameterType="String">
+    select * 
+    from post natural join member where postno=#{postno}
+  <!--   <if test="search != null">
+	    <where>
+	      <choose>
+		      <when test="search == 'email'">email = #{value}</when>
+		     </choose>
+	    </where>
+    </if>    
+    order by name asc 
+    limit #{startIndex}, #{pageSize} -->
+  </select>
+   <select id="selectList" resultMap="postMap" parameterType="map">
+    select * from post natural join member order by postno desc
+  </select> 
+  
+  <select id="getWriteCount" resultMap="postMap" parameterType="map">
+  	select count(*) from post where mno=#{mno}
+  </select>
+  
+   <select id="ListandGood" resultMap="postMap" parameterType="map">
+    select * from post p inner join good g
+                   
+  </select> 
+
+ 
+  
+  <!--   <if test="search != null">
+	    <where>
+	      <choose>
+		      <when test="search == 'email'">email = #{value}</when>
+		     </choose>
+	    </where>
+    </if>    
+    order by name asc 
+    limit #{startIndex}, #{pageSize} -->
+
+  <!--  
+  <select id="getWriteCount" resultMap="postMap" parameterType="map">
+  	select count(*) from post where mno=#{mno}
+  </select>
+  -->
+  <!-- 
+  <select id="selectListByNames" resultMap="memberMap" parameterType="map">
+    <include refid="select1"/>
+    <if test="names != null">
+      <where>
+        name in 
+        <foreach collection="names" item="name" open="(" close=")" separator=",">
+          #{name}
+        </foreach>
+      </where> 
+    </if>    
+    order by name asc 
+    limit #{startIndex}, #{pageSize}
+  </select>
+  
+  <select id="selectOne" resultMap="memberMap" parameterType="int">
+    <include refid="select1"/> 
+    where mno = #{memberNo}
+  </select>
+  
+  <select id="selectOneByEmailPassword" resultMap="memberMap" parameterType="map">
+    <include refid="select1"/> 
+    where email=#{email} and pwd=password(#{password})
+  </select>
+  
+  <insert id="insert" parameterType="member" 
+          useGeneratedKeys="true" keyColumn="mno" keyProperty="no">
+    insert into memb(name,tel,email,pwd) 
+    values(#{name},#{tel},#{email},password(#{password}))
+  </insert>
+  
+  <update id="update" parameterType="member">
+    update memb set 
+      name=#{name}, 
+      tel=#{tel}, 
+      email=#{email}, 
+      pwd=password(#{password}) 
+    where mno=#{no}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+    delete from memb 
+    where mno=#{memberNo}
+  </delete> -->
+
+</mapper>
+
+
+
+

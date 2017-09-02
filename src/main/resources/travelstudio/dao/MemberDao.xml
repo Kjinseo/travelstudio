@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="travelstudio.dao.MemberDao">
+
+  <resultMap type="member" id="memberMap">
+    <id column="mno" property="mno"/>
+    <result column="email" property="email"/>
+    <result column="alias" property="alias"/>
+    <result column="intro" property= "intro"/>
+    <result column="path" property= "path"/>
+    <result column="pwd" property="pwd"/>
+  </resultMap>
+
+   
+ <select id="selectList" resultMap="memberMap" parameterType="map">
+    select * from member
+  </select>
+    
+    <select id="selectSearchList" resultMap="memberMap" parameterType="String">
+    select * from member where email like concat('%',#{keyword},'%')
+  </select> 
+   
+    <select id="searchOneUser" resultMap="memberMap" parameterType="String">
+    select * from member where email = #{email}
+  </select>
+    
+  <select id="inviteInfo" resultMap="memberMap" parameterType="int">
+    select mno, alias, email, path from member where mno = #{sendermno}
+  </select> 
+  
+  
+   <select id="selectOne" resultMap="memberMap" parameterType="int">
+    select alias, intro, email, path from member
+    where mno = #{no}
+  </select>
+  
+  <update id="update" parameterType="member">
+    update member set 
+      alias=#{alias}, 
+      intro=#{intro} 
+    where mno=#{mno}
+  </update>
+  
+  <insert id="insert" parameterType="member" 
+          useGeneratedKeys="true" keyColumn="mno">
+    insert into member(email, pwd, alias,intro) 
+    values(#{email},password(#{password}),#{alias},'1')
+  </insert>
+  
+  <update id="insertPhoto" parameterType="member">
+    update member set
+    path=#{path}
+    where mno=#{mno}
+  </update>
+  <!-- 우인재 -->
+  <select id="selectOneByEmailPassword" resultMap="memberMap" parameterType="map">
+    select * from member where email=#{email} and pwd=password(#{password})
+  </select>
+  
+  <select id="subMember" resultMap="memberMap" parameterType="map">
+   select alias, intro, mno from member 
+   where mno=#{mno}
+  </select>
+  
+  <!--   <select id="countPost" resultMap="memberMap" parameterType="map">
+       select m.mno, m.alias , m.path, m.email, count(*) 
+   from member m natural join  post p
+   group by p.mno;
+  </select>
+     select m.mno, m.alias , m.path, m.email, (count(*) 
+   from member m natural join  post p) like as m.postCount,
+   from member m inner join post p
+   group by p.mno;
+   -->
+   <!-- select *, count(*) from post p natural join good g
+  group by p.mno;
+   -->
+  
+<!--  
+  <select id="selectOneByEmailPassword" resultMap="teacherMap" parameterType="map">
+    select  m.mno, m.name, m.tel, m.email, t.hmpg, t.fcbk, t.twit, tp.path
+    from tcher t inner join memb m on t.tno=m.mno
+                 left outer join tch_phot tp on t.tno=tp.tno
+    where email=#{email} and pwd=password(#{password})
+  </select>
+  
+  <select id="countAll" resultType="int">
+    select count(*)
+    from tcher t inner join memb m on t.tno=m.mno
+  </select>
+  
+  <insert id="insert" parameterType="teacher">
+    insert into tcher(tno, hmpg, fcbk, twit) 
+    values(#{no}, #{homepage}, #{facebook}, #{twitter})
+  </insert>
+  
+  <delete id="delete" parameterType="int">
+    delete from tcher where tno=#{teacherNo}
+  </delete>
+  
+  
+  <insert id="insertPhoto" parameterType="map">
+    insert into tch_phot(tno,path) 
+    values(#{teacherNo}, #{photoPath})
+  </insert>
+  
+  <select id="selectPhotoList" parameterType="int">
+    select tpno, tno, path
+    from tch_phot
+    where tno=#{teacherNo}
+  </select>
+  
+  <delete id="deletePhoto" parameterType="int">
+    delete from tch_phot
+    where tno=#{teacherNo}
+  </delete> -->
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+

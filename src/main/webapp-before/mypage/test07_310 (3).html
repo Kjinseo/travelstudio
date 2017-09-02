@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<style>
+body{
+  z-index:1;
+  margin-top: 40px;
+  margin-left: 40px;
+  padding-top:60px;
+  padding-left: 20px;
+  background-color: #FAFAFA;
+  border:black 2px solid;
+  border-top-right-radius:5px;
+  border-top-left-radius:5px;
+  border-bottom-right-radius: 30px;
+  border-bottom-left-radius: 30px;
+  padding 1px;
+  /*background-color: yellow;*/
+  height:445px;
+  width:280px;
+}
+
+
+
+button{
+  background: -webkit-linear-gradient(top, rgb(254,255,255) 0%,rgb(221,210,208) 26%,rgb(186,174,174) 100%);
+  /*background-color: #BAAEAE;*/
+  border-radius: 100%;
+  height:45px;
+  width:45px;
+  font-size: 17px;
+  display:inline;
+  margin:7px;
+}
+
+#divi{
+  margin-left: 185px;
+}
+#res{
+  background: -webkit-linear-gradient(-45deg, rgb(204,204,83) 0%,rgb(204,204,24) 33%,rgb(204,204,0) 100%);
+  /*background-color: #CCCC00;*/
+}
+#c,#mult, #mi, #add, #divi, #float1,#ac{
+  background: -webkit-linear-gradient(top, rgb(122,79,0) 0%,rgb(102,61,21) 25%,rgb(102,51,0) 100%);
+  /*background-color: #663300;*/
+  color:white;
+
+}
+#li{
+  z-index: 2;
+  position: absolute;
+  height: 50px;
+  width:230px;
+  font-size: 35px;
+  margin:-5px auto 20px auto;
+  background: -webkit-linear-gradient(top, rgb(254,255,255) 0%,rgb(221,241,249) 50%,rgb(160,216,239) 100%);
+/*background-color:#CCE5FF*/
+
+
+  /*436450 어두운색*/
+  border:3px black solid;
+  color:black;
+  text-align:right;
+}
+#he{
+  height:6px;
+}
+#c{
+  position: absolute;
+  margin-left:66px;
+  visibility: hidden;
+}
+/*#c1{
+  position: absolute;
+  border:solid gray 1px;
+  width:240px;
+  height:60px;
+  padding:7px;
+  margin-left: -5px;
+  margin-top: -6px;
+}*/
+#posi{
+  margin-top: 70px;
+}
+#c2{
+border:black 1px solid;
+  border-top-right-radius:5px;
+  border-top-left-radius:5px;
+  position: absolute;
+  overflow: hidden;
+  width: 278px;
+  height:130px;
+  margin-left:-21px;
+  margin-top:-61px;
+  margin-bottom: 20px;
+  background-color: #E8DEDE;
+  z-index: 0;
+}
+</style>
+  </head>
+<body><div id="c1"></div>
+
+
+ <div id="c2"></div>
+
+ <input id="li" type="text"><p id="he"></p>
+ <div id=posi>
+<button id ="divi">/</button><br>
+<button id ="d7">7</button><button id ="d8">8</button><button id ="d9">9</button><button id ="mult">*</button><br>
+<button id ="d4">4</button><button id ="d5">5</button><button id ="d6">6</button><button id ="mi">-</button><br>
+<button id ="d1">1</button><button id ="d2">2</button><button id ="d3">3</button><button id ="add">+</button><br>
+<button id='c'>C</button><button id ="d0">0</button><button id ="ac">AC</button><button id ="float1">.</button><button id ="res">=</button><br>
+</div>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script>
+
+var a=0;
+var b=0;
+var count=0;
+var c=0;
+var d=0;
+var opcount=0;
+var op=0;
+var t=0;
+var set=0;
+var double=0;
+var one = document.querySelector("#d1")
+var two = document.querySelector("#d2")
+var three = document.querySelector("#d3")
+var four = document.querySelector("#d4")
+var five = document.querySelector("#d5")
+var six = document.querySelector("#d6")
+var seven = document.querySelector("#d7")
+var eight = document.querySelector("#d8")
+var nine = document.querySelector("#d9")
+var zero = document.querySelector("#d0")
+var add1 = document.querySelector("#add")
+var minus1 = document.querySelector("#mi")
+var multiple = document.querySelector("#mult")
+var divide = document.querySelector("#divi")
+var res = document.querySelector("#res")
+var ac = document.querySelector("#ac")
+var li = document.querySelector("#li")
+var float = document.querySelector("#float1")
+one.addEventListener('click',function(){
+  if(t==1){
+  li.value=""
+  t=0
+  }
+  li.value+="1"
+  ac.innerHTML="C"
+})
+two.addEventListener('click',function(){
+  if(t==1){
+  li.value=""
+  t=0
+  }
+  li.value+="2"
+  ac.innerHTML="C"
+})
+three.addEventListener('click',function(){
+  if(t==1){
+  li.value=""
+  t=0
+  }
+  li.value+="3"
+  ac.innerHTML="C"
+})
+four.addEventListener('click',function(){
+  if(t==1){
+  li.value=""
+  t=0
+  }
+  li.value+="4"
+  ac.innerHTML="C"
+})
+five.addEventListener('click',function(){
+  if(t==1){
+  li.value=""
+  t=0
+  }
+  li.value+="5"
+  ac.innerHTML="C"
+})
+six.addEventListener('click',function(){
+  if(t==1){
+  li.value=""
+  t=0
+  }
+  li.value+="6"
+  ac.innerHTML="C"
+})
+seven.addEventListener('click',function(){
+  if(t==1){
+  li.value=""
+  t=0
+  }
+  li.value+="7"
+  ac.innerHTML="C"
+})
+eight.addEventListener('click',function(){
+  if(t==1){
+  li.value=""
+  t=0
+  }
+  li.value+="8"
+  ac.innerHTML="C"
+
+})
+nine.addEventListener('click',function(){
+  if(t==1){
+  li.value=""
+  t=0
+  }  li.value+="9"
+  ac.innerHTML="C"
+})
+zero.addEventListener('click',function(){
+  if(t==1){
+  li.value=""
+  t=0
+  }  li.value+="0"
+  ac.innerHTML="C"
+
+})
+float.addEventListener('click',function(){
+  if(t==1){
+  li.value=""
+  t=0
+}  li.value+="."
+ac.innerHTML="C"
+
+})
+
+add1.addEventListener('click',function(){
+  op=1;
+  ab(op)
+  ac.innerHTML="C"
+
+})
+minus1.addEventListener('click',function(){
+  op=2;
+  ac.innerHTML="C"
+
+  ab(op)
+})
+multiple.addEventListener('click',function(){
+  op=4;
+  ac.innerHTML="C"
+  ab(op)
+
+})
+divide.addEventListener('click',function(){
+  op=3;
+  ac.innerHTML="C"
+  ab(op)
+
+})
+
+
+function ab(para){
+if(t==0){
+    if(count==0){
+      a=Number(li.value)
+      c+=a
+      count+=1;
+    }
+    else{
+      double=c
+      aa(b);
+      doubleclick=c
+      li.value=c;
+      if(set==1)
+      set=0;
+  }
+t=1;
+b=para;
+}
+else if(t==1){
+  b=para;
+  li.value=c;
+}}
+
+res.addEventListener('click',function(){
+
+ if(t==1){
+    li.value=doubleclick;}
+  else{aa(b);
+    li.value=c
+    op=0;
+    b=0;}
+})
+
+
+function aa(a){
+  switch(a){
+  case 1:{
+  c+=Number(li.value);
+  break;
+  }
+    case 2:{
+    c-=Number(li.value);
+    break;
+  }
+    case 3:{
+    c/=Number(li.value);
+    break;
+  }
+    case 4:{
+    c*=Number(li.value);
+console.log(li.value);
+    break;
+  }
+    return;
+}}
+
+ac.addEventListener('click',function(){
+  a=0;
+  count=0;
+  b=0;
+  c=0;
+  li.value=""
+  ac.innerHTML="AC"
+
+})
+</script>
+</body>
+</html>

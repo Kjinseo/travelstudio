@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="travelstudio.dao.CommentDao">
+  
+
+  
+  <resultMap type="comment" id="commentMap">
+    <result column="mno" property="mno"/>
+    <result column="postno" property="postno"/>
+    <result column="reno" property="reno"/>
+    <result column="cont" property="cont"/>
+    <result column="date" property="date"/>
+    <result column="good" property="good"/>
+    <result column="alias" property="alias"/>
+  </resultMap> 
+
+
+  <select id="selectList" resultMap="commentMap" parameterType="String">
+  select r.reno, r.postno, r.mno, r.cont, r.date, m.alias, m.path
+    from reply r natural join member m where r.postno=#{postno};
+    
+  </select>
+  <!--  
+  <select id="getWriteCount" resultMap="postMap" parameterType="map">
+  	select count(*) from post where mno=#{mno}
+  </select>
+  -->
+  <!-- 
+  <select id="selectListByNames" resultMap="memberMap" parameterType="map">
+    <include refid="select1"/>
+    <if test="names != null">
+      <where>
+        name in 
+        <foreach collection="names" item="name" open="(" close=")" separator=",">
+          #{name}
+        </foreach>
+      </where> 
+    </if>    
+    order by name asc 
+    limit #{startIndex}, #{pageSize}
+  </select>
+  
+  <select id="selectOne" resultMap="memberMap" parameterType="int">
+    <include refid="select1"/> 
+    where mno = #{memberNo}
+  </select>
+  
+  <select id="selectOneByEmailPassword" resultMap="memberMap" parameterType="map">
+    <include refid="select1"/> 
+    where email=#{email} and pwd=password(#{password})
+  </select>
+ -->
+  <insert id="insert" parameterType="map" 
+          useGeneratedKeys="true" keyColumn="reno" keyProperty="reno">
+    insert into reply(cont, postno, mno, date) 
+    values(#{cont}, #{postno}, #{mno}, current_timestamp())
+  </insert>
+  
+ 
+  <update id="update" parameterType="comment">
+    update reply set 
+      cont=#{cont}, 
+      date=#{date} 
+    where reno=#{no}
+  </update>
+  
+
+  <delete id="delete" parameterType="int">
+    delete from reply 
+    where reno=#{no}
+  </delete> 
+ 
+
+</mapper>
+
+
+
+

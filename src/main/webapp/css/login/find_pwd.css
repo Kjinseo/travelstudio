@@ -1,0 +1,173 @@
+
+.header-container{
+  border: 1px solid white;
+  width: 100%;
+  height: 150px;
+
+
+}
+
+.in-header-container{
+  border:1px solid white;
+  width: 1024px;
+  height: 100px;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+i{
+  margin-top: 7px;
+  margin-left: 10px;
+}
+
+#edit-start-button{
+  border: 2px solid black;
+  background-color: white;
+  border-radius: 5px;
+  float: right;
+  width: 120px;
+  height: 40px;
+  margin-top:40px;
+  font-weight: bold;
+}
+
+#search-bar {
+  border: 1px solid white;
+  border-bottom: 1px solid black;
+  width: 700px;
+  height: 40px;
+  margin-left: 70px;
+  margin-top: 40px;
+}
+
+#logo{
+  height: 60px;
+  margin-bottom: 20px;
+}
+/*여기까지 header*/
+
+/*여기서부터 로그인--*/
+.find_pwd_container{
+  border: 1px solid white;
+  width: 100%;
+  height: 350px;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+
+#find_letter{
+  text-align: center;
+  font-size: 30px;
+  font-weight: 600;
+  margin: 50px 0 30px 0 ;
+
+}
+
+#find_ment{
+  font-size: 18px;
+  text-align: center;
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+  font-weight: 500;
+}
+
+#not_existing{
+  font-size: 14px;
+  text-align: center;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  font-weight: 500;
+  color: #4265EE;
+  display: none;
+}
+
+.fint_email_input_box{
+  border: 1px solid white;
+  width: 550px;
+  height: 100px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 10px;
+  margin-bottom: 30px;
+
+
+}
+#title-email, #title-password, #title-id,#title-password2{
+  font-size: 15px;
+  font-weight: bold;
+  color:#6a787c;
+  margin-left: 5px;
+}
+
+#email-input, #password-input, #id-input,#password2-input{
+  border: 1px solid white;
+  border-bottom: 1px solid gray;
+  width: 100%;
+  height: 40px;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 25px;
+
+
+
+}
+
+
+/*여기서부터 로그인 버튼 등 */
+.find_button_box{
+  border: 1px solid white;
+  width: 550px;
+  height: 100px;
+  margin: 0 auto;
+}
+
+#find_btn, #login-summit{
+  border: 2px solid #6a7991;
+  width: 272px;
+  height: 50px;
+  border-radius: 25px;
+  font-size: 17px;
+  margin-left: 140px;
+  margin-bottom: 15px;
+}
+
+#find_btn {
+  color: white;
+  font-weight: bold;
+  background-color: #6a7991;
+}
+
+ #login-summit {
+   color:  #6a7991;
+   font-weight: bold;
+   background-color: white;
+ }
+
+#find-password, #sign-up{
+  text-decoration: underline;
+  font-size: 17px;
+}
+
+#find-password{
+  margin: 40px;
+  margin-left: 100px;
+
+}
+
+/*여기서부터 footer*/
+.footer{
+margin-top:50px;
+  width: 100%;
+  height: 150px;
+  margin-bottom: 0px;
+  margin-top: 23%;
+  background-color: #5b687a;
+
+}
+.find_button_box>div{
+  margin-left: 130px;
+}
+::-webkit-input-placeholder { color:lightgray; }

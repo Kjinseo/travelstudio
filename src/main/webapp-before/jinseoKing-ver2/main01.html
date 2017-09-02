@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>travel_log</title>
+  <link rel="stylesheet" href="./font-awesome-4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="./OwlCarousel/dist/assets/owl.carousel.min.css">
+<link rel="stylesheet" href="./OwlCarousel/dist/assets/owl.theme.default.min.css">
+<link rel="stylesheet" type="text/css" href="./main.css">
+<script src="./node_modules/jquery/dist/jquery.min.js"></script>
+<script src="./OwlCarousel/dist/owl.carousel.min.js"></script>
+</head>
+<body>
+  <div class="slide_bar">
+    <div class="slide_bar_cancel">
+      <a href="#"><img src="img/cancel.png" id="cancel_icon"></a>
+
+    </div>
+
+    <!-- 슬라이드 메뉴바 호출 -->
+    <div class="slide_bar_content">
+      <div class="member_slide">
+        <div class="member_info">
+          <div class="user_photo">
+            <img src="img/user_default.png">
+          </div>
+          <div class="user_id">InJaeZzang</div>
+          <div class="user_url">http://injaezzang.travel_log.com</div>
+          <a href="../mypage/mypagemainv20.html"><div class="user_mypage">마이페이지</div></a>
+          <ul class="user_nation">
+            <li><img src="img/FR.png" alt=""></li>
+            <li><img src="img/FR.png" alt=""></li>
+          </ul>
+          
+          
+
+          <div class="user_visited">
+            <div class="user_write">
+              <img src="img/textbook.png" alt="">
+              <span>여행기</span>
+              <span class="counting">1</span>
+            </div>
+            <div class="user_visited_count">
+              <img src="img/aeroplane.png" alt="">
+              <span>여행국가</span>
+              <span class="counting">2</span>
+            </div>
+          </div>
+          <hr class="slide_bar_classify">
+
+          <div class="slide_bar_menu">
+            <ul class="list_menu">
+              <li><a href="#">공지사항</a></li>
+              <li><a href="./find_pwd.html">비밀번호 변경</a></li>
+              <li><a href="#">탈퇴하기</a></li>
+              <li><a href="#">로그아웃</a></li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+  </div>
+  <!-- 슬라이드 메뉴바 호출 끝 -->
+
+
+
+</div>
+<div class="cover_dimmed"></div>
+
+
+  <!--여기서부터 header html-->
+ <!--  <div class="header-container">
+    <div class="in-header-container">
+      <div class="icon_wrap">
+       
+        <img src="img/logo.PNG" id="logo">
+        <input id="search-bar" type="text" name="search" placeholder="search">
+      </div>
+
+  <i class="fa fa-search fa-2x" aria-hidden="true"></i>
+  <button type="button"  onclick="location.href='../jinseoKing/login.html'" id="edit-start-button">start
+  </div>
+</div> -->
+
+  <header class="header">
+   <img src="img/slidecall.png" id="slide_icon">
+    <img id="logo" src="./pictures/ourlogo.png">
+    <input type="search" id="search_bar" placeholder="검색">
+    <button id="search_icon" class="fa fa-search fa-2x" aria-hidden="true"></button>
+    <button type="button" id="start-my-journey">여행기 작성</button>
+  </header>
+
+<!-- 메인화면 사진 HTML -->
+  <div id="blank-one" class="blank-one">
+    <h2>사진으로 여행기를 쉽게~</h2>
+    <a href="#"><div class="help_btn">이용방법</div></a>
+  </div>
+  <div class="header" id="header_line"></div>
+<!-- 메인 사진 끝 -->
+  <div class="container_main">
+    <div class="travel_writer">
+      <div class="travel_writer_titl">
+        <p class="pc_text">추억이 담긴 여행을 기록하는
+          <span class="traveler_text">여행작가</span>가 되어보세요
+        </p>
+      </div>
+      <div class="owl-stage-outer">
+        <div class="owl-stage">
+        
+          <script id="content-template-2" type="text/x-handlebars-template">
+     {{#each list}}
+          <div class="item">
+          <a href="#">
+            <div class="travel_writer_photozone">
+              <img src="img/vally.jpg">
+            </div>
+            <p class="travel_writer_id">{{alias}}</p>
+            <p class="travel_writer_intro">
+           {{intro}}
+            </p>
+            <div class="travel_writer_flag">
+              <img src="img/kr.png">
+              <img src="img/kr.png">
+              <img src="img/kr.png">
+              <img src="img/kr.png">
+              <img src="img/kr.png">
+            </div>
+          </a>
+          </div>
+     {{/each}}
+          </script>
+
+       
+         
+         
+        </div>
+      </div>
+    </div>
+    <div class="slide_wrap">
+      <div class="box_slide_title">
+        <div class="titl">국내여행</div>
+        <div class="sub_titl">
+        시원한 여름을
+        </br>
+        위한 여행
+        </div>
+        <div class="ment">
+        <p>
+        더운 여름을
+        <br>
+        시원하게 나기 위한
+        <br>
+        노하우가 담긴 여행기
+        </p>
+        </div>
+        <div class="more">
+        <a href="../jinseoKing/searchList/listplusheaderfooter.html">+더보기</a>
+        </div>
+      </div>
+      
+      <div class="box_slide_main">
+      
+             <script id="content-template" type="text/x-handlebars-template">
+{{#each list}}
+        <div class="item select_item">
+          <a href="../jinseoKing/inner_article.html">
+            <div class="item_thumb">
+              <img src="img/vally.jpg" alt="응 계곡이야" class="hidden_mobile">
+            </div>
+            <div class="item_in">
+              <div class="titl">{{title}}</div>
+              <div class="tag">{{tag}}</div>
+              <div class="bottom_msg">
+              <i style="
+              background:url('https://image.withvolo.com/05ba592adabcde294bd49a2859e6c206/ff6b1126-21d0-4224-b42a-b548fc1ee7c5-709cc6d3345fc6424c2eed32705adb25efb52c88.jpg'); background-size:cover;"
+              alt="outofmap"
+              class="circle_photo">
+              </i>
+              </div>
+            </div>
+          </a>
+        </div>
+
+          {{/each}}
+        </script>
+      
+      
+      </div>
+    </div>
+    <!-- 국내여행 전체 라인 -->
+
+    <div class="slide_wrap">
+      <div class="box_slide_title">
+        <div class="titl">해외여행</div>
+        <div class="sub_titl">
+        나도 밖으로
+        </br>
+        나가고 싶다
+        </div>
+        <div class="ment">
+        <p>
+        남들 다나가는데
+        <br>
+        나만 못나가
+        </p>
+        </div>
+        <div class="more">
+        <a href="#나는링크">+더보기</a>
+        </div>
+      </div>
+      <div class="box_slide_main">
+        <div class="item select_item">
+          <a href="#">
+            <div class="item_thumb">
+              <img src="img/vally.jpg" alt="응 계곡이야" class="hidden_mobile">
+            </div>
+            <div class="item_in">
+              <div class="titl"> 가평 계곡에서</div>
+              <div class="tag">#가족여행 #가평 #계곡</div>
+              <div class="bottom_msg">
+              <i style="
+              background:url('https://image.withvolo.com/05ba592adabcde294bd49a2859e6c206/ff6b1126-21d0-4224-b42a-b548fc1ee7c5-709cc6d3345fc6424c2eed32705adb25efb52c88.jpg'); background-size:cover;"
+              alt="outofmap"
+              class="circle_photo">
+              </i>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="item select_item">
+          <a href="#">
+            <div class="item_thumb">
+              <img src="img/vally.jpg" alt="응 계곡이야" class="hidden_mobile">
+            </div>
+            <div class="item_in">
+              <div class="titl"> 가평 계곡에서</div>
+              <div class="tag">#가족여행 #가평 #계곡</div>
+              <div class="bottom_msg">
+              <i style="
+              background:url('https://image.withvolo.com/05ba592adabcde294bd49a2859e6c206/ff6b1126-21d0-4224-b42a-b548fc1ee7c5-709cc6d3345fc6424c2eed32705adb25efb52c88.jpg'); background-size:cover;"
+              alt="outofmap"
+              class="circle_photo">
+              </i>
+              </div>
+            </div>
+          </a>
+        </div>
+        <!-- 사진 한 박스 -->
+
+        <div class="item select_item">
+          <a href="#">
+            <div class="item_thumb">
+              <img src="img/vally.jpg" alt="응 계곡이야" class="hidden_mobile">
+            </div>
+            <div class="item_in">
+              <div class="titl"> 가평 계곡에서</div>
+              <div class="tag">#가족여행 #가평 #계곡</div>
+              <div class="bottom_msg">
+              <i style="
+              background:url('https://image.withvolo.com/05ba592adabcde294bd49a2859e6c206/ff6b1126-21d0-4224-b42a-b548fc1ee7c5-709cc6d3345fc6424c2eed32705adb25efb52c88.jpg'); background-size:cover;"
+              alt="outofmap"
+              class="circle_photo">
+              </i>
+              </div>
+            </div>
+          </a>
+        </div>
+        <!-- 사진 한 박스 -->
+      </div>
+    </div>
+    <!-- 국내여행 전체 라인 -->
+
+    <!-- 국내여행 전체 라인 -->
+
+
+  </div>
+  <!-- container_main 태그 -->
+
+</body>
+<script>
+function slideCall() {
+$('#slide_icon').click(function (){
+  $('.slide_bar').animate({left:0}, 350);
+  $('.cover_dimmed').show();
+})
+
+$('#cancel_icon').click(function () {
+  $('.slide_bar').animate({left:-320}, 350);
+  $('.cover_dimmed').hide();
+})
+
+}
+
+function slide_off() {
+  $('.cover_dimmed').click(function () {
+    $('.slide_bar').animate({left:-320}, 350);
+    $('.cover_dimmed').hide();
+})
+}
+
+$(document).ready(slideCall)
+$(document).ready(slide_off)
+// (slideCall);
+
+$(document).ready(function(){
+  //자동회전과 꽉찬 1개의 슬라이드만 나오도록 설정
+  $(".owl-carousel").owlCarousel({
+    items:1,
+    loop:true,
+    autoplay:true,
+    autoplayTimeout:20,
+    autoplayHoverPause:true
+  });
+});
+
+$('.owl-carousel').owlCarousel({
+  loop:false,
+  margin:10,
+  nav:true,
+  autoWidth:true,
+  responsive:{
+    0:{
+      items:1
+    },
+    600:{
+      items:4
+    },
+    1000:{
+      items:5
+    }
+  }
+})
+</script>
+<script src="./node_modules/jquery/dist/jquery.min.js"></script>
+<script src="./node_modules/handlebars/dist/handlebars.min.js"></script>
+<script src="./main.js"></script>
+</html>

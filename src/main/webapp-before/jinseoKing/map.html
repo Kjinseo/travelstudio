@@ -1,0 +1,141 @@
+ <!DOCTYPE html>
+    <html>
+    <head>
+    <title>google map</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+    #map-canvas {
+            height: 600px;
+            margin: 0px;
+           width: 800px;
+           padding: 0px;
+           display: none;
+
+  }
+
+   #panel {
+     position: absolute;
+     top: 5px;
+     left: 50%;
+      margin-left: -180px;
+      z-index: 5;
+      background-color: #fff;
+      padding: 5px;
+      border: 1px solid #999;
+      display: none;
+                  }
+   </style>
+
+
+   <!-- 화면에 지도 뿌려주기 -->
+
+
+
+   <script type="text/javascript" src="https://maps.googleapis.
+com/maps/api/js?key=AIzaSyAvJO_nbwEqokghhsnj7oj_uQPgnjFoa84&libraries=visualization&sensor=false, places"></script>
+  <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+
+
+   <script>
+
+   var lat
+   var lng
+   var map;
+   function initialize() {
+           var mapOptions = {
+                   zoom : 7,
+                   center : new google.maps.LatLng(37.5651, 126.98955), //서울
+                   mapTypeId : google.maps.MapTypeId.ROADMAP
+           };
+           map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+   }
+   google.maps.event.addDomListener(window, 'load', initialize);
+
+
+   <!--위치를 입력하면 지도에 핀을 꽂아주기-->
+   var geocoder;
+
+    function codeAddress() {//지역을 입력받아 위도, 경도로 변환하여 그 위치에 마커를 찍어주는 역할을 한다.
+      geocoder = new google.maps.Geocoder();
+
+
+      var address = document.getElementById('address').value;
+      geocoder.geocode( { 'address': address}, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                     lat = results[0]['geometry']['location']['lat']();
+                     lng = results[0]['geometry']['location']['lng']();
+
+                    console.log(lat);
+                    console.log(lng);
+                    console.log(address);
+
+                    map.setCenter(results[0].geometry.location);
+                    var marker = new google.maps.Marker({
+                            map: map,
+                            position: results[0].geometry.location,
+                            draggable:false,
+                            animation:google.maps.Animation.DROP,
+                            title:address
+                    });
+                    map.setZoom(14);
+                  
+
+            } else {
+              alert("장소를 찾을 수 없습니다.");
+            }
+      });
+    
+    }
+
+ <!--지도에서 받은 위도, 경도 타이핑 정보를 데이터베이스로 넘긴다.-->
+      function saveMap(){
+	  console.log(lat);
+	  console.log(lng);
+	  console.log($("#address"));
+
+    	$.post('../detail/add.json', {
+            'lati': lat.toFixed(8),
+            'longit': lng.toFixed(8),
+            'address':$("#address").val()
+          }, function(result) {
+          	console.log("위도 경도 넘어간다.");
+            location.href = 'map.html'
+          }, 'json')
+        }
+
+
+      $('#appear_map').click(function(){
+    	  $('#map-canvas').attr('display','block');
+    	  $('#panel').css('display','');
+      })
+
+function test(idMyDiv) {
+  var objDiv = document.getElementById(idMyDiv);
+	// console.log(objDiv);
+	console.log($('#testdiv'));
+
+  if (objDiv.style.display == "inline-block") {
+    objDiv.style.display = "none";
+    $('#panel').css('display','none');
+  } else {
+    objDiv.style.display = "inline-block";
+    $('#panel').css('display','inline-block');
+   initialize()
+  }
+}
+
+
+   </script>
+    <script src="map.js"></script>
+   </head>
+   <body>
+   <button id="appear_map" onclick="test('map-canvas')">지도 나타나기</button>
+      <div id="panel">
+                   <input id="address" type="textbox" value="Seoul">
+                   <input type="button" value="장소 검색" onclick="codeAddress()">
+           </div>
+           <div id="map-canvas"></div>
+                   <button id="search_place" type="button" value="저장" onclick="saveMap(); location.href='./map3.html'">지도 삽입</button>
+   </body>
+   </html>

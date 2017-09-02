@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Hello World!</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="mypage.css">
+
+<style>
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+body, table, div, p, textarea {font-family:'Nanum Gothic';}
+    </style>
+  </head>
+<body>
+    <div id="modal"></div>
+    <div id="modal2"></div>
+  
+     <div class="slide_bar">
+    <div class="slide_bar_cancel">
+      <a href="#"><img src="img/cancel.png" id="cancel_icon"></a>
+
+    </div>
+
+    <!-- 슬라이드 메뉴바 호출 -->
+       <div class="slide_bar_content">
+  
+  </div>
+  <!-- 슬라이드 메뉴바 호출 끝 -->
+
+
+
+</div>
+<div class="cover_dimmed"></div>
+    
+    
+     <header class="header">
+         <img src="img/slidecall.png" id="slide_icon">
+    <a href="../jinseoKing/main01.html"><img id="logo" src="./pictures/ourlogo.png"></a>
+    <input type="search" id="search_bar" placeholder="검색">
+    <button id="search_icon" class="fa fa-search fa-2x" aria-hidden="true"></button>
+    <button type="button" id="start-my-journey" onclick="location.href='./write2.html'">여행기 작성</button>
+  </header>
+    
+    
+
+  <!-- <hr style="margin-top:-8px;"> -->
+  
+  
+<div id="container">
+  <div id="mypage">
+    <div id="profile">
+          <div id="holding_profile_photo">
+      <div class="profile_photo">
+        <img id="user-img" style="float: right;"></img>
+      </div>
+      <div class="profile_desc">
+        <div class="user_desc">
+          
+        </div>
+
+
+    <div style="padding-top:23px;">
+      <div class="info_write">
+        <span class="fa fa-file-text-o fa-2x" aria-hidden="true"></span>
+        <span class="tit_info">여행기</span>
+        <span class="postNum"></span>
+      </div>
+      <div class="info_nation">
+        <span class="fa fa-map-marker fa-2x" aria-hidden="true"></span>
+        <span class="tit_info">여행국가</span>
+         <span class="countryNum"></span>
+      </div>
+
+
+<div id="traveled_country">
+       <script id="flag-template" type="text/x-handlebars-template">
+{{#each flag_list}}
+      <ul style=none;>
+        <li><img src='{{address}}'>{{address}}</li>
+      </ul>
+{{/each}}
+</script>
+
+</div>
+
+    </div>
+</div>
+</div>
+<div class="cont_card">
+  <div class="inner_card">
+  <div class="travle_list">
+
+
+
+
+          <script id="content-template" type="text/x-handlebars-template">
+       {{#each selectOneUserPost}}
+            <li class="travel_item">
+
+              <div class="item_card">
+                <div><i id="lock" class="fa fa-lock fa-2x" aria-hidden="true"></i></div>
+              <div class="img_card">
+                <a class= "post_list" data-post="{{postno}}" href="../mypage/inner_article.html?postno={{postno}}">
+                  <img class="list_img" src="../{{cont}}"></img>
+                </a>
+              </div>
+              <div class="card_desc">
+        <div class="card_title">
+          <div class="list_title"><a href="#">{{title}}</a></div>
+          <div class="cate">
+              <nav>
+              <a class="dropdown-toggle" href="javascript:;" title="Menu"><i class="fa fa-align-justify" aria-hidden="true"></i></a>
+              <ul class="dropdown">
+                <li><a class="invite_f" href="javascript:;" data-value={{postno}}>친구 초대하기</a></li><br>
+                <li><a class="share_travel"href="javascript:;" data-value={{postno}} onclick="test1('modal'); test('share_wrap');">여행기 공유하기</a></li><br>
+                <li><a class="delete_travel" href="javascript:;" data-value={{postno}}>여행기 삭제하기</a></li><br>
+                <li><a class="lock_travel" href="javascript:;" data-value={{postno}} onclick="test1('lock')">나만 보기</a></li><br>
+              </ul>
+              </nav>
+        </div>
+
+        </div>
+        <div class="card_bottom">
+          <img src="../upload/{{path}}" style='border-radius:100%'></img>
+          <span>{{alias}}</span>
+            <div class="mypage_list_heart">
+          <i class="fa fa-heart-o" aria-hidden="true"></i>
+          <span class="heart_num">{{good}}</span>
+        </div>
+        </div>
+              </div>
+            </div>
+            </li>
+        {{/each}}
+		       </script>
+
+<script id="content-request-template" type="text/x-handlebars-template">
+       {{#each invitingUserPost}}
+            <li class="travel_item">
+
+              <div class="item_card">
+                <div><i id="lock" class="fa fa-lock fa-2x" aria-hidden="true"></i></div>
+              <div class="img_card">
+                <a class= "post_list" data-post="{{postno}}" href="../mypage/inner_article.html?postno={{postno}}">
+                  <img class="list_img" src="../{{cont}}"></img>
+                </a>
+              </div>
+              <div class="card_desc">
+        <div class="card_title">
+          <div class="list_title"><a href="#">{{title}}</a></div>
+          <div class="cate">
+              <nav>
+              <a class="dropdown-toggle" href="javascript:;" title="Menu"><i class="fa fa-align-justify" aria-hidden="true"></i></a>
+              <ul class="dropdown">
+                <li><a class="invite_f" href="javascript:;" data-value={{postno}}>친구 초대하기</a></li><br>
+                <li><a class="share_travel"href="javascript:;" data-value={{postno}} onclick="test1('modal'); test('share_wrap');">여행기 공유하기</a></li><br>
+                <li><a class="delete_travel" href="javascript:;" data-value={{postno}}>여행기 삭제하기</a></li><br>
+                <li><a class="lock_travel" href="javascript:;" data-value={{postno}} onclick="test1('lock')">나만 보기</a></li><br>
+              </ul>
+              </nav>
+        </div>
+        </div>
+        <div class="card_bottom">
+          <img src="../upload/{{path}}" style='border-radius:100%'></img>
+          <span>{{alias}}</span>
+            <div class="mypage_list_heart">
+          <i class="fa fa-heart-o" aria-hidden="true"></i>
+          <span class="heart_num">{{good}}</span>
+        </div>
+        </div>
+              </div>
+        <div class="box_request" id="invite_request_{{postno}}">
+          <div class="request_user">
+           <div class="user_img">
+            
+           </div>
+           <div class="user_desc">
+             <p class="desc_name ff_pp">{{edt}}</p>
+             <p class="desc_account ff_pp">ID : <span>{{pdt}}</span></p>
+           </div>
+          </div>
+          <div class="request_btns">
+            <a href="#" class="btn_accept __profile _confirm_invitation">수락</a>
+            <a href="#" class="btn_reject __profile _reject_invitation">거절</a>
+            </div>
+        </div>
+            </div>
+            </li>
+        {{/each}}
+           </script>
+</div>
+
+
+</ul>
+  </div>
+</div>
+
+
+
+<!-- 친구와 같이쓰기 시작 -->
+<div id='invite_f_container'>
+  <div class='content_a'>
+    <h4>참여자</h4>
+    <div class="join_user_list">
+      <div><img src="./usercircle.png"></img></div>
+    </div>
+    <hr>
+    <h4>여행가 찾기</h4>
+    <form class="f_search">
+  <input type="text" id="f_search-bar" placeholder="ID를 입력해주세요">
+  <a id="f_search" href="#"><img class="f_search-icon" src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png"></a>
+</form>
+<div id="f_search_list">
+<ul>
+
+<script id="search-friends-template" type="text/x-handlebars-template">
+{{#each info}}
+<li><a class="select_friends {{mno}}" data-email="{{email}}" data-path="../upload/{{path}}" href="javascript:;" "><div><img src="../upload/{{path}}"></div>
+<div>{{email}}</div><div><i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i></a></div>
+</li>
+{{/each}}
+</script>
+</ul>
+</div>
+<div class="save_btn"><button type="button" id="close1-btn" onclick="test1('modal'); test('invite_f_container');">나가기</button></div>
+  </div>
+</div>
+<!-- 친구와 같이쓰기 끝 -->
+<div id="confirm-invite-f">
+<div id="confirm-email"></div>
+<button type="button" id="confirm-invite-f-yes" onclick="test1('modal2'); test('confirm-invite-f');">예</button><button type="button" id="confirm-invite-f-no" onclick="test1('modal2'); test('confirm-invite-f');">아니오</button>
+</div>
+<div id='delete_wrap'>
+    <h4>여행기를 삭제하시겠습니까?</h4>
+<div class="delete_wrap_btns"><button type="button" id="no-btn" onclick="test1('modal'); test('delete_wrap');">아니요</button> <button type="button" id="delete-yes-btn" onclick="test1('modal'); test('delete_wrap');">예</button></div>
+</div>
+<div id="share_wrap">
+  <div class="sns_share">SNS로 공유하기
+  </div>
+  <div class="buttons">
+    <button id="facebook_button"><i id="facebook_share" class="fa fa-facebook fa-2x" aria-hidden="true"></i></button>
+    <button id="twitter_button"><i id="twitter_share" class="fa fa-twitter fa-2x" aria-hidden="true"></i></button>
+  </div>
+  <hr>
+<div class="link_copy">
+  <div id="word_copy">링크 복사하기</div>
+  <form>
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Search">
+      <div class="input-group-btn">
+        <button class="btn btn-default" type="submit">
+          <i class="glyphicon glyphicon-search"></i>
+        </button>
+      </div>
+    </div>
+  </form>
+<button id="close2_button" onclick="test1('modal'); test('share_wrap');">나가기</button>
+</div>
+</div>
+<script id="user-info-template" type="text/x-handlebars-template">
+  <span class="user_name">{{alias}}</span> 
+  <a href="#" class="fa fa-cog fa-2x" id="mysetting"></a>
+</script>
+
+<script id="tbody-template4" type="text/x-handlebars-template">
+
+    <div class="member_slide">
+        <div class="member_info">
+          <div class="user_photo">
+            <img src="../mypage/upload/{{path}}">
+          </div>
+          <div class="user_id">{{alias}}</div>
+          <div class="user_url">{{email}}</div>
+     
+          <a href="../jinseoKing/mypage.html"><div class="user_mypage">마이페이지</div></a>
+          <a href="../jinseoKing/subscribe.html" ><div id="subscribe">구독</div></a>
+          <div class="user_nation">
+         
+          </div>
+          
+  
+
+          <div class="user_visited">
+            <div class="user_write">
+              <img src="img/textbook.png" alt="">
+              <span>여행기</span>
+              <div class="counting1"></div>
+            </div>
+            <div class="user_visited_count">
+              <img src="img/aeroplane.png" alt="">
+              <span>여행국가</span>
+
+              <div class="counting2"></div>
+            </div>
+          </div>
+          <hr class="slide_bar_classify">
+
+          <div class="slide_bar_menu">
+            <ul class="list_menu">
+              <li><a href="./find_pwd.html">비밀번호 변경</a></li>
+              <li><a href="#">탈퇴하기</a></li>
+              <li><a href="#">로그아웃</a></li>
+              <li><a href="#">공지사항</a></li>
+            </ul>
+          </div>
+
+        </div>
+      </div>  
+
+
+
+</script>
+
+<script src="./node_modules/jquery/dist/jquery.min.js"></script>
+<script src="./node_modules/handlebars/dist/handlebars.min.js"></script>
+<script src="./mypage.js" charset="utf-8"></script>
+<script>
+var inviteMemberNo=0;
+var targetpostno=0;
+var targetuserimage=0;
+/* 친구 초대하기에서 검색후 친구 이름을 눌렀을때 확인창 부분에서 하는 함수 */
+$(document).on("click",".select_friends",function(){
+	 console.log('selectf click')
+	 console.log(this)
+	 console.log($(this).attr('data-email'))
+	 var str = $(this).attr('data-email')+'에게 초대장을 보내시겠습니까?'
+	 $('#confirm-email').html(str)
+	 inviteMemberNo=$(this).attr('class').split(' ')[1]
+	 console.log($(this).attr('class'))
+	 /* console.log($(this).children("div").first().children("div").children()) */
+	 targetuserimage=$(this).attr('data-path')
+	 test1('modal2')
+	 test('confirm-invite-f')
+	 console.log(inviteMemberNo)
+})
+/* 친구 초대하기에서 검색후 친구 이름을 눌렀을때 확인창 부분에서 하는 함수  끝 */
+ $('#confirm-invite-f-yes').click(function(){
+	 console.log(inviteMemberNo)
+	 console.log(targetpostno)
+	$.post('../cowork/invite.json', {
+		'mno': inviteMemberNo,
+		'postno' : targetpostno
+	}, function(result) {
+	 /* $('<img src='+targetuserimage+'>').appendTo($('.join_user_list')) */
+	 console.log($('.join_user_list'))
+	 $('.join_user_list').append($('<div class="'+inviteMemberNo+'_'+targetpostno+'">').html('<img src="'+targetuserimage+'"><a class="delete-invite-f"><i class="fa fa-times-circle-o" aria-hidden="true"></i></a>'))
+	}, 'json')
+})
+ 
+ $(document).on("click",".delete-invite-f",function(){
+	 console.log($(this).parent())
+	 var img1 = $(this).parent()
+	 $.post('../cowork/delete.json', {
+		'mno': img1.attr('class').split('_')[0],
+		'postno' : img1.attr('class').split('_')[1]
+	}, function(result) {
+		console.log($(this))
+	 img1.remove()
+	}, 'json')
+ })
+ 
+$('#f_search').click(function(){
+	console.log('fsearch click')
+	var searchusername=$('#f_search-bar').val()
+	$.post('../member/search.json', {
+		'keyword': searchusername
+	}, function(result) {
+		console.log(result)
+		 var template = Handlebars.compile($('#search-friends-template').html())
+	      var generatedHTML = template(result.data) // 템플릿 함수에 데이터를 넣고 HTML을 생성한다.
+//	      tbody.text('') // tbody의 기존 tr 태그들을 지우고
+	      $('#f_search_list > ul').append(generatedHTML) // 새 tr 태그들로 설정한다.
+		
+	}, 'json')
+})
+function dropdown() {
+$(function() {
+// Dropdown toggle
+$('.dropdown-toggle').click(function(){
+  $(this).next('.dropdown').toggle();
+  /* console.log('아예안되나?') */
+});
+$(document).click(function(e) {
+  var target = e.target;
+  if (!$(target).is('.dropdown-toggle') && !$(target).parents().is('.dropdown-toggle')) {
+    $('.dropdown').hide();
+  }
+});
+});
+}
+$(document).on("click",".invite_f",function(){
+	console.log(this)
+targetpostno=$(this).attr('data-value')
+	$('#modal').css('display','inline-block')
+	$('#invite_f_container').css('display','inline-block')
+	})
+	
+$(document).on("click",".share_travel",function(){
+console.log(this)
+targetpostno=$(this).attr('data-value')
+$('#modal').css('display','inline-block')
+	$('#invite_f_container').css('display','inline-block')
+})
+/* $(document).on("click",".delete_travel",function(){
+	console.log(this)
+	targetpostno=$(this).attr('value')
+	$('#modal').css('display','inline-block')
+	$('#invite_f_container').css('display','inline-block')
+}) */
+function test1(idMyDiv) {
+  var objDiv = document.getElementById(idMyDiv);
+  if (objDiv.style.display == "inline-block") {
+    objDiv.style.display = "none";
+  } else {
+    objDiv.style.display = "inline-block";
+  }
+  event.preventDefault();
+  event.stopPropagation()
+}
+function test(idMyDiv) {
+  var objDiv = document.getElementById(idMyDiv);
+  if (objDiv.style.display == "inline-block") {
+    objDiv.style.display = "none";
+  } else {
+    objDiv.style.display = "inline-block";
+  }
+  event.preventDefault();
+  event.stopPropagation()
+}
+    $('.delete_travel').on('click', function(){
+      $('.wrap11, #b').toggleClass('active');
+      return false;
+    });
+    $(".delete_travel > #no-btn").click(function () {
+            $('.wrap11, #b').toggleClass('active');
+        });
+    
+    /**/
+       
+    function slideCall() {
+    	$('#slide_icon').click(function (){
+    	  $('.slide_bar').animate({left:0}, 350);
+    	  $('.cover_dimmed').show();
+    	})
+    	$('#cancel_icon').click(function () {
+    	  $('.slide_bar').animate({left:-320}, 350);
+    	  $('.cover_dimmed').hide();
+    	})
+    	}
+    	function slide_off() {
+    	  $('.cover_dimmed').click(function () {
+    	    $('.slide_bar').animate({left:-320}, 350);
+    	    $('.cover_dimmed').hide();
+    	})
+    	}
+    	$(document).ready(slideCall)
+    	$(document).ready(slide_off)
+
+
+
+</script>
+</body>
+</html>

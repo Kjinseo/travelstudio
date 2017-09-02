@@ -1,0 +1,226 @@
+
+
+.edit_react_window {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 992;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  /*display: none;*/
+
+}
+
+.help_btn {
+
+  background-color: black;
+}
+
+
+.edit_window {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  /*box-sizing: border-box;*/
+  position: fixed;
+  width: 1000px;
+  height: 700px;
+  background-color: rgba(255, 255, 255, 1);
+  margin: 50px auto 0;
+  z-index: 999;
+  vertical-align: middle;
+  text-align: center;
+  /*display: none;*/
+}
+
+.edit_input {
+  position: relative;
+  /*float: left;*/
+  /*box-sizing: border-box;*/
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  float:none;
+  width: 950px;
+  height: 665px;
+  border: 1px solid #D0D0D0;
+  text-align: center;
+  color: #767676;
+  margin-bottom: 20px;
+}
+
+.edit_settings {
+  position: relative;
+  float: right;
+  border-left: solid 1px  #D0D0D0;
+  width: 150px;
+  height: 100%;
+  /*margin-top: 30%;*/
+  list-style: none;
+  line-height: 1.3;
+  padding: auto;
+}
+
+.edit_settings .contents {
+  position: relative;
+  top: 45%;
+  height: 665px;
+  /*padding-top: 30%;*/
+  /*padding-bottom: auto;*/
+  text-align: center;
+  vertical-align: middle;
+  margin: auto 0;
+}
+
+.edit_settings .contents .group {
+  position: absolute;
+  /*line-height: 300px;*/
+  border: 1px red solid;
+  /*margin-top: 100%;*/
+  /*margin-bottom: auto;*/
+}
+
+
+.edit_settings .contents .group div {
+  border-radius: 15px;
+  width: 100px;
+  height: 30px;
+  line-height: 28px;
+  font-weight: 600;
+  background-color: #fff;
+  border: 1px solid #4265EE;
+  color: #4265EE;
+  margin: 10px 24.5px;
+}
+
+.edit_settings .contents .save div {
+  border-radius: 15px;
+  width: 100px;
+  height: 30px;
+  line-height: 28px;
+  font-weight: 600;
+  background-color: #4265EE;
+  /*border: 1px solid #fff;*/
+  color: #fff;
+  margin: 10px 24.5px;
+}
+
+.edit_settings li {
+  /*display: inline-block;*/
+
+  color: #4265EE;
+  font-weight: 600;
+  opacity: 0.7;
+  margin: 10px 0 0 10px;
+  vertical-align: center
+}
+
+
+.edit_group, .edit_settings img {
+  display: inline-block;
+
+}
+
+.edit_done {
+  position: absolute;
+}
+
+/*파일 나열 되는 곳*/
+.files_container {
+  /*box-sizing: inherit;*/
+  float: left;
+  width: 798px;
+  height: 665px;
+}
+
+.files_container #tbfiles {
+  /*border: solid 1px red;*/
+  width: 100%;
+  /*height: 10px;*/
+  text-align: left;
+
+}
+
+.files_container #tbfiles tbody tr{
+  position: relative;
+  float: left;
+  width: 76px;
+  height: auto;
+  margin: 5px;
+  /*border: solid 1px green;*/
+  border-bottom: 1px solid #E7E8EA;
+  overflow: hidden;
+  background: transparent;
+}
+
+.files_container #tbfiles tr .file_icon {
+  position: relative;
+  background: transparent;
+  float:left;
+  background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)),
+		 url('img/plain.png');
+  background-size: contain;
+}
+
+#tbfiles tr .file_icon .thumb{
+  width: 76px;
+  height: 76px;
+  background: transparent center center no-repeat;
+  float: left;
+}
+
+.files_container #tbfiles tr .name {
+  width: 76px;
+  position: relative;
+  text-align: center;
+  font-size: 50%;
+}
+
+.files_container #tbfiles th{
+  position: relative;
+  float: left;
+  width: auto;
+  height: auto;
+  margin: 5px;
+  border-bottom: 1px solid #E7E8EA;
+  overflow: hidden;
+  background: transparent;
+}
+
+
+
+/*사진 체크 in 이미지*/
+.file_icon input[type="checkbox"]{
+    display:none;
+}
+.file_icon input[type="checkbox"] + label{
+    cursor:pointer;
+}
+.file_icon input[type="checkbox"]:checked + label{
+    /*background:#0080FF;*/
+}
+.file_icon input[type="checkbox"]:checked + label:before{
+    position:absolute;
+    content:'';
+    top:25%;
+    left:25%;
+    width:50%;
+    height:50%;
+    background:url("img/checked.png");
+    background-repeat:no-repeat;
+    background-size: 100% 100%;
+    opacity:0.8;
+  }
+  /*사진 체크 in 이미지 끝*/
+/*파일 나열 끝*/
+#feedback { font-size: 1.4em; }
+#selectable .ui-selecting { border:1px solid black; position: absolute; z-index: 10;}
+#selectable > tr > td > label> .ui-selected { width:50px; height:50px; position: absolute; z-index: 10;border:5px solid black; background:url("img/checked.png")};
+#selectable > tr > td > label> .ui-selected> .thumb{position:absolute; z-index: 1;}
+#selectable .ui-selected .file_icon input[type="checkbox"]:checked { background:url("img/checked.png");}
+#selectable li span{display: none; float: none; margin-top: -100px; margin-left: -50px;}
+#selectable { list-style-type: none; margin: 0; padding: 0; width: 450px; }
+#selectable li { margin: 3px; padding: 1px; float: left; width: 100px; height: 80px; font-size: 4em; text-align: center; }
+#selectable li img{
+   width: 100px; height: 80px;
+}

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0">
+<meta charset="utf-8">
+<title>travel_log</title>
+<link rel="stylesheet"
+	href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+<!-- <link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
+<link rel="stylesheet" type="text/css" href="/css/article/write.css">
+<link rel="stylesheet"
+	href="/css/font-awesome-4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+	<div class="caption_modal">
+		<div class="caption_pop_wrap">
+			<div class="pop_tit">캡션 내용을 입력하세요</div>
+			<div class="txt_area">
+				<textarea id="cap-txt" placeholder=""></textarea>
+			</div>
+			<button class="btn_common btn_white" id="capt-cancel">취소하기</button>
+			<button class="btn_common" id="capt-save">저장하기</button>
+		</div>
+	</div>
+	<button class="innerClick" style="display: none;"></button>
+
+	<header class="header">
+		<a href="../main/main.html"><img id="logo" src="/image/ourlogo.png"></a>
+		<p id="title_of_article">여행기 제목</p>
+		<button type="button" id="write_save_btn">저장하기</button>
+	</header>
+
+	<div id="modal"></div>
+	<div id="blank-one" class="blank-one">
+		<div class="icons">
+			<a href="javascript:title_file_browse()"><div>
+					<span><i id="icons_i" class="fa fa-picture-o fa-3x"
+						aria-hidden="true"></i></span><br> <span class="title_hidden">표지사진</span><input
+						id="title_fileupload" type="file" name="files"
+						style="display: none"></input>
+				</div></a><br> <a href="#"><div>
+					<span><i id="icons_i" class="fa fa-lock fa-3x"
+						aria-hidden="true"></i></span><br> <span class="title_hidden">모두에게
+						공개</span>
+				</div></a><br> <a href="#"><div>
+					<span><i id="icons_i" class="fa fa-calendar-check-o fa-3x"
+						aria-hidden="true"></i></span><br> <span class="title_hidden">자동
+						날짜 기록</span>
+				</div></a><br>
+		</div>
+	</div>
+
+
+
+	<script id="content-template-3" type="text/x-handlebars-template">
+{{#selectedPost}}
+    <textarea id="wirte_title">{{title}}</textarea>
+    <div class="bb">
+      <i class="fa fa-calendar fa-2x" aria-hidden="true"></i> <a href="#"
+        class="write_select_date_start"> <input class="write_start_date"
+        type="text" placeholder="여행 시작일" value={{sdt}} id="datepicker">
+        <div id="write_data_arrow" class="write_data_arrow">
+          <i class="fa fa-arrow-right " aria-hidden="true"></i>
+        </div> <input class="write_end_date" value={{edt}} type="text" placeholder="여행 종료일"
+        id="datepicker1"></a>
+      <hr id="aa">
+    </div>
+{{/selectedPost}}
+  </script>
+
+	<div class="header" id="header"></div>
+
+
+	<div class="all_photo_select">
+		<a href="javascript:file_browse_none()" id="fileAllup"><i
+			class="fa fa-picture-o fa-2x" aria-hidden="true"></i></a> <input
+			type="file" id="fileAllUpload" name="files" style="display: none"
+			multiple></input> <a class="help_btn" href="#"
+			onclick="test1('modal')"> <i class="fa fa-object-group fa-2x"
+			aria-hidden="true"></i></a>
+	</div>
+
+	<div class="container_main">
+		<div class="day_list">
+		</div>
+		<br> <a href="#" onclick="adddiv(); return false;"><i
+			id="write_addition" class="fa fa-plus-circle fa-3x"
+			aria-hidden="true"></i></a>
+
+
+		<!--모달 맵 시작  -->
+		<div id="map_container">
+			<br>
+			<h3>여행지를 추가하세요</h3>
+
+			<hr>
+			<div id="mapPlusSearchbox">
+
+				<input id="pac-input" class="controls" type="text"
+					placeholder="장소를 검색하세요" value="">
+				<button id="cleanSearchBox">X</button>
+				<div id="map"></div>
+			</div>
+
+			<div class="buttons">
+				<button type="button" id="cancel-login"
+					onclick="test('map_container'); test1('modal');">취소</button>
+				<button type="button"
+					onclick="saveMap(); createMap(); test('map_container'); test1('modal');"
+					id="saveMap-summit">등록</button>
+			</div>
+			<hr>
+		</div>
+		<!-- 모달 맵 끝 -->
+
+
+
+
+	</div>
+	</div>
+	<div id="images-div"></div>
+
+
+	<script id="dayplus-template" type="text/x-handlebars-template">
+{{#each aa}}
+      <div class="day1">
+        <div class='write_day' data-srtno={{count}}>
+                  <h2><button id='day_btn{{count}}>+ 일차</button>1일차<h2>"
+                  <i class='fa fa-pencil-square-o' aria-hidden='true'></i>
+                  <input class='travel_detail_date' type="text" id='detail-date-div-{{count}}'placeholder="날짜" onclick="datePick()">
+                  <input class='gpsInfo' id='location-info-{{count}}' placeholder="여행지"></input></div>
+
+                  <div class='text_parent' id='text_parent_{{count}}' data-textparent='{{count}}'onclick='showControlBox({{count}})'>
+                  <div class='tool_box'>
+                  <a href='#' onclick="test('testdiv{{count}}'); return false;">
+                  <span id='ab{{count}}' class='fa fa-plus-circle fa-2x' aria-hidden='true'></span></a>
+                  <div id='testdiv{{count}}' style='display: none'>
+                  <a class="file_browse" href='javascript:file_browse({{count}})' multiple><img id='testdiv_1' src='/image/image.png'><input value={{count}} type='file' style='display: none' name='files' class='file1_{{count}} file1' multiple></input></a>
+                  <a href='javascript:' onclick="test('map_container'); test1('modal'); return false;"><img id='showMapModal' src='/image/marker.png'></a> 
+                  <a href='#' return false;'><img id='testdiv_2' src='/image/route.png'></img></a>
+                  <a href='javascript:;' onclick='createtextbox({{count}})'><i class='fa fa-pencil' aria-hidden='true'></i></a>
+                  </div><br></div></div></div>  
+{{/each}}
+           </script>
+
+
+	<script id="loadPage-template" type="text/x-handlebars-template">
+{{#each list}}
+<div class="day1">
+ <div class='write_day' data-srtno={{srtno}}>
+ <h2><button id='day_btn{{srtno}}>+ 일차</button>1일차<h2>"
+                  <i class='fa fa-pencil-square-o' aria-hidden='true'></i>
+                  <input class='travel_detail_date' type="text" id='detail-date-div-{{srtno}}'placeholder="날짜" onclick="datePick()">
+                  <input class='gpsInfo' id='location-info-{{srtno}}' placeholder="여행지"></input></div>
+<div class="text_parent" id="text_parent_{{srtno}}">
+
+{{#if writer}}
+<div class="whole_collage1 whole_collage" data-countPhoto={{srtno}}><img src={{writer}} style="width:700px; height:600px;></img>
+</div>
+{{/if}}
+
+{{#if cont}}
+<textarea class="text_write_box" style="width:800px; height:150px;">{{cont}}</textarea>
+{{/if}}
+
+{{#if picno}}
+  <div class="whole_collage{{picno}} whole_collage" data-countPhoto={{srtno}} ></div>
+	</div>
+{{/if}}
+{{#if lati}}
+<div style='width:809px; height:380px; border:1px solid white; margin-bottom: 70px;' id="map{{srtno}}" data-lati={{lati}} data-longit={{longit}}></div>
+{{/if}}
+</div>
+{{/each}}
+</script>
+
+
+
+	<script id="addbtn-dayplus-template" type="text/x-handlebars-template">
+{{#each insertDiv}}
+      <div class="day1">
+        <div class='write_day' data-srtno={{count}}>
+                  <h2><button onclick='changebuttontoday(day_btn{{count}})' id='day_btn{{count}}>+ 일차</button>1일차<h2>"
+                  <i class='fa fa-pencil-square-o' aria-hidden='true'></i>
+                  <input class='travel_detail_date' type="text" id='detail-date-div-{{count}}'placeholder="날짜" onclick="datePick()">
+                  <input class='gpsInfo' id='location-info-{{count}}' onclick="egitLocation()" placeholder="여행지"></input></div>
+                  <div class='text_parent' id='text_parent_{{count}}' data-textparent='{{count}}'onclick='showControlBox({{count}})'>
+
+                  <div class='tool_box'>
+                  <a href='#' onclick="test('testdiv{{count}}'); return false;">
+                  <span id='ab{{count}}' class='fa fa-plus-circle fa-2x' aria-hidden='true'></span></a>
+                  <div id='testdiv{{count}}' style='display: none'>
+                  <a class="file_browse" href='javascript:file_browse({{count}})' multiple><img id='testdiv_1' src='/image/image.png'><input value={{count}} type='file' style='display: none' name='files' class='file1_{{count}} file1' multiple></input></a>
+                  <a href='javascript:' onclick="test('map_container'); test1('modal'); return false;"><img id='showMapModal' src='/image/marker.png'></a> 
+                  <a href='#' return false;'><img id='testdiv_2' src='/image/route.png'></img></a>
+                  <a class="create_box" href='javascript:;' onclick='createtextbox({{count}})'><i class='fa fa-pencil' aria-hidden='true'></i></a>
+                  </div><br></div></div></div>  
+{{/each}}
+           </script>
+	<!-- container_main 태그 -->
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvJO_nbwEqokghhsnj7oj_uQPgnjFoa84&libraries=places"
+		async defer></script>
+	<script src="/node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="/node_modules/jquery-ui-dist/jquery-ui.min.js"></script>
+	<script src="/node_modules/handlebars/dist/handlebars.min.js"></script>
+	<script src="/node_modules/blueimp-load-image/js/load-image.all.min.js"></script>
+	<script src="/node_modules/blueimp-canvas-to-blob/js/canvas-to-blob.js"></script>
+	<script src="/node_modules/bootstrap/dist/js/bootstrap.js"></script>
+	<script
+		src="/node_modules/blueimp-file-upload/js/jquery.iframe-transport.js"></script>
+	<script src="/node_modules/blueimp-file-upload/js/jquery.fileupload.js"></script>
+	<script
+		src="/node_modules/blueimp-file-upload/js/jquery.fileupload-process.js"></script>
+	<script
+		src="/node_modules/blueimp-file-upload/js/jquery.fileupload-image.js"></script>
+	<script src="/js/article/edit.js"></script>
+
+</body>
+</html>
