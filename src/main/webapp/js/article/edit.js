@@ -21,7 +21,7 @@ var jsPictureList=[]
 function picnosearch(){
 	for(i=0;i<onlyPath1.length;i++){
 		$.ajaxSettings.traditional = true;
-		$.post('../picture/searchthispicture.json', {
+		$.post('/picture/searchthispicture.json', {
 			'path': onlyPath1[i]
 		}, function(result) {
 			var pictureparentno;
@@ -89,7 +89,7 @@ var detailLocArr = [];
 
 function addAllphoto(data){
 	$.ajaxSettings.traditional = true;
-	$.post('../detail/addAllphoto2.json', {
+	$.post('/detail/addAllphoto2.json', {
 		'picnoandparentno': picnoparentno,
 		'postnono' : postno
 	}, function(result) {
@@ -135,7 +135,7 @@ function noBackgroundSave(){
 		}
 	})
 	jQuery.ajaxSettings.traditional = true;
-	$.post('../post/update.json', {
+	$.post('/post/update.json', {
 		postnono : no,
 		title : decodeURIComponent(fititle.val()),
 		sdt: fisdt.val(),
@@ -1129,7 +1129,7 @@ function setFileUploadToInputTag() {
 
 function delPhotoTransm() {
 	$.ajaxSettings.traditional = true;
-	$.post('../picture/delete.json', {
+	$.post('/picture/delete.json', {
 		'deletePhoto' : deletePhoto 
 	}, function(result) {
 		console.log(result);

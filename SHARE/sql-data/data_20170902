@@ -89,7 +89,7 @@ CREATE TABLE POST (
 	CONT   TEXT         NULL     COMMENT '내용', -- 내용
 	PUBLIC CHAR(1)      NULL     COMMENT '공개여부', -- 공개여부
 	MNO    INTEGER      NOT NULL COMMENT '회원번호', -- 회원번호
-	GOOD   INTEGER      NULL     COMMENT '좋아요 누적' -- 좋아요 누적
+	GOOD   INTEGER      NULL DEFAULT 0    COMMENT '좋아요 누적' -- 좋아요 누적
 )
 COMMENT '게시글';
 
@@ -145,7 +145,7 @@ ALTER TABLE REPLY
 CREATE TABLE GOOD (
 	MNO    INTEGER NOT NULL COMMENT '회원번호', -- 회원번호
 	POSTNO INTEGER NOT NULL COMMENT '게시글 일련번호', -- 게시글 일련번호
-	GCNT   INTEGER NULL     COMMENT '좋아요' -- 좋아요
+	GCNT   INTEGER NULL DEFAULT 0    COMMENT '좋아요' -- 좋아요
 )
 COMMENT '좋아요';
 
@@ -448,3 +448,5 @@ ALTER TABLE REPORT
 		REFERENCES REPLY ( -- 댓글
 			RENO -- 댓글번호
 		);
+		
+		
