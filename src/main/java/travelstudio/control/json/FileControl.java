@@ -101,13 +101,13 @@ public class FileControl {
         continue;
     
       String newFilename = this.getNewFilename();
-      File file = new File(ctx.getRealPath("../upload/" + newFilename));
+      File file = new File(ctx.getRealPath("/upload/" + newFilename));
       files[i].transferTo(file);
       
 /*      File thumbnail = new File(ctx.getRealPath("/upload/" + newFilename + "_200"));
       Thumbnails.of(file).size(200, 200).outputFormat("png").toFile(thumbnail);*/
       
-      File thumbnail = new File(ctx.getRealPath("../upload/" + newFilename + "_300"));
+      File thumbnail = new File(ctx.getRealPath("/upload/" + newFilename + "_300"));
       Thumbnails.of(file).size(300, 300).outputFormat("png").toFile(thumbnail);
       
 /*      thumbnail = new File(ctx.getRealPath("/upload/" + newFilename + "_400"));
@@ -116,14 +116,14 @@ public class FileControl {
       thumbnail = new File(ctx.getRealPath("/upload/" + newFilename + "_500"));
       Thumbnails.of(file).size(500, 500).outputFormat("png").toFile(thumbnail);*/
       
-      thumbnail = new File(ctx.getRealPath("../upload/" + newFilename + "_600"));
+      thumbnail = new File(ctx.getRealPath("/upload/" + newFilename + "_600"));
       Thumbnails.of(file).size(600, 600).outputFormat("png").toFile(thumbnail);
       
 //      System.out.println(file);
       
       Picture picture = new Picture();
       Metadata metadata = ImageMetadataReader.readMetadata(file);
-      picture.setPath("../upload/" + newFilename);
+      picture.setPath("/upload/" + newFilename);
       
 /*      for (Directory directory1 : metadata.getDirectories()) {
         System.out.println(directory1.getTags());

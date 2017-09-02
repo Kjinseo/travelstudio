@@ -136,7 +136,7 @@ public JsonResult invitingUserPost(int[] requestPost) throws Exception {
       String newFilename = this.getNewFilename();
       File file = new File(ctx.getRealPath("/upload/" + newFilename));
     files[0].transferTo(file);
-    post.setCont("/mypage/upload/" + newFilename);
+    post.setCont("/upload/" + newFilename);
     File thumbnail = new File(ctx.getRealPath("/upload/" + newFilename + "_1920"));
     Thumbnails.of(file).size(2500, 2500).outputFormat("png").toFile(thumbnail);
     }
