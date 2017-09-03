@@ -2,7 +2,7 @@ var no;
 var tbody = $('.content-container');
 var userOne = ''
 	var posted_count = 0;
-var uniqueNames;
+var uniqueNames = [];
 var uniqueNum=[];
 var membernoArray=[]
 var numOfPost;
@@ -51,15 +51,15 @@ $('.userclick').click(function (){
 			var generatedHTML = template(result.data) // 템플릿 함수에 데이터를 넣고 HTML을 생성한다.
 			tbody.append(generatedHTML) // 새 tr 태그들로 설정한다.
 
-            selectLoginUserPost()
+			selectLoginUserPost()
 			/*address();*/
 //			location.href = '../main_minkdak/main.html'
 			/*usersLi()*/
-            
-            NoList();
+
+			NoList();
 		}, 'json')
-		
-	console.log("Nolist실행?")
+
+		console.log("Nolist실행?")
 })
 
 var template1=Handlebars.compile($('#content-template').html())
@@ -95,7 +95,7 @@ function search(){
 		 tbody.append(generatedHTML) // 새 tr 태그들로 설정한다.
 		 console.log(result.data)
 //		 location.href = '../main_minkdak/main.html'
-		 
+
 	}, 'json')
 }
 var loadMno = [];
@@ -116,10 +116,10 @@ function NoList() {
 		var flag_list_show=new Array();
 		var flag_count=0;
 		var test_count=1;
-		
+
 		//for(var l = 0; l < loadMno.length; l++){
-			//console.log(loadMno[l])
-		
+		//console.log(loadMno[l])
+
 		for(var k = 0; k < membernoArray.length; k++) {
 			console.log(membernoArray[k])
 			console.log(result.data[membernoArray[k]])
@@ -132,7 +132,7 @@ function NoList() {
 						result.data[membernoArray[j]][k].memberno = membernoArray[j]
 						flag_list[flag_count++] =(result.data[membernoArray[j]][k])
 						console.log(j,"=============>", result.data[membernoArray[j]][k])
-				}
+					}
 				}
 			}
 		}
@@ -141,9 +141,9 @@ function NoList() {
 			if(flag_list[l].memberno == )
 		}*/
 		console.log(flag_list[0].memberno)
-		
+
 		console.log("가공전flag_list================>",flag_list)
-		
+
 		for(i=0;i<flag_list.length;i++){
 			console.log(flag_list[i].address.indexOf("한국"))
 			if(flag_list[i]!=undefined){
@@ -169,86 +169,144 @@ function NoList() {
 			}
 		}
 		console.log("가공후flag_list================>",flag_list)
-		
-		var memberNum = flag_list[0].memberno
+
 //		for(var q = 0; q < membernoArray.length; q++) {
-//			for(var w = 0; w < flag_list.length; w++){
-//				if(flag_list[w].memberno == membernoArray[q]) {
-//					if($.inArray(flag_list[w].address, uniqueNames.address) === -1){
-//						uniqueNames.push(flag_list[w]); 
-//						console.log("플레그 주소"+flag_list[w].address)
-//						console.log("플레그 주소"+flag_list[w].address)
+//		for(var w = 0; w < flag_list.length; w++){
+//		if(flag_list[w].memberno == membernoArray[q]) {
+//		if($.inArray(flag_list[w].address, uniqueNames.address) === -1){
+//		uniqueNames.push(flag_list[w]); 
+//		console.log("플레그 주소"+flag_list[w].address)
+//		console.log("플레그 주소"+flag_list[w].address)
+//		}
+//		}
+//		}
+//		}
+
+		var count = 0;
+		uniqueNames = flag_list
+
+		for (var i = 0; i < flag_list.length; i++) {
+			count = 0;
+
+			for (var j = 1; j < flag_list.length; j++){
+				if (j != i) {
+					if ((uniqueNames[i].memberno == flag_list[j].memberno) 
+							&& (uniqueNames[i].address == flag_list[j].address)) {
+						uniqueNames.splice(i, 1)
+						console.log(uniqueNames)
+					}
+				}
+			}
+		}
+		
+		for (var i = 0; i < uniqueNames.length; i++) {
+			count = 0;
+			for(var j = 0; j < uniqueNames.length; j++) {
+					if (uniqueNames[i].memberno == uniqueNames[j].memberno) {
+						count++
+						i = j
+					}
+			}
+			$('.total_' + uniqueNames[i].memberno).text(count)
+		}
+
+		
+//		var count = 0;
+//		uniqueNames = flag_list
+//		console.log('new', uniqueNames)
+//
+//		$.each(flag_list, )
+//		for (var i = 0; i < flag_list.length; i++) {
+//			count = 0;
+//
+//			for (var j = 1; j < flag_list.length; j++){
+//				if (j != i) {
+//					if ((uniqueNames[i].memberno == flag_list[j].memberno) 
+//							&& (uniqueNames[i].address == flag_list[j].address)) {
+//						uniqueNames.splice(i, 1)
+//						console.log(uniqueNames)
 //					}
 //				}
 //			}
 //		}
-		
-		// 멤버 별로 중복 주소 제거
-		for (var i=0; i < flag_list.length; i++) {
-			if(memberNum == flag_list[i].memberno) {
-				if(uniqueNames.length == 0){
-					uniqueNames.push(flag_list[i])
-					for(var j = 0; j <uniqueNames.length; j++) {
-						if(flag_list[i].address != uniqueNames[j].address) {
-							uniqueNames.push(flag_list[i])
-						}
-					}
-				}else{
-					
-					for(var j = 0; j <uniqueNames.length; j++) {
-						if(memberNum == uniqueNames[j].memberno) {
-							if(flag_list[i].address != uniqueNames[j].address) {
-								uniqueNames.push(flag_list[i])
-							}
-						}else {
-							if(j == uniqueNames.length-1)
-								uniqueNames.push(flag_list[i])
-						}
-					}
-				} 
-			} else {
-				memberNum = flag_list[i].memberno
-				i--;
-				continue;
-			}
-		}
-
-//		if($.inArray(el.address, uniqueNames.address) === -1){
-//			uniqueNames.push(el); 
+//		
+//		for (var i = 0; i < uniqueNames.length; i++) {
+//			count = 0;
+//			for(var j = 0; j < uniqueNames.length; j++) {
+//					if (uniqueNames[i].memberno == uniqueNames[j].memberno) {
+//						count++
+//						i = j
+//					}
+//			}
+//			$('.total_' + uniqueNames[i].memberno).text(count)
 //		}
-//}
-	/*$.each(flag_list, function(i, el){
-		if($.inArray(el.address, uniqueNames.address) === -1){
-			uniqueNames.push(el); 
-		}
-	});*/			
-		console.log(uniqueNames)
-//		console.log(uniqueNames.length)
-//		numOfFlag=uniqueNames.length;
-//		console.log(numOfFlag);
-		
-		
-		for(i=0;i < uniqueNames.length;i++){
+
+//		}
+//		console.log(uniqueNames)
+//		$('.visit_num' ,'div[data-mno="'+ memberNum +'"]').text(countryCount)
+//		if($.inArray(el.address, uniqueNames.address) === -1){
+//		uniqueNames.push(el); 
+//		}
+//		}
+//		uniqueNames.push(flag_list[0])
+//		uniqueNames.push(flag_list[1])
+//		uniqueNames.push(flag_list[2])
+//		uniqueNames.push(flag_list[3])
+//		uniqueNames.push(flag_list[4])
+//		uniqueNames.push(flag_list[5])
+//		uniqueNames.push(flag_list[6])
+//		uniqueNames.push(flag_list[7])
+//		console.log(uniqueNames)
+//		console.log(flag_list)
+//		try {
+//		$.each(flag_list, function(i, el) {
+//		console.log(i)
+//		console.log(el)
+//		for (var j = 0; j < el.length; j++) {
+//		if(uniqueNames.length == 0) {
+//		uniqueNames.push(el); 
+//		console.log(uniqueNames)
+//		} else if(uniqueNames[j].memberno == el.memberno) {
+//		console.log('a')
+//		if(el.address == uniqueNames[j].address){
+//		uniqueNames.splice(j, 1); 
+//		console.log('b')
+//		}
+//		}
+//		console.log(uniqueNames[i].memberno)
+//		}
+//		});			
+//		} catch(e) {}
+
+
+//		console.log(uniqueNames)
+////		console.log(uniqueNames.length)
+////		numOfFlag=uniqueNames.length;
+////		console.log(numOfFlag);
+
+
+		for(i=0;i < uniqueNames.length;i++) {
 			$('<img style=width:25px; height:25px;>').attr('src',uniqueNames[i].address).css('margin-right','7px').appendTo($('.member_visit_' + uniqueNames[i].memberno))
 		}
-		})
-		
+	})
+
 } // functionNoList
 
 var loading =0
 var returnPost = []
 
-// mno로 post 가져오기 
+//mno로 post 가져오기 
 function selectLoginUserPost(){
 	console.log(membernoArray)
-	
+
 	// 멤버 번호 길이만큼 반복하면서 멤버 하나씩 요청
-	for(i=0; i<membernoArray.length; i++){
+	for(i=0; i<membernoArray.length; i++) {
 		console.log(membernoArray.length, membernoArray[i])
+
 		$.post('/post/selectOneUserPost.json',{'number':membernoArray[i]}, function(result) {
 			returnPost.push(result)
 			console.log(result);
-			
+
 			for(j=0; j<result.data.selectOneUserPost.length; j++){
 				postOwner=result.data.selectOneUserPost[j].mno // 멤버 번호 받기.
 				console.log("postOwner",postOwner);
@@ -256,16 +314,23 @@ function selectLoginUserPost(){
 				numOfPost = result.data.selectOneUserPost.length; // 멤버 번호로 받은 게시물 개수
 				console.log("console.log(numOfPost)", numOfPost);
 			}
-			
-			
+
+
 			if(numOfPost == 0) {
-			console.log(numOfPost)
-				$('.txt_num' ,'div[data-mno="'+ postOwner +'"]').text('0')
+				console.log(numOfPost)
+				$('.travel_num' ,'div[data-mno="'+ postOwner +'"]').text('0')
 			} else {
-				$('.txt_num' ,'div[data-mno="'+ postOwner +'"]').text(numOfPost)
+				$('.travel_num' ,'div[data-mno="'+ postOwner +'"]').text(numOfPost)
 			}
-			
-			})
-		
+//			console.log($('img' ,'member_visit_'+postOwner).length, postOwner)
+
+		})
+
+
+
+		/*$('.visit_num', 'div[data-mno="'+ postOwner +'"]').each(function() {
+
+			})*/
+
 	}
 }
