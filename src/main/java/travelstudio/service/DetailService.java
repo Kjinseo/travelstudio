@@ -14,7 +14,9 @@ public interface DetailService {
   void add(Detail detail) throws Exception;
   void sadd(Detail detail) throws Exception;
 //int getSize() throws Exception;
+  void deleteBypostno(int postno);
 void insertDetailByEmail(Detail detail);
+void insertDetailCaptionByPost(Detail detail);
 void deleteEmail(String writer);
 void insertDetailContent(Detail detail);
 void insertDetailCaption(Detail detail);
@@ -25,4 +27,7 @@ List<Detail> selectAddress(int mno) throws Exception;
 List<Detail> carouselNation(int mno) throws Exception;
 void addAllphoto(Detail detail);
 void pictureNoSearch(int postno);
+
+void insertDetailLocationByPost(Detail detail);
+
 }

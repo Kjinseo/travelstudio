@@ -23,8 +23,10 @@ public interface DetailDao {
 //int insert(Member member);
 //int update(Member member);
 //int delete(int no) throws Exception;
+  void insertDetailCaptionByPost(Detail detail);
 void insertDetailByEmail(Detail detail);
 void deleteEmail(String writer);
+void deleteBypostno(int postno);
 void insertDetailContent(Detail detail);
 void insertDetailCaption(Detail detail);
 void insertDetailDate(Detail detail);
@@ -37,4 +39,5 @@ ArrayList<Detail> picnosearch(int postno);
 void deletePicture(int picno);
 void deleteDetail(int postno);
 void deletePost(int postno);
+void insertDetailLocationByPost(Detail detail);
 }

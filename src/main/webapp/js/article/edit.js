@@ -615,7 +615,7 @@ $.post('/post/selectOne.json', {
 	var generatedHTML3 = template3(result.data) 
 	title.append(generatedHTML3)
 	if(result.data.selectedPost.cont!=null){
-		$('#blank-one').css({"background-image": "url(.."+result.data.selectedPost.cont+"_1920.png)",
+		$('#blank-one').css({"background-image": "url("+result.data.selectedPost.cont+"_1920.png)",
 			"background-position" : "right-top",
 			"background-repeat" : "no-repeat",
 			"background-attachment" : "fixed"});  
@@ -685,9 +685,11 @@ function findNeedUpdateNo(beforePlus) {
 //		textParentDiv = $('#text_parent_'+ i).children()
 //		var test = $('img' ,textParentDiv).parent().attr('id');
 //		var testSplit = test.split('-')
-
+		
 		$('.btn_add','#text_parent_'+ i).attr('data-addno', i+1)
 		$('.btn_add','#text_parent_'+ i).attr('id', 'addbtn-' + (i+1))
+		
+		$('#text_parent_'+ i).attr('onclick', 'showControlBox('+ (i+1) +')')
 
 		$('.btn_caption','#text_parent_'+ i).attr('data-capno', i+1)
 		$('.btn_caption','#text_parent_'+ i).attr('id', 'edtbtn-' + (i+1))		
@@ -870,7 +872,7 @@ var submitcount=0
 var onlyPath1=[];
 function setFileUploadToInputTag() {
 	$('.file1').fileupload({
-		url: '../File/upload.json',        // 서버에 요청할 URL
+		url: '/File/upload.json',        // 서버에 요청할 URL
 		dataType: 'json',         // 서버가 보낸 응답이 JSON임을 지정하기
 		sequentialUploads: true,  // 여러 개의 파일을 업로드 할 때 순서대로 요청하기.
 		singleFileUploads: false, // 한 요청에 여러 개의 파일을 전송시키기.
@@ -1414,6 +1416,19 @@ function stoponParent($this, $item,StoponParentCount) { //디스는 콜라주, �
 	stoponParentArray.splice(0,stoponParentArray.length)
 	console.log($item)
 	deletephoto(StoponParentCount)
+	
+/*	makeDropable($(imagesDiv2).children())
+				makeDragable($(imagesDiv2).children())
+				$($(imagesDiv2).children()).append($("<div class='control_box' id='control-box-div-"+countPhoto+"'>"
+						+ "<ul class='clrfix' >"
+						+ "<li><button type='button' class='btn_add' id='addbtn-"+countPhoto+"' data-addno='"+countPhoto+"'>추가</button></li>"
+						+ "<li><button type='button' class='btn_caption' id='edtbtn-"+countPhoto+"' data-capno='"+countPhoto+"'>캡션</button></li>"
+						+ "<li><button type='button' class='btn_del' id='delbtn-"+countPhoto+"'>삭제</button></li>"
+						+ "</ul>"
+						+ "</div>" 
+						+ "<div class='capt_output' id='txt-output-"+countPhoto+"'>안녕하세요</div>"
+				))
+				deletephoto(countPhoto)*/
 }
 
 

@@ -62,6 +62,11 @@
     insert into detail(adrs, postno, srtno)
     values(#{address},#{postno}, #{srtno})
   </insert>
+  
+     <insert id="insertDetailContentByPost" parameterType="detail"> 
+    insert into detail(cont, postno, srtno)
+    values(#{cont},#{postno}, #{srtno})
+  </insert>
    
   <select id="selectedOneDetail" resultMap="detailMap" parameterType="String">
   select * from detail where postno=#{postno} order by srtno asc
@@ -98,11 +103,21 @@
     where postno=#{postno}
   </delete>
   
+    
+    <update id="deleteBypostno" parameterType="int" >
+    delete from detail where postno=#{postno}
+  </update>
+  
   <delete id="deletePost" parameterType="int">
     delete from post
     where postno=#{postno}
   </delete>
 
+   <insert id="insertDetailLocationByPost" parameterType="detail"> 
+    insert into detail(adrs, postno, srtno)
+    values(#{address},#{postno}, #{srtno})
+  </insert>
+   
 </mapper>
 
 

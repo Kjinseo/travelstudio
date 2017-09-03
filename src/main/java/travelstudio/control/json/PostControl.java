@@ -252,7 +252,102 @@ public JsonResult invitingUserPost(int[] requestPost) throws Exception {
     return String.format("%d_%d", System.currentTimeMillis(), ++count); 
   }
   
-  
+  @RequestMapping("update")
+  public JsonResult update(int postnono, Post post, String[] content, String[] caption, String[] travelDate, String[] location, HttpServletRequest req) throws Exception {
+    System.out.println("업데이트 안에서 찍는다");
+    for(int i = 0 ; i < caption.length; i++){
+    System.out.println(caption);
+    }
+    for(int j = 0; j< travelDate.length;j++){
+    System.out.println(travelDate);
+    }
+    for(int k= 0; k < location.length; k++){
+    System.out.println(location);}
+    HttpServletRequest httpRequest= (HttpServletRequest) req;
+    Member loginMember = (Member)httpRequest.getSession().getAttribute("loginMember");
+    
+    detailService.deleteBypostno(postnono);
+    System.out.println("%%%%%%%%%%%%%%%%%%%%%%%");
+    System.out.println(post);
+    if(travelDate!=null){
+    for(int i=0; i< travelDate.length;i++){
+      System.out.println(travelDate[i]);
+      System.out.println("트레블데이트");
+    }
+    }
+    
+    Detail detail = new Detail();
+    Detail detailCaption = new Detail();
+    Detail detailTravelDate = new Detail();
+    Detail detailLocation = new Detail();
+    
+    detail.setPostno(postnono);
+    /*System.out.println(post.getCont());*/
+    
+    /*detail.setWriter(loginMember.getEmail());*/
+    
+    System.out.println(content);
+    if(content!=null){
+    for(int i=0;i<content.length;i+=2){
+      detail.setCont(content[i+1]);
+      System.out.println("콘텐츠 하나씩 출력");
+      System.out.println(content[i]);
+      detail.setSrtno(Integer.parseInt((content[i])));
+      System.out.println(content[i]);
+      detailService.insertDetailContent(detail);
+      }
+    }
+    
+    detailCaption.setPostno(postnono);
+    /*detailCaption.setWriter(loginMember.getEmail());*/
+    
+    if(caption!=null){
+    for(int j=0; j < caption.length;j+=2){
+      System.out.printf("caption 넘기기 ========>");
+      System.out.printf("%s,%s\n",caption[j],caption[j+1]);
+      detailCaption.setSrtno(Integer.parseInt(caption[j]));
+      detailCaption.setCapt(caption[j+1]);
+      detailService.insertDetailCaptionByPost(detailCaption);
+    }
+    }
+    
+    System.out.printf("날짜확인=========>");
+    detailTravelDate.setPostno(postnono);
+    /*detailTravelDate.setWriter(loginMember.getEmail());*/
+    /*SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");*/
+    /*Date dateTypeCasting = null;*/
+    
+    String oldstring = null;
+    
+    if(travelDate!=null){
+    for(int k=0; k < travelDate.length; k+=2) {
+      
+      detailTravelDate.setSrtno(Integer.parseInt(travelDate[k]));
+      /*Date date = new SimpleDateFormat("yyyy-MM-dd").parse([k+1]);*/
+      detailTravelDate.setDate(travelDate[k+1]);
+//      detailTravelDate.setDate(travelDate[k+1]);
+      detailService.insertDetailDate(detailTravelDate);
+    }
+    }
+    
+    
+    detailLocation.setPostno(postnono);
+    detailLocation.setWriter(loginMember.getEmail());
+    if(location !=null){
+    for(int k=0; k < location.length; k+=2) {
+      
+      detailLocation.setSrtno(Integer.parseInt(location[k]));
+      detailLocation.setAddress(location[k+1]);
+      /*detailTravelDate.setDate(travelDate[k+1]);*/
+      detailService.insertDetailLocationByPost(detailLocation);
+    }
+    }
+    detailService.insertDetailByEmail(detailLocation);
+    
+    detailService.deleteEmail(loginMember.getEmail());
+    
+    return new JsonResult(JsonResult.SUCCESS, post);
+  }  
 
 }
 

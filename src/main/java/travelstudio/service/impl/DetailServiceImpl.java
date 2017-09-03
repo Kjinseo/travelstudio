@@ -106,6 +106,23 @@ public void addAllphoto(Detail detail) {
   
 }
 
+
+@Override
+public void insertDetailCaptionByPost(Detail detail) {
+  detailDao.insertDetailCaptionByPost(detail);
+}
+
+@Override
+public void deleteBypostno(int postno) {
+  detailDao.deleteBypostno(postno);
+  
+}
+@Override
+public void insertDetailLocationByPost(Detail detail) {
+  // TODO Auto-generated method stub
+  detailDao.insertDetailLocationByPost(detail);
+}
+
 //  
 //  public Teacher get(int no) throws Exception {
 //    return teacherDao.selectOne(no);

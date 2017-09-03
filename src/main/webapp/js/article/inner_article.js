@@ -431,8 +431,9 @@ $.post('/post/selectOne.json', {
 
 	var generatedHTML3 = template3(result.data) 
 	title.append(generatedHTML3)
+	console.log(result.data.selectedPost.cont)	
 	if(result.data.selectedPost.cont!=null){
-		$('#blank-one').css({"background-image": "url(.."+result.data.selectedPost.cont+"_1920.png)",
+		$('#blank-one').css({"background-image": "url("+result.data.selectedPost.cont+"_1920.png)",
 			"background-position" : "right-top",
 			"background-repeat" : "no-repeat",
 			"background-attachment" : "fixed"});  
