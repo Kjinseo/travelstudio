@@ -23,6 +23,7 @@ public class DetailServiceImpl implements DetailService {
    /*detailDao.insert(detail);*/
    detailDao.insert_map(detail);
  }
+ 
  public void addMap(Detail detail) throws Exception {
    /*detailDao.insert(detail);*/
    detailDao.insert_map(detail);
@@ -33,14 +34,13 @@ public class DetailServiceImpl implements DetailService {
  public void pictureNoSearch(int postno) {
    
    ArrayList<Detail> picno = detailDao.picnosearch(postno);
-//   ArrayList<String> arr1 ;
-   System.out.printf("picno리턴 받는다=========>");
-   System.out.println(picno);
+   
+   detailDao.deleteDetail(postno);
+   
    for(int i =0; i < picno.size(); i++) {
      detailDao.deletePicture(picno.get(i).getPicno());
    }
    
-   detailDao.deleteDetail(postno);
    detailDao.deletePost(postno);
    
  }

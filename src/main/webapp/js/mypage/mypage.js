@@ -1,9 +1,147 @@
 var userDesc= $('.user_desc');
 
-var alias= location.href.split('?')[1]
+var inviteMemberNo=0;
+var targetpostno=0;
+var targetuserimage=0;
+/* 친구 초대하기에서 검색후 친구 이름을 눌렀을때 확인창 부분에서 하는 함수 */
+$(document).on("click",".select_friends",function(){
+	 console.log('selectf click')
+	 console.log(this)
+	 console.log($(this).attr('data-email'))
+	 var str = $(this).attr('data-email')+'에게 초대장을 보내시겠습니까?'
+	 $('#confirm-email').html(str)
+	 inviteMemberNo=$(this).attr('class').split(' ')[1]
+	 console.log($(this).attr('class'))
+	 /* console.log($(this).children("div").first().children("div").children()) */
+	 targetuserimage=$(this).attr('data-path')
+	 test1('modal2')
+	 test('confirm-invite-f')
+	 console.log(inviteMemberNo)
+})
+/* 친구 초대하기에서 검색후 친구 이름을 눌렀을때 확인창 부분에서 하는 함수  끝 */
+ $('#confirm-invite-f-yes').click(function(){
+	 console.log(inviteMemberNo)
+	 console.log(targetpostno)
+	$.post('/cowork/invite.json', {
+		'mno': inviteMemberNo,
+		'postno' : targetpostno
+	}, function(result) {
+	 /* $('<img src='+targetuserimage+'>').appendTo($('.join_user_list')) */
+	 console.log($('.join_user_list'))
+	 $('.join_user_list').append($('<div class="'+inviteMemberNo+'_'+targetpostno+'">').html('<img src="'+targetuserimage+'"><a class="delete-invite-f"><i class="fa fa-times-circle-o" aria-hidden="true"></i></a>'))
+	}, 'json')
+})
+ 
+ $(document).on("click",".delete-invite-f",function(){
+	 console.log($(this).parent())
+	 var img1 = $(this).parent()
+	 $.post('/cowork/delete.json', {
+		'mno': img1.attr('class').split('_')[0],
+		'postno' : img1.attr('class').split('_')[1]
+	}, function(result) {
+		console.log($(this))
+	 img1.remove()
+	}, 'json')
+ })
+ 
+$('#f_search').click(function(){
+	console.log('fsearch click')
+	var searchusername=$('#f_search-bar').val()
+	$.post('/member/search.json', {
+		'keyword': searchusername
+	}, function(result) {
+		console.log(result)
+		 var template = Handlebars.compile($('#search-friends-template').html())
+	      var generatedHTML = template(result.data) // 템플릿 함수에 데이터를 넣고 HTML을 생성한다.
+//	      tbody.text('') // tbody의 기존 tr 태그들을 지우고
+	      $('#f_search_list > ul').append(generatedHTML) // 새 tr 태그들로 설정한다.
+		
+	}, 'json')
+})
+
+function dropdown() {
+	
+$(function() {
+// Dropdown toggle
+$('.dropdown-toggle').click(function(){
+  $(this).next('.dropdown').toggle();
+  /* console.log('아예안되나?') */
+});
+
+$(document).click(function(e) {
+  var target = e.target;
+  if (!$(target).is('.dropdown-toggle') && !$(target).parents().is('.dropdown-toggle')) {
+    $('.dropdown').hide();
+  }
+});
+});
+}
+
+$(document).on("click",".invite_f",function(){
+	console.log(this)
+targetpostno=$(this).attr('data-value')
+	$('#modal').css('display','inline-block')
+	$('#invite_f_container').css('display','inline-block')
+	})
+	
+$(document).on("click",".share_travel",function(){
+console.log(this)
+targetpostno=$(this).attr('data-value')
+$('#modal').css('display','inline-block')
+	$('#invite_f_container').css('display','inline-block')
+})
+
+function test1(idMyDiv) {
+  var objDiv = document.getElementById(idMyDiv);
+  if (objDiv.style.display == "inline-block") {
+    objDiv.style.display = "none";
+  } else {
+    objDiv.style.display = "inline-block";
+  }
+  event.preventDefault();
+  event.stopPropagation()
+}
+
+function test(idMyDiv) {
+  var objDiv = document.getElementById(idMyDiv);
+  if (objDiv.style.display == "inline-block") {
+    objDiv.style.display = "none";
+  } else {
+    objDiv.style.display = "inline-block";
+  }
+  event.preventDefault();
+  event.stopPropagation()
+}
+
+$('.delete_travel').on('click', function(){
+  $('.wrap11, #b').toggleClass('active');
+  return false;
+});
+$(".delete_travel > #no-btn").click(function () {
+        $('.wrap11, #b').toggleClass('active');
+    });
+       
+function slideCall() {
+	$('#slide_icon').click(function (){
+  $('.slide_bar').animate({left:0}, 350);
+  $('.cover_dimmed').show();
+})
+$('#cancel_icon').click(function () {
+  $('.slide_bar').animate({left:-320}, 350);
+  $('.cover_dimmed').hide();
+})
+}
+function slide_off() {
+  $('.cover_dimmed').click(function () {
+    $('.slide_bar').animate({left:-320}, 350);
+    $('.cover_dimmed').hide();
+})
+}
+$(document).ready(slideCall)
+$(document).ready(slide_off)
+
+
 var loginMemberNo =0;
-console.log(alias)
-console.log(encodeURI(alias, "UTF-8"))
 if(alias!=null){
 	$('#mysetting').attr('display','none;')
 	$.post('/member/searchOneUser.json', {
@@ -38,7 +176,6 @@ if(alias!=null){
 }else{
 	$.getJSON('/member/header.json', function(result) {
 
-		console.log(result);
 		var template = Handlebars.compile($('#user-info-template').html())
 		loginMemberNo=result.data.loginMember.mno
 		var generatedHTML = template(result.data.loginMember) // 템플릿 함수에 데이터를 넣고 HTML을 생성한다.
@@ -62,15 +199,12 @@ if(alias!=null){
 	})
 
 	function selectLoginUserPost(){
-		console.log(loginMemberNo)
 		$.post('/post/selectOneUserPost.json',{'number':loginMemberNo}, function(result) {
-			console.log(result);
 			var template = Handlebars.compile($('#content-template').html())
 			var generatedHTML = template(result.data) // 템플릿 함수에 데이터를 넣고 HTML을 생성한다.
 //			tbody.text('') // tbody의 기존 tr 태그들을 지우고
 			$('.travle_list').append(generatedHTML) // 새 tr 태그들로 설정한다.
 			dropdown()
-			console.log(result.data.list)
 		})
 	}
 }
@@ -92,7 +226,7 @@ $(document).on("click",".delete_travel",function(){
 function deleteYes(postno) {
 	$('#delete-yes-btn').click(function() {
 		console.log(postno)
-		$.post('../post/delete.json', {
+		$.post('/post/delete.json', {
 			'postno' : postno
 		}, function(result) {
 			console.log(result)
@@ -121,7 +255,7 @@ $(document).on("click",".select_friends",function(){
 $('#confirm-invite-f-yes').click(function(){
 	console.log(inviteMemberNo)
 	console.log(targetpostno)
-	$.post('../cowork/invite.json', {
+	$.post('/cowork/invite.json', {
 		'mno': inviteMemberNo,
 		'postno' : targetpostno
 	}, function(result) {
@@ -134,7 +268,7 @@ $('#confirm-invite-f-yes').click(function(){
 $(document).on("click",".delete-invite-f",function(){
 	console.log($(this).parent())
 	var img1 = $(this).parent()
-	$.post('../cowork/delete.json', {
+	$.post('/cowork/delete.json', {
 		'mno': img1.attr('class').split('_')[0],
 		'postno' : img1.attr('class').split('_')[1]
 	}, function(result) {
@@ -147,7 +281,7 @@ $(document).on("click",".delete-invite-f",function(){
 $('#f_search').click(function(){
 	console.log('fsearch click')
 	var searchusername=$('#f_search-bar').val()
-	$.post('../member/search.json', {
+	$.post('/member/search.json', {
 		'keyword': searchusername
 	}, function(result) {
 		console.log(result)
@@ -232,16 +366,9 @@ $(".delete_travel > #no-btn").click(function () {
 	$('.wrap11, #b').toggleClass('active');
 });
 
-
-
-var alias= location.href.split('?')[1]
-console.log(encodeURI(alias, "UTF-8"))
-
 $.getJSON('/member/header.json', function(result) {
-	console.log(result);
-	 mno=result.data.loginMember;
-	console.log(mno)
-	console.log(result.data.loginMember)
+	console.log(result.data)
+	mno=result.data.loginMember;
 	if(mno!=undefined){
 		$('#slide_icon').css('display','inline-block');
 		$('#start-my-journey').off('click');

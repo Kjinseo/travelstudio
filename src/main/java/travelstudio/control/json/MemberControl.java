@@ -88,27 +88,22 @@ public JsonResult update(Member member,HttpServletRequest req) throws Exception 
   return new JsonResult(JsonResult.SUCCESS, "ok");
 }
 
-@RequestMapping(path="upload1")
+@RequestMapping(path="myPhotoUpload")
 public Object upload1(MultipartFile[] files, HttpServletRequest req) throws Exception {
   HttpServletRequest httpRequest = (HttpServletRequest) req;
   Member loginMember = (Member)httpRequest.getSession().getAttribute("loginMember");
   
   HashMap<String,Object> resultMap = new HashMap<>();
- /* ProfileService.photoUp*/
   ArrayList<Object> fileList = new ArrayList<>();
   
   for (int i = 0; i < files.length; i++) {
-    files[i].transferTo(new File(servletContext.getRealPath("/mypage/upload/" + files[i].getOriginalFilename())));
-    /*System.out.println(files[i].getOriginalFilename());*/
+    files[i].transferTo(new File(servletContext.getRealPath("/upload/" + files[i].getOriginalFilename())));
     HashMap<String,Object> fileMap = new HashMap<>();
     fileMap.put("filename", files[i].getOriginalFilename());
     fileMap.put("filesize", files[i].getSize());
     fileList.add(fileMap);
     Member member = new Member();
-    
-    
     String newFile =files[i].getOriginalFilename();
-    /*System.out.println(newFile);*/
     member.setPath(newFile);
     member.setMno(loginMember.getMno());
     

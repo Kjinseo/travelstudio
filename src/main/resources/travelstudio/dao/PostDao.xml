@@ -28,6 +28,8 @@
   <select id="search" resultMap="postMap" parameterType="String">
     select * from post natural join member where title like concat('%',#{keyword},'%')
   </select>
+  
+  
     
    
   
@@ -74,6 +76,8 @@
    <select id="selectList" resultMap="postMap" parameterType="map">
     select * from post natural join member order by postno desc
   </select> 
+  
+  
   
   <select id="getWriteCount" resultMap="postMap" parameterType="map">
   	select count(*) from post where mno=#{mno}
