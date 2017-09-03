@@ -7,7 +7,44 @@
 	<button type="button" id="start-my-journey"
 		onclick="location.href='/desktop/article/write.html'">여행기 작성</button>
 </header>
+<script id="tbody-template4" type="text/x-handlebars-template">
+	<div class="member_slide">
+		<div class="member_info">
+			<div class="user_photo">
+				<img src="{{path}}">
+			</div>
+			<div class="user_id">{{alias}}</div>
+			<div class="user_url">{{email}}</div>
 
+			
+				<div class="user_mypage">마이페이지	</div>
+				<div id="subscribe">구독</div>
+			<div class="user_nation"></div>
+
+			<div class="user_visited">
+				<div class="user_write">
+					<img src="/image/textbook.png" alt=""> <span>여행기</span>
+					<div class="counting1"></div>
+				</div>
+				<div class="user_visited_count">
+					<img src="/image/aeroplane.png" alt=""> <span>여행국가</span>
+
+					<div class="counting2"></div>
+				</div>
+			</div>
+			<hr class="slide_bar_classify">
+
+			<div class="slide_bar_menu">
+				<ul class="list_menu">
+					<li><a href="/desktop/login/find_pwd.html">비밀번호 변경</a></li>
+					<li><a href="#">탈퇴하기</a></li>
+					<li><a href="#">로그아웃</a></li>
+					<li><a href="#">공지사항</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</script>
 <script>
 	$(document).on("click",'.user_mypage',function(){
 		location.href="/desktop/mypage/mypage.html"

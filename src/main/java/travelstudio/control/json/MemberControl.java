@@ -161,6 +161,9 @@ public JsonResult myPhotoUpload(MultipartFile[] files) throws Exception {
     File thumbnail = new File(servletContext.getRealPath("/upload/" + filename + "_100"));
     Thumbnails.of(file).size(100, 100).outputFormat("png").toFile(thumbnail);
     
+    File thumbnailSmall = new File(servletContext.getRealPath("/upload/" + filename + "_60"));
+    Thumbnails.of(file).size(60, 60).outputFormat("png").toFile(thumbnailSmall);
+    
     HashMap<String,Object> fileMap = new HashMap<>();
     fileMap.put("filename", filename);
     fileMap.put("filesize", files[i].getSize());

@@ -8,6 +8,9 @@ var targetpostno=0;
 $(function() {
 	$('.header-container').load('../main/header.html')
 	
+	$('.footer-container').load('../main/footer.html')
+
+	
 	$.getJSON('/member/header.json', function(result) {
 	console.log(result.data)
 
@@ -37,23 +40,28 @@ $(function() {
 })
 
 /* 친구 초대하기에서 검색후 친구 이름을 눌렀을때 확인창 부분에서 하는 함수 */
-$(document).on("click",".select_friends",function(){
-	 console.log('selectf click')
-	 console.log(this)
-	 console.log($(this).attr('data-email'))
-	 var str = $(this).attr('data-email')+'에게 초대장을 보내시겠습니까?'
-	 $('#confirm-email').html(str)
-	 inviteMemberNo=$(this).attr('class').split(' ')[1]
-	 console.log($(this).attr('class'))
-	 /* console.log($(this).children("div").first().children("div").children()) */
-	 targetuserimage=$(this).attr('data-path')
-	 test1('modal2')
-	 test('confirm-invite-f')
-	 console.log(inviteMemberNo)
+$(document).on("click",".modalForinv",function(){
+	$(this).attr('data-email')
+	$(this).attr('data-no')
+	var str = $(this).attr('data-email')+'에게 초대장을 보내시겠습니까?'
+	 
+	swal({
+	    title: "에게 초대장을 보내시겠습니까?",
+	    type: "warning",
+	    showCancelButton: true,
+	    confirmButtonColor: "lightseagreen",
+	    confirmButtonText: "네",
+	    closeOnConfirm: true,
+	    cancelButtonText: "아니요"
+	  },
+	  function(){
+	  
+	});
+	 
 })
 
 	
-function modal(idMyDiv) {
+function test1(idMyDiv) {
   var objDiv = document.getElementById(idMyDiv);
   if (objDiv.style.display == "inline-block") {
     objDiv.style.display = "none";
@@ -127,11 +135,10 @@ $('#f_search').click(function(){
 	$.post('/member/search.json', {
 		'keyword': searchusername
 	}, function(result) {
-		console.log(result)
+		console.log(result.data)
 		var template = Handlebars.compile($('#search-friends-template').html())
 		var generatedHTML = template(result.data) // 템플릿 함수에 데이터를 넣고 HTML을 생성한다.
-//		tbody.text('') // tbody의 기존 tr 태그들을 지우고
-		$('#f_search_list > ul').append(generatedHTML) // 새 tr 태그들로 설정한다.
+		$('#f_search_list').append(generatedHTML) // 새 tr 태그들로 설정한다.
 
 	}, 'json')
 
@@ -144,7 +151,6 @@ $('#confirm-invite-f-yes').click(function(){
 		'mno': inviteMemberNo,
 		'postno' : targetpostno
 	}, function(result) {
-		/* $('<img src='+targetuserimage+'>').appendTo($('.join_user_list')) */
 		console.log($('.join_user_list'))
 		$('.join_user_list').append($('<div class="'+inviteMemberNo+'_'+targetpostno+'">').html('<img src="'+targetuserimage+'"><a class="delete-invite-f"><i class="fa fa-times-circle-o" aria-hidden="true"></i></a>'))
 	}, 'json')

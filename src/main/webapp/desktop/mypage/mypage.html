@@ -3,12 +3,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Hello World!</title>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="/css/font-awesome-4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/font-awesome-4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="/css/mypage/mypage.css">
-
+<script src="dist/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="dist/sweetalert.css">
 <style>
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 
@@ -19,7 +18,18 @@ body, table, div, p, textarea {
 </head>
 <body>
 	<div id="modal"></div>
-	<div id="modal2"></div>
+	<!-- <div id="modal2">	
+	<div id="confirm-invite-f">
+		<div id="confirm-email">
+		<button type="button" id="confirm-invite-f-yes"
+			onclick="test1('modal2'); test('confirm-invite-f');">예</button>
+		<button type="button" id="confirm-invite-f-no"
+			onclick="test1('modal2'); test('confirm-invite-f');">아니오</button>
+	</div>
+	</div>
+	</div>
+	modal2 -->
+	
 	<div class="slide_bar">
 		<div class="slide_bar_cancel">
 			<a href="#"><img src="/image/cancel.png" id="cancel_icon"></a>
@@ -84,7 +94,6 @@ body, table, div, p, textarea {
 					</form>
 
 					<div id="f_search_list">
-						<ul></ul>
 					</div>
 
 					<div class="save_btn">
@@ -94,13 +103,6 @@ body, table, div, p, textarea {
 				</div>
 			</div>
 			<!-- 친구와 같이쓰기 끝 -->
-			<div id="confirm-invite-f">
-				<div id="confirm-email"></div>
-				<button type="button" id="confirm-invite-f-yes"
-					onclick="test1('modal2'); test('confirm-invite-f');">예</button>
-				<button type="button" id="confirm-invite-f-no"
-					onclick="test1('modal2'); test('confirm-invite-f');">아니오</button>
-			</div>
 
 			<div id='delete_wrap'>
 				<h4>여행기를 삭제하시겠습니까?</h4>
@@ -283,57 +285,17 @@ body, table, div, p, textarea {
 
 <script id="search-friends-template" type="text/x-handlebars-template">
 	{{#each info}}
-	<li><a class="select_friends {{mno}}" data-email="{{email}}"
-		data-path="{{path}}" href="javascript:;">
-			<div>
-				<img src="{{path}}">
-			</div>
-			<div>{{email}}</div>
-			<div>
-				<i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i>
-			</div>
-		</a>
-	</li>
+	<div class="select_friends">
+<div id="invitePro">
+				<img src="{{path}}_60.png">
+</div>
+				{{email}}
+	<i data-no="{{mno}}" data-email="{{email}}" class="fa fa-plus-circle fa-2x modalForinv" aria-hidden="true"></i>
+	</div>
 	{{/each}}
 </script>
-<script id="tbody-template4" type="text/x-handlebars-template">
-	<div class="member_slide">
-		<div class="member_info">
-			<div class="user_photo">
-				<img src="{{path}}">
-			</div>
-			<div class="user_id">{{alias}}</div>
-			<div class="user_url">{{email}}</div>
 
-			
-				<div class="user_mypage">마이페이지	</div>
-				<div id="subscribe">구독</div>
-			<div class="user_nation"></div>
-
-			<div class="user_visited">
-				<div class="user_write">
-					<img src="/image/textbook.png" alt=""> <span>여행기</span>
-					<div class="counting1"></div>
-				</div>
-				<div class="user_visited_count">
-					<img src="/image/aeroplane.png" alt=""> <span>여행국가</span>
-
-					<div class="counting2"></div>
-				</div>
-			</div>
-			<hr class="slide_bar_classify">
-
-			<div class="slide_bar_menu">
-				<ul class="list_menu">
-					<li><a href="/desktop/login/find_pwd.html">비밀번호 변경</a></li>
-					<li><a href="#">탈퇴하기</a></li>
-					<li><a href="#">로그아웃</a></li>
-					<li><a href="#">공지사항</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
-</script>
+	<div class='footer-container'></div>
 
 	<script src="/node_modules/jquery/dist/jquery.min.js"></script>
 	<script src="/node_modules/handlebars/dist/handlebars.min.js"></script>
