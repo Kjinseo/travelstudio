@@ -1,0 +1,108 @@
+<header class="header">
+	<img src="/image/slidecall.png" id="slide_icon"> <a
+		href="/desktop/main/main.html"><img id="logo"
+		src="/image/ourlogo.png"></a> <input type="search" id="search_bar"
+		placeholder="검색">
+	<button id="search_icon" class="fa fa-search fa-2x" aria-hidden="true"></button>
+	<button type="button" id="start-my-journey"
+		onclick="location.href='/desktop/article/write.html'">여행기 작성</button>
+</header>
+
+<script>
+	$(document).on("click",'.user_mypage',function(){
+		location.href="/desktop/mypage/mypage.html"
+	})
+	$(document).on("click",'#subscribe',function(){
+			location.href="/desktop/subscribe/subscribe.html"
+	})
+	
+	
+function slideCall() {
+	$('#slide_icon').click(function (){
+  $('.slide_bar').animate({left:0}, 350);
+  $('.cover_dimmed').show();
+})
+$('#cancel_icon').click(function () {
+  $('.slide_bar').animate({left:-320}, 350);
+  $('.cover_dimmed').hide();
+})
+}
+function slide_off() {
+  $('.cover_dimmed').click(function () {
+    $('.slide_bar').animate({left:-320}, 350);
+    $('.cover_dimmed').hide();
+})
+}
+$(document).ready(slideCall)
+$(document).ready(slide_off)
+
+
+var loginMemberNo =0;
+$.getJSON('/member/header.json', function(result) {
+	console.log(result.data)
+
+	var template = Handlebars.compile($('#user-info-template').html())
+	loginMemberNo=result.data.loginMember.mno
+	var generatedHTML = template(result.data.loginMember) // 템플릿 함수에 데이터를 넣고 HTML을 생성한다.
+//		tbody.text('') // tbody의 기존 tr 태그들을 지우고
+	userDesc.append(generatedHTML);
+
+	$(document.body).on('click', '#mysetting', function(event) {
+		location.href = 'user_setting.html'
+			event.preventDefault()
+	})
+
+	let str = result.data.loginMember.path;
+	if(str == null ) {
+		$('#user-img').attr('src', '/image/usercircle.png').css('width', '170px').css('height', '170px').css('border-radius', '100%')
+	} else {
+		$('#user-img').attr('src', '/upload/' + str).css('width', '170px').css('height', '170px').css('border-radius', '100%')
+	}
+	
+	mno=result.data.loginMember;
+	if(mno!=undefined){
+		$('#slide_icon').css('display','inline-block');
+		$('#start-my-journey').off('click');
+		$('#start-my-journey').click(function(){
+		   location.href="/desktop/article/write.html"
+		    //Other code etc.
+		});
+	}else{
+		$('#start-my-journey').off('click');
+		$('#start-my-journey').click(function(){
+		   location.href="/desktop/login/login.html"
+		    //Other code etc.
+		    selectLoginUserPost()
+		});
+	}
+    var template = Handlebars.compile($('#tbody-template4').html())
+    var generatedHTML = template(result.data.loginMember) // 템플릿 함수에 데이터를 넣고 HTML을 생성한다.
+//	    tbody.text('') // tbody의 기존 tr 태그들을 지우고
+    $('.slide_bar_content').append(generatedHTML) // 새 tr 태그들로 설정한다.
+
+	selectLoginUserPost()
+})
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--  -->
