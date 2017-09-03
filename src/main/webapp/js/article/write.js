@@ -490,7 +490,7 @@ var slati;
 var slongit;
 function saveMap() {
   console.log("위치 데이터 넘어감");
-  $.post('../detail/addMap.json', {
+  $.post('/detail/addMap.json', {
     'lati' : latNum.toFixed(8),
     'longit' : lngNum.toFixed(8),
     'srtno' : parentno
@@ -530,7 +530,7 @@ $(document).ready(slide_off)
  
 function setFileUploadToInputTag() {
 	$('.file1').fileupload({
-		url: '../File/upload.json',        // 서버에 요청할 URL
+		url: '/File/upload.json',        // 서버에 요청할 URL
 		dataType: 'json',         // 서버가 보낸 응답이 JSON임을 지정하기
 		sequentialUploads: true,  // 여러 개의 파일을 업로드 할 때 순서대로 요청하기.
 		singleFileUploads: false, // 한 요청에 여러 개의 파일을 전송시키기.

@@ -32,7 +32,7 @@
 			<li>
 					<div class="dis_picture">
 <div id="holding_search-list-picture">
-							<img id="search-list-picture" src="/image/{{cont}}"> 
+							<img id="search-list-picture" src="{{cont}}"> 
 	</div>						
 						
 							<div class="face_pic">
@@ -86,36 +86,36 @@
 	</ul>
 <br>
 
+<li>
+		<div class="content-container2">
+
 <!-- <a href="./mypage.html?{{email}}"> -->
 	<script id="content-template2" type="text/x-handlebars-template">
 {{#each info}}
-    <div class="user_one">
+    <div class="user_one" data-mno='{{mno}}'>
     <div class="user_one_info">
 
     <div class="profile_photo">
-      <img id="circle_profile" src="/upload/{{path}}"></img>
+      <img id="circle_profile" src="../upload/{{path}}"></img>
     </div>
-<div id="holding"  data-mno='{{mno}}'>
+<div id="holding">
     <div class="profile_desc">
       <div class="user_desc">
         <span class="user_name">{{alias}}
         </span>
       </div>
 
+
   <div style="padding-top:5px;">
-    <div class="info_write" name='{{mno}}'>
+    <div class="info_write">
       <span class="fa fa-file-text-o fa-2x" aria-hidden="true"></span>
       <span class="tit_info">여행기</span>
-      <span class="txt_num travel_num">0</span>
+      <span class="txt_num travel_num"></span>
     </div>
     <div class="info_nation" data-mno='{{mno}}'>
       <span class="fa fa-map-marker fa-2x" aria-hidden="true"></span>
-      <span class="tit_info2">여행국가</span>
-
+      <span class="tit_info">여행국가</span>
       <span class="txt_num">3</span>
-    </div>
-    
-    <div class="member_visit_{{mno}}">
     </div>
 
    
@@ -129,7 +129,11 @@
 </a>
   
 {{/each}}
-</script>
+		       </script>
+		       
+		       		</div>
+
+	</li>
 		       
 <div id="traveled_country">
 <script id="flag-template" type="text/x-handlebars-template">

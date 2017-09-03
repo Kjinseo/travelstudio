@@ -9,12 +9,12 @@ var fiid = $('#id-input'),
 
   $('#signup-btn').click(function() {
 	  if(fiPassword.val()==fiPassword2.val()){
-    $.post('../member/add.json', {
+    $.post('/member/add.json', {
       'email': fiEmail.val(),
       'alias': fiid.val(),
       'password': fiPassword.val()
     }, function(result) {
-      location.href = '../main_minkdak/main.html'
+      location.href = '/desktop/main/main.html'
     }, 'json')
 	  }
 	  else{

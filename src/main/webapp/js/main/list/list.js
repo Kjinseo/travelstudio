@@ -7,7 +7,7 @@ var membernoArray=[]
 var numOfPost;
 var postOwner;
 
-$.getJSON('../post/list.json', function(result) {
+$.getJSON('/post/list.json', function(result) {
 
 	console.log(result.data.list);
 	var template = Handlebars.compile($('#content-template').html())
@@ -23,7 +23,7 @@ $('.userclick').click(function (){
 	$('.membersearchList').css('border-bottom',"2px solid red")
 	$('.contentSerchList').css('border-bottom',"")
 	searchmethod='user'
-		$.post('../member/info.json', {
+		$.post('/member/info.json', {
 			'keyword': $('#search_bar').val()
 		}, function(result) {
 			console.log(result.data)
@@ -82,7 +82,7 @@ $('.essayclick').click(function (){
 })
 
 function search(){
-	$.post('../post/search.json', {
+	$.post('/post/search.json', {
 		'keyword': $('#search_bar').val()
 	}, function(result) {
 		console.log(result.data)
@@ -102,7 +102,7 @@ function NoList() {
 //	console.log("nolist in():" + membernoArray)
 	console.log(membernoArray.length)
 	$.ajaxSettings.traditional = true;
-	$.post('../detail/selectAddress.json', {
+	$.post('/detail/selectAddress.json', {
 		'mno': membernoArray
 	},
 	function(result) {
@@ -194,7 +194,7 @@ function selectLoginUserPost(){
 	// 멤버 번호 길이만큼 반복하면서 멤버 하나씩 요청
 	for(i=0; i<membernoArray.length; i++){
 		console.log(membernoArray.length, membernoArray[i])
-		$.post('../post/selectOneUserPost.json',{'number':membernoArray[i]}, function(result) {
+		$.post('/post/selectOneUserPost.json',{'number':membernoArray[i]}, function(result) {
 			returnPost.push(result)
 			console.log(result);
 			
