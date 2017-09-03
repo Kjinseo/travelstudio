@@ -447,6 +447,14 @@ i{
   
 }
 
+.swiper-button-next {
+	background-image: url('/image/right-arrow.png');
+}
+
+.swiper-button-prev {
+	background-image: url('/image/left-arrow.png')
+} 
+
 /* 스와이퍼 캐러셀 끝*/
 
 .slide_wrap {
@@ -457,14 +465,13 @@ i{
 }
 
 .box_slide_title {
-  box-sizing: border-box;
-  position: relative;
-  float: left;
-  width: 285px;
-  height:100%;
-  border-top: 8px Solid white;
-  padding: 68px 20px 28px 0;
-  background-color:#064482;
+    box-sizing: border-box;
+    position: relative;
+    float: left;
+    width: 288px;
+    height: 100%;
+    border-top: 1px solid #010101;
+    padding: 38px 20px 28px 0;
   /*border: solid black 1px;*/
 }
 .slide_wrap
