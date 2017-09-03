@@ -39,26 +39,6 @@ $(document).ready(slide_off)
 
 var loginMemberNo =0;
 $.getJSON('/member/header.json', function(result) {
-	console.log(result.data)
-
-	var template = Handlebars.compile($('#user-info-template').html())
-	loginMemberNo=result.data.loginMember.mno
-	var generatedHTML = template(result.data.loginMember) // 템플릿 함수에 데이터를 넣고 HTML을 생성한다.
-//		tbody.text('') // tbody의 기존 tr 태그들을 지우고
-	userDesc.append(generatedHTML);
-
-	$(document.body).on('click', '#mysetting', function(event) {
-		location.href = 'user_setting.html'
-			event.preventDefault()
-	})
-
-	let str = result.data.loginMember.path;
-	if(str == null ) {
-		$('#user-img').attr('src', '/image/usercircle.png').css('width', '170px').css('height', '170px').css('border-radius', '100%')
-	} else {
-		$('#user-img').attr('src', '/upload/' + str).css('width', '170px').css('height', '170px').css('border-radius', '100%')
-	}
-	
 	mno=result.data.loginMember;
 	if(mno!=undefined){
 		$('#slide_icon').css('display','inline-block');
@@ -72,7 +52,6 @@ $.getJSON('/member/header.json', function(result) {
 		$('#start-my-journey').click(function(){
 		   location.href="/desktop/login/login.html"
 		    //Other code etc.
-		    selectLoginUserPost()
 		});
 	}
     var template = Handlebars.compile($('#tbody-template4').html())
@@ -80,7 +59,6 @@ $.getJSON('/member/header.json', function(result) {
 //	    tbody.text('') // tbody의 기존 tr 태그들을 지우고
     $('.slide_bar_content').append(generatedHTML) // 새 tr 태그들로 설정한다.
 
-	selectLoginUserPost()
 })
 </script>
 

@@ -4,9 +4,38 @@ var inviteMemberNo=0;
 var targetuserimage=0;
 var targetpostno=0;
 
+// header load 시키기
 $(function() {
 	$('.header-container').load('../main/header.html')
+	
+	$.getJSON('/member/header.json', function(result) {
+	console.log(result.data)
+
+	var template = Handlebars.compile($('#user-info-template').html())
+	loginMemberNo=result.data.loginMember.mno
+	var generatedHTML = template(result.data.loginMember) // 템플릿 함수에 데이터를 넣고 HTML을 생성한다.
+//		tbody.text('') // tbody의 기존 tr 태그들을 지우고
+	userDesc.append(generatedHTML);
+
+	$(document.body).on('click', '#mysetting', function(event) {
+		location.href = 'user_setting.html'
+			event.preventDefault()
+	})
+
+	let str = result.data.loginMember.path;
+	if(str == null ) {
+		$('#user-img').attr('src', '/image/usercircle.png').css('width', '170px').css('height', '170px').css('border-radius', '100%')
+	} else {
+		$('#user-img').attr('src', str).css('width', '170px').css('height', '170px').css('border-radius', '100%')
+	}
+	
+	selectLoginUserPost()
 })
+	
+	
+	
+})
+
 /* 친구 초대하기에서 검색후 친구 이름을 눌렀을때 확인창 부분에서 하는 함수 */
 $(document).on("click",".select_friends",function(){
 	 console.log('selectf click')

@@ -10,16 +10,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
+import net.coobird.thumbnailator.Thumbnails;
 import travelstudio.domain.Member;
 import travelstudio.service.MemberService;
 import travelstudio.service.PostService;
 
 @RestController
 @RequestMapping("/member/")
+@SessionAttributes({"loginMember"})
 public class MemberControl {
   
   @Autowired ServletContext servletContext;
@@ -78,49 +82,20 @@ public class MemberControl {
 
 
 @RequestMapping("update")
-public JsonResult update(Member member,HttpServletRequest req) throws Exception {
+public JsonResult update(Member member,HttpServletRequest req, Model model) throws Exception {
   HttpServletRequest httpRequest = (HttpServletRequest) req;
   Member loginMember = (Member)httpRequest.getSession().getAttribute("loginMember");
   member.setMno(loginMember.getMno());
   memberService.update(member);
-  loginMember.setAlias(member.getAlias());
-  loginMember.setIntro(member.getIntro());
+  
+  model.addAttribute("loginMember", member);
   return new JsonResult(JsonResult.SUCCESS, "ok");
 }
-
-@RequestMapping(path="myPhotoUpload")
-public Object upload1(MultipartFile[] files, HttpServletRequest req) throws Exception {
-  HttpServletRequest httpRequest = (HttpServletRequest) req;
-  Member loginMember = (Member)httpRequest.getSession().getAttribute("loginMember");
-  
-  HashMap<String,Object> resultMap = new HashMap<>();
-  ArrayList<Object> fileList = new ArrayList<>();
-  
-  for (int i = 0; i < files.length; i++) {
-    files[i].transferTo(new File(servletContext.getRealPath("/upload/" + files[i].getOriginalFilename())));
-    HashMap<String,Object> fileMap = new HashMap<>();
-    fileMap.put("filename", files[i].getOriginalFilename());
-    fileMap.put("filesize", files[i].getSize());
-    fileList.add(fileMap);
-    Member member = new Member();
-    String newFile =files[i].getOriginalFilename();
-    member.setPath(newFile);
-    member.setMno(loginMember.getMno());
-    
-    memberService.insertPhoto(member);
-    loginMember.setPath(newFile);
-    
-  }
-  resultMap.put("fileList", fileList);
-  return resultMap;
-}
-
 
 /*우인재*/
 @RequestMapping("add")
 public JsonResult add(Member member) throws Exception {
   memberService.add(member);
-  /*System.out.println("1");*/
   return new JsonResult(JsonResult.SUCCESS, "ok");
 }
 
@@ -132,7 +107,6 @@ public JsonResult header(HttpServletRequest req, HttpServletResponse res) throws
   HashMap<String,Object> dataMap = new HashMap<>();
   dataMap.put("loginMember", loginMember);
   return new JsonResult(JsonResult.SUCCESS, dataMap);
-
 }
 
 @RequestMapping("searchOneUser")
@@ -172,40 +146,43 @@ public JsonResult selectAddress(int mno) throws Exception {
   return new JsonResult(JsonResult.SUCCESS, dataMap);
 }
 
-/*    
-  
-  @RequestMapping("delete")
-  public JsonResult delete(int no) throws Exception {
-    teacherService.remove(no);
-    return new JsonResult(JsonResult.SUCCESS, "ok");
-  }  
-  
-  @RequestMapping("add")
-  public JsonResult add(Teacher teacher) throws Exception {
-    teacherService.add(teacher);
-    return new JsonResult(JsonResult.SUCCESS, "ok");
-  }*/  
-  
-/*  private List<String> processMultipartFiles(MultipartFile[] files) throws Exception {
-    ArrayList<String> photoList = new ArrayList<>();
-    for (MultipartFile file : files) {
-      if (file.isEmpty())
-        continue;
-      String filename = getNewFilename();
-      file.transferTo(new File(servletContext.getRealPath("/teacher/photo/" + filename)));
-      photoList.add(filename);
-    }
-    return photoList;
+@RequestMapping("myPhotoUpload")
+public JsonResult myPhotoUpload(MultipartFile[] files) throws Exception {
+  System.out.println(files);
+  ArrayList<Object> fileList = new ArrayList<>();
+  for (int i = 0; i < files.length; i++) {
+    if (files[i].isEmpty()) 
+      continue;
+
+    String filename = getNewFilename();
+    File file =new File(servletContext.getRealPath("/upload/" + filename));
+    files[i].transferTo(file);
+    
+    File thumbnail = new File(servletContext.getRealPath("/upload/" + filename + "_100"));
+    Thumbnails.of(file).size(100, 100).outputFormat("png").toFile(thumbnail);
+    
+    HashMap<String,Object> fileMap = new HashMap<>();
+    fileMap.put("filename", filename);
+    fileMap.put("filesize", files[i].getSize());
+    fileList.add(fileMap);
   }
+  return new JsonResult(JsonResult.SUCCESS, fileList);
+}
+
+int count = 0;
+synchronized private String getNewFilename() {
+  if (count > 100) {
+    count = 0;
+  }
+  return String.format("%d_%d", System.currentTimeMillis(), ++count); 
+}
+
+
+
+
+
+
   
-  
-  int count = 0;
-  synchronized private String getNewFilename() {
-    if (count > 100) {
-      count = 0;
-    }
-    return String.format("%d_%d", System.currentTimeMillis(), ++count); 
-  }*/
 }
 
 

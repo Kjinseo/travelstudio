@@ -1,36 +1,27 @@
 var aliasIp = $('#name-input'),
 	introIp = $('#int-input'),
 	txtAlias = $('#txt_alias'),
-	txtEmail = $('#txt_email')
+	txtEmail = $('#txt_email'),
+	pathIp = ""
 var no = 0
 
 $.getJSON('/member/header.json', function(result) {
-	console.log(result)	
+	console.log(result.data)	
 	var data = result.data.loginMember
 	txtAlias.text(data.alias)
 	txtEmail.text(data.email)
 	aliasIp.val(data.alias)
 	introIp.val(data.intro)
-	let str = data.path;
+	pathIp = data.path;
 	var path = window.location.pathname;
 	
-	if(str != null) {
+	if(pathIp != null) {
 		$('.user_photo_change').css({
-			  'background': 'url("/upload/' + str +'")' + 'center center no-repeat'
+			  'background': 'url("' + pathIp + '_100.png")' + 'center center no-repeat'
 			  
 		})
 	}
 });
-
-$('#save-btn').click(function() {
-	console.log(aliasIp.val())
-  $.post('/member/update.json', {
-	  'alias': aliasIp.val(),
-	  'intro': introIp.val()
-  }, function(result) {
-	  console.log('완료')
-  }, 'json')
-})
 
 $('#fileupload').fileupload({
   url: '/member/myPhotoUpload.json',        // 서버에 요청할 URL
@@ -44,8 +35,6 @@ $('#fileupload').fileupload({
   previewMaxHeight: 170,  // 미리보기 이미지 높이 
   previewCrop: true,      // 미리보기 이미지를 출력할 때 원본에서 지정된 크기로 자르기
   processalways: function(e, data) {
-      console.log('fileuploadprocessalways()...');
-      console.log(data.files);
       var imagesDiv = $('.user_img');
       imagesDiv.html("");
       for (var i = 0; i < data.files.length; i++) {
@@ -60,7 +49,23 @@ $('#fileupload').fileupload({
   submit: function (e, data) { // 서버에 전송하기 직전에 호출된다.
   }, 
   done: function (e, data) { // 서버에서 응답이 오면 호출된다. 각 파일 별로 호출된다.
+	  pathIp = ""
+      var imlibsData = data.result;
+      var file = imlibsData.data[0];
+      pathIp = "/upload/" + file.filename
   }
 });
+
+$(document).on("click","#save-btn",function(){
+  $.post('/member/update.json', {
+	  'alias': aliasIp.val(),
+	  'intro': introIp.val(),
+	  'path' : pathIp
+  }, function(result) {
+	  location.href= "/desktop/mypage/mypage.html"
+  }, 'json')
+})
+
+
 
 
