@@ -38,6 +38,7 @@ void addAllphoto(Detail detail);
 ArrayList<Detail> picnosearch(int postno);
 void deletePicture(int picno);
 void deleteDetail(int postno);
+void addAllphoto2(Detail detail);
 void deletePost(int postno);
 void insertDetailLocationByPost(Detail detail);
 }

@@ -119,6 +119,43 @@ public class detailControl {
     return resultMap;
     
   }  
+  
+
+  @RequestMapping("addAllphoto2")
+  public Object addAllphoto2(int[] picnoandparentno, int postnono, HttpServletRequest req) throws Exception {
+    HttpServletRequest httpRequest = (HttpServletRequest) req;
+    Member loginMember = (Member)httpRequest.getSession().getAttribute("loginMember");
+    Detail detail= new Detail();
+    detail.setWriter(loginMember.getEmail());
+    System.out.println("picnoandparentno 01");
+    System.out.println(postnono);
+    
+    List<Picture> pictureList = new ArrayList();
+    for(int i=0; i<picnoandparentno.length;i+=2){
+      detail.setPostno(postnono);
+      detail.setSrtno(picnoandparentno[i]);
+      detail.setPicno(picnoandparentno[i+1]);
+      System.out.println(detail);
+      detailService.addAllphoto2(detail);
+    }
+    
+    HashMap<String,Object> resultMap = new HashMap<>();
+    resultMap.put("pictureList", pictureList);
+    return resultMap;
+    
+  }  
+  
+
+  @RequestMapping("saveMap")
+  public String saveMap(Detail detail, HttpServletRequest req) throws Exception {
+    HttpServletRequest httpRequest = (HttpServletRequest) req;
+    Member loginMember = (Member)httpRequest.getSession().getAttribute("loginMember");
+    detail.setWriter(loginMember.getEmail());
+    System.out.println(detail);
+    detailService.saveMap(detail);
+    return "a";
+    
+  }
 }
   
 

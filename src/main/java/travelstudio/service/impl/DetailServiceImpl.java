@@ -123,6 +123,17 @@ public void insertDetailLocationByPost(Detail detail) {
   detailDao.insertDetailLocationByPost(detail);
 }
 
+public void addAllphoto2(Detail detail) {
+  detailDao.addAllphoto2(detail);
+  
+}
+
+public void saveMap(Detail detail) throws Exception {
+  /*detailDao.insert(detail);*/
+  detailDao.insert_map(detail);
+}
+
+
 //  
 //  public Teacher get(int no) throws Exception {
 //    return teacherDao.selectOne(no);

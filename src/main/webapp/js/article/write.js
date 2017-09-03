@@ -478,7 +478,7 @@ function createMap() {
   $('#text_parent_'+parentno).html('');
   $("<div id='map"+mapcount+"'style='width:809px; height:380px; border:1px solid white; margin-bottom: 70px;'>").appendTo($('#text_parent_'+parentno))
   console.log("aaaa")
-  adddiv();
+  
   var mapDelId = 'map' + mapcount
   console.log(mapDelId, slati, slongit)
   initMap2(mapDelId, slati, slongit)

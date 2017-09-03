@@ -12,34 +12,47 @@ var writeMemberno=0;
 
 /* 세이브 버튼 */
 $('#write_save_btn').click(function() {
-			emptyParentRemove()
+	emptyParentRemove()
 });
 
 
 
 var jsPictureList=[]
+
+var picnosearchCount=0;
 function picnosearch(){
 	for(i=0;i<onlyPath1.length;i++){
+		console.log(onlyPath1[i])
 		$.ajaxSettings.traditional = true;
 		$.post('/picture/searchthispicture.json', {
 			'path': onlyPath1[i]
 		}, function(result) {
 			var pictureparentno;
 			jsPictureList.push(result.pictureList)
+			picnosearchCount++;
+			if(picnosearchCount == onlyPath1.length){
+				console.log(onlyPath1.length - 1)
+				console.log(jsPictureList)
+				finaladd();
+				console.log("picnosearch")
+				picnosearchCount++;
+				console.log(result)
+			}
 		}, 'json')
 	}
-	/*finaladd()*/
-	setTimeout("finaladd()",4000);
-	
+
 }
 
+finaladdCount=0;
+var z=0;
 function finaladd(){
+	console.log("finaladd")
 	$('.text_parent').each(function () {
-
+		console.log("textParenteach")
 		if($('.text_parent').children().eq(1).attr('class') ==='tool_box'){
 			$('.text_parent').children().eq(1).remove()
 		}
-		
+
 		if($(this).children().eq(0).attr('class') != undefined) {
 			if($(this).children().eq(0).attr('class').split('_')[0]=='whole'){
 				pictureparentno=$(this).attr('id').split('_')[2]
@@ -57,10 +70,11 @@ function finaladd(){
 				case '9': compareDbsrcParentsrc(this); break;
 				}
 				function compareDbsrcParentsrc(casethis){
+					console.log(jsPictureList.length)
 					for(z=0; z < jsPictureList.length ;z++){
 						for(g=0; g<jsPictureList[z].length;g++){
 							for(j=0 ;j<photoquantity;j++){
-								
+
 								if(jsPictureList[z][g].path==$('img',casethis).eq(j).attr('src')){
 									picnoparentno.push(pictureparentno)
 									picnoparentno.push(jsPictureList[z][g].picno)
@@ -69,16 +83,24 @@ function finaladd(){
 									picnoparentno.push(pictureparentno)
 									picnoparentno.push(jsPictureList[z][g].picno)
 								}
+								console.log(z)
+								console.log(jsPictureList.length)
+								console.log(finaladdCount)
+							
 							}
+
 						}
+						console.log(picnoparentno)
 					};
+					
 				}
 			} 
+
 		}
 
 	})
 
-	noBackgroundSave()
+setTimeout("noBackgroundSave()",1000)
 
 }
 
@@ -87,14 +109,15 @@ var captionArray = []
 var detailDateArr = []
 var detailLocArr = [];
 
-function addAllphoto(data){
+function addAllphoto(){
 	$.ajaxSettings.traditional = true;
 	$.post('/detail/addAllphoto2.json', {
 		'picnoandparentno': picnoparentno,
 		'postnono' : postno
 	}, function(result) {
+		console.log("저장끝")
 	}, 'json')
-		
+
 }
 
 
@@ -104,7 +127,7 @@ function noBackgroundSave(){
 		contentArray.push($(this).parent().attr('id').split('_')[2])
 		contentArray.push(decodeURIComponent($(this).val()))
 	})
-	
+
 	$('.capt_output').each(function () {
 		captionArray.push($(this).attr('id').split('-')[2])
 		captionArray.push($(this).text())
@@ -114,14 +137,14 @@ function noBackgroundSave(){
 		/*if($(this).val() != undefined && $(this).val() != "" ){
 			detailDateArr.push(textParentDivno)
 			console.log(textParentDivno)*/
-			if($(this).attr('value') != undefined && $(this).attr('value') != ""){
-				detailDateArr.push(textParentDivno)
-				detailDateArr.push(String($(this).attr('value')))
-			}else if($(this).val() != undefined && $(this).val() != ""){
-				detailDateArr.push(textParentDivno)
-				detailDateArr.push(String($(this).val()))
-			}
-			
+		if($(this).attr('value') != undefined && $(this).attr('value') != ""){
+			detailDateArr.push(textParentDivno)
+			detailDateArr.push(String($(this).attr('value')))
+		}else if($(this).val() != undefined && $(this).val() != ""){
+			detailDateArr.push(textParentDivno)
+			detailDateArr.push(String($(this).val()))
+		}
+
 	})
 	$('.gpsInfo').each(function () {
 		var textParentDivno= $(this).parents('.write_day').attr('data-srtno')
@@ -145,7 +168,8 @@ function noBackgroundSave(){
 		travelDate: detailDateArr,
 		location: detailLocArr
 	}, function(result) {
-		setTimeout("addAllphoto()",2000)
+		addAllphoto()
+		console.log(result)
 	}, 'json')
 }
 
@@ -184,7 +208,7 @@ $.post('/detail/selectedOneDetail.json', {
 			for(i=0; i< result.fileList.length;i++){
 				onlyPath1.push(result.fileList[i].path)
 			}
-			
+
 			var CaptionMap = new Map();
 			var Mapaa = new Map();
 			for(i=0; i< array1.list.length; i++){
@@ -204,7 +228,7 @@ $.post('/detail/selectedOneDetail.json', {
 					}
 				}
 			}*/
-			
+
 			for(i=0; i< array1.list.length; i++){
 				if(array1.list[i].lati!=undefined && array1.list[i].lati!=0){
 					if(mapMap.get(array1.list[i].srtno)==undefined){
@@ -213,13 +237,13 @@ $.post('/detail/selectedOneDetail.json', {
 				}
 			}
 			function createMap(lati, longit) {
-				  var o = {};
-				  o.lati = lati;
-				  o.longit = longit;
-				  return o;
-				}
-			
-			
+				var o = {};
+				o.lati = lati;
+				o.longit = longit;
+				return o;
+			}
+
+
 			var dateMap = new Map();
 
 			for(i=0; i< array1.list.length; i++){
@@ -232,7 +256,7 @@ $.post('/detail/selectedOneDetail.json', {
 				}
 			}
 
-			
+
 			var AddressMap = new Map();
 			for(i=0; i< array1.list.length; i++){
 				if(array1.list[i].address!=undefined){
@@ -252,7 +276,7 @@ $.post('/detail/selectedOneDetail.json', {
 					}
 				}
 			}
-			
+
 			var pictureARR=[]
 			var j=0;
 			for(i=1; i<array1.list.length;i++){ // 리스트 길이까지
@@ -265,31 +289,31 @@ $.post('/detail/selectedOneDetail.json', {
 				}else if(i<=array1.list.length-1&& i>1){//소트번호가 다르다면 
 					if(i==array1.list.length-1){ //마지막 번호라면 
 						if(array1.list[i].picno!=0&& array1.list[i-1].srtno!=array1.list[i].srtno){//사진이 있고 소트번호가 마지막 의 번호와 다르다면 1개짜리 사진이다
-							
+
 							array1.list[i].writer=array1.list[i].picno
-							
+
 						}
 					}
 					else if(array1.list[i].picno!=0 && array1.list[i-1].srtno!=array1.list[i].srtno && array1.list[i+1].srtno!=array1.list[i].srtno){
-						
+
 						if(array1.list[i].writer=undefined){
 							array1.list[i].writer=0;
 						}
-					array1.list[i].writer=array1.list[i].picno
+						array1.list[i].writer=array1.list[i].picno
 					}
 				}if(i==1){ // 첫번째 일때 첫번째 사진이 있고 페어런츠가 다르거나 또는 || 배열 0번과 1번의 소트번호가 같고 사진번호가   둘중 하나가 0이고 소트번호가 같거나  
 					if(array1.list[i-1].picno!=0 && ((array1.list[i-1].srtno!=array1.list[i].srtno)||((array1.list[i-1].srtno==array1.list[i].srtno)&&(array1.list[i-1].picno==0)||(array1.list[i].picno==0)))){
-							array1.list[i-1].writer=array1.list[i-1].picno
-						}
+						array1.list[i-1].writer=array1.list[i-1].picno
+					}
 				}
 			}
-			
+
 			/*for(j=0;j< array1.length;j++){
 				if(array1.list[j].picno!=0 && array1.list[j-1].srtno!=array1.list[j].srtno && array1.list[j+1].srtno!=array1.list[j].srtno){
 					array1.list[j].writer=array1.list[j].picno
 					array1.list[j].picno=undefined;
 			}*/
-				
+
 			for(i=0; i< pictureARR.length; i++){
 				for(j=0; j<array1.list.length; j++){
 					if(pictureARR[i]==array1.list[j].srtno && array1.list[j].picno!=0){
@@ -313,7 +337,7 @@ $.post('/detail/selectedOneDetail.json', {
 					}
 				}
 			}
-			
+
 			for(l=0; l<array1.list.length;l++){
 				if(array1.list[l].picno==undefined){
 					array1.list.splice(l,1);
@@ -541,7 +565,7 @@ $.post('/detail/selectedOneDetail.json', {
 
 					deletephoto(countPhoto)
 				}
-				
+
 				$( ".whole_collage1" ).each(function() {
 					$(this).append($("<div class='control_box' id='control-box-div-"+$(this).attr('data-countPhoto')+"'>"
 							+ "<ul class='clrfix'>"
@@ -685,20 +709,22 @@ function findNeedUpdateNo(beforePlus) {
 //		textParentDiv = $('#text_parent_'+ i).children()
 //		var test = $('img' ,textParentDiv).parent().attr('id');
 //		var testSplit = test.split('-')
-		
+
 		$('.btn_add','#text_parent_'+ i).attr('data-addno', i+1)
 		$('.btn_add','#text_parent_'+ i).attr('id', 'addbtn-' + (i+1))
-		
+
 		$('#text_parent_'+ i).attr('onclick', 'showControlBox('+ (i+1) +')')
+		$('#text_parent_'+ i).children().eq(0).attr('data-countPhoto', i+1)
 
 		$('.btn_caption','#text_parent_'+ i).attr('data-capno', i+1)
 		$('.btn_caption','#text_parent_'+ i).attr('id', 'edtbtn-' + (i+1))		
 		$('.btn_del','#text_parent_'+ i).attr('id', 'delbtn-' + (i+1))
-		
+
 		$('#text_parent_'+i).siblings('.write_day').attr('data-srtno', i+1)
 
-		
-		
+
+
+
 		if($('.control_box','#text_parent_'+ i).attr('id') != undefined) {
 			$('.control_box','#text_parent_'+ i).attr('id','control-box-div-' + (i+1))
 		}
@@ -711,39 +737,35 @@ function findNeedUpdateNo(beforePlus) {
 		if($('.create_box', '#text_parent_'+ i).attr('class') != undefined) {
 			$('.create_box','#text_parent_'+ i).attr('onclick', 'createtextbox('+ (i+1) +')')
 		}
-
+		console.log(i)
+		console.log($('#text_parent_'+ i))
 		$('#text_parent_'+ i).attr('data-textparent', (parseInt($('#text_parent_'+ i).attr('id').split('_')[2]) + 1))
 		$('#text_parent_'+ i).attr('id', 'text_parent_' + (parseInt($('#text_parent_'+ i).attr('id').split('_')[2]) + 1))
 	}
 }
 
 function emptyParentRemove(){
-for (var i = 0; i < $('.text_parent').size() ; i++) {
-	if($(this).children().eq(0).attr('class')=='tool_box'){
-		$(this).children().eq(0).remove()
-		if($(this).children()==null){
-			$(this).remove()
+	for (var i = 0; i < $('.text_parent').size() ; i++) {
+		if($(this).children().eq(0).attr('class')=='tool_box'){
+			$(this).children().eq(0).remove()
+			if($(this).children()==null){
+				$(this).remove()
 			}
 		}
-	
+
 	}
-resortParentId()
+	resortParentId()
 }
 
 function resortParentId(){
 	var resortParentCount=0;
 	$('.text_parent').each(function(){
-			$(this).attr('id',"text_parent_"+resortParentCount+"")
-			$(this).siblings('.write_day').attr('data-srtno',resortParentCount)
-			resortParentCount++
+		$(this).attr('id',"text_parent_"+resortParentCount+"")
+		$(this).siblings('.write_day').attr('data-srtno',resortParentCount)
+		resortParentCount++
 	})
 	picnosearch()
 }
-
-setTimeout("aasdsa()",3000)
-function aasdsa(){for (var i =0;i< $('.text_parent').size() ; i ++ ) {
-}}
-
 
 $(document.body).on('click','#capt-save', function() {
 
@@ -801,9 +823,9 @@ function deletephoto(countPhoto) {
 			if($('.file_browse', '#text_parent_'+ i).attr('class') != undefined) {
 				$('.file_browse', '#text_parent_'+ i).attr('href','javascript:file_browse('+ (i-1) +')')
 			}
-			
+
 			/*href='javascript:file_browse({{count}}
-*/
+			 */
 			if($('.create_box', '#text_parent_'+ i).attr('class') != undefined) {
 				$('.create_box','#text_parent_'+ i).attr('onclick', 'createtextbox('+ (i-1) +')')
 			}
@@ -844,10 +866,10 @@ $('#title_fileupload').fileupload({
 					}
 				} catch (err) {}
 			} 
-			
-		            data.submit();
-		       
-		
+
+			data.submit();
+
+
 		}, submit: function (e, data){},
 		done: function (e, data) { // 서버에서 응답이 오면 호출된다. 각 파일 별로 호출된다.
 			console.log('titleuploaddone()...');
@@ -857,7 +879,7 @@ $('#title_fileupload').fileupload({
 	$.each(data.result.fileList, function(index, file) {
 		$('<p/>').text(file.filename + " : " + file.filesize).appendTo(document.body);
 	});*/
-		/*	location.href="../jinseoKing/main01.html"*/
+			/*	location.href="../jinseoKing/main01.html"*/
 		}
 });
 /*function saveBtnClick(){
@@ -920,7 +942,7 @@ function setFileUploadToInputTag() {
 				var file = data.result.fileList[0];
 				console.log(data)
 				console.log(imagesDiv2)
-				
+
 				for(k=0;k<data.result.fileList.length;k++){
 					onlyPath1.push(data.result.fileList[k].filename)
 				}
@@ -1108,8 +1130,8 @@ function setFileUploadToInputTag() {
 			            } catch (err) {}*/
 
 				} //else
-				
-				
+
+
 				submitcount=0;
 				makeDropable($(imagesDiv2).children())
 				makeDragable($(imagesDiv2).children())
@@ -1123,8 +1145,8 @@ function setFileUploadToInputTag() {
 						+ "<div class='capt_output' id='txt-output-"+countPhoto+"'>안녕하세요</div>"
 				))
 				deletephoto(countPhoto)
-				
-				
+
+
 			}
 	});
 }
@@ -1416,8 +1438,8 @@ function stoponParent($this, $item,StoponParentCount) { //디스는 콜라주, �
 	stoponParentArray.splice(0,stoponParentArray.length)
 	console.log($item)
 	deletephoto(StoponParentCount)
-	
-/*	makeDropable($(imagesDiv2).children())
+
+	/*	makeDropable($(imagesDiv2).children())
 				makeDragable($(imagesDiv2).children())
 				$($(imagesDiv2).children()).append($("<div class='control_box' id='control-box-div-"+countPhoto+"'>"
 						+ "<ul class='clrfix' >"
@@ -1471,9 +1493,6 @@ function stopFunction(currentParent,$this,stopCountPhoto){ //currentParent는 wh
 		$(currentParent)
 		.html("<div  class='one_photo_col' id='collage1-1" +stopCountPhoto +"'><img id='img_4' src=''></div>"
 				+ "</div>"
-				+ "<div class='control_box' id='control-box-div-"+stopCountPhoto+"'>"
-				+ "<div class='control_box' id='control-box-div-"+countPhoto+"'>"
-
 		)
 		$('#collage1-1'+ stopCountPhoto +'> img').attr('src',stopFunctionArray[0]).css('width', '809px').css('height','606px');
 		$(currentParent).attr("class","whole_collage1")
@@ -1598,8 +1617,8 @@ function stopFunction(currentParent,$this,stopCountPhoto){ //currentParent는 wh
 		uiremove($this)
 	}
 	stopFunctionArray.splice(0,stopFunctionArray.length)
-		makeDropable($(currentParent))
-		makeDragable($(currentParent))
+	makeDropable($(currentParent))
+	makeDragable($(currentParent))
 	$(currentParent).append($("<div class='control_box' id='control-box-div-"+stopCountPhoto+"'>"
 			+ "<ul class='clrfix' >"
 			+ "<li><button type='button' class='btn_add' id='addbtn-"+stopCountPhoto+"' data-addno='"+stopCountPhoto+"'>추가</button></li>"
@@ -1827,7 +1846,7 @@ function resizeCollage($this, $item,countPhotoresize) { //디스는 콜라주, �
 		return;
 	} 
 	console.log($item)
-	
+
 	$($this).append($("<div class='control_box' id='control-box-div-"+countPhotoresize+"'>"
 			+ "<ul class='clrfix' >"
 			+ "<li><button type='button' class='btn_add' id='addbtn-"+countPhotoresize+"' data-addno='"+countPhotoresize+"'>추가</button></li>"
@@ -1885,6 +1904,7 @@ function showControlBox(count) {
 			$('#control-box-div-'+count).css('display', 'block');
 		}
 		console.log("누름")
+
 	})
 	return false;
 }
@@ -1895,359 +1915,359 @@ function showControlBox(count) {
 
 
 var parentno;
- registMapFunction()
+registMapFunction()
 function registMapFunction(){
-$(document.body).on('click', '#showMapModal', function(event) {
-  /* console.log("===========>>>>>> mouseover") */
-  /* console.log($(this).parent().parent().parent().parent().attr('id').split('_')[2]) */
-  parentno=$(this).parent().parent().parent().parent().attr('id').split('_')[2]
-  console.log(parentno)
-});
+	$(document.body).on('click', '#showMapModal', function(event) {
+		/* console.log("===========>>>>>> mouseover") */
+		/* console.log($(this).parent().parent().parent().parent().attr('id').split('_')[2]) */
+		parentno=$(this).parent().parent().parent().parent().attr('id').split('_')[2]
+		console.log(parentno)
+	});
 } 
 
 $(document.body).on('mouseover', '.day1', function(event) {
-/* console.log("===========>>>>>> mouseover") */
-/* console.log(this) */
-/* console.log($(this'>.text_parent > .toolbox > #testdiv')) */
-/* $(this'> .text_parent>.toolbox>#testdiv').attr('display','inline-block') */
+	/* console.log("===========>>>>>> mouseover") */
+	/* console.log(this) */
+	/* console.log($(this'>.text_parent > .toolbox > #testdiv')) */
+	/* $(this'> .text_parent>.toolbox>#testdiv').attr('display','inline-block') */
 });
 
 $(document.body).on('mouseleave', '.day1', function(event) {
-/* console.log("===========>>>>>> mouseleave") */
-/* $(this>'.text_parent>.toolbox>#testdiv').attr('display','none') */
+	/* console.log("===========>>>>>> mouseleave") */
+	/* $(this>'.text_parent>.toolbox>#testdiv').attr('display','none') */
 });
 
 
-  // 텍스트상자 크기 자동조절
-  function cmaTextareaSize(obj, bsize) { // 객체명, 기본사이즈
-    var sTextarea = document.getElementById(obj);
-    var csize = (sTextarea.scrollHeight >= bsize) ? sTextarea.scrollHeight
-        + "px"
-        : bsize + "px";
-    sTextarea.style.height = bsize + "px";
-    sTextarea.style.height = csize;
-  }
-  // 끝
+//텍스트상자 크기 자동조절
+function cmaTextareaSize(obj, bsize) { // 객체명, 기본사이즈
+	var sTextarea = document.getElementById(obj);
+	var csize = (sTextarea.scrollHeight >= bsize) ? sTextarea.scrollHeight
+			+ "px"
+			: bsize + "px";
+	sTextarea.style.height = bsize + "px";
+	sTextarea.style.height = csize;
+}
+//끝
 
-  function createtextbox(parentno) {
-    $('#text_parent_' + parentno).empty();
-    $('<textarea class="text_write_box" style="width:800px; height:150px;">').appendTo($('#text_parent_' + parentno))
-    addition_p('write_addition', 'testdiv');
-    addTextfunc()
-  }
-  function addTextfunc(){
-    if($('.text_write_box').val()==""){
-      $('.text_write_box').keyup( function(event){
-        console.log(this)
-         /*  if (event.keyCode == 8) {             // 13이 enter키 코드 값이다.
+function createtextbox(parentno) {
+	$('#text_parent_' + parentno).empty();
+	$('<textarea class="text_write_box" style="width:800px; height:150px;">').appendTo($('#text_parent_' + parentno))
+	addition_p('write_addition', 'testdiv');
+	addTextfunc()
+}
+function addTextfunc(){
+	if($('.text_write_box').val()==""){
+		$('.text_write_box').keyup( function(event){
+			console.log(this)
+			/*  if (event.keyCode == 8) {             // 13이 enter키 코드 값이다.
                alert('backspace!');                           // 여기에 실행하고자 하는 코드를 넣으면 된다. 
           } */
-      });
-    }
-  $('.text_write_box').keyup( function(event){
-    console.log($('.text_write_box').val())
-    console.log(this)
-      /* if (event.keyCode == 13) {             // 13이 enter키 코드 값이다.
+		});
+	}
+	$('.text_write_box').keyup( function(event){
+		console.log($('.text_write_box').val())
+		console.log(this)
+		/* if (event.keyCode == 13) {             // 13이 enter키 코드 값이다.
           alert('enter!');                          // 여기에 실행하고자 하는 코드를 넣으면 된다. 
       } */
-  });
-  }
+	});
+}
 
-  // 작은 + 구현
-  function test(idMyDiv) {
-    var objDiv = document.getElementById(idMyDiv);
-    // console.log(objDiv);
-    console.log($('#testdiv'));
+//작은 + 구현
+function test(idMyDiv) {
+	var objDiv = document.getElementById(idMyDiv);
+	// console.log(objDiv);
+	console.log($('#testdiv'));
 
-    if (objDiv.style.display == "inline-block") {
-      objDiv.style.display = "none";
+	if (objDiv.style.display == "inline-block") {
+		objDiv.style.display = "none";
 
-    } else {
-      objDiv.style.display = "inline-block";
-    }
-  }
+	} else {
+		objDiv.style.display = "inline-block";
+	}
+}
 
-  function file_browse(a) {
-    console.log("==============>")
-    aaa = a;
-    /* fileup('.file1_'+aaa) */
+function file_browse(a) {
+	console.log("==============>")
+	aaa = a;
+	/* fileup('.file1_'+aaa) */
 
-    console.log($('.file1'))
-    $('.file1').click()
-    /* $('.file1_'+aaa).click($(this)).click */
-  }
+	console.log($('.file1'))
+	$('.file1').click()
+	/* $('.file1_'+aaa).click($(this)).click */
+}
 
-  function file_browse1(a) {
-    aaa = a;
-    /* fileup('.file1_'+aaa) */
+function file_browse1(a) {
+	aaa = a;
+	/* fileup('.file1_'+aaa) */
 
-    $('.file2').click()
-    /* $('.file1_'+aaa).click($(this)).click */
-  }
-  
-  function title_file_browse() {
-    $('#title_fileupload').click()
-  }
+	$('.file2').click()
+	/* $('.file1_'+aaa).click($(this)).click */
+}
 
-  function file_browse_none() {
-    $('#fileAllup').click()
-    $('#fileAllUpload').click();
-  }
+function title_file_browse() {
+	$('#title_fileupload').click()
+}
 
-  function test1(idMyDiv) {
-    var objDiv = document.getElementById(idMyDiv);
-    if (objDiv.style.display == "inline-block") {
-      objDiv.style.display = "none";
-    } else {
-      objDiv.style.display = "inline-block";
-    }
-  }
-  // 작은 + 끝
+function file_browse_none() {
+	$('#fileAllup').click()
+	$('#fileAllUpload').click();
+}
 
-  // 큰 +버튼 생성
-  function addition_p(aa, bb) {
-    var objDiv = document.getElementById(aa);
-    objDiv.style.display = "inline-block";
+function test1(idMyDiv) {
+	var objDiv = document.getElementById(idMyDiv);
+	if (objDiv.style.display == "inline-block") {
+		objDiv.style.display = "none";
+	} else {
+		objDiv.style.display = "inline-block";
+	}
+}
+//작은 + 끝
 
-  }
-  var divcount = 1;
+//큰 +버튼 생성
+function addition_p(aa, bb) {
+	var objDiv = document.getElementById(aa);
+	objDiv.style.display = "inline-block";
 
-  // 큰+버튼시 글상자창 추가
-  var tbody = $('.day_list')
-  
-  
-  function adddiv() {
-    console.log(count)
-count:divcount
-console.log(count)
-    var data = {aa:[{count:$('.text_parent').size()}]}
-    
-         var template = Handlebars.compile($('#dayplus-template').html())
-         var generatedHTML = template(data) // 템플릿 함수에 데이터를 넣고 HTML을 생성한다.
-//         tbody.text('') // tbody의 기존 tr 태그들을 지우고
-         tbody.append(generatedHTML) // 새 tr 태그들로 설정한다.
+}
+var divcount = 1;
 
-    setFileUploadToInputTag()
-    registMapFunction()
-    divcount++;
+//큰+버튼시 글상자창 추가
+var tbody = $('.day_list')
 
-    $('#write_addition').css('display', "none");
-  }
-  
-  function addbtn_adddiv(divThisCount) {
-      
-      //add btn 클릭시 해당 div에서 countPhoto 번호를 저장한 divThisCount 저장.
-      var afterTbody = $('#text_parent_'+ divThisCount).parent() // 넘겨받은 div번호 뒤에 태그 after하기 위해 변수 선언
-      console.log("adddiv에서 넘겨받는 this")
-        console.log(divThisCount)
-        console.log("adddiv 자체 $(this)")
-        console.log($(this))
-        console.log(count)
 
-        
-        var beforePlus = parseInt(divThisCount) + 1 // 추가된 div 번호 설정 변수 초기화
-        console.log("beforePlus 값======>")
-        console.log(beforePlus)
-        var data = {insertDiv:[{count:beforePlus}]} // 추가된 div 모든 자식노드 count 설정할 변수
-        
-             var template = Handlebars.compile($('#addbtn-dayplus-template').html())
-             var generatedHTML = template(data) // 템플릿 함수에 데이터를 넣고 HTML을 생성한다.
-//             tbody.text('') // tbody의 기존 tr 태그들을 지우고
-             afterTbody.after(generatedHTML) // 새 tr 태그들로 설정한다.
-             
-        setFileUploadToInputTag()
-        registMapFunction()
-        
-        $('#write_addition').css('display', "none");
-      }    
+function adddiv() {
+	console.log(count)
+	count:divcount
+	console.log(count)
+	var data = {aa:[{count:$('.text_parent').size()}]}
 
-  function resize(obj) {
-    obj.style.height = "1px";
-    obj.style.height = (12 + obj.scrollHeight) + "px";
-  }
+	var template = Handlebars.compile($('#dayplus-template').html())
+	var generatedHTML = template(data) // 템플릿 함수에 데이터를 넣고 HTML을 생성한다.
+//	tbody.text('') // tbody의 기존 tr 태그들을 지우고
+	tbody.append(generatedHTML) // 새 tr 태그들로 설정한다.
 
-  // +일차 버튼 클릭시
-  function changebuttontoday(ab) {
-    $('<h2>')
-        .html(
-            "2일차</h2><br><i class='fa fa-pencil-square-o' aria-hidden='true'></i>"
-                + "<div class='travel_detail_date' >2017.05.05</div><span id='"
-                + $(ab).attr('id') + "'></span>").appendTo(
-            $(ab).closest('div'))
-    ab.remove();
-  }
+	setFileUploadToInputTag()
+	registMapFunction()
+	divcount++;
 
-  // 마우스 오버시 작은+와 +날짜 보이게
-  function onfocus1(objDiv) {
-    objDiv.style.display = "inline-block";
-  }
+	$('#write_addition').css('display', "none");
+}
 
-  function onblur1(objDiv) {
-    objDiv.style.display = "none";
-    if ($("#testdiv").css("display") == "inline-block") {
-      $("#testdiv").css("display", "none")
-    }
+function addbtn_adddiv(divThisCount) {
 
-  }
-  // if($(objDiv).attr('display')=="inline-block"){
+	//add btn 클릭시 해당 div에서 countPhoto 번호를 저장한 divThisCount 저장.
+	var afterTbody = $('#text_parent_'+ divThisCount).parent() // 넘겨받은 div번호 뒤에 태그 after하기 위해 변수 선언
+	console.log("adddiv에서 넘겨받는 this")
+	console.log(divThisCount)
+	console.log("adddiv 자체 $(this)")
+	console.log($(this))
+	console.log(count)
 
-  function onfocus2(objDiv, bb) {
-    $('#objDiv').show();
-    objDiv.style.display = "inline-block";
-    $('#bb').show();
-    bb.style.display = "inline-block";
-  }
 
-  function onblur2(objDiv, bb, cc) {
-    $('#objDiv').hide();
-    objDiv.style.display = "none";
-    console.log(bb)
-    $('#bb').hide();
-    bb.style.display = "none";
-    $(cc).css("display", "none")
-  }
-  // 마우스 오버시 작은 + 와 날짜 보이게 끝
+	var beforePlus = parseInt(divThisCount) + 1 // 추가된 div 번호 설정 변수 초기화
+	console.log("beforePlus 값======>")
+	console.log(beforePlus)
+	var data = {insertDiv:[{count:beforePlus}]} // 추가된 div 모든 자식노드 count 설정할 변수
+
+	var template = Handlebars.compile($('#addbtn-dayplus-template').html())
+	var generatedHTML = template(data) // 템플릿 함수에 데이터를 넣고 HTML을 생성한다.
+//	tbody.text('') // tbody의 기존 tr 태그들을 지우고
+	afterTbody.after(generatedHTML) // 새 tr 태그들로 설정한다.
+
+	setFileUploadToInputTag()
+	registMapFunction()
+
+	$('#write_addition').css('display', "none");
+}    
+
+function resize(obj) {
+	obj.style.height = "1px";
+	obj.style.height = (12 + obj.scrollHeight) + "px";
+}
+
+//+일차 버튼 클릭시
+function changebuttontoday(ab) {
+	$('<h2>')
+	.html(
+			"2일차</h2><br><i class='fa fa-pencil-square-o' aria-hidden='true'></i>"
+			+ "<div class='travel_detail_date' >2017.05.05</div><span id='"
+			+ $(ab).attr('id') + "'></span>").appendTo(
+					$(ab).closest('div'))
+					ab.remove();
+}
+
+//마우스 오버시 작은+와 +날짜 보이게
+function onfocus1(objDiv) {
+	objDiv.style.display = "inline-block";
+}
+
+function onblur1(objDiv) {
+	objDiv.style.display = "none";
+	if ($("#testdiv").css("display") == "inline-block") {
+		$("#testdiv").css("display", "none")
+	}
+
+}
+//if($(objDiv).attr('display')=="inline-block"){
+
+function onfocus2(objDiv, bb) {
+	$('#objDiv').show();
+	objDiv.style.display = "inline-block";
+	$('#bb').show();
+	bb.style.display = "inline-block";
+}
+
+function onblur2(objDiv, bb, cc) {
+	$('#objDiv').hide();
+	objDiv.style.display = "none";
+	console.log(bb)
+	$('#bb').hide();
+	bb.style.display = "none";
+	$(cc).css("display", "none")
+}
+//마우스 오버시 작은 + 와 날짜 보이게 끝
 
 
 setTimeout("datePickerload()",100)
-  function datePickerload(){
-  $(function() {
-    $("#datepicker").datepicker({
-      showButtonPanel : true,
-      dateFormat : 'yy-mm-dd'
-    });
-  });
+function datePickerload(){
+	$(function() {
+		$("#datepicker").datepicker({
+			showButtonPanel : true,
+			dateFormat : 'yy-mm-dd'
+		});
+	});
 
 
-  $(function() {
-    $("#datepicker1").datepicker({
-      showButtonPanel : true,
-      dateFormat : 'yy-mm-dd'
-    });
-  });
-  
-  function datePick() {
-      console.log("날짜 누름")
-       $( ".travel_detail_date" ).datepicker({
-          showButtonPanel : true,
-           dateFormat : 'yy-mm-dd'
-       });
-     };
-  }
-  /*  */
+	$(function() {
+		$("#datepicker1").datepicker({
+			showButtonPanel : true,
+			dateFormat : 'yy-mm-dd'
+		});
+	});
 
-  var date = $('.files_date')
-  function checked(ab) {
-    var ac = document.getElementById(ab)
-    if ($(ac).css('display') == 'block') {
-      $(ac).css('display', 'none')
-      $(ac).removeClass();
-
-    } else {
-      $(ac).addClass('checked');
-      $(ac).css('display', 'inline-block')
-    }
-  }
-
-  var a = 0;
-  $(document).ready(function() 
-      {$(".edit_group").click(function() {
-                      $('<div>2017. 07. 29</div>').attr('class', 'files_date').appendTo($('<div class="table_files'+a+'" + >')
-                        .insertAfter($('.table_files')));
-                      $('.checked').parent().appendTo($('<div class="files_wrap">').appendTo($('.table_files' + a)));
-                      // $('.checked').parent().appendTo($('<div class="files_wrap">').appendTo($('<div class="table_files'+i+'" + >').insertAfter($('.table_files'))));
-                      $('.checked').css('display',
-                          'none');
-
-                      $('.checked').removeClass();
-
-                      // if ($('.table_files') == $('.table_files' > 'div: empty')) {
-                      //   $('.table_files').empty();
-                      //   $('.files_container > div:empty').remove();
-                      // } else {
-                      // }
-                      $('.files_wrap:empty').parent()
-                          .remove();
-                      // $('.files_wrap > div:empty').parents().remove();
-                      // .appendTo($('<div class="files_wrap">')
-                      // $('.files_container > div:empty').remove();
-                      a++
-                    })
-          })
-
-  $(document)
-      .ready(
-          function() {
-            $(".edit_ungroup")
-                .click(
-                    function() {
-                      var divs = $('.checked')
-                          .toArray();
-                      console.log(divs[1])
-                      for (i = 0; i < divs.length; i++) {
-                        $('<div>aa</div>')
-                            .attr('class',
-                                'files_date')
-                            .appendTo(
-                                $(
-                                    '<div class="table_files' +a+'" + >')
-                                    .insertAfter(
-                                        $('.table_files')));
-                        $(divs[i])
-                            .parent()
-                            .appendTo(
-                                $(
-                                    '<div class="files_wrap">')
-                                    .appendTo(
-                                        $('.table_files'
-                                            + a)));
-                        a++
-                      }
-                      $('.checked').css('display',
-                          'none');
-                      $('.checked').removeClass()
-
-                      $('.files_wrap:empty').parent()
-                          .remove();
-                    })
-          })
-
-  $(document).ready(function() {
-    $(".edit_delete").click(function() {
-      $('.checked').parent().parent().empty();
-      $('.checked').parent().parent().remove();
-      $('.files_wrap:empty').parent().remove();
-    })
-
-  })
-
-  $(document).ready(function() {
-    $('.help_btn').click(function() {
-      $('.edit_react_window').show();
-      $('html, body').css({
-        'overflow' : 'hidden'
-      });
-      $('body').on('scroll touchmove mousewheel', function(event) {
-        event.preventDefault();
-        event.stopPropagation();
-
-        //  return false;
-      });
-
-    })
-  })
-
-
-  
-  
-  function test1(idMyDiv) {
-var objDiv = document.getElementById(idMyDiv);
-if (objDiv.style.display == "inline-block") {
-  objDiv.style.display = "none";
-} else {
-  objDiv.style.display = "inline-block";
+	function datePick() {
+		console.log("날짜 누름")
+		$( ".travel_detail_date" ).datepicker({
+			showButtonPanel : true,
+			dateFormat : 'yy-mm-dd'
+		});
+	};
 }
-initAutocomplete();
+/*  */
+
+var date = $('.files_date')
+function checked(ab) {
+	var ac = document.getElementById(ab)
+	if ($(ac).css('display') == 'block') {
+		$(ac).css('display', 'none')
+		$(ac).removeClass();
+
+	} else {
+		$(ac).addClass('checked');
+		$(ac).css('display', 'inline-block')
+	}
+}
+
+var a = 0;
+$(document).ready(function() 
+		{$(".edit_group").click(function() {
+			$('<div>2017. 07. 29</div>').attr('class', 'files_date').appendTo($('<div class="table_files'+a+'" + >')
+					.insertAfter($('.table_files')));
+			$('.checked').parent().appendTo($('<div class="files_wrap">').appendTo($('.table_files' + a)));
+			// $('.checked').parent().appendTo($('<div class="files_wrap">').appendTo($('<div class="table_files'+i+'" + >').insertAfter($('.table_files'))));
+			$('.checked').css('display',
+			'none');
+
+			$('.checked').removeClass();
+
+			// if ($('.table_files') == $('.table_files' > 'div: empty')) {
+			//   $('.table_files').empty();
+			//   $('.files_container > div:empty').remove();
+			// } else {
+			// }
+			$('.files_wrap:empty').parent()
+			.remove();
+			// $('.files_wrap > div:empty').parents().remove();
+			// .appendTo($('<div class="files_wrap">')
+			// $('.files_container > div:empty').remove();
+			a++
+		})
+		})
+
+		$(document)
+		.ready(
+				function() {
+					$(".edit_ungroup")
+					.click(
+							function() {
+								var divs = $('.checked')
+								.toArray();
+								console.log(divs[1])
+								for (i = 0; i < divs.length; i++) {
+									$('<div>aa</div>')
+									.attr('class',
+									'files_date')
+									.appendTo(
+											$(
+													'<div class="table_files' +a+'" + >')
+													.insertAfter(
+															$('.table_files')));
+									$(divs[i])
+									.parent()
+									.appendTo(
+											$(
+											'<div class="files_wrap">')
+											.appendTo(
+													$('.table_files'
+															+ a)));
+									a++
+								}
+								$('.checked').css('display',
+								'none');
+								$('.checked').removeClass()
+
+								$('.files_wrap:empty').parent()
+								.remove();
+							})
+				})
+
+				$(document).ready(function() {
+					$(".edit_delete").click(function() {
+						$('.checked').parent().parent().empty();
+						$('.checked').parent().parent().remove();
+						$('.files_wrap:empty').parent().remove();
+					})
+
+				})
+
+				$(document).ready(function() {
+					$('.help_btn').click(function() {
+						$('.edit_react_window').show();
+						$('html, body').css({
+							'overflow' : 'hidden'
+						});
+						$('body').on('scroll touchmove mousewheel', function(event) {
+							event.preventDefault();
+							event.stopPropagation();
+
+							//  return false;
+						});
+
+					})
+				})
+
+
+
+
+				function test1(idMyDiv) {
+	var objDiv = document.getElementById(idMyDiv);
+	if (objDiv.style.display == "inline-block") {
+		objDiv.style.display = "none";
+	} else {
+		objDiv.style.display = "inline-block";
+	}
+	initAutocomplete();
 
 
 }
@@ -2258,156 +2278,156 @@ var center;
 var count = 0;
 
 function initAutocomplete() {
-var map = new google.maps.Map(document.getElementById('map'), {
-  center : {
-    lat : 37.5665,
-    lng : 126.9780
-  },
-  zoom : 10,
-  mapTypeId : 'roadmap'
-});
-console.log("지도 나온당");
+	var map = new google.maps.Map(document.getElementById('map'), {
+		center : {
+			lat : 37.5665,
+			lng : 126.9780
+		},
+		zoom : 10,
+		mapTypeId : 'roadmap'
+	});
+	console.log("지도 나온당");
 
-var clickcount = 0;
-var a;
-var b;
-// Create the search box and link it to the UI element.
-var input = document.getElementById('pac-input');
-var searchBox = new google.maps.places.SearchBox(input);
+	var clickcount = 0;
+	var a;
+	var b;
+//	Create the search box and link it to the UI element.
+	var input = document.getElementById('pac-input');
+	var searchBox = new google.maps.places.SearchBox(input);
 
-/* createNewMap(map); */
-map.addListener('bounds_changed', function() {
-  searchBox.setBounds(map.getBounds());
+	/* createNewMap(map); */
+	map.addListener('bounds_changed', function() {
+		searchBox.setBounds(map.getBounds());
 
-  console.log(map.center.lat());
-  console.log(map.center.lng());
-  map.addListener('click', function(e) {
-    if (clickcount == 0) {
-      placeMarkerAndPanTo(e.latLng, map);
-      clickcount++;
-    } else {
-      marker.setMap(null);
+		console.log(map.center.lat());
+		console.log(map.center.lng());
+		map.addListener('click', function(e) {
+			if (clickcount == 0) {
+				placeMarkerAndPanTo(e.latLng, map);
+				clickcount++;
+			} else {
+				marker.setMap(null);
 
-      placeMarkerAndPanTo(e.latLng, map);
-    }
+				placeMarkerAndPanTo(e.latLng, map);
+			}
 
-    latNum = map.center.lat()
-    lngNum = map.center.lng()
+			latNum = map.center.lat()
+			lngNum = map.center.lng()
 
-    console.log(latNum);
-    console.log(lngNum);
+			console.log(latNum);
+			console.log(lngNum);
 
-  });
-  var marker = new google.maps.Marker();
-  function placeMarkerAndPanTo(latLng, map) {
-    marker = new google.maps.Marker({
-      position : latLng,
-      map : map,
-    });
+		});
+		var marker = new google.maps.Marker();
+		function placeMarkerAndPanTo(latLng, map) {
+			marker = new google.maps.Marker({
+				position : latLng,
+				map : map,
+			});
 
-    map.panTo(latLng);
-    map.setZoom(15);
-    console.log("마크 찍힘");
-    console.log(marker);
+			map.panTo(latLng);
+			map.setZoom(15);
+			console.log("마크 찍힘");
+			console.log(marker);
 
-  }
+		}
 
-});
+	});
 
 
-var markers = [];
-// Listen for the event fired when the user selects a prediction and retrieve
-// more details for that place.
-searchBox.addListener('places_changed', function() {
-  var places = searchBox.getPlaces();
+	var markers = [];
+//	Listen for the event fired when the user selects a prediction and retrieve
+//	more details for that place.
+	searchBox.addListener('places_changed', function() {
+		var places = searchBox.getPlaces();
 
-  if (places.length == 0) {
-    return;
-  }
+		if (places.length == 0) {
+			return;
+		}
 
-  // Clear out the old markers.
-  markers.forEach(function(marker) {
-    marker.setMap(null);
-  });
-  markers = [];
+		// Clear out the old markers.
+		markers.forEach(function(marker) {
+			marker.setMap(null);
+		});
+		markers = [];
 
-  // For each place, get the icon, name and location.
-  var bounds = new google.maps.LatLngBounds();
-  places.forEach(function(place) {
-    if (!place.geometry) {
-      console.log("Returned place contains no geometry");
-      return;
-    }
-    
+		// For each place, get the icon, name and location.
+		var bounds = new google.maps.LatLngBounds();
+		places.forEach(function(place) {
+			if (!place.geometry) {
+				console.log("Returned place contains no geometry");
+				return;
+			}
 
-    if (place.geometry.viewport) {
-      // Only geocodes have viewport.
-      bounds.union(place.geometry.viewport);
-    } else {
-      bounds.extend(place.geometry.location);
-    }
-  });
-  map.fitBounds(bounds);
 
-});
+			if (place.geometry.viewport) {
+				// Only geocodes have viewport.
+				bounds.union(place.geometry.viewport);
+			} else {
+				bounds.extend(place.geometry.location);
+			}
+		});
+		map.fitBounds(bounds);
+
+	});
 
 }
 
 
-  
-function initMap2(mapDelId, slati, slongit) {
-var map2 = new google.maps.Map(document.getElementById(mapDelId), {
-  zoom : 8,
-  center : {
-    lat : 40.731,
-    lng : -73.997
-  }
-});
-var geocoder = new google.maps.Geocoder;
-var infowindow = new google.maps.InfoWindow;
 
-geocodeLatLng(geocoder, map2, infowindow, slati, slongit)
+function initMap2(mapDelId, slati, slongit) {
+	var map2 = new google.maps.Map(document.getElementById(mapDelId), {
+		zoom : 8,
+		center : {
+			lat : 40.731,
+			lng : -73.997
+		}
+	});
+	var geocoder = new google.maps.Geocoder;
+	var infowindow = new google.maps.InfoWindow;
+
+	geocodeLatLng(geocoder, map2, infowindow, slati, slongit)
 }
 
 function geocodeLatLng(geocoder, map2, infowindow, slati, slongit) {
-var latlng = {
-  lat : parseFloat(slati),
-  lng : parseFloat(slongit)
-};
-geocoder.geocode({
-  'location' : latlng
-}, function(results, status) {
-  if (status === 'OK') {
-    if (results[1]) {
-      map2.setZoom(14);
-      map2.setCenter(results[0].geometry.location);
-      var marker = new google.maps.Marker({
-        position : latlng,
-        map : map2
-      });
+	var latlng = {
+			lat : parseFloat(slati),
+			lng : parseFloat(slongit)
+	};
+	geocoder.geocode({
+		'location' : latlng
+	}, function(results, status) {
+		if (status === 'OK') {
+			if (results[1]) {
+				map2.setZoom(14);
+				map2.setCenter(results[0].geometry.location);
+				var marker = new google.maps.Marker({
+					position : latlng,
+					map : map2
+				});
 
-      infowindow.setContent(results[1].formatted_address);
-      infowindow.open(map2, marker);
+				infowindow.setContent(results[1].formatted_address);
+				infowindow.open(map2, marker);
 
-    }
-  }
-});
+			}
+		}
+	});
 }
 
 var body33 = $('#text_parent_0')
 
 var mapcount = 3;
 function createMap() {
-slati = latNum.toFixed(8);
-slongit = lngNum.toFixed(8);
-/* $('#text_parent_0').html(''); */
-$('#text_parent_'+parentno).html('');
-$("<div id='map"+mapcount+"'style='width:809px; height:380px; border:1px solid white; margin-bottom: 70px;'>").appendTo($('#text_parent_'+parentno))
-console.log("aaaa")
-var mapDelId = 'map' + mapcount
-console.log(mapDelId, slati, slongit)
-initMap2(mapDelId, slati, slongit)
-mapcount++
+	slati = latNum.toFixed(8);
+	slongit = lngNum.toFixed(8);
+	/* $('#text_parent_0').html(''); */
+	$('#text_parent_'+parentno).html('');
+	$("<div id='map"+mapcount+"'style='width:809px; height:380px; border:1px solid white; margin-bottom: 70px;'>").appendTo($('#text_parent_'+parentno))
+	console.log("aaaa")
+	var mapDelId = 'map' + mapcount
+	console.log(mapDelId, slati, slongit)
+	initMap2(mapDelId, slati, slongit)
+	mapcount++
 
 };
 
@@ -2415,23 +2435,23 @@ var slati;
 var slongit;
 function saveMap() {
 	console.log("saveMap()")	
-console.log("위치 데이터 넘어감");
-$.post('/detail/addMap.json', {
-  'lati' : latNum.toFixed(8),
-  'longit' : lngNum.toFixed(8),
-  'srtno' : parentno
-}, function(result) {
-}, 'json')
+	console.log("위치 데이터 넘어감");
+	$.post('/detail/addMap.json', {
+		'lati' : latNum.toFixed(8),
+		'longit' : lngNum.toFixed(8),
+		'srtno' : parentno
+	}, function(result) {
+	}, 'json')
 }
 
 function saveMap2() {
 	for (var [key, value] of mapMap) {
 		$.post('/detail/saveMap.json', {
-		    'lati' : value.lati,
-		    'longit' : value.longit,
-		    'srtno' : key
-		  }, function(result) {
-			  console.log("Map넘어감 ",result)
-		  }, 'json')
-			}
+			'lati' : value.lati,
+			'longit' : value.longit,
+			'srtno' : key
+		}, function(result) {
+			console.log("Map넘어감 ",result)
+		}, 'json')
 	}
+}

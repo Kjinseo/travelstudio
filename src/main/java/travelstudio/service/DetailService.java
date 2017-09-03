@@ -27,7 +27,8 @@ List<Detail> selectAddress(int mno) throws Exception;
 List<Detail> carouselNation(int mno) throws Exception;
 void addAllphoto(Detail detail);
 void pictureNoSearch(int postno);
-
+void addAllphoto2(Detail detail);
+void saveMap(Detail detail) throws Exception;
 void insertDetailLocationByPost(Detail detail);
 
 }

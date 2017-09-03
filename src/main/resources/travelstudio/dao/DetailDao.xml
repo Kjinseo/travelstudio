@@ -117,7 +117,17 @@
     insert into detail(adrs, postno, srtno)
     values(#{address},#{postno}, #{srtno})
   </insert>
-   
+  
+ <insert id="insertDetailCaptionByPost" parameterType="detail"> 
+    insert into detail(capt, postno, srtno)
+    values(#{capt},#{postno}, #{srtno})
+  </insert>
+    
+   <insert id="addAllphoto2" parameterType="detail"> 
+    insert into detail(picno, postno, srtno)
+    values(#{picno},#{postno},#{srtno})
+  </insert>
+  
 </mapper>
 
 
