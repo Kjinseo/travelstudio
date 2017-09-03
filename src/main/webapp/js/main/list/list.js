@@ -3,6 +3,7 @@ var tbody = $('.content-container');
 var userOne = ''
 	var posted_count = 0;
 var uniqueNames;
+var uniqueNum=[];
 var membernoArray=[]
 var numOfPost;
 var postOwner;
@@ -131,13 +132,15 @@ function NoList() {
 						result.data[membernoArray[j]][k].memberno = membernoArray[j]
 						flag_list[flag_count++] =(result.data[membernoArray[j]][k])
 						console.log(j,"=============>", result.data[membernoArray[j]][k])
-				
 				}
 				}
 			}
 		}
-		
-		console.log()
+		/*for(var m=0; m < membernoArray.length; m++)
+		for(var l = 0; l < flag_list.length; l++) {
+			if(flag_list[l].memberno == )
+		}*/
+		console.log(flag_list[0].memberno)
 		
 		console.log("가공전flag_list================>",flag_list)
 		
@@ -145,40 +148,88 @@ function NoList() {
 			console.log(flag_list[i].address.indexOf("한국"))
 			if(flag_list[i]!=undefined){
 				if(flag_list[i].address.indexOf("대한민국")!=-1 || flag_list[i].address.indexOf("한국")!=-1){
-					flag_list[i].address ='./flags/png/south-korea.png'
+					flag_list[i].address ='../../../image/flags/south-korea.png'
 				}else if(flag_list[i].address.indexOf("미국")!=-1){
-					flag_list[i].address='./flags/png/united-states-of-america.png'
+					flag_list[i].address='../../../image/flags/united-states-of-america.png'
 				}else if(flag_list[i].address.indexOf("일본")!=-1){
-					flag_list[i].address='./flags/png/japan.png'
+					flag_list[i].address='../../../image/flags/japan.png'
 				}else if(flag_list[i].address.indexOf("영국")!=-1){
-					flag_list[i].address='./flags/png/united-kingdom.png'
+					flag_list[i].address='../../../image/flags/united-kingdom.png'
 				}else if(flag_list[i].address.indexOf("프랑스")!=-1){
-					flag_list[i].address='./flags/png/france.png'
+					flag_list[i].address='../../../image/flags/france.png'
 				}else if(flag_list[i].address.indexOf("중국")!=-1){
-					flag_list[i].address='./flags/png/china.png'
+					flag_list[i].address='../../../image/flags/china.png'
 				}else if(flag_list[i].address.indexOf("조선")!=-1){
-					flag_list[i].address='./flags/png/north-korea.png'
+					flag_list[i].address='../../../image/flags/north-korea.png'
 				}else if(flag_list[i].address.indexOf("스페인")!=-1){
-					flag_list[i].address='./flags/png/spain.png'
+					flag_list[i].address='../../../image/flags/spain.png'
 				}else if(flag_list[i].address.indexOf("이탈리아")!=-1){
-					flag_list[i].address='./flags/png/italy.png'
+					flag_list[i].address='../../../image/flags/italy.png'
 				}
 			}
-
 		}
 		console.log("가공후flag_list================>",flag_list)
 		
-		$.each(flag_list, function(i, el){
-			if($.inArray(el, uniqueNames) === -1) uniqueNames.push(el);
-		});
+		var memberNum = flag_list[0].memberno
+//		for(var q = 0; q < membernoArray.length; q++) {
+//			for(var w = 0; w < flag_list.length; w++){
+//				if(flag_list[w].memberno == membernoArray[q]) {
+//					if($.inArray(flag_list[w].address, uniqueNames.address) === -1){
+//						uniqueNames.push(flag_list[w]); 
+//						console.log("플레그 주소"+flag_list[w].address)
+//						console.log("플레그 주소"+flag_list[w].address)
+//					}
+//				}
+//			}
+//		}
+		
+		// 멤버 별로 중복 주소 제거
+		for (var i=0; i < flag_list.length; i++) {
+			if(memberNum == flag_list[i].memberno) {
+				if(uniqueNames.length == 0){
+					uniqueNames.push(flag_list[i])
+					for(var j = 0; j <uniqueNames.length; j++) {
+						if(flag_list[i].address != uniqueNames[j].address) {
+							uniqueNames.push(flag_list[i])
+						}
+					}
+				}else{
+					
+					for(var j = 0; j <uniqueNames.length; j++) {
+						if(memberNum == uniqueNames[j].memberno) {
+							if(flag_list[i].address != uniqueNames[j].address) {
+								uniqueNames.push(flag_list[i])
+							}
+						}else {
+							if(j == uniqueNames.length-1)
+								uniqueNames.push(flag_list[i])
+						}
+					}
+				} 
+			} else {
+				memberNum = flag_list[i].memberno
+				i--;
+				continue;
+			}
+		}
+
+//		if($.inArray(el.address, uniqueNames.address) === -1){
+//			uniqueNames.push(el); 
+//		}
+//}
+	/*$.each(flag_list, function(i, el){
+		if($.inArray(el.address, uniqueNames.address) === -1){
+			uniqueNames.push(el); 
+		}
+	});*/			
 		console.log(uniqueNames)
-		console.log(uniqueNames.length)
-		numOfFlag=uniqueNames.length;
-		console.log(numOfFlag);
+//		console.log(uniqueNames.length)
+//		numOfFlag=uniqueNames.length;
+//		console.log(numOfFlag);
 		
 		
-		for(i=0;i <= uniqueNames.length;i++){
-			$('<img style=width:36px; height:36px;>').attr('src',uniqueNames[i]).css('margin-right','7px').appendTo($('.member_visit_' + memberno))
+		for(i=0;i < uniqueNames.length;i++){
+			$('<img style=width:25px; height:25px;>').attr('src',uniqueNames[i].address).css('margin-right','7px').appendTo($('.member_visit_' + uniqueNames[i].memberno))
 		}
 		})
 		
