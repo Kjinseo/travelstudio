@@ -22,3 +22,7 @@ $('#login-summit').click(function() {
     }, 'json')
     
 })
+
+$("#sign-up").on("click", function() {
+	location.href="sign-up.html"
+})
