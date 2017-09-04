@@ -211,35 +211,37 @@ function NoList() {
 		}
 
 		
-//		var count = 0;
-//		uniqueNames = flag_list
-//		console.log('new', uniqueNames)
-//
-//		$.each(flag_list, )
-//		for (var i = 0; i < flag_list.length; i++) {
-//			count = 0;
-//
-//			for (var j = 1; j < flag_list.length; j++){
-//				if (j != i) {
-//					if ((uniqueNames[i].memberno == flag_list[j].memberno) 
-//							&& (uniqueNames[i].address == flag_list[j].address)) {
-//						uniqueNames.splice(i, 1)
-//						console.log(uniqueNames)
-//					}
-//				}
-//			}
-//		}
-//		
-//		for (var i = 0; i < uniqueNames.length; i++) {
-//			count = 0;
-//			for(var j = 0; j < uniqueNames.length; j++) {
-//					if (uniqueNames[i].memberno == uniqueNames[j].memberno) {
-//						count++
-//						i = j
-//					}
-//			}
-//			$('.total_' + uniqueNames[i].memberno).text(count)
-//		}
+		var count = 0;
+		uniqueNames = flag_list
+		console.log('new', uniqueNames)
+
+		$.each(flag_list, function(i, el) {
+			
+		})
+		for (var i = 0; i < flag_list.length; i++) {
+			count = 0;
+
+			for (var j = 1; j < flag_list.length; j++){
+				if (j != i) {
+					if ((uniqueNames[i].memberno == flag_list[j].memberno) 
+							&& (uniqueNames[i].address == flag_list[j].address)) {
+						uniqueNames.splice(i, 1)
+						console.log(uniqueNames)
+					}
+				}
+			}
+		}
+		
+		for (var i = 0; i < uniqueNames.length; i++) {
+			count = 0;
+			for(var j = 0; j < uniqueNames.length; j++) {
+					if (uniqueNames[i].memberno == uniqueNames[j].memberno) {
+						count++
+						i = j
+					}
+			}
+			$('.total_' + uniqueNames[i].memberno).text(count)
+		}
 
 //		}
 //		console.log(uniqueNames)
