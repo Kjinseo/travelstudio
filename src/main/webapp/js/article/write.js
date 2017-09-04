@@ -2,6 +2,8 @@ var fititle = $('#wirte_title'),
 fisdt = $('.write_start_date'),
 fiedt = $('.write_end_date'),
 ficont = $('.text_write_box'),
+after,
+before,
 MapArray=[];
 var mno =0,
 savecount=0,
@@ -1787,10 +1789,8 @@ function findNeedUpdateNo(beforePlus) {
 	}
 }
 
-$(document.body).on('click','#capt-save', function() {
+$(document.body).on('click', '#capt-save', function() {
 	console.log(thisPP.attr('data-capno'))
-
-	console.log("되라좀aa")
 	event.stopPropagation()
 	let capTxt = $('#cap-txt').val()
 	console.log($('.capt_output' ,'div[data-textparent='+ thisPP.attr('data-capno') +']'))
@@ -1798,6 +1798,9 @@ $(document.body).on('click','#capt-save', function() {
 	console.log(capTxt)
 
 	captionArray.push()
+	$('#cap-txt').val('')
+	$('.caption_modal').css('display', 'none')
+	$('#control-box-div-'+count).css('display', 'none');
 
 })
 captionArray=[]
@@ -2071,6 +2074,7 @@ function makeDragable($thisclass){
 			$( $("img",$thisclass).eq(i).parent() ).draggable({
 				revert: 'invalid', 	
 				start: function(){
+					before = $(this).parent().children('.capt_output').text()
 					console.log('start')
 					/*currentCollageSize=$(this).parent().attr('class').split('_')[1].charAt(7)*/
 				},/* start끝 */
@@ -2293,7 +2297,9 @@ function stoponParent($this, $item,StoponParentCount) { //디스는 콜라주, �
 			+ "<li><button type='button' class='btn_del' id='delbtn-"+StoponParentCount+"'>삭제</button></li>"
 			+ "</ul>"
 			+ "</div>"
+			+ "<div class='capt_output' id='txt-output-"+StoponParentCount+"'></div>"
 	))
+	$($this).children('.capt_output').text(before)
 	stoponParentArray.splice(0,stoponParentArray.length)
 	console.log($item)
 	deletephoto(StoponParentCount)
@@ -2468,7 +2474,11 @@ function stopFunction(currentParent,$this,stopCountPhoto){ //currentParent는 wh
 			+ "<li><button type='button' class='btn_caption' id='edtbtn-"+stopCountPhoto+"' data-capno='"+stopCountPhoto+"'>캡션</button></li>"
 			+ "<li><button type='button' class='btn_del' id='delbtn-"+stopCountPhoto+"'>삭제</button></li>"
 			+ "</ul>"
-			+ "</div>"))
+			+ "</div>"
+			+ "<div class='capt_output' id='txt-output-"+stopCountPhoto+"'> </div>"
+	))
+	$(currentParent).children('.capt_output').text(before)
+	console.log(before)
 			deletephoto(stopCountPhoto)
 }
 
@@ -2677,7 +2687,9 @@ function resizeCollage($this, $item,countPhotoresize) { //디스는 콜라주, �
 			+ "<li><button type='button' class='btn_del' id='delbtn-"+countPhotoresize+"'>삭제</button></li>"
 			+ "</ul>"
 			+ "</div>"
+			+ "<div class='capt_output' id='txt-output-"+countPhotoresize+"'> </div>"
 	))
+	$($this).children('.capt_output').text(after)
 	deletephoto(countPhotoresize)
 }
 
@@ -2695,6 +2707,7 @@ function makeDropable($thisclass){
 					return $('img',dropcollageArray[i]).parent().eq(j)}}
 		}), 
 		drop: function( event, ui ) {
+			after = $(this).children('.capt_output').text()
 			/*    	  console.log(this)
 	    	   console.log($(ui.draggable).parent().attr('class').split('_')[1].charAt(7)) 
 	    	  dropdiv=$(this).attr('class').split('_')[1].charAt(7)

@@ -180,6 +180,9 @@ public class PostControl {
       post.setCont("/upload/" + newFilename);
       File thumbnail = new File(ctx.getRealPath("/upload/" + newFilename + "_1920"));
       Thumbnails.of(file).size(2500, 2500).outputFormat("png").toFile(thumbnail);
+      
+      thumbnail = new File(ctx.getRealPath("/upload/" + newFilename + "_400"));
+      Thumbnails.of(file).size(400, 350).outputFormat("png").toFile(thumbnail);
     }
 
     post.setMno(loginMember.getMno());
