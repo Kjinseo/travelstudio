@@ -41,4 +41,5 @@ void deleteDetail(int postno);
 void addAllphoto2(Detail detail);
 void deletePost(int postno);
 void insertDetailLocationByPost(Detail detail);
+void insert_map_srtno(Detail detail);
 }

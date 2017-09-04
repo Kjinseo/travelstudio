@@ -134,6 +134,12 @@ public void saveMap(Detail detail) throws Exception {
 }
 
 
+@Override
+public void insert_map_srtno(Detail detail) {
+  detailDao.insert_map_srtno(detail);
+}
+
+
 //  
 //  public Teacher get(int no) throws Exception {
 //    return teacherDao.selectOne(no);

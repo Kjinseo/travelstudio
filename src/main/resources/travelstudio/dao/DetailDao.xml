@@ -27,6 +27,11 @@
     values(#{lati},#{longit}, #{writer}, #{srtno})
   </insert>
   
+   <insert id="insert_map_srtno" parameterType="detail"> 
+    insert into detail(lati, postno, longit, srtno)
+    values(#{lati}, #{postno}, #{longit}, #{srtno})
+  </insert>
+  
    <select id="selectList" resultMap="detailMap" parameterType="map">
     select lati, longit, postno from detail where postno = 1;
     

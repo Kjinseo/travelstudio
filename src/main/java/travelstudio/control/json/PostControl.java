@@ -195,15 +195,21 @@ public JsonResult backUpdate(MultipartFile[] files, int postnono) throws Excepti
     }
     detailService.insertDetailByEmail(detail);
     
+    
+    detailMap.setPostno(post.getPostno());
+    detailMap.setWriter(loginMember.getEmail());
     if(map!=null){
       for(int i=0;i<map.length;i+=3){
+        System.out.println("Map");
+        System.out.println(map[i+1]);
+        System.out.println(map[i+2]);
         detailMap.setLati( Double.valueOf(map[i+1]));
         detailMap.setLongit(Double.valueOf(map[i+2]));
-        detailMap.setSrtno(Integer.parseInt((content[i])));
-        detailService.addMap(detail);
+        detailMap.setSrtno(Integer.parseInt((map[i])));
+        detailService.insert_map_srtno(detailMap);
       }
       }
-      detailService.insertDetailByEmail(detail);
+      detailService.insertDetailByEmail(detailMap);
     
     
     detailCaption.setPostno(post.getPostno());

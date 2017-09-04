@@ -1095,15 +1095,16 @@ $('#title_fileupload').fileupload({
 				})
 				$('.map').each(function () {
 					var textParentDiv= $('.text_parent',$(this).parents('.day1'))
-					if($(this).val() != "" && $('.text_parent', $('img', $('.text_parent',$(this).parents('.day1')))) != undefined){
+					if($('.text_parent', $('img', $('.text_parent',$(this).parents('.day1')))) != undefined){
 						mapArr.push(textParentDiv.attr('id').split('_')[2])
 						mapArr.push($(this).attr('data-lati'))
 						mapArr.push($(this).attr('data-longit'))
-
+						console.log($(this).attr('data-longit'))
+						console.log($(this).attr('data-lati'))
 					}
 				})
 				console.log(captionArray)
-
+				console.log(mapArr)
 				data.formData = {
 					title : decodeURIComponent(fititle.val()),
 					sdt: fisdt.val(),
@@ -1115,14 +1116,12 @@ $('#title_fileupload').fileupload({
 					location: detailLocArr,
 					map: mapArr
 				}
-				change=1;
+				/*change=1;*/
 			};
 		},
 		done: function (e, data) { // 서버에서 응답이 오면 호출된다. 각 파일 별로 호출된다.
 			console.log('writedone()...');
-			console.log(data);
-
-			location.href="/desktop/main/main.html"
+			/*console.log(data);*/
 		}
 });
 

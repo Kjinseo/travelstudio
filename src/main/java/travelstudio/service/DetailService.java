@@ -22,6 +22,7 @@ void insertDetailContent(Detail detail);
 void insertDetailCaption(Detail detail);
 void insertDetailDate(Detail detail);
 void insertDetailLocation(Detail detail);
+void insert_map_srtno(Detail detail);
 List<Detail> selectedOneDetail(String postno);
 List<Detail> selectAddress(int mno) throws Exception;
 List<Detail> carouselNation(int mno) throws Exception;
