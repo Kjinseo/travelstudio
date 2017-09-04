@@ -3,7 +3,6 @@ body {
   margin: 0;
 }
 
-
 .header {
   width: 1015px;
   height: 80px;
@@ -52,6 +51,10 @@ body {
   padding: 0 0 0 5px;
 }
 
+#slide_icon {
+  display: none;
+}
+
 
 </style>
 
@@ -62,7 +65,7 @@ body {
 	<div class="headeLogo"></div>
 	<input type="search" id="search_bar" placeholder="검색">
 	<button id="search_icon" class="fa fa-search fa-2x" aria-hidden="true"></button>
-	<button type="button" id="start-my-journey" onclick="location.href='/desktop/article/write.html'">여행기 작성</button>
+	<button type="button" id="start-my-journey">시작 하기</button>
 	
 </div>
 
@@ -104,7 +107,9 @@ body {
 		</div>
 	</div>
 </script>
+
 <script>
+
 	$(document).on("click",'.user_mypage',function(){
 		location.href="/desktop/mypage/mypage.html"
 	})
@@ -118,44 +123,50 @@ function slideCall() {
   $('.slide_bar').animate({left:0}, 350);
   $('.cover_dimmed').show();
 })
+
 $('#cancel_icon').click(function () {
   $('.slide_bar').animate({left:-320}, 350);
   $('.cover_dimmed').hide();
 })
 }
+	
 function slide_off() {
   $('.cover_dimmed').click(function () {
     $('.slide_bar').animate({left:-320}, 350);
     $('.cover_dimmed').hide();
 })
 }
+
 $(document).ready(slideCall)
 $(document).ready(slide_off)
 
 
 var loginMemberNo =0;
 $.getJSON('/member/header.json', function(result) {
+	console.log(result.data)
+	
 	mno=result.data.loginMember;
 	if(mno!=undefined){
 		$('#slide_icon').css('display','inline-block');
+		$("#start-my-journey").text("여행기작성");
 		$('#start-my-journey').off('click');
 		$('#start-my-journey').click(function(){
 		   location.href="/desktop/article/write.html"
-		    //Other code etc.
-		});
-	}else{
+		})
+		
+	} else {
+		
+    $('.headeLogo').css('margin-left', '32px');
 		$('#start-my-journey').off('click');
 		$('#start-my-journey').click(function(){
 		   location.href="/desktop/login/login.html"
-		    //Other code etc.
-		});
+		})
+		
 	}
+	
     var template = Handlebars.compile($('#tbody-template4').html())
     var generatedHTML = template(result.data.loginMember) // 템플릿 함수에 데이터를 넣고 HTML을 생성한다.
-//	    tbody.text('') // tbody의 기존 tr 태그들을 지우고
     $('.slide_bar_content').append(generatedHTML) // 새 tr 태그들로 설정한다.
 
 })
 </script>
-
-

@@ -46,8 +46,8 @@
   
   <insert id="insert" parameterType="member" 
           useGeneratedKeys="true" keyColumn="mno">
-    insert into member(email, pwd, alias,intro) 
-    values(#{email},password(#{password}),#{alias},'1')
+    insert into member(email, pwd, alias,intro, path) 
+    values(#{email},password(#{password}),#{alias},'1', '/image/user_default.png')
   </insert>
   
   <select id="selectOneByEmailPassword" resultMap="memberMap" parameterType="map">

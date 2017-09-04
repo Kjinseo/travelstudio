@@ -1,17 +1,13 @@
 var fiid = $('#id-input'),
     fiEmail = $('#email-input'),
     fiPassword = $('#password-input');
-    
-   
 
 $(function() {
 	$('.header-container').load('../main/header.html')
 	$('.footer-container').load('../main/footer.html')
 })
 
-
-
-  $('#login-summit').click(function() {
+$('#login-summit').click(function() {
 	  
     $.post('/auth/login.json', {
       'email': fiEmail.val(),
@@ -25,5 +21,4 @@ $(function() {
      }
     }, 'json')
     
-    /*location.href="../jinseoKing/main01.html"*/
-  })
+})
