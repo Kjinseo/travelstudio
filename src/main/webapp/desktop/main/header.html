@@ -3,6 +3,25 @@ body {
   margin: 0;
 }
 
+
+img, a, abbr, acronym, address, applet,
+article, aside, audio, b, big, blockquote,
+body, canvas, caption, center, cite, code,
+dd, del, details, dfn, div, dl, dt, em,
+embed, fieldset, figcaption, figure, footer,
+form, h1, h2, h3, h4, h5, h6, header, hgroup,
+html, i, iframe, img, ins, kbd, label, legend, li,
+mark, menu, nav, object, ol, output, p, pre, q, ruby,
+s, samp, section, small, span, strike, strong, sub,
+summary, sup, table, tbody, td, tfoot, th, thead,
+time, tr, tt, u, ul, var, video {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
 .header {
   width: 1015px;
   height: 80px;
@@ -55,8 +74,208 @@ body {
   display: none;
 }
 
+.logout-btn:hover {
+  cursor: pointer;
+}
+
+/*슬라이드 바 전체*/
+.slide_bar {
+  background-color: white;
+  width: 320px;
+  height: 100%;
+  position: fixed;
+  left: -320px;
+  z-index: 999;
+}
+
+/* 슬라이드 바 취소 버튼*/
+.slide_bar_cancel {
+  padding: 10px 0;
+}
+.icon_wrap {
+  display: inline-block;
+}
+#cancel_icon {
+  float: right;
+  padding-right: 15px;
+  
+  display: inline-block;
+}
+#cancel_icon, #slide_icon:hover {
+  cursor: pointer;
+
+}
+#slide_icon{
+   
+   float:none;
+   display:none;
+}
+/*슬라이드 바 취소 버튼 끝  */
+
+/*슬라이드 바 전체 컨텐츠 div*/
+.member_slide {
+  width: 100%;
+  margin: 20px 0 ;
+}
+
+.member_slide .member_info {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+
+.member_slide .member_info .user_photo {
+  position: relative;
+  padding: 30px 0;
+  text-align: center;
+}
+
+.member_slide .member_info .user_photo img {
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+}
+
+.member_slide .member_info .user_id {
+  text-align: center;
+}
+
+.member_slide .member_info .user_url {
+  text-align: center;
+  color: gray;
+}
+
+.member_slide .member_info .user_mypage {
+  text-align: center;
+  background-color: #4a4a4a;
+  width: 150px;
+  height: 35px;
+  color: white;
+  border-radius: 30px;
+  margin: 30px auto 0;
+  vertical-align: center;
+  font-size: 80%
+}
+
+.user_mypage {
+line-height: 35px;
+}
+
+#subscribe{
+  border: 2px solid #4a4a4a;
+  text-align: center;
+  background-color: white;
+  width: 150px;
+  height: 35px;
+  color: #4a4a4a;
+  border-radius: 30px;
+  margin: 12px auto 0;
+  vertical-align: center;
+  font-size: 80%;
+  text-align: center;
+  padding-top: 5px;
+  font-weight: bold;
+}
+
+.user_nation {
+  text-align: center;
+  margin-top: 20px;
+  list-style: none;
+  padding-top: 2px;
+  overflow: hidden;
+}
+
+.user_nation li {
+  width: 20px;
+  display: inline-block;
+}
+
+.user_nation img {
+  display: inline-block;
+  
+  height: 36px;
+  border-radius: 100%;
+  vertical-align: middle;
+}
+
+ .user_visited {
+   width: 210px;
+   font-weight: 600;
+   font-size: 18px;
+   color: #767676;
+   text-align: center;
+   margin: 25px auto 0;
+   padding-bottom: 30px;
+ }
+
+.user_visited .user_write {
+  display: inline-block;
+  width: 100px;
+  height: 50px;
+}
+
+.user_visited .user_visited_count {
+  display: inline-block;
+  width: 100px;
+}
+
+.counting {
+  display: block;
+  margin-top: 10px;
+  font-size: 130%;
+  color: black;
+}
+  
+  #numberOfFlag{
+  width: 50px;
+  font-size:30px;
+  border: none;
+  margin-left: 47px;
+  
+}
+#numOfPost{
+  width: 50px;
+  font-size:30px;
+  border: none;
+  margin-left: 32px;
+  
+}
+
+.slide_bar_classify{
+  width: 80%;
+  color: #d2d2d2;
+}
+
+/*슬라이드 메뉴 끝*/
+
+/*슬라이드 메뉴 호출시 화면 커버*/
+.cover_dimmed {
+  background-color: #000;
+  opacity: 0.5;
+  z-index: 990;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  display: none;
+}
+
 
 </style>
+
+  <div class="slide_bar">
+    <div class="slide_bar_cancel">
+      <a href="#"><img src="/image/cancel.png" id="cancel_icon"></a>
+    </div>
+
+    <!-- 슬라이드 메뉴바 호출 -->
+       <div class="slide_bar_content">
+  
+  </div>
+  <!-- 슬라이드 메뉴바 호출 끝 -->
+
+</div>
+<div class="cover_dimmed"></div>
 
 
 <div class="header">
@@ -79,17 +298,17 @@ body {
 			<div class="user_url">{{email}}</div>
 
 			
-				<div class="user_mypage">마이페이지	</div>
+				<div class="user_mypage">마이페이지</div>
 				<div id="subscribe">구독</div>
 			<div class="user_nation"></div>
 
 			<div class="user_visited">
 				<div class="user_write">
-					<img src="/image/textbook.png" alt=""> <span>여행기</span>
+					<img src="/image/textbook.png" alt=""><span>여행기</span>
 					<div class="counting1"></div>
 				</div>
 				<div class="user_visited_count">
-					<img src="/image/aeroplane.png" alt=""> <span>여행국가</span>
+					<img src="/image/aeroplane.png" alt=""><span>여행국가</span>
 
 					<div class="counting2"></div>
 				</div>
@@ -100,7 +319,7 @@ body {
 				<ul class="list_menu">
 					<li><a href="/desktop/login/find_pwd.html">비밀번호 변경</a></li>
 					<li><a href="#">탈퇴하기</a></li>
-					<li><a href="#">로그아웃</a></li>
+					<li class="logout-btn"><a href="javascript:void(0)">로그아웃</a></li>
 					<li><a href="#">공지사항</a></li>
 				</ul>
 			</div>
@@ -110,36 +329,41 @@ body {
 
 <script>
 
-	$(document).on("click",'.user_mypage',function(){
-		location.href="/desktop/mypage/mypage.html"
-	})
-	$(document).on("click",'#subscribe',function(){
-			location.href="/desktop/subscribe/subscribe.html"
-	})
-	
-	
-function slideCall() {
-	$('#slide_icon').click(function (){
+// 마이페이지 버튼
+$(document).on("click",'.user_mypage',function(){
+	location.href="/desktop/mypage/mypage.html"
+})
+
+// 구독하기 버튼
+$(document).on("click",'#subscribe',function(){
+		location.href="/desktop/subscribe/subscribe.html"
+})
+
+// 로그아웃 버튼
+$(document).on("click",'.logout-btn',function(){
+  $.getJSON('/auth/logout.json', function(result) {
+    location.reload()
+  })
+})
+
+// 슬라이더 나오는 버튼
+
+$(document).on("click",'#slide_icon' ,function(){
   $('.slide_bar').animate({left:0}, 350);
   $('.cover_dimmed').show();
 })
 
-$('#cancel_icon').click(function () {
+// cancel_icon 버튼
+
+$(document).on("click",'#cancel_icon' ,function(){
   $('.slide_bar').animate({left:-320}, 350);
   $('.cover_dimmed').hide();
 })
-}
-	
-function slide_off() {
-  $('.cover_dimmed').click(function () {
-    $('.slide_bar').animate({left:-320}, 350);
-    $('.cover_dimmed').hide();
+
+$(document).on("click",'.cover_dimmed' ,function(){
+  $('.slide_bar').animate({left:-320}, 350);
+  $('.cover_dimmed').hide();
 })
-}
-
-$(document).ready(slideCall)
-$(document).ready(slide_off)
-
 
 var loginMemberNo =0;
 $.getJSON('/member/header.json', function(result) {
@@ -161,7 +385,7 @@ $.getJSON('/member/header.json', function(result) {
 		$('#start-my-journey').click(function(){
 		   location.href="/desktop/login/login.html"
 		})
-		
+		return
 	}
 	
     var template = Handlebars.compile($('#tbody-template4').html())

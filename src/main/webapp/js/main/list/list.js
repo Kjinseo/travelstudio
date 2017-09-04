@@ -8,6 +8,12 @@ var membernoArray=[]
 var numOfPost;
 var postOwner;
 
+$(function() {
+  $('.header-container').load('../header.html')
+  $('.footer-container').load('../footer.html')
+})
+
+
 $.getJSON('/post/list.json', function(result) {
 
 	console.log(result.data.list);

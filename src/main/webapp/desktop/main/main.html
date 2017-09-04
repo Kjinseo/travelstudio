@@ -3,38 +3,17 @@
 <head>
 <meta charset="utf-8">
 <title>travel_log</title>
-  <link rel="stylesheet" href="/css/font-awesome-4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/font-awesome-4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="/node_modules/swiper/dist/css/swiper.min.css">
 <link rel="stylesheet" type="text/css" href="/css/main/main.css">
-<!-- <script src="./node_modules/jquery/dist/jquery.min.js"></script> -->
 </head>
 <body>
       
-  <div class="slide_bar">
-    <div class="slide_bar_cancel">
-      <a href="#"><img src="/image/cancel.png" id="cancel_icon"></a>
-
-    </div>
-
-    <!-- 슬라이드 메뉴바 호출 -->
-       <div class="slide_bar_content">
-  
-  </div>
-  <!-- 슬라이드 메뉴바 호출 끝 -->
-
-</div>
-<div class="cover_dimmed"></div>
-
   <div class='header-container'></div>
 
 <!-- 메인화면 사진 HTML -->
   <div id="blank-one" class="blank-one">
-    <h2>Travel Studio</h2>
-    <a href="#"><div class="help_btn">이용방법</div></a>
   </div>
-  <div class="header" id="header_line"></div>
-<!-- 메인 사진 끝 -->
 
   <div class="container_main">
     <div class="travel_writer">
@@ -87,7 +66,7 @@
         <div class="titl">국내여행</div>
         <div class="sub_titl">
         시원한 여름을
-        </br>
+        <br>
         위한 여행
         </div>
         <div class="ment">
@@ -142,7 +121,7 @@
         <div class="titl">해외여행</div>
         <div class="sub_titl">
         나도 밖으로
-        </br>
+        <br>
         나가고 싶다
         </div>
         <div class="ment">
@@ -177,45 +156,6 @@
             </div>
           </a>
         </div>
-
-        <div class="item select_item">
-          <a href="#">
-            <div class="item_thumb">
-              <img src="/image/vally.jpg" alt="응 계곡이야" class="hidden_mobile">
-            </div>
-            <div class="item_in">
-              <div class="titl"> 가평 계곡에서</div>
-              <div class="bottom_msg">
-              <i style="
-              background:url('https://image.withvolo.com/05ba592adabcde294bd49a2859e6c206/ff6b1126-21d0-4224-b42a-b548fc1ee7c5-709cc6d3345fc6424c2eed32705adb25efb52c88.jpg'); background-size:cover;"
-              alt="outofmap"
-              class="circle_photo">
-              </i>
-              </div>
-            </div>
-          </a>
-        </div>
-        <!-- 사진 한 박스 -->
-
-        <div class="item select_item">
-          <a href="#">
-            <div class="item_thumb">
-              <img src="/image/vally.jpg" alt="응 계곡이야" class="hidden_mobile">
-            </div>
-            <div class="item_in">
-              <div class="titl"> 가평 계곡에서</div>
-              
-              <div class="bottom_msg">
-              <i style="
-              background:url('https://image.withvolo.com/05ba592adabcde294bd49a2859e6c206/ff6b1126-21d0-4224-b42a-b548fc1ee7c5-709cc6d3345fc6424c2eed32705adb25efb52c88.jpg'); background-size:cover;"
-              alt="outofmap"
-              class="circle_photo">
-              </i>
-              </div>
-            </div>
-          </a>
-        </div>
-        <!-- 사진 한 박스 -->
       </div>
     </div>
     <!-- 국내여행 전체 라인 -->
@@ -227,37 +167,13 @@
   
     <!-- container_main 태그 -->
 
-  <div class='footer-container'></div>
+<div class='footer-container'></div>
 
 <script src="/node_modules/jquery/dist/jquery.min.js"></script>
 <script src="/node_modules/swiper/dist/js/swiper.min.js"></script>
 <script src="/node_modules/swiper/dist/js/swiper.jquery.js"></script>
 <script src="/node_modules/handlebars/dist/handlebars.min.js"></script>
 <script src="/js/main/main.js"></script>
-<script>
-function slideCall() {
-$('#slide_icon').click(function (){
-  $('.slide_bar').animate({left:0}, 350);
-  $('.cover_dimmed').show();
-})
-$('#cancel_icon').click(function () {
-  $('.slide_bar').animate({left:-320}, 350);
-  $('.cover_dimmed').hide();
-})
-}
-function slide_off() {
-  $('.cover_dimmed').click(function () {
-    $('.slide_bar').animate({left:-320}, 350);
-    $('.cover_dimmed').hide();
-})
-}
-$(document).ready(slideCall)
-$(document).ready(slide_off)
-// (slideCall);
-
-
-</script>
-
 </body>
 
 </html>
