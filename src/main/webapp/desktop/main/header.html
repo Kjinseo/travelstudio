@@ -11,6 +11,12 @@ body {
   position: relative;
 }
 
+.header-container {
+  padding: 20px 0;
+  height: 120px;
+  box-sizing: border-box;
+}
+
 .headeLogo{
   width:225px;
   height: 80px;
@@ -55,10 +61,6 @@ body {
   display: none;
 }
 
-.logout-btn:hover {
-  cursor: pointer;
-}
-
 /*슬라이드 바 전체*/
 .slide_bar {
   background-color: white;
@@ -66,6 +68,7 @@ body {
   height: 100%;
   position: fixed;
   left: -320px;
+  top: 0px;
   z-index: 999;
 }
 
@@ -208,13 +211,13 @@ line-height: 35px;
   color: black;
 }
   
-  #numberOfFlag{
+#numberOfFlag{
   width: 50px;
   font-size:30px;
   border: none;
   margin-left: 47px;
-  
 }
+
 #numOfPost{
   width: 50px;
   font-size:30px;
@@ -226,6 +229,11 @@ line-height: 35px;
 .slide_bar_classify{
   width: 80%;
   color: #d2d2d2;
+  margin-bottom: 30px;
+}
+
+.slide_bar_menu {
+  position: relative;
 }
 
 /*슬라이드 메뉴 끝*/
@@ -239,6 +247,19 @@ line-height: 35px;
   height: 100%;
   position: fixed;
   display: none;
+  top: 0px;
+}
+
+.slide_bar_menu div{
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #aaa;
+}
+
+.slide_bar_menu div:hover {
+  cursor: pointer;
+  color:lightblue;
 }
 
 
@@ -297,12 +318,10 @@ line-height: 35px;
 			<hr class="slide_bar_classify">
 
 			<div class="slide_bar_menu">
-				<ul class="list_menu">
-					<li><a href="/desktop/login/find_pwd.html">비밀번호 변경</a></li>
-					<li><a href="#">탈퇴하기</a></li>
-					<li class="logout-btn"><a href="javascript:void(0)">로그아웃</a></li>
-					<li><a href="#">공지사항</a></li>
-				</ul>
+					<div class="find_pwd-btn">비밀번호 변경</div>
+					<div>탈퇴하기</div>
+					<div class="logout-btn">로그아웃</div>
+					<div>공지사항</div>
 			</div>
 		</div>
 	</div>
@@ -360,7 +379,6 @@ $.getJSON('/member/header.json', function(result) {
 		})
 		
 	} else {
-		
     $('.headeLogo').css('margin-left', '32px');
 		$('#start-my-journey').off('click');
 		$('#start-my-journey').click(function(){

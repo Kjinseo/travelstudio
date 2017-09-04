@@ -12,6 +12,7 @@ div{
 -webkit-box-sizing: border-box;
 box-sizing: border-box;
 }
+
 img, a, abbr, acronym, address, applet,
 article, aside, audio, b, big, blockquote,
 body, canvas, caption, center, cite, code,
@@ -29,9 +30,6 @@ time, tr, tt, u, ul, var, video {
   font-size: 100%;
   vertical-align: baseline;
 }
-
-
- 
 
 a {
   color: inherit;
