@@ -197,7 +197,7 @@ body, table, div, p, textarea {
 <script id="content-request-template" type="text/x-handlebars-template">
 	{{#each invitingUserPost}}
 	<li class="travel_item">
-		<div class="item_card">
+		<div class="item_card" data-no="{{postno}}">
 			<div>
 				<i id="lock" class="fa fa-lock fa-2x" aria-hidden="true"></i>
 			</div>
@@ -245,7 +245,7 @@ body, table, div, p, textarea {
 				</div>
 			</div>
 
-<div class='cowork-modal-box'>
+<div class='cowork-modal-box' data-no="{{postno}}">
 			<div class="box_request" id="invite_request_{{postno}}">
       {{#writer}}
 				<div class="request_user">
@@ -254,15 +254,15 @@ body, table, div, p, textarea {
 						<p class="cowork-alias desc_name ff_pp">{{alias}}</p>
 						<p class="cowork-email desc_account ff_pp">
 							ID : <span>{{email}}</span>
+      {{/writer}}
 						</p>
 					</div>
 				</div>
 				<div class="request_btns">
-					<a href="#" class="cowork-btn btn_accept __profile _confirm_invitation">수락</a>
-					<a href="#" class="cowork-btn btn_reject __profile _reject_invitation">거절</a>
+					<div data-no="{{postno}}" class="cowork-btn btn_accept __profile _confirm_invitation">수락</div>
+					<div data-no="{{postno}}" class="cowork-btn btn_reject __profile _reject_invitation">거절</div>
 				</div>
 			</div>
-      {{/writer}}
 </div><!-- cowork-modal-box -->
 
 		</div>
@@ -279,7 +279,7 @@ body, table, div, p, textarea {
 	{{#each info}}
 	<div class="select_friends">
 <div id="invitePro">
-				<img src="{{path}}_60.png">
+				<img src="{{path}}">
 </div>
 				{{email}}
 	<i data-no="{{mno}}" data-email="{{email}}" class="fa fa-plus-circle fa-2x modalForinv" aria-hidden="true"></i>

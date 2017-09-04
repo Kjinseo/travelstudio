@@ -1,9 +1,5 @@
 package travelstudio.service;
 
-
-
-
-
 import java.util.ArrayList;
 
 import travelstudio.domain.Cowork;

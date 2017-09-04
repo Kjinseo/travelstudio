@@ -81,16 +81,6 @@ $(document).on("click",".modalForinv",function(){
 			});
 	 
 })
-
-/*$(".confirm").click(function(){
-	console.log(inviteMemberNo)
-	console.log(targetpostno)	
-	$.post('/cowork/invite.json', {
-		'mno': inviteMemberNo,
-		'postno' : targetpostno
-	}
-})
-*/
 	
 function test1(idMyDiv) {
   var objDiv = document.getElementById(idMyDiv);
@@ -127,7 +117,7 @@ function selectLoginUserPost(){
 	})
 }
 
-// 초대받은 여행기 거절하기
+// 여행기 거절하기
 $(document).on("click",".delete-invite-f",function(){
 	console.log($(this).parent())
 	var img1 = $(this).parent()
@@ -206,7 +196,6 @@ $(document).on("click",".delete_travel",function(){
 
 	targetpostno=$(this).attr('data-value')
 
-	console.log("postno 뜰거다 ================>",targetpostno)
 	$('#modal').css('display','inline-block')
 	$('#delete_wrap').css('display','inline-block')
 	deleteYes(targetpostno)
@@ -248,8 +237,34 @@ function displayShareList() {
     var template = Handlebars.compile($('#content-request-template').html())
     var generatedHTML = template(result.data) 
     $('.travle_list_invited').append(generatedHTML) 
+    
+    
   }, 'json')
 }
+
+
+//초대받은 여행기 수락하기
+$(document).on("click",".btn_accept",function(){
+  var no = $(this).attr("data-no")
+$.post('/cowork/acceptRequest.json', {
+ 'postNo' : no
+}, function(result) {
+  console.log(result)
+  $(".cowork-modal-box[data-no=" + no + "]").css('display', 'none')
+}, 'json')
+})
+
+//초대받은 여행기 거절하기
+$(document).on("click",".btn_reject",function(){
+  var no = $(this).attr("data-no")
+$.post('/cowork/refuseRequest.json', {
+ 'postNo' : $(this).attr("data-no")
+}, function(result) {
+  console.log(result)
+  $(".cowork-modal-box[data-no=" + no + "]").css('display', 'none')
+  $(".item_card[data-no="+ no +"]").remove()
+}, 'json')
+})
 
 
 

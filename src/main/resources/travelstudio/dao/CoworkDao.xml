@@ -15,7 +15,6 @@
     insert into cowork(mno, postno) values(#{mno}, #{postno})
   </insert>
   
-  
   <delete id="delete" parameterType="cowork">
     delete from cowork where mno=#{mno} and postno=#{postno}
   </delete>
