@@ -53,7 +53,7 @@ public class PictureControl {
   @RequestMapping("searchthispicture")
   public Object searchthispicture(String[] path) throws Exception {
     System.out.println("넘어오는파일");
-    List<Picture> pictureList = new ArrayList();
+    List<Picture> pictureList = new ArrayList<>();
     for(int i=0; i<path.length;i++){
       pictureList.add(pictureService.searchthispicture(path[i]));
     }
@@ -67,7 +67,7 @@ public class PictureControl {
   @RequestMapping("delete")
   public Object delete(String[] deletePhoto) throws Exception {
     
-    List<Picture> deleteList = new ArrayList();
+    List<Picture> deleteList = new ArrayList<>();
     for(int i = 0; i < deletePhoto.length; i++) {
       System.out.println((pictureService.searchPicNo(deletePhoto[i])));
       deleteList.add(pictureService.searchPicNo(deletePhoto[i]));

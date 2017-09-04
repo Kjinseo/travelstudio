@@ -26,3 +26,4 @@ insert into post(title, sdt, edt, cont, pdt, mno) values('살아있는 중세를
 insert into post(title, sdt, edt, cont, pdt, mno) values('살아있는 중세를 만나다.', '2015-10-12', '2015-10-27', '/image/hat.jpg', '2016-03-29', '1');
 
 /*detail*/
+

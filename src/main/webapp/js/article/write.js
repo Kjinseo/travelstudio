@@ -23,7 +23,7 @@ var countPhoto=0;
 setFileUploadToInputTag() // 처음 한 번은 호출하고, 그 다음부터는 태그를 만들 때 호출한다.
 imagecount=0;
 var submitcount=0;
-imagesDiv2=0;
+imagesDiv2=0;emptyParentRemove
 
 var parentno;
 registMapFunction()
@@ -1027,8 +1027,10 @@ $('#title_fileupload').fileupload({
 		previewCrop: true,      // 미리보기 이미지를 출력할 때 원본에서 지정된 크기로 자르기
 		processalways: function(e, data) {
 			savecount=1;
+			console.log(data.files)
 			console.log('fileuploadprocessalways()...');
 			for (var i = 0; i < data.files.length; i++) {
+				console.log(data.files[i])
 				try {
 					if (data.files[i].preview.toDataURL) {
 						var a = data.files[i].preview.toDataURL()
@@ -1039,11 +1041,13 @@ $('#title_fileupload').fileupload({
 					}
 				} catch (err) {}
 			} 
+			
 			$(".innerClick").on('click', function () {
 				data.submit();
 			});
 
 		}, submit: function (e, data){ // 서버에 전송하기 직전에 호출된다.
+			console.log('프로필 누르고 추가');
 			if(change==0){
 				console.log('submit()...');
 				$('.text_write_box').each(function () {
@@ -1108,6 +1112,7 @@ $('#title_fileupload').fileupload({
 		},
 		done: function (e, data) { // 서버에서 응답이 오면 호출된다. 각 파일 별로 호출된다.
 			console.log('writedone()...');
+			location.href='../mypage/mypage.html'
 			/*console.log(data);*/
 		}
 });
@@ -1117,6 +1122,7 @@ var mystring2 = 'a,b,ccc'
 	console.log(mystring2)
 
 function emptyParentRemove(){
+		console.log('emptyParentRemove')
 	for (var i = 0; i < $('.text_parent').size() ; i++) {
 		if($(this).children().eq(0).attr('class')=='tool_box'){
 			$(this).children().eq(0).remove()
@@ -1126,21 +1132,25 @@ function emptyParentRemove(){
 		}
 
 	}
+	console.log('emptyParentRemove 끝')
 	resortParentId()
 }
 
 function resortParentId(){
+	console.log('resortParentId')
 	var resortParentCount=0;
 	$('.text_parent').each(function(){
 		$(this).attr('id',"text_parent_"+resortParentCount+"")
 		$(this).siblings('.write_day').attr('data-srtno',resortParentCount)
 		resortParentCount++
 	})
+	console.log('resortParentId 끝')
 	picnosearch()
 }
 
 
 function picnosearch(){
+	console.log('picnosearch')
 	console.log("onlypath다")
 	console.log(onlyPath1)
 	for(i=0;i<onlyPath1.length;i++){
@@ -1155,12 +1165,13 @@ function picnosearch(){
 			console.log(jsPictureList)
 		}, 'json')
 	}
+	console.log('picnosearch 끝')
 	setTimeout("finaladd()",4000);
 	setTimeout(console.log(jsPictureList),1000)
 }
 
-function finaladd(data){
-	console.log(data)
+function finaladd(){
+	console.log('finaladd')
 	$('.text_parent').each(function () {
 		console.log(this)
 		console.log($('.text_parent').children().eq(1).attr('class'))
@@ -1210,12 +1221,13 @@ function finaladd(data){
 		console.log(picnoparentno)
 	})
 
+	console.log('finaladd 끝')
 	addAllphoto()
 
 }
 
 function addAllphoto(data){
-
+console.log('addAllphoto')
 	$.ajaxSettings.traditional = true;
 	$.post('/detail/addAllphoto.json', {
 		'picnoandparentno': picnoparentno
@@ -1228,6 +1240,7 @@ function addAllphoto(data){
 		setTimeout($('.innerClick').click(),3000);
 		console.log('innerclick')
 	}
+	console.log('addAllphoto 끝')
 }
 
 
@@ -1236,6 +1249,7 @@ function addAllphoto(data){
 console.log(captionArray)
 
 function noBackgroundSave(){
+	console.log('noBackgroundSave')
 	$('.capt_output').each(function () {
 		console.log($(this).attr('id').split('-')[2],$(this).text())
 		captionArray.push($(this).attr('id').split('-')[2])
@@ -1280,6 +1294,7 @@ function noBackgroundSave(){
 		location: detailLocArr
 	}, function(result) {
 		console.log(result.data)
+		location.href='../mypage/mypage.html'
 	}, 'json')
 }
 
