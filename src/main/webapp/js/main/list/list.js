@@ -131,6 +131,8 @@ function NoList() {
 			}
 		}
 
+		
+		// 나라 중복 제거
 		var count = 0;
 		uniqueNames = flag_list
 
@@ -157,7 +159,9 @@ function NoList() {
 				}
 			}
 			$('.total_' + uniqueNames[i].memberno).text(count)
-		}
+		} // 나라 중복 제거 끝
+		
+		
 
 		for(i=0;i < uniqueNames.length;i++) {
 			$('<img style=width:25px; height:25px;>').attr('src',uniqueNames[i].address).css('margin-right','7px').appendTo($('.member_visit_' + uniqueNames[i].memberno))

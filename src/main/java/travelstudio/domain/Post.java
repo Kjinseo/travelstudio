@@ -23,11 +23,14 @@ public class Post extends Member{
   String ispublic;
   Member writer;
   int good;
+  String address;
   @Override
   public String toString() {
     return "Post [postno=" + postno + ", title=" + title + ", badge=" + badge + ", tag=" + tag + ", sdt=" + sdt
         + ", edt=" + edt + ", pdt=" + pdt + ", cont=" + cont + ", capt=" + capt + ", detail=" + detail + ", ispublic="
-        + ispublic + ", writer=" + writer + ", good=" + good + "]";
+        + ispublic + ", writer=" + writer + ", good=" + good + ", address=" + address + ", mno=" + mno + ", email="
+        + email + ", password=" + password + ", alias=" + alias + ", intro=" + intro + ", pwd=" + pwd + ", path=" + path
+        + "]";
   }
   public int getPostno() {
     return postno;
@@ -106,6 +109,12 @@ public class Post extends Member{
   }
   public void setGood(int good) {
     this.good = good;
+  }
+  public String getAddress() {
+    return address;
+  }
+  public void setAddress(String address) {
+    this.address = address;
   }
   
   

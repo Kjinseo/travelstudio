@@ -18,6 +18,7 @@
     <result column="ispublic" property="ispublic"/>
     <result column="mno" property="mno"/>
     <result column="good" property="good"/>
+    <result column="adrs" property="address"/>
     <association property="writer" javaType="Member">
       <id property="mno" column="mno" />
       <result property="email" column="email" />
@@ -88,7 +89,12 @@
     limit #{startIndex}, #{pageSize} -->
   </select>
    <select id="selectList" resultMap="postMap" parameterType="map">
-    select * from post natural join member order by postno desc
+    select p.postno, p.cont, p.title, p.good, m.path, m.alias, d.adrs
+    from post p 
+		inner join member m on m.mno = p.mno
+		inner join detail d on p.postno = d.postno
+		group by d.adrs, p.postno
+		order by p.postno desc
   </select> 
   
   
