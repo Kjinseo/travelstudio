@@ -4,6 +4,8 @@ var inviteMemberNo=0;
 var targetuserimage=0;
 var targetpostno=0;
 
+
+
 // header load 시키기
 $(function() {
 	$('.header-container').load('../main/header.html')
@@ -42,24 +44,50 @@ $(function() {
 /* 친구 초대하기에서 검색후 친구 이름을 눌렀을때 확인창 부분에서 하는 함수 */
 $(document).on("click",".modalForinv",function(){
 	$(this).attr('data-email')
-	$(this).attr('data-no')
+	console.log($(this).attr('data-email'))
+	 inviteMemberNo = $(this).attr('data-no');
+	console.log($(this).attr('data-no'))
 	var str = $(this).attr('data-email')+'에게 초대장을 보내시겠습니까?'
 	 
 	swal({
-	    title: "에게 초대장을 보내시겠습니까?",
-	    type: "warning",
-	    showCancelButton: true,
-	    confirmButtonColor: "lightseagreen",
-	    confirmButtonText: "네",
-	    closeOnConfirm: true,
-	    cancelButtonText: "아니요"
-	  },
-	  function(){
-	  
-	});
+		  title: "초대장을 보내겠습니까?",
+		  text: "초대장을 받은 친구는 게시물을 함께 작성하게 됩니다.",
+		  type: "warning",
+		  showCancelButton: true,
+		  confirmButtonColor: "lightgreen",
+		  confirmButtonText: "초대하기",
+		  cancelButtonText: "취소",
+		  closeOnConfirm: false,
+		  closeOnCancel: false
+		},
+		function(isConfirm){
+			  if (isConfirm) {
+					console.log(inviteMemberNo)
+					console.log(targetpostno)
+					$.post('/cowork/invite.json', {
+						'mno': inviteMemberNo,
+						'postno' : targetpostno
+					}, function(result) {
+						console.log($('.join_user_list'))
+						$('.join_user_list').append($('<div class="'+inviteMemberNo+'_'+targetpostno+'">').html('<img src="'+targetuserimage+'"><a class="delete-invite-f"><i class="fa fa-times-circle-o" aria-hidden="true"></i></a>'))
+					}, 'json')
+			    swal("성공", "초대장을 보냈습니다.", "success");
+			  } else {
+			    swal("취소", "초대장 보내기를 취소합니다.", "error");
+			  }
+			});
 	 
 })
 
+/*$(".confirm").click(function(){
+	console.log(inviteMemberNo)
+	console.log(targetpostno)	
+	$.post('/cowork/invite.json', {
+		'mno': inviteMemberNo,
+		'postno' : targetpostno
+	}
+})
+*/
 	
 function test1(idMyDiv) {
   var objDiv = document.getElementById(idMyDiv);
