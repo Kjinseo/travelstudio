@@ -24,7 +24,7 @@ body {
   display: inline-block;
 }
 
-#start-my-journey {
+.start-my-journey {
   border: 1px solid black;
   width: 140px;
   height: 40px;
@@ -286,7 +286,7 @@ line-height: 35px;
 	<div class="headeLogo"></div>
 	<input type="search" id="search_bar" placeholder="검색">
 	<button id="search_icon" class="fa fa-search fa-2x" aria-hidden="true"></button>
-	<button type="button" id="start-my-journey">시작 하기</button>
+	<button type="button" class="start-my-journey">시작 하기</button>
 	
 </div>
 
@@ -334,6 +334,11 @@ $(document).on("click",'.user_mypage',function(){
 	location.href="/desktop/mypage/mypage.html"
 })
 
+// 비밀번호 변경 버튼
+$(document).on("click",'.find_pwd-btn',function(){
+  location.href="/desktop/login/find_pwd.html"
+})
+
 // 구독하기 버튼
 $(document).on("click",'#subscribe',function(){
 		location.href="/desktop/subscribe/subscribe.html"
@@ -372,16 +377,16 @@ $.getJSON('/member/header.json', function(result) {
 	mno=result.data.loginMember;
 	if(mno!=undefined){
 		$('#slide_icon').css('display','inline-block');
-		$("#start-my-journey").text("여행기작성");
-		$('#start-my-journey').off('click');
-		$('#start-my-journey').click(function(){
+		$(".start-my-journey").text("여행기작성");
+		$('.start-my-journey').off('click');
+		$('.start-my-journey').click(function(){
 		   location.href="/desktop/article/write.html"
 		})
 		
 	} else {
     $('.headeLogo').css('margin-left', '32px');
-		$('#start-my-journey').off('click');
-		$('#start-my-journey').click(function(){
+		$('.start-my-journey').off('click');
+		$('.start-my-journey').click(function(){
 		   location.href="/desktop/login/login.html"
 		})
 		return
