@@ -23,33 +23,11 @@
   </div>
   <!-- 슬라이드 메뉴바 호출 끝 -->
 
-
-
 </div>
 <div class="cover_dimmed"></div>
 
+  <div class='header-container'></div>
 
-  <!--여기서부터 header html-->
- <!--  <div class="header-container">
-    <div class="in-header-container">
-      <div class="icon_wrap">
-       
-        <img src="img/logo.PNG" id="logo">
-        <input id="search-bar" type="text" name="search" placeholder="search">
-      </div>
-  <i class="fa fa-search fa-2x" aria-hidden="true"></i>
-  <button type="button"  onclick="location.href='../jinseoKing/login.html'" id="edit-start-button">start
-  </div>
-</div> -->
-
-  <header class="header">
-   <img src="/image/slidecall.png" id="slide_icon">
-    <img id="logo" src="/image/ourlogo.png">
-    <input type="search" id="search_bar" placeholder="검색">
-    <button id="search_icon" class="fa fa-search fa-2x" aria-hidden="true"></button>
-    <button type="button" id="start-my-journey">여행기 작성</button>
-  </header>
-<!-- onclick="location.href='../jinseoKing/login.html'" -->
 <!-- 메인화면 사진 HTML -->
   <div id="blank-one" class="blank-one">
     <h2>Travel Studio</h2>
@@ -94,17 +72,12 @@
      {{/each}}
           </script>
           
-         
-            
           </div>
           <!-- Add Pagination -->
           <!-- Add Arrows -->
           <div class="swiper-button-next"></div>
           <div class="swiper-button-prev"></div>
         </div>
-        
-        
-        
         
       </div>
       
@@ -252,65 +225,15 @@
 
   </div>
   
-  <div class="footer">
-  <h1>footer</h1>
-</div>
     <!-- container_main 태그 -->
-  <script id="tbody-template4" type="text/x-handlebars-template">
 
-    <div class="member_slide">
-        <div class="member_info">
-          <div class="user_photo">
-            <img src="{{path}}">
-          </div>
-          <div class="user_id">{{alias}}</div>
-          <div class="user_url">{{email}}</div>
-     
-          <a href="/desktop/mypage/mypage.html"><div class="user_mypage">마이페이지</div></a>
-          <a href="/desktop/subscribe/subscribe.html" ><div id="subscribe">구독</div></a>          
-          <div class="user_nation">
-         
-          </div>
-          
-  
+  <div class='footer-container'></div>
 
-          <div class="user_visited">
-            <div class="user_write">
-              <img src="/image/textbook.png" alt="">
-              <span>여행기</span>
-              <div class="counting1"></div>
-            </div>
-            <div class="user_visited_count">
-              <img src="/image/aeroplane.png" alt="">
-              <span>여행국가</span>
-
-              <div class="counting2"></div>
-            </div>
-          </div>
-          <hr class="slide_bar_classify">
-
-          <div class="slide_bar_menu">
-            <ul class="list_menu">
-              <li><a href="#">공지사항</a></li>
-              <li><a href="/desktop/login/find_pwd.html">비밀번호 변경</a></li>
-              <li><a href="#">탈퇴하기</a></li>
-              <li><a href="#">로그아웃</a></li>
-            </ul>
-          </div>
-
-        </div>
-      </div>  
-</script>
-
-
-
-
-
-        <script src="/node_modules/jquery/dist/jquery.min.js"></script>
-        <script src="/node_modules/swiper/dist/js/swiper.min.js"></script>
-        <script src="/node_modules/swiper/dist/js/swiper.jquery.js"></script>
-        <script src="/node_modules/handlebars/dist/handlebars.min.js"></script>
-        <script src="/js/main/main.js"></script>
+<script src="/node_modules/jquery/dist/jquery.min.js"></script>
+<script src="/node_modules/swiper/dist/js/swiper.min.js"></script>
+<script src="/node_modules/swiper/dist/js/swiper.jquery.js"></script>
+<script src="/node_modules/handlebars/dist/handlebars.min.js"></script>
+<script src="/js/main/main.js"></script>
 <script>
 function slideCall() {
 $('#slide_icon').click(function (){

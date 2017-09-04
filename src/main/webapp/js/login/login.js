@@ -4,6 +4,10 @@ var fiid = $('#id-input'),
     
    
 
+$(function() {
+	$('.header-container').load('../main/header.html')
+	$('.footer-container').load('../main/footer.html')
+})
 
 
 
