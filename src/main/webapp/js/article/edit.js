@@ -79,10 +79,10 @@ function finaladd(){
 									picnoparentno.push(pictureparentno)
 									picnoparentno.push(jsPictureList[z][g].picno)
 								}
-								if(jsPictureList[z][g].path==$('img',casethis).eq(j).attr('src').substring(0,$('img',casethis).eq(j).attr('src').lastIndexOf('_'))){
+								/*if(jsPictureList[z][g].path==$('img',casethis).eq(j).attr('src').substring(0,$('img',casethis).eq(j).attr('src').lastIndexOf('_'))){
 									picnoparentno.push(pictureparentno)
 									picnoparentno.push(jsPictureList[z][g].picno)
-								}
+								}*/
 								console.log(z)
 								console.log(jsPictureList.length)
 								console.log(finaladdCount)
@@ -289,22 +289,17 @@ $.post('/detail/selectedOneDetail.json', {
 				}else if(i<=array1.list.length-1&& i>1){//소트번호가 다르다면 
 					if(i==array1.list.length-1){ //마지막 번호라면 
 						if(array1.list[i].picno!=0&& array1.list[i-1].srtno!=array1.list[i].srtno){//사진이 있고 소트번호가 마지막 의 번호와 다르다면 1개짜리 사진이다
-
 							array1.list[i].writer=array1.list[i].picno
-
 						}
 					}
 					else if(array1.list[i].picno!=0 && array1.list[i-1].srtno!=array1.list[i].srtno && array1.list[i+1].srtno!=array1.list[i].srtno){
-
-						if(array1.list[i].writer=undefined){
-							array1.list[i].writer=0;
-						}
-						array1.list[i].writer=array1.list[i].picno
+						console.log("263 들어왔다 사진이 0이 아니고 앞뒤랑 소트번호가 다를때 " ,array1.list[i])
+					array1.list[i].writer=array1.list[i].picno
 					}
 				}if(i==1){ // 첫번째 일때 첫번째 사진이 있고 페어런츠가 다르거나 또는 || 배열 0번과 1번의 소트번호가 같고 사진번호가   둘중 하나가 0이고 소트번호가 같거나  
 					if(array1.list[i-1].picno!=0 && ((array1.list[i-1].srtno!=array1.list[i].srtno)||((array1.list[i-1].srtno==array1.list[i].srtno)&&(array1.list[i-1].picno==0)||(array1.list[i].picno==0)))){
-						array1.list[i-1].writer=array1.list[i-1].picno
-					}
+							array1.list[i-1].writer=array1.list[i-1].picno
+						}
 				}
 			}
 
@@ -561,8 +556,6 @@ $.post('/detail/selectedOneDetail.json', {
 					$(imagesDiv2).parent().attr('onclick','showControlBox('+$(imagesDiv2).attr('data-countPhoto')+')')
 					makeDragable(imagesDiv2)
 					makeDropable(imagesDiv2)
-
-
 					deletephoto(countPhoto)
 				}
 
@@ -1482,16 +1475,32 @@ function stopFunction(currentParent,$this,stopCountPhoto){ //currentParent는 wh
 	console.log($(currentParent).attr('class').split('_')[1].charAt(7))
 	var textParent= $("#text_parent_"+countPhoto+"")
 	if ($(currentParent).attr('class').split('_')[1].charAt(7) == '1') {
-		var textParentNo=$(currentParent).parent().attr('id').split('_')[1]
-		$('.text_parent').each(function(){
-			if($(this).attr('id').split('_')[1]>textParentNo){
-				$(this).attr('id',$(this).attr('id').split('_')[0]+"_"+$(this).attr('id').split('_')[1]-1).split[i]
+		
+		for (var i = $('.text_parent').size()-1 ; i > presentSpot  ; i--) {
+			$('.btn_add','#text_parent_'+ i).attr('data-addno', i-1)
+			$('.btn_add','#text_parent_'+ i).attr('id', 'addbtn-' + (i-1))
+
+			$('.btn_caption','#text_parent_'+ i).attr('data-capno', i-1)
+			$('.btn_caption','#text_parent_'+ i).attr('id', 'edtbtn-' + (i-1))		
+			$('.btn_del','#text_parent_'+ i).attr('id', 'delbtn-' + (i-1))
+
+			if($('.control_box','#text_parent_'+ i).attr('id') != undefined) {
+				$('.control_box','#text_parent_'+ i).attr('id','control-box-div-' + (i-1))
 			}
-		})
-		$(currentParent).parent().parent().remove();
-		$("<div class='whole_collage1'>")
-		stopFunctionArray=[]
-		uiremove($this)
+			$('.capt_output', '#text_parent_'+ i).attr('id', 'txt-output-'+(i-1))
+
+			if($('.file_browse', '#text_parent_'+ i).attr('class') != undefined) {
+				$('.file_browse', '#text_parent_'+ i).attr('href','javascript:file_browse('+ (i-1) +')')
+			}
+			if($('.create_box', '#text_parent_'+ i).attr('class') != undefined) {
+				$('.create_box','#text_parent_'+ i).attr('onclick', 'createtextbox('+ (i-1) +')')
+			}
+
+			$('#text_parent_'+ i).attr('data-textparent', (parseInt($('#text_parent_'+ i).attr('id').split('_')[2]) - 1))
+			$('#text_parent_'+ i).attr('id', 'text_parent_' + (parseInt($('#text_parent_'+ i).attr('id').split('_')[2]) - 1))
+
+		}
+		
 	} else if ($(currentParent).attr('class').split('_')[1].charAt(7) == '2') {
 
 		$(currentParent)

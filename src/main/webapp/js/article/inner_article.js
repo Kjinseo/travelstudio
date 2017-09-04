@@ -171,7 +171,6 @@ $.post('/detail/selectedOneDetail.json', {
 			}*/
 			console.log(array1)
 			var template2 = Handlebars.compile($('#content-template-2').html())
-
 			var generatedHTML2 = template2(array1)
 
 			content.append(generatedHTML2) 
@@ -902,18 +901,7 @@ function likeclick(color,number){
 	 			 } //else 끝
  			})
   }
-<!--header숨는거
-     var prev = 0;
-     var view = $(window);
-     var mast = $('.header');
 
-     view.on('scroll', function(){
-     var scrollTop = view.scrollTop();
-     mast.toggleClass('hidden', scrollTop > prev);
-     
-     prev = scrollTop;
-     });
-     -->
 
      $('#posted').mouseover(function(){
        $('#singo').css("display", "inline-block");

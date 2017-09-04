@@ -187,9 +187,12 @@ public JsonResult backUpdate(MultipartFile[] files, int postnono) throws Excepti
     
     System.out.println(content);
     if(content!=null){
+      System.out.println(content.length);
     for(int i=0;i<content.length;i+=2){
-      detail.setCont(content[i+1]);
+      System.out.println(content[i]);
+      System.out.println(content[i+1]);
       detail.setSrtno(Integer.parseInt((content[i])));
+      detail.setCont(content[i+1]);
       detailService.insertDetailContent(detail);
     }
     }
@@ -327,6 +330,7 @@ public JsonResult backUpdate(MultipartFile[] files, int postnono) throws Excepti
     if(content!=null){
     for(int i=0;i<content.length;i+=2){
       detail.setCont(content[i+1]);
+      System.out.println(content[i]);
       System.out.println("콘텐츠 하나씩 출력");
       System.out.println(content[i]);
       detail.setSrtno(Integer.parseInt((content[i])));
@@ -387,6 +391,7 @@ public JsonResult backUpdate(MultipartFile[] files, int postnono) throws Excepti
   }  
 
 }
+
 
 
 

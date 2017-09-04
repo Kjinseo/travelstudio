@@ -138,14 +138,13 @@
                   <div id='testdiv{{count}}' style='display: none'>
                   <a class="file_browse" href='javascript:file_browse({{count}})' multiple><img id='testdiv_1' src='/image/image.png'><input value={{count}} type='file' style='display: none' name='files' class='file1_{{count}} file1' multiple></input></a>
                   <a href='javascript:' onclick="test('map_container'); test1('modal'); return false;"><img id='showMapModal' src='/image/marker.png'></a> 
-                  <a href='#' return false;'><img id='testdiv_2' src='/image/route.png'></img></a>
                   <a href='javascript:;' onclick='createtextbox({{count}})'><i class='fa fa-pencil' aria-hidden='true'></i></a>
                   </div><br></div></div></div>  
 {{/each}}
            </script>
 
 
-	<script id="loadPage-template" type="text/x-handlebars-template">
+<script id="loadPage-template" type="text/x-handlebars-template">
 {{#each list}}
 <div class="day1">
  <div class='write_day' data-srtno={{srtno}}>
@@ -173,7 +172,8 @@
 {{/if}}
 </div>
 {{/each}}
-</script>
+</div>
+</script> 
 
 
 

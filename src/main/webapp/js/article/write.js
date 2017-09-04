@@ -262,29 +262,13 @@ $(document).ready(function()
 
 		$(document).ready(
 				function() {
-					$(".edit_ungroup")
-					.click(
-							function() {
-								var divs = $('.checked')
-								.toArray();
+					$(".edit_ungroup").click(function() {
+						var divs = $('.checked').toArray();
 								console.log(divs[1])
 								for (i = 0; i < divs.length; i++) {
-									$('<div>aa</div>')
-									.attr('class',
-									'files_date')
-									.appendTo(
-											$(
-													'<div class="table_files' +a+'" + >')
-													.insertAfter(
-															$('.table_files')));
-									$(divs[i])
-									.parent()
-									.appendTo(
-											$(
-													'<div class="files_wrap">')
-													.appendTo(
-															$('.table_files'
-																	+ a)));
+									$('<div>aa</div>').attr('class','files_date').appendTo(
+											$('<div class="table_files' +a+'" + >').insertAfter($('.table_files')));
+									$(divs[i]).parent().appendTo($('<div class="files_wrap">').appendTo($('.table_files'+ a)));
 									a++
 								}
 								$('.checked').css('display',
@@ -1065,9 +1049,12 @@ $('#title_fileupload').fileupload({
 				$('.text_write_box').each(function () {
 					console.log($(this).val())
 					content.push($(this).parent().attr('id').split('_')[2])
-					content.push(decodeURIComponent($(this).val()))
+					var mystring = decodeURIComponent($(this).val())
+					var mystring2 = 'a,b,ccc'
+					mystring2.replace(/,/g , "newchar");
+					console.log(mystring2)
+					content.push(mystring)
 					console.log($(this).parent().attr('id').split('_')[2])
-
 					console.log(data.files[0])
 				})
 				console.log(content)
@@ -1125,7 +1112,9 @@ $('#title_fileupload').fileupload({
 		}
 });
 
-
+var mystring2 = 'a,b,ccc'
+	mystring2.replace(/,/g, 'hh');
+	console.log(mystring2)
 
 function emptyParentRemove(){
 	for (var i = 0; i < $('.text_parent').size() ; i++) {
