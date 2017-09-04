@@ -163,6 +163,27 @@ width:177px;
 display: inline-block;
 }
 
+/*게시물 없을 때 시작*/
+.mypage-no-data {
+  text-align: center;
+  display: none;
+}
+
+.mypage-no-data-text {
+  font-size: 20px;
+  color: gray;
+}
+
+.mypage-no-data-btn {
+  display: inline-block;
+  border: 1px solid black !important;
+  border-radius: 5px;
+  height: 30px;
+  line-height: 30px;
+  width: 150px;
+}
+/*게시물 없을 때 끝*/
+
 /**/
 ul > li > img{
   width:27px;

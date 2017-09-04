@@ -4,6 +4,9 @@ var inviteMemberNo=0;
 var targetuserimage=0;
 var targetpostno=0;
 
+var isListEmpty = false;
+var isCoworkListEmpty = false;
+
 
 
 // header load 시키기
@@ -14,12 +17,12 @@ $(function() {
 
 	
 	$.getJSON('/member/header.json', function(result) {
+	console.log('member/header.json 결과: ')
 	console.log(result.data)
 
 	var template = Handlebars.compile($('#user-info-template').html())
 	loginMemberNo=result.data.loginMember.mno
-	var generatedHTML = template(result.data.loginMember) // 템플릿 함수에 데이터를 넣고 HTML을 생성한다.
-//		tbody.text('') // tbody의 기존 tr 태그들을 지우고
+	var generatedHTML = template(result.data.loginMember) 
 	userDesc.append(generatedHTML);
 
 	$(document.body).on('click', '#mysetting', function(event) {
@@ -114,8 +117,12 @@ function test(idMyDiv) {
 function selectLoginUserPost(){
 	$.post('/post/selectOneUserPost.json',{'number':loginMemberNo}, function(result) {
 		var template = Handlebars.compile($('#content-template').html())
-		var generatedHTML = template(result.data) // 템플릿 함수에 데이터를 넣고 HTML을 생성한다.
-		$('.travle_list').append(generatedHTML) // 새 tr 태그들로 설정한다.
+		if(result.data.selectOneUserPost.length<=0) {
+		  isListEmpty = true;
+		  displayNoData()
+		}
+		var generatedHTML = template(result.data) 
+		$('.travle_list').append(generatedHTML) 
 		dropdown()
 	})
 }
@@ -227,3 +234,25 @@ $(".delete_travel > #no-btn").click(function () {
 	$('.wrap11, #b').toggleClass('active');
 })
 
+
+displayShareList()
+
+//공유한 리스트 가져오기
+function displayShareList() {
+  $.getJSON('/post/listCoworkPost.json', function(result) {
+    if(result.data.invitingUserPost.length<=0) {
+      isCoworkListEmpty = true;
+      displayNoData()
+    }
+    var template = Handlebars.compile($('#content-request-template').html())
+    var generatedHTML = template(result.data) 
+    $('.travle_list_invited').append(generatedHTML) 
+  }, 'json')
+}
+
+
+
+function displayNoData() {
+  if(isListEmpty && isCoworkListEmpty)
+    $('.mypage-no-data').show()
+}

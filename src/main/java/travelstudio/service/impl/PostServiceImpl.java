@@ -63,6 +63,10 @@ public void BackgroundUpdate(Post post) throws Exception {
   postDao.BackgroundUpdate(post);
   
 }
+@Override
+public List<Post> listCoworkPost(int no) {
+  return postDao.selectCoworkPost(no);
+}
 
 
  

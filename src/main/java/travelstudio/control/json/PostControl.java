@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -62,21 +63,37 @@ public class PostControl {
 
 
 
-@RequestMapping("invitingUserPost")
-public JsonResult invitingUserPost(int[] requestPost) throws Exception {
-  HashMap<String,Object> dataMap = new HashMap<>();
-  System.out.println(requestPost);
-  List toLoadPostNo = new ArrayList();
-  for(int i = 0; i < requestPost.length; i++) {
-    toLoadPostNo.add(postService.requestedPost(requestPost[i]));
-  }
+//@RequestMapping("invitingUserPost")
+//public JsonResult invitingUserPost(int[] requestPost) throws Exception {
+//  HashMap<String,Object> dataMap = new HashMap<>();
+//  System.out.println(requestPost);
+//  List toLoadPostNo = new ArrayList();
+//  for(int i = 0; i < requestPost.length; i++) {
+//    toLoadPostNo.add(postService.requestedPost(requestPost[i]));
+//  }
+//  
+//  dataMap.put("invitingUserPost", toLoadPostNo);
+//  System.out.printf("List 호출할게=================>");
+//  System.out.println(toLoadPostNo);
+//  
+//  return new JsonResult(JsonResult.SUCCESS, dataMap);
+//}
+
+
+/* mypage > 초대받은 게시물 리스트 가져오기*/
+@RequestMapping("listCoworkPost")
+public JsonResult listCoworkPost(HttpSession session) throws Exception {
+  Member member = (Member)session.getAttribute("loginMember");
+  int no = member.getMno();
   
-  dataMap.put("invitingUserPost", toLoadPostNo);
-  System.out.printf("List 호출할게=================>");
-  System.out.println(toLoadPostNo);
+  HashMap<String,Object> dataMap = new HashMap<>();
+  dataMap.put("invitingUserPost", postService.listCoworkPost(no));
   
   return new JsonResult(JsonResult.SUCCESS, dataMap);
 }
+
+
+
 
 @RequestMapping("backUpdate")
 public JsonResult backUpdate(MultipartFile[] files, int postnono) throws Exception {

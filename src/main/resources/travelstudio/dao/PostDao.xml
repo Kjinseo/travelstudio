@@ -36,6 +36,13 @@
   <select id="selectOneUserPost" resultMap="postMap" parameterType="int">
     select * from post natural join member where mno=#{number} order by postno desc
   </select>
+  
+  <select id="selectCoworkPost" resultMap="postMap" parameterType="int">
+    select post.postno, title 
+    from post left outer join cowork on post.postno=cowork.postno
+    where cowork.mno=#{no}
+    
+  </select>
     
     <select id="requestedPost" resultMap="postMap" parameterType="int">
     select * from post where postno=#{postno} order by postno desc

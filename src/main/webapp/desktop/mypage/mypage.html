@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Hello World!</title>
+<title>TRAVEL STUDIO</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="/css/font-awesome-4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="/css/mypage/mypage.css">
@@ -18,17 +18,6 @@ body, table, div, p, textarea {
 </head>
 <body>
 	<div id="modal"></div>
-	<!-- <div id="modal2">	
-	<div id="confirm-invite-f">
-		<div id="confirm-email">
-		<button type="button" id="confirm-invite-f-yes"
-			onclick="test1('modal2'); test('confirm-invite-f');">예</button>
-		<button type="button" id="confirm-invite-f-no"
-			onclick="test1('modal2'); test('confirm-invite-f');">아니오</button>
-	</div>
-	</div>
-	</div>
-	modal2 -->
 	
 	<div class="slide_bar">
 		<div class="slide_bar_cancel">
@@ -72,7 +61,13 @@ body, table, div, p, textarea {
 			</div>
 			<div class="cont_card">
 				<div class="inner_card">
+          <div class='mypage-no-data'>
+            <span class='mypage-no-data-text'>아직 등록된 게시물이 없습니다.</span>
+            <br><br>
+            <a href='/desktop/article/write.html' class='mypage-no-data-btn'>글쓰기</a>
+          </div> 
 					<div class="travle_list"></div>
+          <div class="travle_list_invited"></div>
 				</div>
 			</div>
 
@@ -208,6 +203,7 @@ body, table, div, p, textarea {
 		</div>
 	</li>
 	{{/each}}
+
 </script>
 
 <script id="content-request-template" type="text/x-handlebars-template">
