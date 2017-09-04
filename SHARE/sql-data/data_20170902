@@ -245,7 +245,7 @@ CREATE TABLE DETAIL (
 	LATI   FLOAT        NULL     COMMENT '위도', -- 위도
 	LONGIT FLOAT        NULL     COMMENT '경도', -- 경도
 	CAPT   VARCHAR(255) NULL     COMMENT '캡션', -- 캡션
-	ADRS   VARCHAR(255) NOT NULL COMMENT '주소', -- 주소
+	ADRS   VARCHAR(255) NULL     COMMENT '주소', -- 주소
 	WRITER VARCHAR(50)  NULL     COMMENT '작성자', -- 작성자
 	SRTNO  INTEGER      NULL     COMMENT '사진정렬번호' -- 사진정렬번호
 )
