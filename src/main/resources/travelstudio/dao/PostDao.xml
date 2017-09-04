@@ -19,6 +19,7 @@
     <result column="mno" property="mno"/>
     <result column="good" property="good"/>
     <result column="adrs" property="address"/>
+    <result column="confirm" property="confirm"/>
     <association property="writer" javaType="Member">
       <id property="mno" column="mno" />
       <result property="email" column="email" />
@@ -45,11 +46,10 @@
   </select>
   
   <select id="selectCoworkPost" resultMap="postMap" parameterType="int">
-    select post.postno, title, post.cont, post.good, m.path, m.alias, m.email
+    select post.postno, title, post.cont, post.good, m.path, m.alias, m.email, cowork.confirm
     from post left outer join cowork on post.postno=cowork.postno
     left outer join member m on post.mno=m.mno
     where cowork.mno=#{no}
-    
   </select>
     
     <select id="requestedPost" resultMap="postMap" parameterType="int">

@@ -35,22 +35,16 @@ public class CoworkServiceImpl implements CoworkService {
  }
  
  public void acceptCowork(int memberNo, int postNo) {
-   System.out.println(memberNo);
-   System.out.println(postNo);
    HashMap<String, Integer> Map = new HashMap<>();
    Map.put("mno", memberNo);
    Map.put("pno", postNo);
-   System.out.println(Map);
    coworkDao.acceptCowork(Map);
  }
  
  public void refuseCowork(int memberNo, int postNo) {
-   System.out.println(memberNo);
-   System.out.println(postNo);
    HashMap<String, Integer> Map = new HashMap<>();
    Map.put("mno", memberNo);
    Map.put("pno", postNo);
-   System.out.println(Map);
    coworkDao.refuseCowork(Map);
  }
 }
