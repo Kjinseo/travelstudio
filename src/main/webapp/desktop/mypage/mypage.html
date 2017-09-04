@@ -19,17 +19,6 @@ body, table, div, p, textarea {
 <body>
 	<div id="modal"></div>
 	
-	<div class="slide_bar">
-		<div class="slide_bar_cancel">
-			<a href="#"><img src="/image/cancel.png" id="cancel_icon"></a>
-		</div>
-
-		<!-- 슬라이드 메뉴바 호출 -->
-		<div class="slide_bar_content"></div>
-		<!-- 슬라이드 메뉴바 호출 끝 -->
-	</div>
-	<div class="cover_dimmed"></div>
-	
 	<div class='header-container'></div>
 	
 	<!-- <hr style="margin-top:-8px;"> -->
@@ -70,7 +59,6 @@ body, table, div, p, textarea {
           <div class="travle_list_invited"></div>
 				</div>
 			</div>
-
 			<!-- 친구와 같이쓰기 시작 -->
 			<div id='invite_f_container'>
 				<div class='content_a'>
@@ -247,28 +235,36 @@ body, table, div, p, textarea {
 					</div>
 				</div>
 				<div class="card_bottom">
+        {{#writer}}
 					<img src="{{path}}" style='border-radius: 100%'></img> <span>{{alias}}</span>
 					<div class="mypage_list_heart">
-						<i class="fa fa-heart-o" aria-hidden="true"></i> <span
-							class="heart_num">{{good}}</span>
+						<i class="fa fa-heart-o" aria-hidden="true"></i> 
+        {{/writer}}
+            <span class="heart_num">{{good}}</span>
 					</div>
 				</div>
 			</div>
+
+<div class='cowork-modal-box'>
 			<div class="box_request" id="invite_request_{{postno}}">
+      {{#writer}}
 				<div class="request_user">
 					<div class="user_img"></div>
 					<div class="user_desc">
-						<p class="desc_name ff_pp">{{edt}}</p>
-						<p class="desc_account ff_pp">
-							ID : <span>{{pdt}}</span>
+						<p class="cowork-alias desc_name ff_pp">{{alias}}</p>
+						<p class="cowork-email desc_account ff_pp">
+							ID : <span>{{email}}</span>
 						</p>
 					</div>
 				</div>
 				<div class="request_btns">
-					<a href="#" class="btn_accept __profile _confirm_invitation">수락</a>
-					<a href="#" class="btn_reject __profile _reject_invitation">거절</a>
+					<a href="#" class="cowork-btn btn_accept __profile _confirm_invitation">수락</a>
+					<a href="#" class="cowork-btn btn_reject __profile _reject_invitation">거절</a>
 				</div>
 			</div>
+      {{/writer}}
+</div><!-- cowork-modal-box -->
+
 		</div>
 	</li>
 	{{/each}}

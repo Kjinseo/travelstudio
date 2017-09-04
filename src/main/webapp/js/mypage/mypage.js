@@ -240,6 +240,7 @@ displayShareList()
 //공유한 리스트 가져오기
 function displayShareList() {
   $.getJSON('/post/listCoworkPost.json', function(result) {
+    console.log(result.data)
     if(result.data.invitingUserPost.length<=0) {
       isCoworkListEmpty = true;
       displayNoData()

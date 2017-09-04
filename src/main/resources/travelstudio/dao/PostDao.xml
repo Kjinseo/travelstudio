@@ -18,6 +18,12 @@
     <result column="ispublic" property="ispublic"/>
     <result column="mno" property="mno"/>
     <result column="good" property="good"/>
+    <association property="writer" javaType="Member">
+      <id property="mno" column="mno" />
+      <result property="email" column="email" />
+      <result property="path" column="path" />
+      <result property="alias" column="alias" />
+    </association>
   </resultMap> 
 
 
@@ -38,8 +44,9 @@
   </select>
   
   <select id="selectCoworkPost" resultMap="postMap" parameterType="int">
-    select post.postno, title 
+    select post.postno, title, post.cont, post.good, m.path, m.alias, m.email
     from post left outer join cowork on post.postno=cowork.postno
+    left outer join member m on post.mno=m.mno
     where cowork.mno=#{no}
     
   </select>

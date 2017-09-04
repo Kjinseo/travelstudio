@@ -21,15 +21,14 @@ public class Post extends Member{
   String capt;
   String detail;
   String ispublic;
+  Member writer;
   int good;
-  
-  public int getGood() {
-    return good;
+  @Override
+  public String toString() {
+    return "Post [postno=" + postno + ", title=" + title + ", badge=" + badge + ", tag=" + tag + ", sdt=" + sdt
+        + ", edt=" + edt + ", pdt=" + pdt + ", cont=" + cont + ", capt=" + capt + ", detail=" + detail + ", ispublic="
+        + ispublic + ", writer=" + writer + ", good=" + good + "]";
   }
-  public void setGood(int good) {
-    this.good = good;
-  }
-  /*int mno;*/
   public int getPostno() {
     return postno;
   }
@@ -72,7 +71,6 @@ public class Post extends Member{
   public void setPdt(String pdt) {
     this.pdt = pdt;
   }
-
   public String getCont() {
     return cont;
   }
@@ -97,14 +95,19 @@ public class Post extends Member{
   public void setIspublic(String ispublic) {
     this.ispublic = ispublic;
   }
-@Override
-public String toString() {
-  return "Post [postno=" + postno + ", title=" + title + ", badge=" + badge + ", tag=" + tag + ", sdt=" + sdt + ", edt="
-      + edt + ", pdt=" + pdt + ", cont=" + cont + ", capt=" + capt + ", detail=" + detail + ", ispublic=" + ispublic
-      + ", good=" + good + "]";
-}
+  public Member getWriter() {
+    return writer;
+  }
+  public void setWriter(Member writer) {
+    this.writer = writer;
+  }
+  public int getGood() {
+    return good;
+  }
+  public void setGood(int good) {
+    this.good = good;
+  }
   
- 
   
   
 }
