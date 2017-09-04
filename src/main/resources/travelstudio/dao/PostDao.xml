@@ -78,6 +78,9 @@
   </select> 
   
   
+    <update id="BackgroundUpdate" parameterType="post">
+    update post set cont=#{cont} where postno=#{postno}
+  </update>
   
   <select id="getWriteCount" resultMap="postMap" parameterType="map">
   	select count(*) from post where mno=#{mno}

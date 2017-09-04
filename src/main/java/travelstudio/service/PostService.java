@@ -19,7 +19,7 @@ public interface PostService {
   List<Post> selectOneUserPost(int number) throws Exception;
   Post requestedPost(int postno) throws Exception;
   void like(Post post)throws Exception;
-  
+  void BackgroundUpdate(Post post)throws Exception;
 //  int getSize() throws Exception;
 }
 

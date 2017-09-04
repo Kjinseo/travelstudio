@@ -58,6 +58,11 @@ public void like(Post post) throws Exception {
   postDao.updateLike(post);
   
 }
+@Override
+public void BackgroundUpdate(Post post) throws Exception {
+  postDao.BackgroundUpdate(post);
+  
+}
 
 
  

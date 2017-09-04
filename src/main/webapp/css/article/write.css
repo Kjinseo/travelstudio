@@ -537,7 +537,7 @@ a:-webkit-any-link {
 
 #map_container {
   display: none;
-  position: absolute;
+  position: fixed;
   z-index: 11;
   background-color: white;
   border: solid 1px gray;
@@ -545,7 +545,10 @@ a:-webkit-any-link {
   height: 650px;
   width: 850px;
   margin-left: 215px;;
- 
+  top:50%;
+  left: 36%;
+  transform: translate(-50%, -50%);
+  
 }
 
 

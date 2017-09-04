@@ -376,7 +376,7 @@ $.post('/detail/selectedOneDetail.json', {
 								+ "</div>"
 						)
 						$('#collage2-1-count'+ countPhoto +'> img').attr('src',finalCollageArray[0]).css('width', '534px').css('height','534px');
-						$('#collage2-2-count'+ countPhoto +'> img').attr('src',finalCollageArray[1]).css('height','534px');
+						$('#collage2-2-count'+ countPhoto +'> img').attr('src',finalCollageArray[1]).css('height','534px').css('height','534px');
 					} else if (finalCollageArray.length == '3') {
 						try {
 							$(imagesDiv2).html("<div class='collage3-big' id='collage3-1-big"+countPhoto+"'><img src=''></div>"
@@ -866,20 +866,24 @@ $('#title_fileupload').fileupload({
 					}
 				} catch (err) {}
 			} 
-
 			data.submit();
 
 
-		}, submit: function (e, data){},
+		}, submit: function (e, data){ // 서버에 전송하기 직전에 호출된다.
+			if(change==0){
+				console.log('submit()...');
+				console.log(captionArray)
+ 
+				data.formData = {
+					postnono: postno
+				}
+				change=1;
+			};
+		},
 		done: function (e, data) { // 서버에서 응답이 오면 호출된다. 각 파일 별로 호출된다.
 			console.log('titleuploaddone()...');
 			console.log(data);
-			/*$('<p/>').text("name : " + data.result.name).appendTo(document.body);
-	$('<p/>').text("age : " + data.result.age).appendTo(document.body);
-	$.each(data.result.fileList, function(index, file) {
-		$('<p/>').text(file.filename + " : " + file.filesize).appendTo(document.body);
-	});*/
-			/*	location.href="../jinseoKing/main01.html"*/
+			
 		}
 });
 /*function saveBtnClick(){

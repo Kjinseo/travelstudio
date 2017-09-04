@@ -73,7 +73,7 @@ public class detailControl {
   
   @RequestMapping("selectAddress")
   public JsonResult selectAddress(String[] mno) throws Exception {
-    System.out.println("------");
+    System.out.println("------"); 
    System.out.println(mno);
    
     HashMap<String,Object> dataMap = new HashMap<>();

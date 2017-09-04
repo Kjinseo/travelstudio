@@ -77,6 +77,29 @@ public JsonResult invitingUserPost(int[] requestPost) throws Exception {
   
   return new JsonResult(JsonResult.SUCCESS, dataMap);
 }
+
+@RequestMapping("backUpdate")
+public JsonResult backUpdate(MultipartFile[] files, int postnono) throws Exception {
+  HashMap<String,Object> dataMap = new HashMap<>();
+  Post post = new Post();
+  System.out.println(postnono);
+  if(files!=null){
+    String newFilename = this.getNewFilename();
+    File file = new File(ctx.getRealPath("/upload/" + newFilename));
+  files[0].transferTo(file);
+  
+  post.setCont("/upload/" + newFilename);
+  post.setPostno(postnono);
+  postService.BackgroundUpdate(post);
+  File thumbnail = new File(ctx.getRealPath("/upload/" + newFilename + "_1920"));
+  Thumbnails.of(file).size(2500, 2500).outputFormat("png").toFile(thumbnail);
+  }
+  
+  
+  System.out.printf("List 호출할게=================>");
+  
+  return new JsonResult(JsonResult.SUCCESS, dataMap);
+}
   
 
   @RequestMapping("info1")
@@ -123,7 +146,7 @@ public JsonResult invitingUserPost(int[] requestPost) throws Exception {
   
   
   @RequestMapping("add")
-  public JsonResult add(Post post, String[] content, String[] caption, String[] travelDate, String[] location, HttpServletRequest req, MultipartFile[] files) throws Exception {
+  public JsonResult add(Post post, String[] content, String[] caption, String[] travelDate, String[] location,String[] map, HttpServletRequest req, MultipartFile[] files) throws Exception {
     
     HttpServletRequest httpRequest= (HttpServletRequest) req;
     Member loginMember = (Member)httpRequest.getSession().getAttribute("loginMember");
@@ -155,6 +178,7 @@ public JsonResult invitingUserPost(int[] requestPost) throws Exception {
     Detail detailCaption = new Detail();
     Detail detailTravelDate = new Detail();
     Detail detailLocation = new Detail();
+    Detail detailMap = new Detail();
     
     detail.setPostno(post.getPostno());
     /*System.out.println(post.getCont());*/
@@ -165,14 +189,21 @@ public JsonResult invitingUserPost(int[] requestPost) throws Exception {
     if(content!=null){
     for(int i=0;i<content.length;i+=2){
       detail.setCont(content[i+1]);
-      System.out.println("콘텐츠 하나씩 출력");
-      System.out.println(content[i]);
       detail.setSrtno(Integer.parseInt((content[i])));
-      System.out.println(content[i]);
       detailService.insertDetailContent(detail);
     }
     }
     detailService.insertDetailByEmail(detail);
+    
+    if(map!=null){
+      for(int i=0;i<map.length;i+=3){
+        detailMap.setLati( Double.valueOf(map[i+1]));
+        detailMap.setLongit(Double.valueOf(map[i+2]));
+        detailMap.setSrtno(Integer.parseInt((content[i])));
+        detailService.addMap(detail);
+      }
+      }
+      detailService.insertDetailByEmail(detail);
     
     
     detailCaption.setPostno(post.getPostno());

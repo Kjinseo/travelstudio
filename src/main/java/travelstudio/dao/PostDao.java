@@ -17,6 +17,7 @@ public interface PostDao {
   Post requestedPost(int postno);
   List<Post> info1(String number);
   void updateLike(Post post);
+  void BackgroundUpdate(Post post);
   
 //  int getSize();
 //  List<Member> selectListByNames(Map<String,Object> valueMap);
