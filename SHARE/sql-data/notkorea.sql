@@ -1,0 +1,72 @@
+INSERT INTO `member` VALUES (1,'purpleswan@hanmail.net','*89C6B530AA78695E257E55D63C00A6EC9AD3E977','보라백조','여행을 사랑하는 보라 백조입니다.','/upload/swan.png'),
+(2,'minkdak@hanmail.net','*89C6B530AA78695E257E55D63C00A6EC9AD3E977','밍그닥','밍그밍그밍그닥.','/upload/man1.jpg'),
+(3,'jinyoung@hanmail.net','*89C6B530AA78695E257E55D63C00A6EC9AD3E977','진영짱','오호라 ~ 내가 국내여행의 왕.','/upload/eom.png'),
+(4,'emma@hanmail.net','*89C6B530AA78695E257E55D63C00A6EC9AD3E977','JInseo','영국을 사랑하는..','/upload/emma.jpg'),
+(5,'yuna@hanmail.net','*89C6B530AA78695E257E55D63C00A6EC9AD3E977','UnaQueen','빙판 전문 여행가','/upload/yunakim.jpg'),
+(6,'bike@hanmail.net','*89C6B530AA78695E257E55D63C00A6EC9AD3E977','Mr.Bike','자전거로 국경을 넘을 수 있따.','/upload/bike.jpg'),
+(7,'free@hanmail.net','*89C6B530AA78695E257E55D63C00A6EC9AD3E977','Freedom','자유로운 영혼.','/upload/sam.jpg');
+
+
+INSERT INTO `post` VALUES (1,'하르방이 반가운 제주도',NULL,NULL,'2017-09-05','2017-09-09','2017-07-07 00:00:00','/upload/1504528225844_1',NULL,1,0),
+(2,'도레미송의 오스트리아',NULL,NULL,'2017-09-13','2017-09-15','2017-07-07 00:00:00','/upload/1504528339816_2',NULL,1,0),
+(3,'한옥마을을 가다',NULL,NULL,'2017-09-28','2017-09-30','2017-07-07 00:00:00','/upload/1504528432799_3',NULL,1,0),
+(4,'신사의 나라 영국으로',NULL,NULL,'2017-09-06','2017-09-21','2017-07-07 00:00:00','/upload/1504528514654_4',NULL,1,0),
+(5,'스페인은 겨울에 아름답다',NULL,NULL,'2017-09-28','2017-09-30','2017-07-07 00:00:00','/upload/1504528631471_5',NULL,2,0),
+(6,'로마는 어디에나 있다',NULL,NULL,'2017-08-16','2017-09-30','2017-07-07 00:00:00','/upload/1504528715808_6',NULL,2,0),
+(7,'혁명의 도시 파리를 가다',NULL,NULL,'2017-09-13','2017-09-29','2017-07-07 00:00:00','/upload/1504528771326_7',NULL,2,0),
+(8,'종교 혁명의 씨앗 스코트랜드',NULL,NULL,'2017-09-20','2017-09-29','2017-07-07 00:00:00','/upload/1504528858926_8',NULL,2,0),
+(9,'꿈의 도시 리옹',NULL,NULL,'2017-09-14','2017-09-28','2017-07-07 00:00:00','/upload/1504528949854_9',NULL,3,0),
+(10,'인생 첫 해외 여행!!',NULL,NULL,'2017-09-14','2017-09-21','2017-07-07 00:00:00','/upload/1504529026823_10',NULL,7,0);
+
+
+
+INSERT INTO `pic` VALUES (1,'/upload/1504528218197_1','2016-07-18 00:00:00',NULL,37.5653,126.975,0),
+(2,'/upload/1504528423194_2','2016-07-21 00:00:00',NULL,37.1717,128.991,0),
+(3,'/upload/1504528507712_3','2016-03-18 00:00:00',NULL,55.9486,-3.19819,0),
+(4,'/upload/1504528624215_4','2016-03-21 00:00:00',NULL,41.8903,12.4931,0),
+(5,'/upload/1504528707908_5','2016-03-21 00:00:00',NULL,41.8918,12.4864,0),
+(6,'/upload/1504528746792_6','2016-06-22 00:00:00',NULL,48.8737,2.29622,0),
+(7,'/upload/1504528820788_7','2016-03-18 00:00:00',NULL,55.9496,-3.1926,0),
+(8,'/upload/1504528920660_8','2016-06-24 00:00:00',NULL,48.863,2.29662,0),
+(10,'/upload/1504528991472_10','2016-03-22 00:00:00',NULL,41.8954,12.4826,0),
+(11,'/upload/1504528998836_11','2016-03-22 00:00:00',NULL,41.8954,12.4826,0);
+
+
+
+INSERT INTO `detail` VALUES (1,1,1,NULL,NULL,NULL,NULL,NULL,NULL,'',0),
+                            (2,NULL,1,NULL,NULL,NULL,NULL,'안녕하세요',NULL,NULL,0),
+                            (3,NULL,1,NULL,'2016-07-18',NULL,NULL,NULL,NULL,NULL,0),
+                            (4,NULL,1,NULL,NULL,NULL,NULL,NULL,'한국 서울특별시',NULL,0),
+
+                            (5,2,3,NULL,NULL,NULL,NULL,NULL,NULL,'',0),
+                            (6,NULL,3,NULL,NULL,NULL,NULL,'안녕하세요',NULL,NULL,0),
+                            (7,NULL,3,NULL,'2016-07-21',NULL,NULL,NULL,NULL,NULL,0),
+                            (8,NULL,3,NULL,NULL,NULL,NULL,NULL,'한국 강원도',NULL,0),
+                            (9,3,4,NULL,NULL,NULL,NULL,NULL,NULL,'',0),
+                            (10,NULL,4,NULL,NULL,NULL,NULL,'안녕하세요',NULL,NULL,0),
+                            (11,NULL,4,NULL,'2016-03-18',NULL,NULL,NULL,NULL,NULL,0),
+                            (12,NULL,4,NULL,NULL,NULL,NULL,NULL,'영국 The',NULL,0),
+                            (13,4,5,NULL,NULL,NULL,NULL,NULL,NULL,'',0),
+                            (14,NULL,5,NULL,NULL,NULL,NULL,'안녕하세요',NULL,NULL,0),
+                            (15,NULL,5,NULL,'2016-03-21',NULL,NULL,NULL,NULL,NULL,0),
+                            (16,NULL,5,NULL,NULL,NULL,NULL,NULL,'이탈리아 Piazza',NULL,0),
+                            (17,5,6,NULL,NULL,NULL,NULL,NULL,NULL,'',0),
+                            (18,NULL,6,NULL,NULL,NULL,NULL,'안녕하세요',NULL,NULL,0),
+                            (19,NULL,6,NULL,'2016-03-21',NULL,NULL,NULL,NULL,NULL,0),
+                            (20,NULL,6,NULL,NULL,NULL,NULL,NULL,'이탈리아 Rione',NULL,0),
+                            (21,6,7,NULL,NULL,NULL,NULL,NULL,NULL,'',0),
+                            (22,NULL,7,NULL,NULL,NULL,NULL,'안녕하세요',NULL,NULL,0),
+                            (23,NULL,7,NULL,'2016-06-22',NULL,NULL,NULL,NULL,NULL,0),
+                            (24,NULL,7,NULL,NULL,NULL,NULL,NULL,'프랑스 Charles',NULL,0),
+                            (25,7,8,NULL,NULL,NULL,NULL,NULL,NULL,'',0),
+                            (26,NULL,8,NULL,NULL,NULL,NULL,'안녕하세요',NULL,NULL,0),
+                            (27,NULL,8,NULL,'2016-03-18',NULL,NULL,NULL,NULL,NULL,0),
+                            (28,NULL,8,NULL,NULL,NULL,NULL,NULL,'영국 Royal',NULL,0),
+                            (29,8,9,NULL,NULL,NULL,NULL,NULL,NULL,'',0),
+                            (30,NULL,9,NULL,NULL,NULL,NULL,'안녕하세요',NULL,NULL,0),
+                            (31,NULL,9,NULL,'2016-06-24',NULL,NULL,NULL,NULL,NULL,0),
+                            (32,NULL,9,NULL,NULL,NULL,NULL,NULL,'프랑스 Musée',NULL,0),
+                            (33,11,10,NULL,NULL,NULL,NULL,NULL,NULL,'',0),
+                            (34,NULL,10,NULL,NULL,NULL,NULL,'안녕하세요',NULL,NULL,0),
+                            (35,NULL,10,NULL,'2016-03-22',NULL,NULL,NULL,NULL,NULL,0),
+                            (36,NULL,10,NULL,NULL,NULL,NULL,NULL,'이탈리아 Rione',NULL,0);
