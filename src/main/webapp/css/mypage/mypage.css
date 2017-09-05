@@ -390,20 +390,36 @@ box-shadow: 3px 3px 3px #888888;
   text-align: center;
 }
 
+#f_search_list {
+	height: 100px;
+}
+
+#invitePro  img{
+	height: 45px;
+	width: 45px;
+  background-size: cover;
+}
+
+.fa-plus-circle:before {
+    content: "\f055";
+    position: absolute;
+    right: 85px;
+    top: 420px;
+}
+
 .save_btn{
-  margin-top: 25px;
-  margin-left: auto;
-  margin-right: auto;
-  width:275px;
-  height: auto;
+  margin-top: 210px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 275px;
+    height: auto;
 }
 #close1-btn{
-  width:120px;
-  height:40px;
-  border-radius: 20px;
-  background-color: white;
-  border: 2px solid #9cb2d6;
-  margin-top: 40px;
+width: 120px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: white;
+    border: 2px solid #9cb2d6;
 }
 
 
