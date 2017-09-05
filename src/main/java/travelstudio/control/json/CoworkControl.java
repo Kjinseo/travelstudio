@@ -85,6 +85,18 @@ public class CoworkControl {
     Member loginMember = (Member) session.getAttribute("loginMember");
     return loginMember;
   }
+  
+  @RequestMapping("searchcoworker")
+  public JsonResult searchcoworker(int no) throws Exception {
+    System.out.println("searchCoworker");
+    System.out.println(no);
+    
+    HashMap<String,Object> dataMap = new HashMap<>();
+    dataMap.put("list", coworkService.searchcoworker(no));
+//    dataMap.put("totalCount", noticeService.getSize());
+    
+    return new JsonResult(JsonResult.SUCCESS, dataMap);
+  }  
 
   
 }

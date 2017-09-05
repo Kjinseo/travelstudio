@@ -2,6 +2,7 @@ package travelstudio.service.impl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,6 +48,12 @@ public class CoworkServiceImpl implements CoworkService {
    Map.put("pno", postNo);
    coworkDao.refuseCowork(Map);
  }
+ 
+ @Override
+ public List<Cowork> searchcoworker(int no) throws Exception {
+   return coworkDao.searchcoworker(no);
+ }
+ 
 }
 
 
