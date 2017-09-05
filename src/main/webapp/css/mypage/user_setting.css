@@ -1,0 +1,198 @@
+  body {
+      margin: 0;
+    }
+
+    header {
+      border: 1px solid #c9d1dd;
+      width: 100%;
+      height: 70px;
+      z-index: 100;
+      background-color: white;
+    }
+
+    #logo {
+      max-height: 55px;
+      margin-top: 7px;
+      margin-left: 345px;
+      display: inline;
+    }
+
+    #search_bar {
+      border: 1px solid white;
+      border-bottom: 1px solid gray;
+      font-size: 25px;
+      font-weight: 600;
+      margin-left: 10%;
+      margin-top: 17px;
+      display: inline;
+      position: absolute;
+      width: 500px;
+      height: 40px;
+    }
+
+    #search_icon {
+      position: absolute;
+      margin-left: 695px;
+      margin-top: 19px;
+      background-color: white;
+      border: none;
+    }
+
+     ::-webkit-input-placeholder {
+      color: #aeb5c1;
+    }
+
+    #start-my-journey {
+      border: 1px solid black;
+      width: 140px;
+      height: 40px;
+      border-radius: 20px;
+      background-color: white;
+      margin-left: 938px;
+      margin-top: 13px;
+      margin-bottom: 15px;
+      font-size: 17px;
+      position: absolute;
+      display: inline;
+    }
+/*여기까지 header*/
+
+/*여기서부터 로그인--*/
+.user-setting-container{
+  width: 550px;
+  height: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+
+
+.user_setting_info{
+  border: 1px solid white;
+  width: 470px;
+  height: 200px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 40px;
+}
+
+#title-name, #title-int{
+  font-size: 15px;
+  font-weight: bold;
+  color:#6a787c;
+  margin-left: 5px;
+}
+
+#int-input, #name-input{
+  border: 1px solid white;
+  border-bottom: 1px solid gray;
+  width: 100%;
+  height: 40px;
+  font-size: 20px;
+  font-weight: 300;
+  margin-bottom: 25px;
+
+
+
+}
+
+
+/*여기서부터 로그인 버튼 등 */
+
+
+#save-btn{
+  border: 2px solid #6a7991;
+  width: 272px;
+  height: 50px;
+  border-radius: 25px;
+  font-size: 17px;
+  margin-bottom: 15px;
+  background-color: white;
+  font-weight: bold;
+}
+
+.user_photo_change{
+  margin-left: auto;
+  margin-right: auto;
+  height: 170px;
+  width: 170px;
+ background: url('/image/usercircle.png') center center no-repeat;
+  background-size: cover !important;
+ /* border: 1px solid red; */
+ border-radius: 100%;
+ 
+}
+
+.user_photo_change{
+  /* background-img:  */
+}
+
+.user_img {
+ position: relative;
+}
+
+.user_img > img {
+  position: absolute; 
+}
+
+
+.user_photo_change > a >.cam_img{
+  display: inline-block;
+}
+
+.cam_img{
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 999;
+}
+
+facebook-login{
+  margin-left: auto;
+  margin-right: auto;
+}
+.save_btn{
+  margin-top: 25px;
+  margin-left: auto;
+  margin-right: auto;
+  width:275px;
+  height: auto;
+}
+.user_setting_info{
+  align: center;
+}
+#file-up {
+  position: relative; 
+  z-index: 999;
+  float:right ;
+  width: 30px;
+  margin-left: -40px;
+  margin-top: 120px;
+  border-radius: 50px;
+}
+
+#file-up:hover {
+  pointer: cursor;
+}
+
+* {
+/*   border: solid 1px red; */
+} 
+.user_txt {
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    }
+    
+ #txt_alias {
+ font-size: 170%;
+ font-weight: 600;
+ margin-bottom: 0;
+ }
+ 
+ #txt_email {
+ font-size: 130%;
+ font-weight: 600;
+ }

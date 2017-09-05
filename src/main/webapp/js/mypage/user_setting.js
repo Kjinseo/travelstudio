@@ -5,6 +5,20 @@ var aliasIp = $('#name-input'),
 	pathIp = ""
 var no = 0
 
+//header load 시키기
+$(function() {
+	$('.header-container').load('../main/header.html')
+	
+	$('.footer-container').load('../main/footer.html')
+
+
+})
+	
+	
+	
+
+
+
 $.getJSON('/member/header.json', function(result) {
 	console.log(result.data)	
 	var data = result.data.loginMember
