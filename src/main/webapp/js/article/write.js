@@ -1237,6 +1237,7 @@ console.log('addAllphoto')
 		console.log(result);
 	}, 'json')
 	if(savecount!=1){
+		console.log("배경없어")
 		setTimeout("noBackgroundSave()",1000)
 	}else{
 		setTimeout($('.innerClick').click(),1000);

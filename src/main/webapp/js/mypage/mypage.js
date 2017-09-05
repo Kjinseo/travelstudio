@@ -106,6 +106,9 @@ function test(idMyDiv) {
 
 function selectLoginUserPost(){
 	$.post('/post/selectOneUserPost.json',{'number':loginMemberNo}, function(result) {
+		var resultLength = result.data.selectOneUserPost.length
+		console.log(resultLength)
+		$('.postNum').text(resultLength)
 		var template = Handlebars.compile($('#content-template').html())
 		if(result.data.selectOneUserPost.length<=0) {
 		  isListEmpty = true;

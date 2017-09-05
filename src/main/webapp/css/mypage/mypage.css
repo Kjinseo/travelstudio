@@ -27,6 +27,12 @@ time, tr, tt, u, ul, var, video {
   vertical-align: baseline;
 }
 
+.clearfix::after {
+  display: block;
+  content: '';
+  clear: both;
+}
+
 a {
   color: inherit;
 }
@@ -45,7 +51,6 @@ a:-webkit-any-link {
 }
 #container{
 width: 1244px;
-height:1000px;
 margin-left: auto;
 margin-right: auto;
 
@@ -70,9 +75,8 @@ height: 40px;
   margin-top: 20px;
  
 }
-.cont_card{
-	margin-top: 68px;
-}
+
+
 .profile_photo{
   width:169px;
   height:171px;
@@ -102,10 +106,12 @@ height: 40px;
 .info_write{
   width:160px;
   display: inline-block;
+  color: #777;
 }
 .info_nation{
 width:177px;
 display: inline-block;
+color: #777;
 }
 
 /*게시물 없을 때 시작*/
@@ -174,9 +180,6 @@ ul> li{
   object-fit: cover;
 }
 
-.cont_card{
-  margin-top: 130px;
-}
 
 div.card_title span{
   width: 230px;
@@ -269,11 +272,16 @@ ul.dropdown {
   background: white;
   min-width: 10em;
   padding: 5px 13px 5px 13px;;
-font-size: 16px;
-
+  font-size: 16px;
+  z-index: 1000;
   border:darkgray solid 1px;
   width:180px;
 
+}
+
+.postNum {
+	font-size: 27px;
+	margin-left: 5px;
 }
 
 .dropdown > li {
@@ -285,25 +293,41 @@ font-size: 16px;
 .dropdown> li > a {
   width:180px;
   text-decoration: none;
-
+  display: inline-block;
+  width: 100%;
 }
 .dropdown > li:hover{
   background-color: #c7d0dd;
     color: white;
+}
+.mypage_list_heart {
+	    color: #f4425c;
+}
 
-
+.travle_list {
+	padding: 30px 0;
+}
+.travle_list_invited {
+	padding: 30px 0;
+	border-bottom: 1px solid #ccc;
+}
+.travle_list_invited .list-title,
+.travle_list .list-title {
+	margin-left: 28px;
+	font-size: 20px;
+	font-weight: bold;
+	color: #333;
 }
 
 .item_card {
-  height:470px;
-  width:290px;
-  margin-left: 20px;
+  width:280px;
+  margin-left: 28px;
   position: relative;
   float: left;
+  margin-top: 20px;
 }
 
 .card_bottom{
-  margin-top: 20px;
 }
 
 .card_desc{
@@ -609,3 +633,7 @@ z-index: 100;
   color: white;
 }
 /*초대받은 모달 끝*/
+
+.footer-container {
+	margin-top: 50px;
+}
