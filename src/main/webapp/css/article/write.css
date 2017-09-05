@@ -1,6 +1,12 @@
 @import url(https://fonts.googleapis.com/css?family=Ropa+Sans);
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 
+
+/* .text_parent::after {
+	display: inline-block;
+	content: '사진/지도등록';
+} */
+
 #wirte_title:-ms-input-placeholder { 
 	color: rgba(255,255,255,0.8); 
 	font-weight: bold;
