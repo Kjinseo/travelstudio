@@ -199,9 +199,11 @@ div.card_title span{
 .list_title{
   display: inline-block;
   width: 240px;
-  height:65px;
-  font-size: 22px;
+    font-size: 18px;
   overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  
 }
 #modal{
   width:100%;
@@ -292,14 +294,16 @@ font-size: 16px;
 
 }
 
-.item_card{
+.item_card {
   height:470px;
   width:290px;
   margin-left: 20px;
+  position: relative;
+  float: left;
 }
 
 .card_bottom{
-  margin-top: 80px;
+  margin-top: 20px;
 }
 
 .card_desc{
@@ -560,7 +564,7 @@ z-index: 100;
   background-color: rgba(0, 0, 0, 0.43);
   height: 255px;
   width: 297px;
-  bottom: 179px;
+  top: 0;
 }
 
 .request_user {
