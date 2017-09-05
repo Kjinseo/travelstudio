@@ -42,6 +42,7 @@ function registMapFunction(){
 	});
 } // function registMapFunction()
 
+
 //텍스트상자 크기 자동조절
 function cmaTextareaSize(obj, bsize) { // 객체명, 기본사이즈
 	var sTextarea = document.getElementById(obj);

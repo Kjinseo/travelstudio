@@ -211,6 +211,48 @@ $.post('/detail/selectedOneDetail.json', {
 		$.post('/picture/selectByPost.json', {
 			'pictureno': picno
 		}, function(result) {
+			
+			/**/
+			
+			var CaptionMap = new Map();
+			var Mapaa = new Map();
+			for(i=0; i< array1.list.length; i++){
+				if(array1.list[i].capt!=undefined){
+					if(CaptionMap.get(array1.list[i].srtno)==undefined){
+						CaptionMap.set(array1.list[i].srtno, array1.list[i].capt)
+						array1.list.splice(i,1);
+						i--;
+					}
+				}
+			}
+			console.log("Caption 만들어짐",CaptionMap)
+			var dateMap = new Map();
+			
+			for(i=0; i< array1.list.length; i++){
+				if(array1.list[i].date!=undefined){
+					if(dateMap.get(array1.list[i].srtno)==undefined){
+						dateMap.set(array1.list[i].srtno, array1.list[i].date)
+						array1.list.splice(i,1);
+						i--;
+					}
+				}
+			}console.log("dateMap 만들어짐",dateMap)
+			
+			var AddressMap = new Map();
+			for(i=0; i< array1.list.length; i++){
+				if(array1.list[i].address!=undefined){
+					if(AddressMap.get(array1.list[i].srtno)==undefined){
+						AddressMap.set(array1.list[i].srtno, array1.list[i].address)
+						array1.list.splice(i,1);
+						i--
+					}
+				}
+			}
+			
+			
+			
+			/**/
+			
 			for(i=0; i < array1.list.length; i++){
 				for(j=0 ; j < result.fileList.length ; j++){
 					if(array1.list[i].picno!=0){
@@ -224,17 +266,7 @@ $.post('/detail/selectedOneDetail.json', {
 				onlyPath1.push(result.fileList[i].path)
 			}
 
-			var CaptionMap = new Map();
-			var Mapaa = new Map();
-			for(i=0; i< array1.list.length; i++){
-				if(array1.list[i].capt!=undefined){
-					if(CaptionMap.get(array1.list[i].srtno)==undefined){
-						CaptionMap.set(array1.list[i].srtno, array1.list[i].capt)
-						array1.list.splice(i,1);
-						i--
-					}
-				}
-			}
+			
 			/*var latiMap = new Map();
 			for(i=0; i< array1.list.length; i++){
 				if(array1.list[i].lati!=undefined && array1.list[i].lati!=0){
@@ -258,30 +290,6 @@ $.post('/detail/selectedOneDetail.json', {
 				return o;
 			}
 
-
-			var dateMap = new Map();
-
-			for(i=0; i< array1.list.length; i++){
-				if(array1.list[i].date!=undefined){
-					if(dateMap.get(array1.list[i].srtno)==undefined){
-						dateMap.set(array1.list[i].srtno, array1.list[i].date)
-						array1.list.splice(i,1);
-						i--;
-					}
-				}
-			}
-
-
-			var AddressMap = new Map();
-			for(i=0; i< array1.list.length; i++){
-				if(array1.list[i].address!=undefined){
-					if(AddressMap.get(array1.list[i].srtno)==undefined){
-						AddressMap.set(array1.list[i].srtno, array1.list[i].address)
-						array1.list.splice(i,1);
-						i--
-					}
-				}
-			}
 			for(i=0; i< array1.list.length; i++){
 				if(array1.list[i].address!=undefined){
 					if(AddressMap.get(array1.list[i].srtno)==undefined){
