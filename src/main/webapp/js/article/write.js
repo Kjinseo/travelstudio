@@ -1014,6 +1014,7 @@ $('#write_save_btn').click(function() {
 			console.log(content);
 			picnosearch()
 		}*/
+	console.log($('#blank-one').attr('background'))
 	emptyParentRemove()
 });
 $('#title_fileupload').fileupload({
