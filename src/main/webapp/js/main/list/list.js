@@ -15,6 +15,7 @@ $(function() {
 
 
 $.getJSON('/post/list.json', function(result) {
+	console.log(result)
 	var template = Handlebars.compile($('#content-template').html())
 	var generatedHTML = template(result.data) // 템플릿 함수에 데이터를 넣고 HTML을 생성한다.
 //	tbody.text('') // tbody의 기존 tr 태그들을 지우고
@@ -55,10 +56,11 @@ var searchmethod;
 $('.essayclick').click(function (){
 	$('.contentSerchList').css('border-bottom',"2px solid red")
 	$('.membersearchList').css('border-bottom',"")
-	$.getJSON('../post/list.json', function(result) {
+	$.getJSON('/post/list.json', function(result) {
 
 		console.log(result.data.list);
 		$('.content-container > a').remove();
+		$('.content-container').text('')
 		var template2 = Handlebars.compile($('#content-template2').html())
 		var template = Handlebars.compile($('#content-template').html())
 		template2("");

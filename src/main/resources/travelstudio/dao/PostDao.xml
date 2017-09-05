@@ -57,8 +57,8 @@
   </select>
     
 <insert id="insert" parameterType="post" useGeneratedKeys="true" keyColumn="postno" >
-    insert into post(postno, title, sdt, edt, cont, pdt, mno) 
-    values(null, #{title}, #{sdt},#{edt},#{cont},'2017-07-07',#{mno})
+    insert into post(postno, title, sdt, edt, cont, pdt, mno, tag) 
+    values(null, #{title}, #{sdt},#{edt},#{cont},'2017-07-07',#{mno}, #{tag})
     <selectKey keyProperty="postno" resultType="int">
         SELECT LAST_INSERT_ID()
     </selectKey>

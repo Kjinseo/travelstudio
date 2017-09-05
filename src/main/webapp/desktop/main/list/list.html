@@ -9,13 +9,43 @@
 <body>
 
 <div class='header-container'></div>
+  <div class="searchSelect">		
+ <a href="#" class="essayclick"><div class="contentSerchList">여행기</div></a>		
+ <a href="#" class="userclick"><div class="membersearchList">사용자</div></a>		
+ </div>
+ <br>
+ <br>
 
 	<!--여기서부터 content-container-->
-
 	<ul>
 		<div class="content-container">
 
-					<script id="content-template" type="text/x-handlebars-template">
+					
+		</div>
+
+	</ul>
+<br>
+
+<li>
+		<div class="content-container2">
+
+<!-- <a href="./mypage.html?{{email}}"> -->
+
+		       
+		       		</div>
+
+	</li>
+		       
+<div id="traveled_country">
+<script id="flag-template" type="text/x-handlebars-template">
+{{#each flag_list}}
+      <ul style=none;>
+        <li id="mmm{{mno}}"><img src='{{address}}'></li>
+      </ul>
+{{/each}}
+</script>
+</div>
+<script id="content-template" type="text/x-handlebars-template">
 {{#each list}}
 			<li>
 					<div class="dis_picture">
@@ -23,10 +53,6 @@
 							<img id="search-list-picture" src="{{cont}}"> 
 	</div>						
 						
-							<div class="face_pic">
-							<img id="circle_pic_user" src="/upload/{{path}}"></img>
-							<span id="user_alias">{{alias}}</span>
-            </div>
 						
 					</div>
 					<div id="wrap">
@@ -69,16 +95,8 @@
 			</li>
 {{/each}}
 		       </script>
-		</div>
-
-	</ul>
-<br>
-
-<li>
-		<div class="content-container2">
-
-<!-- <a href="./mypage.html?{{email}}"> -->
-	<script id="content-template2" type="text/x-handlebars-template">
+		       
+		       	<script id="content-template2" type="text/x-handlebars-template">
 {{#each info}}
     <div class="user_one" data-mno='{{mno}}'>
     <div class="user_one_info">
@@ -119,21 +137,6 @@
   
 {{/each}}
 		       </script>
-		       
-		       		</div>
-
-	</li>
-		       
-<div id="traveled_country">
-<script id="flag-template" type="text/x-handlebars-template">
-{{#each flag_list}}
-      <ul style=none;>
-        <li id="mmm{{mno}}"><img src='{{address}}'></li>
-      </ul>
-{{/each}}
-</script>
-</div>
-
 <div class='footer-container'></div>
 
 

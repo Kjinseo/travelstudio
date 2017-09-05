@@ -591,11 +591,11 @@ $.post('/detail/selectedOneDetail.json', {
 					$(this).append($("<div class='control_box' id='control-box-div-"+$(this).attr('data-countPhoto')+"'>"
 							+ "<ul class='clrfix'>"
 							+ "<li><button type='button' class='btn_add' id='addbtn-"+$(this).attr('data-countPhoto')+"' data-addno='"+$(this).attr('data-countPhoto')+"'>추가</button></li>"
-
 							+ "<li><button type='button' class='btn_caption' id='edtbtn-"+$(this).attr('data-countPhoto')+"' data-capno='"+$(this).attr('data-countPhoto')+"'>캡션</button></li>"
 							+ "<li><button type='button' class='btn_del' id='delbtn-"+$(this).attr('data-countPhoto')+"'>삭제</button></li>"
 							+ "</ul>"
 							+ "</div>"
+							
 					))
 					$(this).parent().attr('onclick','showControlBox('+$(this).attr('data-countPhoto')+')')
 					makeDragable($(this))
@@ -606,7 +606,7 @@ $.post('/detail/selectedOneDetail.json', {
 				});
 
 				for (var [key, value] of CaptionMap){
-					$('<div id="txt-output-'+key+'" class="capt_output">'+value+'</div>').appendTo($('#text_parent_'+key+''))
+					$('<div id="txt-output-'+key+'" class="capt_output">'+value+'</div>').appendTo($('#text_parent_'+key+'').children())
 				}
 
 				for (var [key, value] of dateMap){
@@ -1236,7 +1236,8 @@ function makeDragable($thisclass){
 				revert: 'invalid', 	
 				start: function(){
 					console.log('start')
-					before = $(this).parent().children('.capt_output').text()
+					before = $(this).parents('.text_parent').children().children('.capt_output').text()
+					console.log(before)
 					/*currentCollageSize=$(this).parent().attr('class').split('_')[1].charAt(7)*/
 				},/* start끝 */
 				stop: function() {
