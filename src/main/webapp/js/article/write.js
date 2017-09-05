@@ -31,7 +31,10 @@ imagesDiv2=0;emptyParentRemove
 var parentno;
 registMapFunction()
 
-
+$(function() {
+	$('.header-container').load('../main/header.html')
+	$('.footer-container').load('../main/footer.html')
+})
 function registMapFunction(){
 	$(document.body).on('click', '#showMapModal', function(event) {
 		parentno=$(this).parent().parent().parent().parent().attr('id').split('_')[2]
