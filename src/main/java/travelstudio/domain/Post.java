@@ -24,13 +24,19 @@ public class Post extends Member{
   Member writer;
   int good;
   String address;
+  String confirm;
+  
   @Override
   public String toString() {
     return "Post [postno=" + postno + ", title=" + title + ", badge=" + badge + ", tag=" + tag + ", sdt=" + sdt
         + ", edt=" + edt + ", pdt=" + pdt + ", cont=" + cont + ", capt=" + capt + ", detail=" + detail + ", ispublic="
-        + ispublic + ", writer=" + writer + ", good=" + good + ", address=" + address + ", mno=" + mno + ", email="
-        + email + ", password=" + password + ", alias=" + alias + ", intro=" + intro + ", pwd=" + pwd + ", path=" + path
-        + "]";
+        + ispublic + ", writer=" + writer + ", good=" + good + ", address=" + address + ", confirm=" + confirm + "]";
+  }
+  public String getConfirm() {
+    return confirm;
+  }
+  public void setConfirm(String confirm) {
+    this.confirm = confirm;
   }
   public int getPostno() {
     return postno;
