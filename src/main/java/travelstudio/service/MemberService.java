@@ -16,6 +16,7 @@ public interface MemberService {
   void update(Member member) throws Exception;
   Member searchOneUser(String alias);
   Member subMember(int mno);
+  List<Member> infosub();
   
   
   /*우인재*/

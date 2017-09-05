@@ -34,7 +34,6 @@ $.getJSON('/post/foreignAllList.json', function(result) {
   var generatedHTML = template(result.data) // 템플릿 함수에 데이터를 넣고 HTML을 생성한다.
   tbody.append(generatedHTML) // 새 tr 태그들로 설정한다.
   $('.contentSerchList').css('border-bottom',"2px solid red")
-  
 }) 
 
 var template2=Handlebars.compile($('#content-template2').html())

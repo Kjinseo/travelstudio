@@ -2,7 +2,6 @@
 
 .content-container {
   border: 1px solid white;
-  
   padding-left: 50px;
   width: 1200px;
   height: auto;
@@ -190,6 +189,7 @@ width: 160px;
 .memberflag{
 	margin-top: 20px;
 }
+
 .memberflag img{
   width: 35px;
   margin-right: 7px;

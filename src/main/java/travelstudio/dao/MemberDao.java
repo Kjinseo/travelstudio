@@ -19,5 +19,6 @@ public interface MemberDao {
   int insert(Member member);
   
   Member subMember(int no);
+  List<Member> selectListSub();
   
 }

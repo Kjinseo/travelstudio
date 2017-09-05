@@ -6,10 +6,9 @@ var swiper = new Swiper('.swiper-container', {
 });
 
 $(function() {
-$('.header-container').load('../main/header.html')
-$('.footer-container').load('../main/footer.html')
+  $('.header-container').load('../main/header.html')
+  $('.footer-container').load('../main/footer.html')
 })
-
 
 // 국내여행 리스트 가져오기
 $.getJSON('/post/koreaList.json', function(result) {

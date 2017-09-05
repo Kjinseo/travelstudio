@@ -75,6 +75,10 @@ public class MemberServiceImpl implements MemberService {
     return memberDao.subMember(mno);
   }
   
+  public List<Member> infosub() {
+    return memberDao.selectListSub();
+  }
+  
 }
 
 

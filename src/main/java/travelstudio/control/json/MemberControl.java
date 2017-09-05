@@ -37,6 +37,13 @@ public class MemberControl {
     return new JsonResult(JsonResult.SUCCESS, dataMap);
   }
   
+  @RequestMapping("infosub")
+  public JsonResult infosub() throws Exception {
+    HashMap<String,Object> dataMap = new HashMap<>();
+    dataMap.put("info", memberService.infosub());
+    return new JsonResult(JsonResult.SUCCESS, dataMap);
+  }
+  
   @RequestMapping("countPost")
   public JsonResult countPost() throws Exception {
     HashMap<String,Object> dataMap = new HashMap<>();

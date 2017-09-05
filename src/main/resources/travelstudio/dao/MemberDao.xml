@@ -59,6 +59,13 @@
    where mno=#{mno}
   </select>
   
+  <select id="selectListSub" resultMap="memberMap" parameterType="map">
+  select * from member    
+  where mno <![CDATA[ < ]]> 7
+  order by mno desc
+  limit 4;
+  </select>
+  
   <!--   <select id="countPost" resultMap="memberMap" parameterType="map">
        select m.mno, m.alias , m.path, m.email, count(*) 
    from member m natural join  post p
