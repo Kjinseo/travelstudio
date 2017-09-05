@@ -1104,7 +1104,6 @@ $('#title_fileupload').fileupload({
 				console.log(captionArray)
 				console.log(mapArr)
 				tag = $('#write-tag').val()
-				alert(tag)
 				data.formData = {
 					title : decodeURIComponent(fititle.val()),
 					sdt: fisdt.val(),
