@@ -89,7 +89,7 @@
     group by d.adrs, p.postno
     having not d.adrs like '%한국%' and not d.adrs like '%대한민국%'
     order by p.postno desc
-    limit 11;
+    limit 3;
   </select>
   
   <select id="selectForeignAllList" resultMap="postMap">
