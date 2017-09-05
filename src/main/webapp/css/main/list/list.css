@@ -42,10 +42,6 @@
 border: 1px solid white;
 overflow: hidden;
 height:240px;
-background-image:url("image.png");
-background-size: 200px;
-background-repeat:no-repeat;
-background-position: center;
 }
 
 /*사진에 대해-끝*/
@@ -138,12 +134,12 @@ div.connect:after {
   font-size: 15px;
 }
 
-#wrap{
+.wrap {
 border-bottom: 1px solid #babdc1;
 height: 300px;
 margin-top: 20px;
 margin-left: -59px;
-width: 1188px;
+width: 1258px;
 
 }
 
@@ -178,23 +174,35 @@ font-size:16px;
 }
 
 .searchSelect {
-margin-top:110px;
+  display: inline-block;
+  margin: 35px 600px;
+  width: 670px;
 }
+
 .searchSelect div{
-float:left;
 display:inline-block;
 font-size: 30px;
-
 text-align:center;
 height:57px;
 width: 160px;
 }
-.contentSerchList{
-  margin-left:650px;
-  
+
+.memberflag{
+	margin-top: 20px;
 }
+.memberflag img{
+  width: 35px;
+  margin-right: 7px;
+}
+
+.intro{
+  font-size: 16px;
+  color: #777;
+  margin: 10px 0;
+}
+
 .membersearchList{
-margin-left:330px;
+float: right;
 }
 
 #mypage{
@@ -235,16 +243,22 @@ margin-left:330px;
 
 }
 .user_name{
-  font-size: 25px;
+  font-size: 22px;
   margin-top: 10px;
+  font-weight: 600;
 }
 .info_write{
-  width:110px;
+  width:130px;
   display: inline-block;
 }
 .info_nation{
-width:110px;
+width:130px;
 display: inline-block;
+}
+.info_form {
+	padding-top: 5px;
+  font-size: 18px;
+  color: #333;
 }
 ul > li > img{
   width:27px;
@@ -361,7 +375,8 @@ i{
   height:300px;
   width:1150px;
   margin-left: -42px;
-  border-bottom:1px solid #babdc1;;
+  border-bottom:1px solid #babdc1;
+  font-size: 22px;
 }
 .search_user_hr{
   background-color: black;
@@ -384,13 +399,11 @@ height: 200px;
 }
   
 #circle_pic_user{
-  background-image:url("usercircle.png");
   background-size:30px;
   background-repeat: no-repeat;
 }
 
 #circle_profile{
-  background-image:url("usercircle.png");
   background-size:165px;
   background-repeat: no-repeat;
 }

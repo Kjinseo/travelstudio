@@ -42,13 +42,24 @@ public class PostControl {
   }
 
 
-
-  @RequestMapping("list")
-  public JsonResult list() throws Exception {
+  @RequestMapping("koreaList")
+  public JsonResult koreaList() throws Exception {
     HashMap<String,Object> dataMap = new HashMap<>();
-    dataMap.put("list", postService.list());
-    //    dataMap.put("totalCount", noticeService.getSize());
-
+    dataMap.put("koreaList", postService.koreaList());
+    return new JsonResult(JsonResult.SUCCESS, dataMap);
+  }
+  
+  @RequestMapping("foreignList")
+  public JsonResult foreignList() throws Exception {
+    HashMap<String,Object> dataMap = new HashMap<>();
+    dataMap.put("foreignList", postService.foreignList());
+    return new JsonResult(JsonResult.SUCCESS, dataMap);
+  }
+  
+  @RequestMapping("foreignAllList")
+  public JsonResult foreignAllList() throws Exception {
+    HashMap<String,Object> dataMap = new HashMap<>();
+    dataMap.put("foreignAllList", postService.foreignAllList());
     return new JsonResult(JsonResult.SUCCESS, dataMap);
   }
 
