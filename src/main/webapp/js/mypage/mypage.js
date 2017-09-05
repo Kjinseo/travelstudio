@@ -225,7 +225,7 @@ $(".delete_travel > #no-btn").click(function () {
 
 
 displayShareList()
-
+var requestPost = 0;
 //공유한 리스트 가져오기
 function displayShareList() {
   $.getJSON('/post/listCoworkPost.json', function(result) {
@@ -236,7 +236,14 @@ function displayShareList() {
     }
     var template = Handlebars.compile($('#content-request-template').html())
     var generatedHTML = template(result.data) 
+    requestPost = result.data.invitingUserPost[0].postno
     $('.travle_list_invited').append(generatedHTML) 
+    
+    
+    if ("postno",result.data.invitingUserPost[0].confirm == 1) {
+    	$(".cowork-modal-box[data-no=" + requestPost + "]").css('display', 'none')
+    	console.log('얌얌')
+    }
     
     
   }, 'json')
