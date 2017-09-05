@@ -43,7 +43,7 @@ $(function() {
 	
 })
 	
-	
+
 	
 })
 
@@ -255,7 +255,6 @@ function displayShareList() {
     
     if ("postno",result.data.invitingUserPost[0].confirm == 1) {
     	$(".cowork-modal-box[data-no=" + requestPost + "]").css('display', 'none')
-    	console.log('얌얌')
     }
     
     
