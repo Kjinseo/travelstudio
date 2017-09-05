@@ -755,7 +755,7 @@ function setFileUploadToInputTag() {
 						+ "<li><button type='button' class='btn_del' id='delbtn-"+countPhoto+"'>삭제</button></li>"
 						+ "</ul>"
 						+ "</div>" 
-						+ "<div class='capt_output' id='txt-output-"+countPhoto+"'>안녕하세요</div>"
+						+ "<div class='capt_output' id='txt-output-"+countPhoto+"'></div>"
 				))
 				deletephoto(countPhoto)
 			}
@@ -1168,8 +1168,7 @@ function picnosearch(){
 		}, 'json')
 	}
 	console.log('picnosearch 끝')
-	setTimeout("finaladd()",4000);
-	setTimeout(console.log(jsPictureList),1000)
+	setTimeout("finaladd()",2000);
 }
 
 function finaladd(){
@@ -1237,9 +1236,9 @@ console.log('addAllphoto')
 		console.log(result);
 	}, 'json')
 	if(savecount!=1){
-		setTimeout("noBackgroundSave()",2000)
+		setTimeout("noBackgroundSave()",1000)
 	}else{
-		setTimeout($('.innerClick').click(),3000);
+		setTimeout($('.innerClick').click(),1000);
 		console.log('innerclick')
 	}
 	console.log('addAllphoto 끝')
@@ -1359,7 +1358,7 @@ $('#fileAllUpload').fileupload({
 							+ "<li><button type='button' class='btn_del' id='delbtn-"+countPhoto+"'>삭제</button></li>"
 							+ "</ul>"
 							+ "</div>"
-							+ "<div class='capt_output' id='txt-output-"+countPhoto+"'>안녕하세요</div>"
+							+ "<div class='capt_output' id='txt-output-"+countPhoto+"'></div>"
 					).appendTo(textParent)
 					$('#collage1-1'+ countPhoto +'> img').attr('src',photo[i][0].path + "_600.png").css('width', '809px').css('height','606px');
 					$('#detail-date-div-'+ countPhoto).attr("value", photo[i][0].time)
@@ -1384,7 +1383,7 @@ $('#fileAllUpload').fileupload({
 							+ "<li><button type='button' class='btn_del' id='delbtn-"+countPhoto+"'>삭제</button></li>"
 							+ "</ul>"
 							+ "</div>"
-							+ "<div class='capt_output' id='txt-output-"+countPhoto+"'>안녕하세요</div>"
+							+ "<div class='capt_output' id='txt-output-"+countPhoto+"'></div>"
 
 					).appendTo(textParent)
 					$('#collage2-1-count-'+ countPhoto +'> img').attr('src', photo[i][0].path + "_600.png").css('width', '534px').css('height','534px');
@@ -1423,7 +1422,7 @@ $('#fileAllUpload').fileupload({
 								+ "<li><button type='button' class='btn_del' id='delbtn-"+countPhoto+"'>삭제</button></li>"
 								+ "</ul>"
 								+ "</div>"
-								+ "<div class='capt_output' id='txt-output-"+countPhoto+"'>안녕하세요</div>"
+								+ "<div class='capt_output' id='txt-output-"+countPhoto+"'></div>"
 						).appendTo(textParent)
 						$('#collage3-1-big'+ countPhoto +' > img').attr('src', photo[i][0].path+"_600.png").css('width', '534px').css('height','534px');
 						$('#collage3-2'+ countPhoto +' > img').attr('src', photo[i][1].path +"_300.png").css('width', '260px').css('height','265px');
@@ -1457,7 +1456,7 @@ $('#fileAllUpload').fileupload({
 								+ "<li><button type='button' class='btn_del' id='delbtn-"+countPhoto+"'>삭제</button></li>"
 								+ "</ul>"
 								+ "</div>"
-								+ "<div class='capt_output' id='txt-output-"+countPhoto+"'>안녕하세요</div>"
+								+ "<div class='capt_output' id='txt-output-"+countPhoto+"'></div>"
 						).appendTo(textParent)
 
 						$('#collage4-1'+ countPhoto +' > img').attr('src', photo[i][0].path+"_300.png").css('width', '397px').css('height','397px');
@@ -1495,7 +1494,7 @@ $('#fileAllUpload').fileupload({
 								+ "<li><button type='button' class='btn_del' id='delbtn-"+countPhoto+"'>삭제</button></li>"
 								+ "</ul>"
 								+ "</div>"
-								+ "<div class='capt_output' id='txt-output-"+countPhoto+"'>안녕하세요</div>"
+								+ "<div class='capt_output' id='txt-output-"+countPhoto+"'></div>"
 
 						).appendTo(textParent) 
 						$('#collage5-1'+ countPhoto +' > img').attr('src', photo[i][0].path+"_300.png").css('width', '260px').css('height','260px');
@@ -1538,7 +1537,7 @@ $('#fileAllUpload').fileupload({
 								+ "<li><button type='button' class='btn_del' id='delbtn-"+countPhoto+"'>삭제</button></li>"
 								+ "</ul>"
 								+ "</div>"
-								+ "<div class='capt_output' id='txt-output-"+countPhoto+"'>안녕하세요</div>"
+								+ "<div class='capt_output' id='txt-output-"+countPhoto+"'></div>"
 						).appendTo(textParent)
 
 						$('#collage6-1-big'+ countPhoto +' > img').attr('src', photo[i][0].path+"_600.png").css('width', '534px').css('height','534px');
@@ -1584,7 +1583,7 @@ $('#fileAllUpload').fileupload({
 								+ "<li><button type='button' class='btn_del' id='delbtn-"+countPhoto+"'>삭제</button></li>"
 								+ "</ul>"
 								+ "</div>"
-								+ "<div class='capt_output' id='txt-output-"+countPhoto+"'>안녕하세요</div>"
+								+ "<div class='capt_output' id='txt-output-"+countPhoto+"'></div>"
 						).appendTo(textParent)  
 						$('#collage7-1-small'+ countPhoto +' > img').attr('src', photo[i][0].path+"_300.png").css('width', '192px').css('height','193px');
 						$('#collage7-2-small'+ countPhoto +' > img').attr('src', photo[i][1].path+"_300.png").css('width', '192px').css('height','193px');
@@ -1628,7 +1627,7 @@ $('#fileAllUpload').fileupload({
 								+ "<li><button type='button' class='btn_del' id='delbtn-"+countPhoto+"'>삭제</button></li>"
 								+ "</ul>"
 								+ "</div>"
-								+ "<div class='capt_output' id='txt-output-"+countPhoto+"'>안녕하세요</div>"
+								+ "<div class='capt_output' id='txt-output-"+countPhoto+"'></div>"
 						).appendTo(textParent)
 
 
@@ -1678,7 +1677,7 @@ $('#fileAllUpload').fileupload({
 								+ "<li><button type='button' class='btn_del' id='delbtn-"+countPhoto+"'>삭제</button></li>"
 								+ "</ul>"
 								+ "</div>"
-								+ "<div class='capt_output' id='txt-output-"+countPhoto+"'>안녕하세요</div>"
+								+ "<div class='capt_output' id='txt-output-"+countPhoto+"'></div>"
 
 						).appendTo(textParent)
 
@@ -1809,7 +1808,7 @@ $(document).ready(function () {
 	$('#capt-cancel').click(function() {
 		$('.caption_modal').css('display', 'none')
 		$('#control-box-div-'+count).css('display', 'none');
-		$('#cap-txt').val('');
+		$('#cap-txt').val("");
 		console.log("닫히냐")
 	})
 
@@ -2106,8 +2105,18 @@ function stoponParent($this, $item,StoponParentCount) { //디스는 콜라주, �
 	console.log($($this))
 	console.log($($this).attr('class').split('_')[1].charAt(7))
 	console.log('stoponParent함수안의 countPhoto' ,StoponParentCount)
+	if ($($this).attr('class').split('_')[1].charAt(7)=='1') {
+		$($this)
+		.html("<div  class='one_photo_col' id='collage1-1" +StoponParentCount +"'><img id='img_4' src=''></div>"
+				+ "</div>"
+		)
+		$('#collage1-1'+ StoponParentCount +'> img').attr('src',stoponParentArray[0]).css('width', '809px').css('height','606px');
+		$($this).attr("class","whole_collage1")
+		stopFunctionArray=[]
+		stoponParentArray.splice(0,stoponParentArray.length)
+		
 
-	if ($($this).attr('class').split('_')[1].charAt(7)=='2') {
+	}else if ($($this).attr('class').split('_')[1].charAt(7)=='2') {
 		$($this)
 		.html("<div  class='two_photo_col 2-collage' id='collage2-1-count" +StoponParentCount +"'><img id='img_4' src=''></div>"
 				+ "<div  class='two_photo_col 2-collage ' id='collage2-2-count" +StoponParentCount +"'><img id='img_4' src=''></div>"
@@ -2330,16 +2339,55 @@ function stopFunction(currentParent,$this,stopCountPhoto){ //currentParent는 wh
 	console.log($(currentParent).attr('class').split('_')[1].charAt(7))
 	var textParent= $("#text_parent_"+countPhoto+"")
 	if ($(currentParent).attr('class').split('_')[1].charAt(7) == '1') {
-		var textParentNo=$(currentParent).parent().attr('id').split('_')[1]
+		
+		deleteTextParent = $(currentParent).parents('.text_parent')
+		console.log($(this).parents('.text_parent'))
+		var deleteTextParentChild = deleteTextParent.children();
+
+
+		// 태그 번호 끝 자리부터 감소
+		var presentSpot = $(currentParent).parents('.text_parent').attr('id').split('_')[2]
+		console.log(presentSpot)
+		for (var i = $('.text_parent').size()-1 ; i > presentSpot  ; i--) {
+			$('.btn_add','#text_parent_'+ i).attr('data-addno', i-1)
+			$('.btn_add','#text_parent_'+ i).attr('id', 'addbtn-' + (i-1))
+
+			$('.btn_caption','#text_parent_'+ i).attr('data-capno', i-1)
+			$('.btn_caption','#text_parent_'+ i).attr('id', 'edtbtn-' + (i-1))		
+			$('.btn_del','#text_parent_'+ i).attr('id', 'delbtn-' + (i-1))
+
+			console.log('확인하세요')
+			if($('.control_box','#text_parent_'+ i).attr('id') != undefined) {
+				$('.control_box','#text_parent_'+ i).attr('id','control-box-div-' + (i-1))
+			}
+			$('.capt_output', '#text_parent_'+ i).attr('id', 'txt-output-'+(i-1))
+
+			if($('.file_browse', '#text_parent_'+ i).attr('class') != undefined) {
+				$('.file_browse', '#text_parent_'+ i).attr('href','javascript:file_browse('+ (i-1) +')')
+			}
+
+			if($('.create_box', '#text_parent_'+ i).attr('class') != undefined) {
+				$('.create_box','#text_parent_'+ i).attr('onclick', 'createtextbox('+ (i-1) +')')
+			}
+
+			console.log($('#text_parent_'+ i).attr('onclick','showControlBox('+ (i-1) +')'))
+			$('#text_parent_'+ i).attr('data-textparent', (parseInt($('#text_parent_'+ i).attr('id').split('_')[2]) - 1))
+			$('#text_parent_'+ i).attr('id', 'text_parent_' + (parseInt($('#text_parent_'+ i).attr('id').split('_')[2]) - 1))
+
+		}
+		
+		
+	/*	var textParentNo=$(currentParent).parent().attr('id').split('_')[1]
 		$('.text_parent').each(function(){
 			if($(this).attr('id').split('_')[1]>textParentNo){
 				$(this).attr('id',$(this).attr('id').split('_')[0]+"_"+$(this).attr('id').split('_')[1]-1).split[i]
 			}
-		})
+		})*/
 		$(currentParent).parent().parent().remove();
-		$("<div class='whole_collage1'>")
+		/*$("<div class='whole_collage1'>")*/
 		stopFunctionArray=[]
 		uiremove($this)
+		
 	} else if ($(currentParent).attr('class').split('_')[1].charAt(7) == '2') {
 
 		$(currentParent)
@@ -2480,6 +2528,7 @@ function stopFunction(currentParent,$this,stopCountPhoto){ //currentParent는 wh
 	$(currentParent).children('.capt_output').text(before)
 	console.log(before)
 			deletephoto(stopCountPhoto)
+			
 }
 
 function uiremove($this){
@@ -2708,18 +2757,7 @@ function makeDropable($thisclass){
 		}), 
 		drop: function( event, ui ) {
 			after = $(this).children('.capt_output').text()
-			/*    	  console.log(this)
-	    	   console.log($(ui.draggable).parent().attr('class').split('_')[1].charAt(7)) 
-	    	  dropdiv=$(this).attr('class').split('_')[1].charAt(7)
-	    	   console.log($(this).attr('class').split('_')[1].charAt(7)) 
-	    	  console.log($(this).attr('class'))
-	    	  if($(ui.draggable).parent().attr('class') == undefined||$(ui.draggable).parent().attr('class').split('_')[0]!='whole'){
-	    		  if($(this).attr('class').split('_')[1].charAt(7)!=$(ui.draggable).parent().parent().attr('class').split('_')[1].charAt(7)){
-	    	    	  resizeCollage( this, ui.draggable);}
-	    	  	}else{
-	    	  if($(this).attr('class').split('_')[1].charAt(7)!=$(ui.draggable).parent().attr('class').split('_')[1].charAt(7)||$(ui.draggable).parent().attr('class')==undefined){*/
 			$item=ui.draggable
-			/*$(ui.draggable).remove();*/
 			if($($item).parents('.text_parent').attr('id')!=$(this).parent().attr('id')){
 				$(ui.draggable).remove()
 				resizeCollage(this, $item,$(this).attr('data-countPhoto')); //this는 이 콜라쥬, ui 드래그에이블은 들어온값

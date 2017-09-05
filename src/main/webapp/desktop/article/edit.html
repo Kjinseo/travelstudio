@@ -107,7 +107,7 @@
 				<button type="button" id="cancel-login"
 					onclick="test('map_container'); test1('modal');">취소</button>
 				<button type="button"
-					onclick="saveMap(); createMap(); test('map_container'); test1('modal');"
+					onclick="createMap(); test('map_container'); test1('modal');"
 					id="saveMap-summit">등록</button>
 			</div>
 			<hr>
@@ -152,7 +152,7 @@
                   <i class='fa fa-pencil-square-o' aria-hidden='true'></i>
                   <input class='travel_detail_date' type="text" id='detail-date-div-{{srtno}}'placeholder="날짜" onclick="datePick()">
                   <input class='gpsInfo' id='location-info-{{srtno}}' placeholder="여행지"></input></div>
-<div class="text_parent" id="text_parent_{{srtno}}">
+<div class="text_parent" id="text_parent_{{srtno}}" data-textparent='{{srtno}}'>
 
 {{#if writer}}
 <div class="whole_collage1 whole_collage" data-countPhoto={{srtno}}><img src={{writer}} style="width:700px; height:600px;></img>
@@ -171,8 +171,9 @@
 <div style='width:809px; height:380px; border:1px solid white; margin-bottom: 70px;' id="map{{srtno}}" data-lati={{lati}} data-longit={{longit}}></div>
 {{/if}}
 </div>
-{{/each}}
 </div>
+{{/each}}
+
 </script> 
 
 

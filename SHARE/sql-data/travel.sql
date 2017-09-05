@@ -1,11 +1,11 @@
 /*detail*/
-INSERT INTO `member` VALUES (1,'purpleswan@hanmail.net','*89C6B530AA78695E257E55D63C00A6EC9AD3E977','보라백조','여행을 사랑하는 보라 백조입니다.','/image/swan.png'),
-(2,'minkdak@hanmail.net','*89C6B530AA78695E257E55D63C00A6EC9AD3E977','밍그닥','밍그밍그밍그닥.','/image/man1.jpg'),
-(3,'jinyoung@hanmail.net','*89C6B530AA78695E257E55D63C00A6EC9AD3E977','진영짱','오호라 ~ 내가 국내여행의 왕.','/image/eom.png'),
-(4,'emma@hanmail.net','*89C6B530AA78695E257E55D63C00A6EC9AD3E977','JInseo','영국을 사랑하는..','/image/emma.jpg'),
-(5,'yuna@hanmail.net','*89C6B530AA78695E257E55D63C00A6EC9AD3E977','UnaQueen','빙판 전문 여행가','/image/yunakim.jpg'),
-(6,'bike@hanmail.net','*89C6B530AA78695E257E55D63C00A6EC9AD3E977','Mr.Bike','자전거로 국경을 넘을 수 있따.','/image/bike.jpg'),
-(7,'free@hanmail.net','*89C6B530AA78695E257E55D63C00A6EC9AD3E977','Freedom','자유로운 영혼.','/image/sam.jpg');
+INSERT INTO `member` VALUES (1,'purpleswan@hanmail.net','*89C6B530AA78695E257E55D63C00A6EC9AD3E977','보라백조','여행을 사랑하는 보라 백조입니다.','/upload/swan.png'),
+(2,'minkdak@hanmail.net','*89C6B530AA78695E257E55D63C00A6EC9AD3E977','밍그닥','밍그밍그밍그닥.','/upload/man1.jpg'),
+(3,'jinyoung@hanmail.net','*89C6B530AA78695E257E55D63C00A6EC9AD3E977','진영짱','오호라 ~ 내가 국내여행의 왕.','/upload/eom.png'),
+(4,'emma@hanmail.net','*89C6B530AA78695E257E55D63C00A6EC9AD3E977','JInseo','영국을 사랑하는..','/upload/emma.jpg'),
+(5,'yuna@hanmail.net','*89C6B530AA78695E257E55D63C00A6EC9AD3E977','UnaQueen','빙판 전문 여행가','/upload/yunakim.jpg'),
+(6,'bike@hanmail.net','*89C6B530AA78695E257E55D63C00A6EC9AD3E977','Mr.Bike','자전거로 국경을 넘을 수 있따.','/upload/bike.jpg'),
+(7,'free@hanmail.net','*89C6B530AA78695E257E55D63C00A6EC9AD3E977','Freedom','자유로운 영혼.','/upload/sam.jpg');
 
 INSERT INTO `pic` VALUES (1,'/upload/1504515203520_46',NULL,NULL,NULL,NULL,NULL),
 (3,'/upload/1504515238406_48',NULL,NULL,NULL,NULL,NULL),

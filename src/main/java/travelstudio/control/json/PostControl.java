@@ -169,7 +169,7 @@ public class PostControl {
     HttpServletRequest httpRequest= (HttpServletRequest) req;
     Member loginMember = (Member)httpRequest.getSession().getAttribute("loginMember");
 
-
+    /*detailService.deleteEmail(loginMember.getEmail());*/
     System.out.println("%%%%%%%%%%%%%%%%%%%%%%%");
     System.out.println(post);
 
@@ -314,7 +314,7 @@ public class PostControl {
   }
 
   @RequestMapping("update")
-  public JsonResult update(int postnono, Post post, String[] content, String[] caption, String[] travelDate, String[] location, HttpServletRequest req) throws Exception {
+  public JsonResult update(int postnono, Post post, String[] content, String[] caption, String[] travelDate, String[] location,String[] map, HttpServletRequest req) throws Exception {
     System.out.println("업데이트 안에서 찍는다");
     for(int i = 0 ; i < caption.length; i++){
       System.out.println(caption);
@@ -330,17 +330,18 @@ public class PostControl {
     detailService.deleteBypostno(postnono);
     System.out.println("%%%%%%%%%%%%%%%%%%%%%%%");
     System.out.println(post);
-    if(travelDate!=null){
+    /*if(travelDate!=null){
       for(int i=0; i< travelDate.length;i++){
         System.out.println(travelDate[i]);
         System.out.println("트레블데이트");
       }
-    }
+    }*/
 
     Detail detail = new Detail();
     Detail detailCaption = new Detail();
     Detail detailTravelDate = new Detail();
     Detail detailLocation = new Detail();
+    Detail detailMap = new Detail();
 
     detail.setPostno(postnono);
     /*System.out.println(post.getCont());*/
@@ -391,6 +392,20 @@ public class PostControl {
         detailService.insertDetailDate(detailTravelDate);
       }
     }
+    detailMap.setPostno(postnono);
+    detailMap.setWriter(loginMember.getEmail());
+    if(map!=null){
+      for(int i=0;i<map.length;i+=3){
+        System.out.println("Map");
+        System.out.println(map[i+1]);
+        System.out.println(map[i+2]);
+        detailMap.setLati( Double.valueOf(map[i+1]));
+        detailMap.setLongit(Double.valueOf(map[i+2]));
+        detailMap.setSrtno(Integer.parseInt((map[i])));
+        detailService.insert_map_srtno(detailMap);
+      }
+    }
+    detailService.insertDetailByEmail(detailMap);
 
 
     detailLocation.setPostno(postnono);

@@ -5,11 +5,11 @@ ficont = $('.text_write_box');
 var content = $('.day_list');
 var contentArray=[]
 var picnoparentno=[]
+var mapArr=[];
 var no = location.href.split('?')[1].split('=')[1]
 var postno=location.href.split('?')[1].split('=')[1]
 var memberno=0;
 var writeMemberno=0;
-
 /* 세이브 버튼 */
 $('#write_save_btn').click(function() {
 	emptyParentRemove()
@@ -74,8 +74,9 @@ function finaladd(){
 					for(z=0; z < jsPictureList.length ;z++){
 						for(g=0; g<jsPictureList[z].length;g++){
 							for(j=0 ;j<photoquantity;j++){
-
-								if(jsPictureList[z][g].path==$('img',casethis).eq(j).attr('src')){
+								console.log($('img',casethis).eq(j).attr('src'))
+								var imagesrc=$('img',casethis).eq(j).attr('src').split('_')[0]+'_'+$('img',casethis).eq(j).attr('src').split('_')[1]
+								if(jsPictureList[z][g].path==imagesrc){
 									picnoparentno.push(pictureparentno)
 									picnoparentno.push(jsPictureList[z][g].picno)
 								}
@@ -110,6 +111,7 @@ var detailDateArr = []
 var detailLocArr = [];
 
 function addAllphoto(){
+	console.log(picnoparentno)
 	$.ajaxSettings.traditional = true;
 	$.post('/detail/addAllphoto2.json', {
 		'picnoandparentno': picnoparentno,
@@ -157,6 +159,18 @@ function noBackgroundSave(){
 			detailLocArr.push($(this).val())
 		}
 	})
+	
+	$('.map').each(function () {
+					var textParentDiv= $('.text_parent',$(this).parents('.day1'))
+					if($('.text_parent', $('img', $('.text_parent',$(this).parents('.day1')))) != undefined){
+						mapArr.push(textParentDiv.attr('id').split('_')[2])
+						mapArr.push($(this).attr('data-lati'))
+						mapArr.push($(this).attr('data-longit'))
+						console.log($(this).attr('data-longit'))
+						console.log($(this).attr('data-lati'))
+					}
+	})
+	
 	jQuery.ajaxSettings.traditional = true;
 	$.post('/post/update.json', {
 		postnono : no,
@@ -166,6 +180,7 @@ function noBackgroundSave(){
 		content: contentArray,
 		caption: captionArray,
 		travelDate: detailDateArr,
+		map: mapArr,
 		location: detailLocArr
 	}, function(result) {
 		addAllphoto()
@@ -276,6 +291,13 @@ $.post('/detail/selectedOneDetail.json', {
 					}
 				}
 			}
+			
+			for(i=0; i< array1.list.length; i++){
+				if(array1.list[i].capt==""){
+						array1.list.splice(i,1);
+						i--
+					}
+				}
 
 			var pictureARR=[]
 			var j=0;
@@ -345,12 +367,17 @@ $.post('/detail/selectedOneDetail.json', {
 			var generatedHTML2 = template2(array1)
 
 			content.append(generatedHTML2) 
-			for(i=0; i<array1.list.length;i++){
+			/*for(i=0; i<array1.list.length;i++){
 				if(array1.list[i].lati!=0){
 					setTimeout("initMap2('map"+array1.list[i].srtno+"')", 1000);
 				}
+			}*/
+			
+			for(i=0; i<array1.list.length;i++){
+				if(array1.list[i].lati!=0){
+					setTimeout("initMap('map"+array1.list[i].srtno+"')", 1000);
+				}
 			}
-
 
 			countPhoto=0;
 
@@ -551,6 +578,7 @@ $.post('/detail/selectedOneDetail.json', {
 							+ "<li><button type='button' class='btn_del' id='delbtn-"+countPhoto+"'>삭제</button></li>"
 							+ "</ul>"
 							+ "</div>"
+							+ "<div class='capt_output' id='txt-output-"+countPhoto+"'></div>"
 					))
 
 					$(imagesDiv2).parent().attr('onclick','showControlBox('+$(imagesDiv2).attr('data-countPhoto')+')')
@@ -766,6 +794,9 @@ $(document.body).on('click','#capt-save', function() {
 	let capTxt = $('#cap-txt').val()
 	$('.capt_output' ,'div[data-textparent='+ thisPP.attr('data-capno') +']').text(capTxt);
 	captionArray.push()
+	$('#cap-txt').val('')
+	$('.caption_modal').css('display', 'none')
+	$('#control-box-div-'+count).css('display', 'none');
 })
 captionArray=[]
 $(document).ready(function () {
@@ -1139,7 +1170,7 @@ function setFileUploadToInputTag() {
 						+ "<li><button type='button' class='btn_del' id='delbtn-"+countPhoto+"'>삭제</button></li>"
 						+ "</ul>"
 						+ "</div>" 
-						+ "<div class='capt_output' id='txt-output-"+countPhoto+"'>안녕하세요</div>"
+						+ "<div class='capt_output' id='txt-output-"+countPhoto+"'></div>"
 				))
 				deletephoto(countPhoto)
 
@@ -1205,6 +1236,7 @@ function makeDragable($thisclass){
 				revert: 'invalid', 	
 				start: function(){
 					console.log('start')
+					before = $(this).parent().children('.capt_output').text()
 					/*currentCollageSize=$(this).parent().attr('class').split('_')[1].charAt(7)*/
 				},/* start끝 */
 				stop: function() {
@@ -1238,8 +1270,18 @@ function stoponParent($this, $item,StoponParentCount) { //디스는 콜라주, �
 	console.log($($this))
 	console.log($($this).attr('class').split('_')[1].charAt(7))
 	console.log('stoponParent함수안의 countPhoto' ,StoponParentCount)
+	
+	if ($($this).attr('class').split('_')[1].charAt(7)=='1') {
+		$($this)
+		.html("<div  class='one_photo_col' id='collage1-1" +StoponParentCount +"'><img id='img_4' src=''></div>"
+				+ "</div>"
+		)
+		$('#collage1-1'+ StoponParentCount +'> img').attr('src',stoponParentArray[0]).css('width', '809px').css('height','606px');
+		$($this).attr("class","whole_collage1")
+		stoponParentArray.splice(0,stoponParentArray.length)
+		
 
-	if ($($this).attr('class').split('_')[1].charAt(7)=='2') {
+	}else if ($($this).attr('class').split('_')[1].charAt(7)=='2') {
 		$($this)
 		.html("<div  class='two_photo_col 2-collage' id='collage2-1-count" +StoponParentCount +"'><img id='img_4' src=''></div>"
 				+ "<div  class='two_photo_col 2-collage ' id='collage2-2-count" +StoponParentCount +"'><img id='img_4' src=''></div>"
@@ -1431,9 +1473,10 @@ function stoponParent($this, $item,StoponParentCount) { //디스는 콜라주, �
 			+ "<li><button type='button' class='btn_del' id='delbtn-"+StoponParentCount+"'>삭제</button></li>"
 			+ "</ul>"
 			+ "</div>"
+			+ "<div class='capt_output' id='txt-output-"+StoponParentCount+"'></div>"
 	))
+	$($this).children('.capt_output').text(before)
 	stoponParentArray.splice(0,stoponParentArray.length)
-	console.log($item)
 	deletephoto(StoponParentCount)
 
 	/*	makeDropable($(imagesDiv2).children())
@@ -1638,7 +1681,10 @@ function stopFunction(currentParent,$this,stopCountPhoto){ //currentParent는 wh
 			+ "<li><button type='button' class='btn_caption' id='edtbtn-"+stopCountPhoto+"' data-capno='"+stopCountPhoto+"'>캡션</button></li>"
 			+ "<li><button type='button' class='btn_del' id='delbtn-"+stopCountPhoto+"'>삭제</button></li>"
 			+ "</ul>"
-			+ "</div>"))
+			+ "</div>"
+			+ "<div class='capt_output' id='txt-output-"+stopCountPhoto+"'> </div>"
+			))
+			$(currentParent).children('.capt_output').text(before)
 			deletephoto(stopCountPhoto)
 }
 
@@ -1867,7 +1913,9 @@ function resizeCollage($this, $item,countPhotoresize) { //디스는 콜라주, �
 			+ "<li><button type='button' class='btn_del' id='delbtn-"+countPhotoresize+"'>삭제</button></li>"
 			+ "</ul>"
 			+ "</div>"
+			+ "<div class='capt_output' id='txt-output-"+countPhotoresize+"'> </div>"
 	))
+	$($this).children('.capt_output').text(after)
 	deletephoto(countPhotoresize)
 }
 
@@ -1885,18 +1933,8 @@ function makeDropable($thisclass){
 					return $('img',dropcollageArray[i]).parent().eq(j)}}
 		}), 
 		drop: function( event, ui ) {
-			/*    	  console.log(this)
-	    	   console.log($(ui.draggable).parent().attr('class').split('_')[1].charAt(7)) 
-	    	  dropdiv=$(this).attr('class').split('_')[1].charAt(7)
-	    	   console.log($(this).attr('class').split('_')[1].charAt(7)) 
-	    	  console.log($(this).attr('class'))
-	    	  if($(ui.draggable).parent().attr('class') == undefined||$(ui.draggable).parent().attr('class').split('_')[0]!='whole'){
-	    		  if($(this).attr('class').split('_')[1].charAt(7)!=$(ui.draggable).parent().parent().attr('class').split('_')[1].charAt(7)){
-	    	    	  resizeCollage( this, ui.draggable);}
-	    	  	}else{
-	    	  if($(this).attr('class').split('_')[1].charAt(7)!=$(ui.draggable).parent().attr('class').split('_')[1].charAt(7)||$(ui.draggable).parent().attr('class')==undefined){*/
+			after = $(this).children('.capt_output').text()
 			$item=ui.draggable
-			/*$(ui.draggable).remove();*/
 			if($($item).parents('.text_parent').attr('id')!=$(this).parent().attr('id')){
 				$(ui.draggable).remove()
 				resizeCollage(this, $item,$(this).attr('data-countPhoto')); //this는 이 콜라쥬, ui 드래그에이블은 들어온값
@@ -1933,7 +1971,7 @@ function registMapFunction(){
 	$(document.body).on('click', '#showMapModal', function(event) {
 		/* console.log("===========>>>>>> mouseover") */
 		/* console.log($(this).parent().parent().parent().parent().attr('id').split('_')[2]) */
-		parentno=$(this).parent().parent().parent().parent().attr('id').split('_')[2]
+		parentno=$(this).parents(".text_parent").attr('id').split('_')[2]
 		console.log(parentno)
 	});
 } 
@@ -2388,7 +2426,7 @@ function initAutocomplete() {
 
 
 
-function initMap2(mapDelId, slati, slongit) {
+function initMap(mapDelId, slati, slongit) {
 	var map2 = new google.maps.Map(document.getElementById(mapDelId), {
 		zoom : 8,
 		center : {
@@ -2429,24 +2467,24 @@ function geocodeLatLng(geocoder, map2, infowindow, slati, slongit) {
 
 var body33 = $('#text_parent_0')
 
-var mapcount = 3;
+var mapcount = 4;
 function createMap() {
 	slati = latNum.toFixed(8);
 	slongit = lngNum.toFixed(8);
 	/* $('#text_parent_0').html(''); */
 	$('#text_parent_'+parentno).html('');
-	$("<div id='map"+mapcount+"'style='width:809px; height:380px; border:1px solid white; margin-bottom: 70px;'>").appendTo($('#text_parent_'+parentno))
+	$("<div class='map' data-lati="+slati+" data-longit="+slongit+" id='map"+mapcount+"'style='width:809px; height:380px; border:1px solid white; margin-bottom: 70px;'>").appendTo($('#text_parent_'+parentno))
 	console.log("aaaa")
 	var mapDelId = 'map' + mapcount
 	console.log(mapDelId, slati, slongit)
-	initMap2(mapDelId, slati, slongit)
+	initMap(mapDelId, slati, slongit)
 	mapcount++
 
 };
 
 var slati;
 var slongit;
-function saveMap() {
+/*function saveMap() {
 	console.log("saveMap()")	
 	console.log("위치 데이터 넘어감");
 	$.post('/detail/addMap.json', {
@@ -2455,7 +2493,7 @@ function saveMap() {
 		'srtno' : parentno
 	}, function(result) {
 	}, 'json')
-}
+}*/
 
 function saveMap2() {
 	for (var [key, value] of mapMap) {
