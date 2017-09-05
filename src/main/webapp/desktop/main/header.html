@@ -392,7 +392,8 @@ $.getJSON('/member/header.json', function(result) {
 		   location.href="/desktop/login/login.html"
 		})
 		return
-	}
+	} 
+	console.log(location.href)/* if(location.href="") */
 	
     var template = Handlebars.compile($('#tbody-template4').html())
     var generatedHTML = template(result.data.loginMember) // 템플릿 함수에 데이터를 넣고 HTML을 생성한다.
