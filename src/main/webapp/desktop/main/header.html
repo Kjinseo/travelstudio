@@ -374,12 +374,8 @@ $.getJSON('/member/header.json', function(result) {
 	loginMemberNo=result.data.loginMember.mno;
 	mno=result.data.loginMember;
 	if(mno!=undefined){
-		   if(location.href.indexOf('write') != -1) {
-		         $('#slide_icon').css('display','inline-block');
-		         $(".start-my-journey").text("저장하기");
-		         $(".start-my-journey").addClass("write_save_btn")
-		      }else if(location.href.indexOf('inner_article') != -1){
-		    	  
+
+		      if(location.href.indexOf('inner_article') != -1){
 		     	 var no = location.href.split('?')[1].split('=')[1]
 		     	 $.post('/cowork/searchcoworker.json', {'no': no}
 		     	 ,function(result) {

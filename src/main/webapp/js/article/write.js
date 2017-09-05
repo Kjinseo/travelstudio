@@ -1007,7 +1007,6 @@ function setFileUploadToInputTag() {
 
 /*back file 업로드 시작*/
 var change=0;
-
 $('#write_save_btn').click(function() {
 	/*console.log("저장버튼 눌렀다")
 		console.log(ficont.val());
