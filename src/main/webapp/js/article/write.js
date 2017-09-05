@@ -2073,7 +2073,8 @@ function makeDragable($thisclass){
 			$( $("img",$thisclass).eq(i).parent() ).draggable({
 				revert: 'invalid', 	
 				start: function(){
-					before = $(this).parent().children('.capt_output').text()
+					before = $(this).parents('.text_parent').children().children('.capt_output').text()
+					console.log(before)
 					console.log('start')
 					/*currentCollageSize=$(this).parent().attr('class').split('_')[1].charAt(7)*/
 				},/* start끝 */
@@ -2339,7 +2340,7 @@ function stopFunction(currentParent,$this,stopCountPhoto){ //currentParent는 wh
 	console.log($(currentParent).attr('class').split('_')[1].charAt(7))
 	var textParent= $("#text_parent_"+countPhoto+"")
 	if ($(currentParent).attr('class').split('_')[1].charAt(7) == '1') {
-		
+		console.log(11111111111111111111111111)
 		deleteTextParent = $(currentParent).parents('.text_parent')
 		console.log($(this).parents('.text_parent'))
 		var deleteTextParentChild = deleteTextParent.children();
@@ -2389,7 +2390,7 @@ function stopFunction(currentParent,$this,stopCountPhoto){ //currentParent는 wh
 		uiremove($this)
 		
 	} else if ($(currentParent).attr('class').split('_')[1].charAt(7) == '2') {
-
+		console.log(2222222222222222222)
 		$(currentParent)
 		.html("<div  class='one_photo_col' id='collage1-1" +stopCountPhoto +"'><img id='img_4' src=''></div>"
 				+ "</div>"
@@ -2410,8 +2411,9 @@ function stopFunction(currentParent,$this,stopCountPhoto){ //currentParent는 wh
 		stopFunctionArray.splice(0,stopFunctionArray.length)
 		uiremove($this)
 		stopFunctionArray=[]
+		console.log(333333333333333333333333333)
 	} else if ($(currentParent).attr('class').split('_')[1].charAt(7) == '4') {
-
+		console.log(44444444444444)
 
 		$(currentParent)
 		.html("<div class='collage3-big' id='collage3-1-big"+stopCountPhoto+"'><img src=''></div>"
@@ -2426,7 +2428,7 @@ function stopFunction(currentParent,$this,stopCountPhoto){ //currentParent는 wh
 		$(currentParent).attr("class","whole_collage3")
 		stopFunctionArray=[]
 	}else if ($(currentParent).attr('class').split('_')[1].charAt(7) == '5') {
-
+		console.log(555555555555)
 		$(currentParent)
 		.html("<div class='four_photo_collage' id='collage4-1" +stopCountPhoto +"'><img src=''></div>"
 				+ "<div class='four_photo_collage' id='collage4-2" +stopCountPhoto +"'><img src=''></div>"
@@ -2443,7 +2445,7 @@ function stopFunction(currentParent,$this,stopCountPhoto){ //currentParent는 wh
 		stopFunctionArray=[]
 		uiremove($this)
 	} else if ($(currentParent).attr('class').split('_')[1].charAt(7) == '6') {
-
+		console.log(6666666666666666)
 		$(currentParent)
 		.html("<div  class='top_three_collage' id='collage5-1" +stopCountPhoto +"'><img src=''></div>"
 				+ "<div  class='top_three_collage' id='collage5-2" +stopCountPhoto +"'><img src=''></div>"
@@ -2461,7 +2463,7 @@ function stopFunction(currentParent,$this,stopCountPhoto){ //currentParent는 wh
 		stopFunctionArray=[]
 		uiremove($this)
 	}else if($(currentParent).attr('class').split('_')[1].charAt(7)=='7'){
-
+		console.log(77777777777777777777)
 		$(currentParent)
 		.html("<div class='collage6-big' id='collage6-1-big'" +stopCountPhoto +"><img id='img_4' src=''></div>"
 				+"<div id='collage6-2side-collage'>"
@@ -2485,6 +2487,7 @@ function stopFunction(currentParent,$this,stopCountPhoto){ //currentParent는 wh
 		stopFunctionArray.splice(0,stopFunctionArray.length)
 		uiremove($this)
 	} else if ($(currentParent).attr('class').split('_')[1].charAt(7) == '8') {
+		console.log(8888888888888888888888)
 		$(currentParent)
 		.html("<div class='four_of_seven'>"
 				+"<div class='right_four_of_seven' id='collage7-1-small" +stopCountPhoto +"'><img src=''></div>"
@@ -2525,6 +2528,9 @@ function stopFunction(currentParent,$this,stopCountPhoto){ //currentParent는 wh
 			+ "</div>"
 			+ "<div class='capt_output' id='txt-output-"+stopCountPhoto+"'> </div>"
 	))
+	console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+	console.log(currentParent)
+	console.log(before)
 	$(currentParent).children('.capt_output').text(before)
 	console.log(before)
 			deletephoto(stopCountPhoto)
