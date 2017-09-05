@@ -59,6 +59,14 @@ $.post('/detail/selectedOneDetail.json', {
 				}
 			}
 			console.log(array1)
+			/*for(i=0; i< array1.list.length; i++){
+				if(array1.list[i].capt==''){
+					if(CaptionMap.get(array1.list[i].srtno)==undefined){
+						array1.list.splice(i,1);
+						i--;
+					}
+				}
+			}*/
 			var CaptionMap = new Map();
 			var Mapaa = new Map();
 			for(i=0; i< array1.list.length; i++){
@@ -434,6 +442,7 @@ $.post('/post/selectOne.json', {
 }, function(result) {
 	memberno=result.data.selectedPost.mno
 	$('#heart-count').html(result.data.selectedPost.good)
+	console.log(result.data)
 	var template3 = Handlebars.compile($('#content-template-3').html())
 
 	var generatedHTML3 = template3(result.data) 
@@ -532,7 +541,7 @@ $('#send_btn').click(function() {
 	}else{
 		$.ajax({
 			type: 'POST',
-			url: '../comment/add.json',
+			url: '/comment/add.json',
 			data: {'cont' : $('#text_reply').val(), 'postno':no}, 
 			async: false,
 			success: function(data) {

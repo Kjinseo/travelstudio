@@ -197,6 +197,7 @@ $.post('/detail/selectedOneDetail.json', {
 	'number': no // 게시물 번호를 가지고 디테일 테이블에 가서 조회한다.
 },function(result) {
 	var array1=result.data
+	console.log(result.data)
 	var picno=[]
 	var piccount=0;
 	for(i=0; i<result.data.list.length;i++){
@@ -212,19 +213,34 @@ $.post('/detail/selectedOneDetail.json', {
 			'pictureno': picno
 		}, function(result) {
 			
-			/**/
-			
-			var CaptionMap = new Map();
 			var Mapaa = new Map();
+			/**/
+			console.log(array1)
+		/*	for(i=0; i< array1.list.length; i++){
+				if(array1.list[i].capt==''){
+					if(CaptionMap.get(array1.list[i].srtno)==undefined){
+						console.log(array1.list[i].capt)
+						CaptionMap.set(array1.list[i].srtno, array1.list[i].capt)
+						array1.list.splice(i,1);
+						i--;
+					}
+				}
+			}*/
+			var CaptionMap = new Map();
 			for(i=0; i< array1.list.length; i++){
 				if(array1.list[i].capt!=undefined){
-					if(CaptionMap.get(array1.list[i].srtno)==undefined){
+					if(array1.list[i].capt==""){
+						array1.list.splice(i,1);
+						i--
+					}else if(CaptionMap.get(array1.list[i].srtno)==undefined){
+						console.log(array1.list[i].capt)
 						CaptionMap.set(array1.list[i].srtno, array1.list[i].capt)
 						array1.list.splice(i,1);
 						i--;
 					}
 				}
 			}
+			console.log(CaptionMap)
 			console.log("Caption 만들어짐",CaptionMap)
 			var dateMap = new Map();
 			
@@ -290,15 +306,6 @@ $.post('/detail/selectedOneDetail.json', {
 				return o;
 			}
 
-			for(i=0; i< array1.list.length; i++){
-				if(array1.list[i].address!=undefined){
-					if(AddressMap.get(array1.list[i].srtno)==undefined){
-						AddressMap.set(array1.list[i].srtno, array1.list[i].address)
-						array1.list.splice(i,1);
-						i--
-					}
-				}
-			}
 			
 			for(i=0; i< array1.list.length; i++){
 				if(array1.list[i].capt==""){
@@ -774,15 +781,15 @@ function findNeedUpdateNo(beforePlus) {
 }
 
 function emptyParentRemove(){
-	for (var i = 0; i < $('.text_parent').size() ; i++) {
+	$('.text_parent').each(function(){
 		if($(this).children().eq(0).attr('class')=='tool_box'){
 			$(this).children().eq(0).remove()
 			if($(this).children()==null){
 				$(this).remove()
 			}
 		}
-
-	}
+		
+	})
 	resortParentId()
 }
 
