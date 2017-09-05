@@ -32,6 +32,9 @@
     delete from cowork where mno=#{mno} and postno=#{pno}
   </delete>
  
+ <select id="searchcoworker" parameterType="int" resultMap="coworkMap">
+  select * from cowork where postno=#{no} 
+  </select>
 </mapper>
 
 

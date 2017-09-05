@@ -9,6 +9,13 @@ var coworkMember;
 var array1
 /*detail 출력*/
 
+$(function() {
+	$('.header-container').load('../main/header.html')
+	$('.footer-container').load('../main/footer.html')
+})
+
+
+
 $.post('/cowork/searchcoworker.json', {
 	'no': no // 게시물 번호를 가지고 디테일 테이블에 가서 조회한다.
 },function(result) {
@@ -25,6 +32,8 @@ $.post('/detail/selectedOneDetail.json', {
 },function(result) {
 	array1=result.data
 	console.log(array1)
+	
+	writeMemberno
 	var picno=[]
 	var piccount=0;
 	for(i=0; i<result.data.list.length;i++){
@@ -39,6 +48,7 @@ $.post('/detail/selectedOneDetail.json', {
 		$.post('/picture/selectByPost.json', { /*픽쳐번호 리스트를 만들어서 넘기면 사진 정보를 받아온다*/
 			'pictureno': picno
 		}, function(result) {
+			console.log(result)
 			for(i=0; i < array1.list.length; i++){
 				for(j=0 ; j < result.fileList.length ; j++){
 					if(array1.list[i].picno!=0){
@@ -107,7 +117,7 @@ $.post('/detail/selectedOneDetail.json', {
 				if((array1.list[i-1].srtno==array1.list[i].srtno)&&array1.list[i].picno!=0&&array1.list[i-1].picno!=0){ //만약 0번의 소트번호와 1번의 소트번호가 같다면  그게 사진이라면 배열에 담는다
 					if(Mapaa.get(array1.list[i-1].srtno)==undefined){//만약 소트번호가 0번의 소트번호가 정의되지 않았다면 
 						Mapaa.set(array1.list[i-1].srtno, array1.list[i-1].picno)//소트번호와 사진 패스로 저장한다 
-					}
+					}//연속된 번호면서 둘다 사진일떄
 					Mapaa.set(array1.list[i-1].srtno, Mapaa.get(array1.list[i-1].srtno) +','+ array1.list[i].picno)//첫번째가 아니라면 패스를 저장한다.
 					pictureARR[j++]=array1.list[i].srtno; //그리고 맵에 저장한 사진을 픽쳐 배열에도 담는다.
 				}else if(i<=array1.list.length-1&& i>1){//소트번호가 다르다면 
@@ -115,11 +125,11 @@ $.post('/detail/selectedOneDetail.json', {
 						if(array1.list[i].picno!=0&& array1.list[i-1].srtno!=array1.list[i].srtno){//사진이 있고 소트번호가 마지막 의 번호와 다르다면 1개짜리 사진이다
 							array1.list[i].writer=array1.list[i].picno
 						}
-					}
+					}//연속된 번호는 아니지만 사진일때 한개씩 들어간다
 					else if(array1.list[i].picno!=0 && array1.list[i-1].srtno!=array1.list[i].srtno && array1.list[i+1].srtno!=array1.list[i].srtno){
 						console.log("263 들어왔다 사진이 0이 아니고 앞뒤랑 소트번호가 다를때 " ,array1.list[i])
 					array1.list[i].writer=array1.list[i].picno
-					}
+					}//사진이 있고 
 				}if(i==1){ // 첫번째 일때 첫번째 사진이 있고 페어런츠가 다르거나 또는 || 배열 0번과 1번의 소트번호가 같고 사진번호가   둘중 하나가 0이고 소트번호가 같거나  
 					if(array1.list[i-1].picno!=0 && ((array1.list[i-1].srtno!=array1.list[i].srtno)||((array1.list[i-1].srtno==array1.list[i].srtno)&&(array1.list[i-1].picno==0)||(array1.list[i].picno==0)))){
 							array1.list[i-1].writer=array1.list[i-1].picno
@@ -193,359 +203,179 @@ $.post('/detail/selectedOneDetail.json', {
 					countPhoto++;
 					var finalCollageArray=[]
 					finalCollageArray=Mapaa.get(key).split(',')
-					imagesDiv2=$($("#whole_collage" + finalCollageArray.length+'_'+key)).css('width','100%')
-               var count=0;
+					imagesDiv2=$($("#whole_collage" + finalCollageArray.length+'_'+key))
+					var count=0;
+					if (finalCollageArray.length == 2) {
+						$(imagesDiv2).html("<div  class='two_photo_col' id='collage2-1-count" +countPhoto +"'><img id='img_4' src=''></div>"
+								+ "<div  class='two_photo_col' id='collage2-2-count" +countPhoto +"'><img id='img_4' src=''></div>"
+								+ "</div>"
+						).appendTo(imagesDiv2)
+						$('#collage2-1-count'+ countPhoto +'> img').attr('src',finalCollageArray[0]).css('width', '534px').css('height','534px');
+						$('#collage2-2-count'+ countPhoto +'> img').attr('src',finalCollageArray[1]).css('height','534px');
+					} else if (finalCollageArray.length == '3') {
+						try {
+							$(imagesDiv2).html("<div class='collage3-big' id='collage3-1-big"+countPhoto+"'><img src=''></div>"
+									+ "<div class='collage3_2inner_collage'>"
+									+ "<div class='inner_two_collage' id='collage3-2"+countPhoto+"'><img src=''></div>"
+									+ "<div class='inner_two_collage' id='collage3-3"+countPhoto+"'><img src=''></div>"
+									+ "</div></div>"
+							).appendTo(imagesDiv2)
+							$('#collage3-1-big'+ countPhoto +' > img').attr('src',finalCollageArray[0]).css('width', '534px').css('height','534px');
+							$('#collage3-2'+ countPhoto +' > img').attr('src', finalCollageArray[1]).css('width', '260px').css('height','265px');
+							$('#collage3-3'+ countPhoto +' > img').attr('src',finalCollageArray[2]).css('width', '260px').css('height','265px');
+
+						} catch (err) {}
+					}else if (finalCollageArray.length == '4') {
+
+						try {
+							$(imagesDiv2).html("<div class='four_photo_collage' id='collage4-1" +countPhoto +"'><img src=''></div>"
+									+ "<div class='four_photo_collage' id='collage4-2" +countPhoto +"'><img src=''></div>"
+									+ "<div class='four_photo_collage' id='collage4-3" +countPhoto +"'><img src=''></div>"
+									+ " <div class='four_photo_collage' id='collage4-4" +countPhoto +"'><img src=''></div>"
+									+ "</div>"
+							).appendTo(imagesDiv2)
+
+							$('#collage4-1'+ countPhoto +' > img').attr('src', finalCollageArray[0]).css('width', '397px').css('height','397px');
+							$('#collage4-2'+ countPhoto +' > img').attr('src', finalCollageArray[1]).css('width', '397px').css('height','397px');
+							$('#collage4-3'+ countPhoto +' > img').attr('src', finalCollageArray[2]).css('width', '397px').css('height','397px');
+							$('#collage4-4'+ countPhoto +' > img').attr('src', finalCollageArray[3]).css('width', '397px').css('height','397px');
+
+						} catch (err) {}    
+					} else if (finalCollageArray.length == '5') {
+						try {
+							$(imagesDiv2).html("<div  class='top_three_collage' id='collage5-1" +countPhoto +"'><img src=''></div>"
+									+ "<div  class='top_three_collage' id='collage5-2" +countPhoto +"'><img src=''></div>"
+									+ "<div  class='top_three_collage' id='collage5-3" +countPhoto +"'><img src=''></div>"
+
+									+ "<div  class='bottom_two_collage' id='collage5-4" +countPhoto +"'><img src=''></div>"
+									+ "<div  class='bottom_two_collage' id='collage5-5" +countPhoto +"'><img src=''></div>"
+									+ "</div>"
+							)
+							$('#collage5-1'+ countPhoto +' > img').attr('src', "../"+finalCollageArray[0]).css('width', '260px').css('height','260px');
+							$('#collage5-2'+ countPhoto +' > img').attr('src', "../"+finalCollageArray[1]).css('width', '259px').css('height','260px');
+							$('#collage5-3'+ countPhoto +' > img').attr('src', "../"+finalCollageArray[2]).css('width', '260px').css('height','260px');
+							$('#collage5-4'+ countPhoto +' > img').attr('src', "../"+finalCollageArray[3]).css('width', '397px').css('height','397px');
+							$('#collage5-5'+ countPhoto +' > img').attr('src', "../"+finalCollageArray[4]).css('width', '397px').css('height','397px');
+						} catch (err) {}    
+					} else if (finalCollageArray.length == '6') {
+						try {
+							$(imagesDiv2).html("<div class='collage6-big' id='collage6-1-big" +countPhoto +"'><img id='img_4' src=''></div>"
+									+"<div id='collage6-2side-collage'>"
+									+"<div class='side_two_collage' id='collage6-2" +countPhoto +"'><img src=''></div>"
+									+"<div class='side_two_collage' id='collage6-3" +countPhoto +"'><img src=''></div>"
+									+"</div>"
+
+									+"<div  class='bottom_three_collage' id='collage6-4" +countPhoto +"'><img id='img_4' src=''></div>"
+									+"<div  class='bottom_three_collage' id='collage6-5" +countPhoto +"'><img id='img_4' src=''></div>"
+									+"<div  class='bottom_three_collage' id='collage6-6" +countPhoto +"'><img id='img_4' src=''></div>"
+									+"</div>"
+							)
+							$('#collage6-1-big'+ countPhoto +' > img').attr('src', "../"+finalCollageArray[0]).css('width', '534px').css('height','534px');
+							$('#collage6-2'+ countPhoto +' > img').attr('src', "../"+finalCollageArray[1]).css('width', '260px').css('height','265px');
+							$('#collage6-3'+ countPhoto +' > img').attr('src',"../"+finalCollageArray[2]).css('width', '260px').css('height','265px');
+
+							$('#collage6-4'+ countPhoto +' > img').attr('src', "../"+finalCollageArray[3]).css('width', '264px').css('height','260px');
+							$('#collage6-5'+ countPhoto +' > img').attr('src', "../"+finalCollageArray[4]).css('width', '264px').css('height','260px');
+							$('#collage6-6'+ countPhoto +' > img').attr('src', "../"+finalCollageArray[5]).css('width', '264px').css('height','260px');
+
+						} catch (err) {}    
+					} else if (finalCollageArray.length == '7') {
+						try {
+							$(imagesDiv2).html("<div class='four_of_seven'>"
+									+"<div class='right_four_of_seven' id='collage7-1-small" +countPhoto +"'>").html("<img src=''></div>"
+											+"<div class='right_four_of_seven' id='collage7-2-small" +countPhoto +"'><img src=''></div>"
+											+"<div class='right_four_of_seven' id='collage7-3-small" +countPhoto +"'><img src=''></div>"
+											+"<div class='right_four_of_seven' id='collage7-4-small" +countPhoto +"'><img src=''></div>"
+											+"</div>"
 
 
-               
-               if (finalCollageArray.length == 2) {
-                  $(imagesDiv2).html("<div  class='two_photo_col' id='collage2-1-count" +countPhoto +"'><img id='img_4' src=''></div>"
-                        + "<div  class='two_photo_col' id='collage2-2-count" +countPhoto +"'><img id='img_4' src=''></div>"
-                        + "</div>"
-                  ).appendTo(imagesDiv2)
-                  $('#collage2-1-count'+ countPhoto).css({'background-image':'url('+finalCollageArray[0]+')',
-                     'background-position': 'center center',
-                     'background-size':'cover',
-                     'background-repeat': 'no-repeat'
-                  }).css('width', '50%').css('height','534px');
+											+"<div  class='bottom_three_of_seven' id='collage7-5" +countPhoto +"'><img src=''></div>"
+											+"<div  class='bottom_three_of_seven' id='collage7-6" +countPhoto +"'><img src=''></div>"
+											+"<div  class='bottom_three_of_seven' id='collage7-7" +countPhoto +"'><img src=''></div>"
+											+"</div>"
+									)
+									$('#collage7-1-small'+ countPhoto +' > img').attr('src', "../"+finalCollageArray[0]).css('width', '192px').css('height','193px');
+							$('#collage7-2-small'+ countPhoto +' > img').attr('src', "../"+finalCollageArray[1]).css('width', '192px').css('height','193px');
+							$('#collage7-3-small'+ countPhoto +' > img').attr('src', "../"+finalCollageArray[2]).css('width', '192px').css('height','193px');
+							$('#collage7-4-small'+ countPhoto +' > img').attr('src', "../"+finalCollageArray[3]).css('width', '192px').css('height','193px');
 
-                  $('#collage2-2-count'+ countPhoto).css({'background-image':'url('+finalCollageArray[1]+')',
-                     'background-position': 'center center',
-                     'background-size':'cover',
-                     'background-repeat': 'no-repeat'
-                  }).css('width', '50%').css('height','534px');
-               } else if (finalCollageArray.length == '3') {
-                  try {
-                     $(imagesDiv2).html("<div class='collage3-big' id='collage3-1-big"+countPhoto+"'><img src=''></div>"
-                           + "<div class='collage3_2inner_collage'>"
-                           + "<div class='inner_two_collage' id='collage3-2"+countPhoto+"'><img src=''></div>"
-                           + "<div class='inner_two_collage' id='collage3-3"+countPhoto+"'><img src=''></div>"
-                           + "</div></div>"
-                     ).appendTo(imagesDiv2)
-                     $('#collage3-1-big'+ countPhoto).css({'background-image':'url('+finalCollageArray[0]+')',
-                        'background-position': 'center center',
-                        'background-size':'cover',
-                        'background-repeat': 'no-repeat'
-                     }).css('width', '30%').css('height','534px');
-                     $('#collage3-2'+ countPhoto).css({'background-image':'url('+finalCollageArray[1]+')',
-                        'background-position': 'center center',
-                        'background-size':'cover',
-                        'background-repeat': 'no-repeat'
-                     }).css('width', '30%').css('height','265px');
-                     $('#collage3-3'+ countPhoto).css({'background-image':'url('+finalCollageArray[2]+')',
-                        'background-position': 'center center',
-                        'background-size':'cover',
-                        'background-repeat': 'no-repeat'
-                     }).css('width', '30%').css('height','265px');
-
-                  } catch (err) {}
-		               }else if (finalCollageArray.length == '4') {
-
-		                  try {
-		                     $(imagesDiv2).html("<div class='four_photo_collage' id='collage4-1" +countPhoto +"'><img src=''></div>"
-		                           + "<div class='four_photo_collage' id='collage4-2" +countPhoto +"'><img src=''></div>"
-		                           + "<div class='four_photo_collage' id='collage4-3" +countPhoto +"'><img src=''></div>"
-		                           + " <div class='four_photo_collage' id='collage4-4" +countPhoto +"'><img src=''></div>"
-		                           + "</div>"
-		                     ).appendTo(imagesDiv2)
-
-		                     $('#collage4-1'+ countPhoto).css({'background-image':'url('+finalCollageArray[0]+')',
-		                        'background-position': 'center center',
-		                        'background-size':'cover',
-		                        'background-repeat': 'no-repeat'
-		                     }).css('width', '397px').css('height','397px');
-		                     $('#collage4-2'+ countPhoto).css({'background-image':'url('+finalCollageArray[1]+')',
-		                        'background-position': 'center center',
-		                        'background-size':'cover',
-		                        'background-repeat': 'no-repeat'
-		                     }).css('width', '397px').css('height','397px');
-		                     $('#collage4-3'+ countPhoto).css({'background-image':'url('+finalCollageArray[2]+')',
-		                        'background-position': 'center center',
-		                        'background-size':'cover',
-		                        'background-repeat': 'no-repeat'
-		                     }).css('width', '397px').css('height','397px');
-		                     $('#collage4-4'+ countPhoto).css({'background-image':'url('+finalCollageArray[3]+')',
-		                        'background-position': 'center center',
-		                        'background-size':'cover',
-		                        'background-repeat': 'no-repeat'
-		                     }).css('width', '397px').css('height','397px');
-
-		                  } catch (err) {}    
-		               } else if (finalCollageArray.length == '5') {
-		                  try {
-		                     $(imagesDiv2).html("<div  class='top_three_collage' id='collage5-1" +countPhoto +"'><img src=''></div>"
-		                           + "<div  class='top_three_collage' id='collage5-2" +countPhoto +"'><img src=''></div>"
-		                           + "<div  class='top_three_collage' id='collage5-3" +countPhoto +"'><img src=''></div>"
-
-		                           + "<div  class='bottom_two_collage' id='collage5-4" +countPhoto +"'><img src=''></div>"
-		                           + "<div  class='bottom_two_collage' id='collage5-5" +countPhoto +"'><img src=''></div>"
-		                           + "</div>"
-		                     )
-		                     $('#collage5-1'+ countPhoto).css({'background-image':'url('+finalCollageArray[0]+')',
-		                        'background-position': 'center center',
-		                        'background-size':'cover',
-		                        'background-repeat': 'no-repeat'
-		                     }).css('width', '260px').css('height','260px');
-		                     $('#collage5-2'+ countPhoto).css({'background-image':'url('+finalCollageArray[1]+')',
-		                        'background-position': 'center center',
-		                        'background-size':'cover',
-		                        'background-repeat': 'no-repeat'
-		                     }).css('width', '259px').css('height','260px');
-		                     $('#collage5-3'+ countPhoto).css({'background-image':'url('+finalCollageArray[2]+')',
-		                        'background-position': 'center center',
-		                        'background-size':'cover',
-		                        'background-repeat': 'no-repeat'
-		                     }).css('width', '260px').css('height','260px');
-		                     $('#collage5-4'+ countPhoto).css({'background-image':'url('+finalCollageArray[3]+')',
-		                        'background-position': 'center center',
-		                        'background-size':'cover',
-		                        'background-repeat': 'no-repeat'
-		                     }).css('width', '397px').css('height','397px');
-		                     $('#collage5-5'+ countPhoto).css({'background-image':'url('+finalCollageArray[4]+')',
-		                        'background-position': 'center center',
-		                        'background-size':'cover',
-		                        'background-repeat': 'no-repeat'
-		                     }).css('width', '397px').css('height','397px');
-		                  } catch (err) {}    
-		               } else if (finalCollageArray.length == '6') {
-		                  try {
-		                     $(imagesDiv2).html("<div class='collage6-big' id='collage6-1-big" +countPhoto +"'><img id='img_4' src=''></div>"
-		                           +"<div id='collage6-2side-collage'>"
-		                           +"<div class='side_two_collage' id='collage6-2" +countPhoto +"'><img src=''></div>"
-		                           +"<div class='side_two_collage' id='collage6-3" +countPhoto +"'><img src=''></div>"
-		                           +"</div>"
-
-		                           +"<div  class='bottom_three_collage' id='collage6-4" +countPhoto +"'><img id='img_4' src=''></div>"
-		                           +"<div  class='bottom_three_collage' id='collage6-5" +countPhoto +"'><img id='img_4' src=''></div>"
-		                           +"<div  class='bottom_three_collage' id='collage6-6" +countPhoto +"'><img id='img_4' src=''></div>"
-		                           +"</div>"
-		                     )
-		                     $('#collage6-1-big'+ countPhoto ).css({'background-image':'url('+finalCollageArray[0]+')',
-		                        'background-position': 'center center',
-		                        'background-size':'cover',
-		                        'background-repeat': 'no-repeat'
-		                     }).css('width', '534px').css('height','534px');
-		                     $('#collage6-2'+ countPhoto ).css({'background-image':'url('+finalCollageArray[1]+')',
-		                        'background-position': 'center center',
-		                        'background-size':'cover',
-		                        'background-repeat': 'no-repeat'
-		                     }).css('width', '260px').css('height','265px');
-		                     $('#collage6-3'+ countPhoto).css({'background-image':'url('+finalCollageArray[2]+')',
-		                        'background-position': 'center center',
-		                        'background-size':'cover',
-		                        'background-repeat': 'no-repeat'
-		                     }).css('width', '260px').css('height','265px');
-
-		                     $('#collage6-4'+ countPhoto).css({'background-image':'url('+finalCollageArray[3]+')',
-		                        'background-position': 'center center',
-		                        'background-size':'cover',
-		                        'background-repeat': 'no-repeat'
-		                     }).css('width', '264px').css('height','260px');
-		                     $('#collage6-5'+ countPhoto).css({'background-image':'url('+finalCollageArray[4]+')',
-		                        'background-position': 'center center',
-		                        'background-size':'cover',
-		                        'background-repeat': 'no-repeat'
-		                     }).css('width', '264px').css('height','260px');
-		                     $('#collage6-6'+ countPhoto).css({'background-image':'url('+finalCollageArray[5]+')',
-		                        'background-position': 'center center',
-		                        'background-size':'cover',
-		                        'background-repeat': 'no-repeat'
-		                     }).css('width', '264px').css('height','260px');
-
-		                  } catch (err) {}    
-		               } else if (finalCollageArray.length == '7') {
-		                  try {
-		                     $(imagesDiv2).html("<div class='four_of_seven'>"
-		                           +"<div class='right_four_of_seven' id='collage7-1-small" +countPhoto +"'>").html("<img src=''></div>"
-		                                 +"<div class='right_four_of_seven' id='collage7-2-small" +countPhoto +"'><img src=''></div>"
-		                                 +"<div class='right_four_of_seven' id='collage7-3-small" +countPhoto +"'><img src=''></div>"
-		                                 +"<div class='right_four_of_seven' id='collage7-4-small" +countPhoto +"'><img src=''></div>"
-		                                 +"</div>"
+							$('#collage7-5'+ countPhoto +' > img').attr('src', "../"+finalCollageArray[4]).css('width', '397px').css('height','397px');
+							$('#collage7-6'+ countPhoto +' > img').attr('src', "../"+finalCollageArray[5]).css('width', '397px').css('height','397px');
+							$('#collage7-7'+ countPhoto +' > img').attr('src', "../"+finalCollageArray[6]).css('width', '397px').css('height','397px');
 
 
-		                                 +"<div  class='bottom_three_of_seven' id='collage7-5" +countPhoto +"'><img src=''></div>"
-		                                 +"<div  class='bottom_three_of_seven' id='collage7-6" +countPhoto +"'><img src=''></div>"
-		                                 +"<div  class='bottom_three_of_seven' id='collage7-7" +countPhoto +"'><img src=''></div>"
-		                                 +"</div>"
-		                           )
-		                           $('#collage7-1-small'+ countPhoto).css({'background-image':'url('+finalCollageArray[0]+')',
-		                              'background-position': 'center center',
-		                              'background-size':'cover',
-		                              'background-repeat': 'no-repeat'
-		                           }).css('width', '192px').css('height','193px');
-		                     $('#collage7-2-small'+ countPhoto).css({'background-image':'url('+finalCollageArray[1]+')',
-		                        'background-position': 'center center',
-		                        'background-size':'cover',
-		                        'background-repeat': 'no-repeat'
-		                     }).css('width', '192px').css('height','193px');
-		                     $('#collage7-3-small'+ countPhoto).css({'background-image':'url('+finalCollageArray[2]+')',
-		                        'background-position': 'center center',
-		                        'background-size':'cover',
-		                        'background-repeat': 'no-repeat'
-		                     }).css('width', '192px').css('height','193px');
-		                     $('#collage7-4-small'+ countPhoto).css({'background-image':'url('+finalCollageArray[3]+')',
-		                        'background-position': 'center center',
-		                        'background-size':'cover',
-		                        'background-repeat': 'no-repeat'
-		                     }).css('width', '192px').css('height','193px');
+						} catch (err) {}    
+					} else if (finalCollageArray.length == '8') {
 
-		                     $('#collage7-5'+ countPhoto ).css({'background-image':'url('+finalCollageArray[4]+')',
-		                        'background-position': 'center center',
-		                        'background-size':'cover',
-		                        'background-repeat': 'no-repeat'
-		                     }).css('width', '397px').css('height','397px');
-		                     $('#collage7-6'+ countPhoto ).css({'background-image':'url('+finalCollageArray[5]+')',
-		                        'background-position': 'center center',
-		                        'background-size':'cover',
-		                        'background-repeat': 'no-repeat'
-		                     }).css('width', '397px').css('height','397px');
-		                     $('#collage7-7'+ countPhoto).css({'background-image':'url('+finalCollageArray[6]+')',
-		                        'background-position': 'center center',
-		                        'background-size':'cover',
-		                        'background-repeat': 'no-repeat'
-		                     }).css('width', '397px').css('height','397px');
+						try {
+							$(imagesDiv2).html("<div class='collage8-1' id='collage8-1-big" +countPhoto +"'><img src=''></div>"
+									+"<div  id='four_of_eight'>"
+									+"<div class='right_four_of_eight' id='collage8-2" +countPhoto +"'><img src=''></div>"
+									+"<div class='right_four_of_eight' id='collage8-3" +countPhoto +"'><img src=''></div>"
+									+"<div class='right_four_of_eight' id='collage8-4" +countPhoto +"'><img src=''></div>"
+									+"<div class='right_four_of_eight' id='collage8-5" +countPhoto +"'><img src=''></div>"
+									+"</div>"
 
-
-		                  } catch (err) {}    
-		               } else if (finalCollageArray.length == '8') {
-
-		                  try {
-		                     $(imagesDiv2).html("<div class='collage8-1' id='collage8-1-big" +countPhoto +"'><img src=''></div>"
-		                           +"<div  id='four_of_eight'>"
-		                           +"<div class='right_four_of_eight' id='collage8-2" +countPhoto +"'><img src=''></div>"
-		                           +"<div class='right_four_of_eight' id='collage8-3" +countPhoto +"'><img src=''></div>"
-		                           +"<div class='right_four_of_eight' id='collage8-4" +countPhoto +"'><img src=''></div>"
-		                           +"<div class='right_four_of_eight' id='collage8-5" +countPhoto +"'><img src=''></div>"
-		                           +"</div>"
-
-		                           +"<div  class='bottom_three_of_eight' id='collage8-6" +countPhoto +"'><img src=''></div>"
-		                           +"<div  class='bottom_three_of_eight' id='collage8-7" +countPhoto +"'><img src=''></div>"
-		                           +"<div  class='bottom_three_of_eight' id='collage8-8" +countPhoto +"'><img src=''></div>"
-		                           +"</div>"
-		                     )
+									+"<div  class='bottom_three_of_eight' id='collage8-6" +countPhoto +"'><img src=''></div>"
+									+"<div  class='bottom_three_of_eight' id='collage8-7" +countPhoto +"'><img src=''></div>"
+									+"<div  class='bottom_three_of_eight' id='collage8-8" +countPhoto +"'><img src=''></div>"
+									+"</div>"
+							)
 
 
 
-		                     $('#collage8-1-big'+ countPhoto ).css({'background-image':'url('+finalCollageArray[0]+')',
-		                        'background-position': 'center center',
-		                        'background-size':'cover',
-		                        'background-repeat': 'no-repeat'
-		                     }).css('width', '397px').css('height','397px');
-		                     $('#collage8-2'+ countPhoto ).css({'background-image':'url('+finalCollageArray[1]+')',
-		                        'background-position': 'center center',
-		                        'background-size':'cover',
-		                        'background-repeat': 'no-repeat'
-		                     }).css('width', '195px').css('height','195px');
-		                     $('#collage8-3'+ countPhoto).css({'background-image':'url('+finalCollageArray[2]+')',
-		                        'background-position': 'center center',
-		                        'background-size':'cover',
-		                        'background-repeat': 'no-repeat'
-		                     }).css('width', '195px').css('height','195px');
-		                     $('#collage8-4'+ countPhoto ).css({'background-image':'url('+finalCollageArray[3]+')',
-		                        'background-position': 'center center',
-		                        'background-size':'cover',
-		                        'background-repeat': 'no-repeat'
-		                     }).css('width', '195px').css('height','195px');
-		                     $('#collage8-5'+ countPhoto).css({'background-image':'url('+finalCollageArray[4]+')',
-		                        'background-position': 'center center',
-		                        'background-size':'cover',
-		                        'background-repeat': 'no-repeat'
-		                     }).css('width', '195px').css('height','195px');
+							$('#collage8-1-big'+ countPhoto +' > img').attr('src', "../"+finalCollageArray[0]).css('width', '397px').css('height','397px');
+							$('#collage8-2'+ countPhoto +' > img').attr('src', "../"+finalCollageArray[1]).css('width', '195px').css('height','195px');
+							$('#collage8-3'+ countPhoto +' > img').attr('src', "../"+finalCollageArray[2]).css('width', '195px').css('height','195px');
+							$('#collage8-4'+ countPhoto +' > img').attr('src', "../"+finalCollageArray[3]).css('width', '195px').css('height','195px');
+							$('#collage8-5'+ countPhoto +' > img').attr('src', "../"+finalCollageArray[4]).css('width', '195px').css('height','195px');
 
-		                     $('#collage8-6'+ countPhoto).css({'background-image':'url('+finalCollageArray[5]+')',
-		                        'background-position': 'center center',
-		                        'background-size':'cover',
-		                        'background-repeat': 'no-repeat'
-		                     }).css('width', '262px').css('height','260px');
-		                     $('#collage8-7'+ countPhoto).css({'background-image':'url('+finalCollageArray[6]+')',
-		                        'background-position': 'center center',
-		                        'background-size':'cover',
-		                        'background-repeat': 'no-repeat'
-		                     }).css('width', '262px').css('height','260px');
-		                     $('#collage8-8'+ countPhoto).css({'background-image':'url('+finalCollageArray[7]+')',
-		                        'background-position': 'center center',
-		                        'background-size':'cover',
-		                        'background-repeat': 'no-repeat'
-		                     }).css('width', '262px').css('height','260px');
+							$('#collage8-6'+ countPhoto +' > img').attr('src', "../"+finalCollageArray[5]).css('width', '262px').css('height','260px');
+							$('#collage8-7'+ countPhoto +' > img').attr('src', "../"+finalCollageArray[6]).css('width', '262px').css('height','260px');
+							$('#collage8-8'+ countPhoto +' > img').attr('src', "../"+finalCollageArray[7]).css('width', '262px').css('height','260px');
 
-		                  } catch (err) {}    
-		               } else if (finalCollageArray.length == '9') {
+						} catch (err) {}    
+					} else if (finalCollageArray.length == '9') {
 
-		                  try {
-		                     $(imagesDiv2)
-		                     .html("<div  id='collage9-1-big'><img id='img_4' src='ca.jpg'></div>"
-		                           +"<div  class='four_of_nine'>"
-		                           +"<div class='right_four_of_nine' id='collage9-2" +countPhoto +"'><img src=''></div>"
-		                           +"<div class='right_four_of_nine' id='collage9-3" +countPhoto +"'><img src=''></div>"
-		                           +"<div class='right_four_of_nine' id='collage9-4" +countPhoto +"'><img src=''></div>"
-		                           +"<div class='right_four_of_nine' id='collage9-5" +countPhoto +"'><img src=''></div>"
-		                           +"</div>"
+						try {
+							$(imagesDiv2)
+							.html("<div  id='collage9-1-big'><img id='img_4' src='ca.jpg'></div>"
+									+"<div  class='four_of_nine'>"
+									+"<div class='right_four_of_nine' id='collage9-2" +countPhoto +"'><img src=''></div>"
+									+"<div class='right_four_of_nine' id='collage9-3" +countPhoto +"'><img src=''></div>"
+									+"<div class='right_four_of_nine' id='collage9-4" +countPhoto +"'><img src=''></div>"
+									+"<div class='right_four_of_nine' id='collage9-5" +countPhoto +"'><img src=''></div>"
+									+"</div>"
 
-		                           +"<div  class='bottom_four_of_nine' id='collage9-6" +countPhoto +"'><img src=''></div>"
-		                           +"<div  class='bottom_four_of_nine' id='collage9-7" +countPhoto +"'><img src=''></div>"
-		                           +"<div  class='bottom_four_of_nine' id='collage9-8" +countPhoto +"'><img src=''></div>"
-		                           +"<div  class='bottom_four_of_nine' id='collage9-9" +countPhoto +"'><img src=''></div>"
-		                           +"</div>"
-		                     )
+									+"<div  class='bottom_four_of_nine' id='collage9-6" +countPhoto +"'><img src=''></div>"
+									+"<div  class='bottom_four_of_nine' id='collage9-7" +countPhoto +"'><img src=''></div>"
+									+"<div  class='bottom_four_of_nine' id='collage9-8" +countPhoto +"'><img src=''></div>"
+									+"<div  class='bottom_four_of_nine' id='collage9-9" +countPhoto +"'><img src=''></div>"
+									+"</div>"
+							)
 
-		                     $('#collage9-1-big'+ countPhoto).css({'background-image':'url('+finalCollageArray[0]+')',
-		                        'background-position': 'center center',
-		                        'background-size':'cover',
-		                        'background-repeat': 'no-repeat'
-		                     }).css('width', '397px').css('height','397px');
-		                     $('#collage9-2'+ countPhoto ).css({'background-image':'url('+finalCollageArray[1]+')',
-		                        'background-position': 'center center',
-		                        'background-size':'cover',
-		                        'background-repeat': 'no-repeat'
-		                     }).css('width', '195px').css('height','195px');
-		                     $('#collage9-3'+ countPhoto).css({'background-image':'url('+finalCollageArray[2]+')',
-		                        'background-position': 'center center',
-		                        'background-size':'cover',
-		                        'background-repeat': 'no-repeat'
-		                     }).css('width', '195px').css('height','195px');
-		                     $('#collage9-4'+ countPhoto ).css({'background-image':'url('+finalCollageArray[3]+')',
-		                        'background-position': 'center center',
-		                        'background-size':'cover',
-		                        'background-repeat': 'no-repeat'
-		                     }).css('width', '195px').css('height','195px');
-		                     $('#collage9-5'+ countPhoto).css({'background-image':'url('+finalCollageArray[4]+')',
-		                        'background-position': 'center center',
-		                        'background-size':'cover',
-		                        'background-repeat': 'no-repeat'
-		                     }).css('width', '195px').css('height','195px');
+							$('#collage9-1-big'+ countPhoto +' > img').attr('src', "../"+finalCollageArray[0]).css('width', '397px').css('height','397px');
+							$('#collage9-2'+ countPhoto +' > img').attr('src', "../"+finalCollageArray[1]).css('width', '195px').css('height','195px');
+							$('#collage9-3'+ countPhoto +' > img').attr('src', "../"+finalCollageArray[2]).css('width', '195px').css('height','195px');
+							$('#collage9-4'+ countPhoto +' > img').attr('src', "../"+finalCollageArray[3]).css('width', '195px').css('height','195px');
+							$('#collage9-5'+ countPhoto +' > img').attr('src', "../"+finalCollageArray[4]).css('width', '195px').css('height','195px');
 
-		                     $('#collage9-6'+ countPhoto).css({'background-image':'url('+finalCollageArray[5]+')',
-		                        'background-position': 'center center',
-		                        'background-size':'cover',
-		                        'background-repeat': 'no-repeat'
-		                     }).css('width', '195px').css('height','191px');
-		                     $('#collage9-7'+ countPhoto).css({'background-image':'url('+finalCollageArray[6]+')',
-		                        'background-position': 'center center',
-		                        'background-size':'cover',
-		                        'background-repeat': 'no-repeat'
-		                     }).css('width', '195px').css('height','191px');
-		                     $('#collage9-8'+ countPhoto).css({'background-image':'url('+finalCollageArray[7]+')',
-		                        'background-position': 'center center',
-		                        'background-size':'cover',
-		                        'background-repeat': 'no-repeat'
-		                     }).css('width', '195px').css('height','191px');
-		                     $('#collage9-9'+ countPhoto).css({'background-image':'url('+finalCollageArray[8]+')',
-		                        'background-position': 'center center',
-		                        'background-size':'cover',
-		                        'background-repeat': 'no-repeat'
-		                     }).css('width', '195px').css('height','191px');
+							$('#collage9-6'+ countPhoto +' > img').attr('src', "../"+finalCollageArray[5]).css('width', '195px').css('height','191px');
+							$('#collage9-7'+ countPhoto +' > img').attr('src', "../"+finalCollageArray[6]).css('width', '195px').css('height','191px');
+							$('#collage9-8'+ countPhoto +' > img').attr('src', "../"+finalCollageArray[7]).css('width', '195px').css('height','191px');
+							$('#collage9-9'+ countPhoto +' > img').attr('src', "../"+finalCollageArray[8]).css('width', '195px').css('height','191px');
 
-		                  } catch (err) {}    
-		               } else {
+						} catch (err) {}    
+					} else {
 
-		                  /* // 사진이 두장이라면
-		                 var str = photo[i][0].path;
+						/* // 사진이 두장이라면
+	              var str = photo[i][0].path;
 
-		               try {
-		                  $("<img>").attr('src', str+"_300.png").css('width', 'auto').appendTo(textParent);
-		               } catch (err) {}*/
+	            try {
+	               $("<img>").attr('src', str+"_300.png").css('width', 'auto').appendTo(textParent);
+	            } catch (err) {}*/
 
-		               } //else
+					} //else
 				}
 				for (var [key, value] of CaptionMap){
 				$('<div id="txt-output-'+key+'" class="capt_output">'+value+'</div>').appendTo($('#text_parent_'+key+''))
@@ -656,16 +486,27 @@ function coworkerbuttonHtml(paraMember){
 
 /*게시글이 끝날 때 나타나는 작성자 프로필*/
 var writer = $('#profile_box');
-$.post('/post/info1.json', {
-	'number': no
-}, function(result) {
-	writeMemberno=result.data.info[0].mno
-	var template4 = Handlebars.compile($('#content-template-4').html())
-	var generatedHTML4 = template4(result.data) 
-	writer.append(generatedHTML4)
 
-	setTimeout("pageloadsubsc()",30);
-}, 'json')
+$.post('/post/info1.json',{'number': no},function(result){
+	console.log(no)
+	let thismno=result.data.info[0].mno
+	
+	let usersInfo=function(no){$.post('/member/detail.json', {
+		'mno': no
+	}, function(result) {
+		console.log(result)
+//		writeMemberno=result.data.info[0].mno
+		var template4 = Handlebars.compile($('#content-template-4').html())
+		var generatedHTML4 = template4(result.data) 
+		console.log(result.data)
+		writer.append(generatedHTML4)
+
+		setTimeout("pageloadsubsc()",30);
+	}, 'json')
+   }
+	console.log(thismno)
+	usersInfo(thismno)
+})
 
 
 
