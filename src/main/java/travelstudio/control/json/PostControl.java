@@ -164,7 +164,6 @@ public class PostControl {
 
   @RequestMapping("add")
   public JsonResult add(Post post, String[] content, String[] caption, String[] travelDate, String[] location,String[] map, HttpServletRequest req, MultipartFile[] files) throws Exception {
-
     System.out.println(files);
     HttpServletRequest httpRequest= (HttpServletRequest) req;
     Member loginMember = (Member)httpRequest.getSession().getAttribute("loginMember");

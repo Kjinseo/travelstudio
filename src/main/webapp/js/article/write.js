@@ -4,6 +4,7 @@ fiedt = $('.write_end_date'),
 ficont = $('.text_write_box'),
 after,
 before,
+tag = '',
 MapArray=[];
 var mno =0,
 savecount=0,
@@ -1099,6 +1100,8 @@ $('#title_fileupload').fileupload({
 				})
 				console.log(captionArray)
 				console.log(mapArr)
+				tag = $('#write-tag').val()
+				alert(tag)
 				data.formData = {
 					title : decodeURIComponent(fititle.val()),
 					sdt: fisdt.val(),
@@ -1108,7 +1111,8 @@ $('#title_fileupload').fileupload({
 					caption: captionArray,
 					travelDate: detailDateArr,
 					location: detailLocArr,
-					map: mapArr
+					map: mapArr,
+					tag: tag
 				}
 				/*change=1;*/
 			};
@@ -2006,6 +2010,7 @@ function googleapisView(lat, lon, countPhoto) {
 				} else {
 					if (nationName == "대한민국") {
 						nationName= "한국"	
+						cityName = gpsinfo.split(' ')[gpsinfo.split(' ').length-3]
 					} else {
 						nationName = gpsinfo.split(' ')[0]
 						cityName = gpsinfo.split(' ')[1]
