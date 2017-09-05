@@ -330,6 +330,9 @@ line-height: 35px;
 </script>
 
 <script>
+console.log(location.href)
+console.log(location.href)
+console.log(location.href.split('?').[0])
 
 // 마이페이지 버튼
 $(document).on("click",'.user_mypage',function(){
@@ -393,11 +396,58 @@ $.getJSON('/member/header.json', function(result) {
 		})
 		return
 	} 
-	console.log(location.href)/* if(location.href="") */
+/* if(location.href="") */
 	
     var template = Handlebars.compile($('#tbody-template4').html())
     var generatedHTML = template(result.data.loginMember) // 템플릿 함수에 데이터를 넣고 HTML을 생성한다.
     $('.slide_bar_content').append(generatedHTML) // 새 tr 태그들로 설정한다.
+    
+    
+    if(location.href.indexOf('write') != -1) {
+        $('#slide_icon').css('display','inline-block');
+        $(".start-my-journey").text("저장하기");
+        $(".start-my-journey").addClass("write_save_btn")
+     } else {
+        $('#slide_icon').css('display','inline-block');
+        $(".start-my-journey").text("여행기작성");
+        $('.start-my-journey').off('click');
+        $('.start-my-journey').click(function(){
+           location.href="/desktop/article/write.html"
+        })
+     }
+     
+    /* if(location.href.indexOf('write') != -1) {
+        $('#slide_icon').css('display','inline-block');
+        $(".start-my-journey").text("저장하기");
+        $(".start-my-journey").addClass("write_save_btn")
+     } else if(location.href.indexOf('inner_article') != -1){
+    	 var no = location.href.split('?')[1].split('=')[1]
+    	 location.href.indexOf('inner_article')
+    	 $.post('/cowork/searchcoworker.json', {
+    	 	'no': no // 게시물 번호를 가지고 디테일 테이블에 가서 조회한다.
+    	 },function(result) {
+    	 		console.log(result)
+    	 		$('#slide_icon').css('display','inline-block');
+    	 		if(mno==)
+         $(".start-my-journey").text("수정하기");
+         $(".start-my-journey").addClass("write_save_btn")
+    	 	}
+    	 	
+    	 },'json')
+    	  */
+    	 
+    	 
+    	 
+    	 
+     }  else {
+        $('#slide_icon').css('display','inline-block');
+        $(".start-my-journey").text("여행기작성");
+        $('.start-my-journey').off('click');
+        $('.start-my-journey').click(function(){
+           location.href="/desktop/article/write.html"
+        })
+     }
+    
 
 })
 </script>
