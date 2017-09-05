@@ -19,6 +19,9 @@ public interface PostDao {
   void updateLike(Post post);
   void BackgroundUpdate(Post post);
   List<Post> selectCoworkPost(int no);//초대받은 게시물 리스트 가져오기
+  List<Post> selectKoreaList();
+  List<Post> selectForeignList();
+  List<Post> selectForeignAllList();
   
 //  int getSize();
 //  List<Member> selectListByNames(Map<String,Object> valueMap);

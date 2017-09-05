@@ -25,18 +25,14 @@ public class Post extends Member{
   int good;
   String address;
   String confirm;
-  
+  String postcont;
+  String detailcont;
   @Override
   public String toString() {
     return "Post [postno=" + postno + ", title=" + title + ", badge=" + badge + ", tag=" + tag + ", sdt=" + sdt
         + ", edt=" + edt + ", pdt=" + pdt + ", cont=" + cont + ", capt=" + capt + ", detail=" + detail + ", ispublic="
-        + ispublic + ", writer=" + writer + ", good=" + good + ", address=" + address + ", confirm=" + confirm + "]";
-  }
-  public String getConfirm() {
-    return confirm;
-  }
-  public void setConfirm(String confirm) {
-    this.confirm = confirm;
+        + ispublic + ", writer=" + writer + ", good=" + good + ", address=" + address + ", confirm=" + confirm
+        + ", postcont=" + postcont + ", detailcont=" + detailcont + "]";
   }
   public int getPostno() {
     return postno;
@@ -122,7 +118,24 @@ public class Post extends Member{
   public void setAddress(String address) {
     this.address = address;
   }
-  
+  public String getConfirm() {
+    return confirm;
+  }
+  public void setConfirm(String confirm) {
+    this.confirm = confirm;
+  }
+  public String getPostcont() {
+    return postcont;
+  }
+  public void setPostcont(String postcont) {
+    this.postcont = postcont;
+  }
+  public String getDetailcont() {
+    return detailcont;
+  }
+  public void setDetailcont(String detailcont) {
+    this.detailcont = detailcont;
+  }
   
   
 }

@@ -4,95 +4,91 @@
 <meta charset="utf-8">
 <title>travel_log</title>
 <link rel="stylesheet"
-	href="/css/font-awesome-4.7.0/css/font-awesome.min.css">
+  href="/css/font-awesome-4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet"
-	href="/node_modules/swiper/dist/css/swiper.min.css">
+  href="/node_modules/swiper/dist/css/swiper.min.css">
 <link rel="stylesheet" type="text/css" href="/css/main/main.css">
 </head>
 <body>
 
-	<div class='header-container'></div>
+  <div class='header-container'></div>
 
-	<!-- 메인화면 사진 HTML -->
-	<div id="blank-one" class="blank-one"></div>
+  <!-- 메인화면 사진 HTML -->
+  <div id="blank-one" class="blank-one"></div>
 
-	<div class="container_main">
-		<div class="travel_writer">
-			<div class="img_left"></div>
-			<div class="travel_writer_titl">
-				<p class="pc_text">
-					추억이 담긴 여행을 기록하는 <span class="traveler_text">여행작가</span>가 되어보세요
-				</p>
-			</div>
+  <div class="container_main">
+    <div class="travel_writer">
+      <div class="img_left"></div>
+      <div class="travel_writer_titl">
+        <p class="pc_text">
+          추억이 담긴 여행을 기록하는 <span class="traveler_text">여행작가</span>가 되어보세요
+        </p>
+      </div>
 
-			<div class="travel_writer_slide_wrap">
-				<div class="swiper-container">
-					<div class="swiper-wrapper"></div>
-					<!-- Add Pagination -->
-					<!-- Add Arrows -->
-					<div class="swiper-button-next"></div>
-					<div class="swiper-button-prev"></div>
-				</div>
-			</div>
-		</div>
+      <div class="travel_writer_slide_wrap">
+        <div class="swiper-container">
+          <div class="swiper-wrapper"></div>
+          <!-- Add Pagination -->
+          <!-- Add Arrows -->
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </div>
+      </div>
+    </div>
 
-		<div class="slide_wrap">
-			<div class="box_slide_title">
-				<div class="titl">국내여행</div>
-				<div class="sub_titl">
-					시원한 여름을 <br> 위한 여행
-				</div>
-				<div class="ment">
-					<p>
-						더운 여름을 <br> 시원하게 나기 위한 <br> 노하우가 담긴 여행기
-					</p>
-				</div>
-				<div class="more">
-					<a href="/desktop/main/list/list.html">+더보기</a>
-				</div>
-			</div>
-			<div class="box_slide_main"></div>
-		</div>
-		<!-- 국내여행 전체 라인 -->
+    <div class="slide_wrap">
+      <div class="box_slide_title">
+        <div class="titl">국내여행</div>
+        <div class="sub_titl">
+          시원한 여름을 <br> 위한 여행
+        </div>
+        <div class="ment">
+          <p>
+            더운 여름을 <br> 시원하게 나기 위한 <br> 노하우가 담긴 여행기
+          </p>
+        </div>
+        <div class="more">
+          <a href="/desktop/main/list/list.html">+더보기</a>
+        </div>
+      </div>
+      <div class="box_slide_main_korea box_slide_main"></div>
+    </div>
+    <!-- 국내여행 전체 라인 -->
 
-		<div class="slide_wrap">
-			<div class="box_slide_title">
-				<div class="titl">해외여행</div>
-				<div class="sub_titl">
-					나도 밖으로 <br> 나가고 싶다
-				</div>
-				<div class="ment">
-					<p>
-						남들 다나가는데 <br> 나만 못나가
-					</p>
-				</div>
-				<div class="more">
-					<a href="#나는링크">+더보기</a>
-				</div>
-			</div>
-			<div class="box_slide_main"></div>
-		</div>
-		<!-- 국내여행 전체 라인 -->
+    <div class="slide_wrap">
+      <div class="box_slide_title">
+        <div class="titl">해외여행</div>
+        <div class="sub_titl">
+          나도 밖으로 <br> 나가고 싶다
+        </div>
+        <div class="ment">
+          <p>
+            남들 다나가는데 <br> 나만 못나가
+          </p>
+        </div>
+        <div class="more">
+          <a href="/desktop/main/list/list.html">+더보기</a>
+        </div>
+      </div>
+      <div class="box_slide_main_world box_slide_main"></div>
+    </div>
+    <!-- 국내여행 전체 라인 -->
 
-		<!-- 국내여행 전체 라인 -->
+    <!-- 국내여행 전체 라인 -->
 
 
-	</div>
+  </div>
 
-	<!-- container_main 태그 -->
+  <!-- container_main 태그 -->
 
-	<div class='footer-container'></div>
+  <div class='footer-container'></div>
 
-	<script id="content-template-2" type="text/x-handlebars-template">
+  <script id="content-template-2" type="text/x-handlebars-template">
   {{#each info}}
   <div class="swiper-slide travel_writer_slide">
     <div class="item">
       <div class="travel_writer_photozone" background="url('{{memberPhoto}}')">
-    {{#if memberPhoto}}
-      <img src="{{memberPhoto}}">
-    {{^}}
-      <img src="/image/user_default.png">
-    {{/if}}
+      <img src="{{path}}">
       </div>
       <p class="travel_writer_id">{{alias}}</p>
       <p class="travel_writer_intro">{{intro}}</p>
@@ -102,30 +98,56 @@
   {{/each}}
 </script>
 
-	<script id="content-template1" type="text/x-handlebars-template">
-	{{#each list}}
-	<div class="item select_item">
-			<div class="item_thumb">
-				<img src="{{cont}}" alt="응 계곡이야" class="hidden_mobile">
-			</div>
-			<div class="item_in">
-				<div class="titl">{{title}}</div>
 
-				<div class="bottom_msg">
-					<i style="background: url('{{path}}'); background-size: cover;"
-						alt="outofmap" class="circle_photo"> </i>{{alias}}
-				</div>
-			</div>
-			<hr id="hrOnHeart"> 
-			<i id="heart" class="fa fa-heart-o  fa-lg" aria-hidden="true"></i>{{good}}
-	</div>
-	{{/each}}
+<script id="korea-template" type="text/x-handlebars-template">
+  {{#each koreaList}}
+  <div class="item select_item">
+      <div class="item_thumb">
+        <img src="{{cont}}" alt="" class="hidden_mobile">
+      </div>
+      <div class="item_in">
+        <div class="titl">{{title}}</div>
+
+        {{#writer}}
+        <div class="bottom_msg">
+          <i style="background: url('{{path}}'); background-size: cover;"
+            alt="outofmap" class="circle_photo"> </i>{{alias}}
+        </div>
+        {{/writer}}
+
+      </div>
+  </div>
+  {{/each}}
 </script>
-	<script src="/node_modules/jquery/dist/jquery.min.js"></script>
-	<script src="/node_modules/swiper/dist/js/swiper.min.js"></script>
-	<script src="/node_modules/swiper/dist/js/swiper.jquery.js"></script>
-	<script src="/node_modules/handlebars/dist/handlebars.min.js"></script>
-	<script src="/js/main/main.js"></script>
+
+<script id="world-template" type="text/x-handlebars-template">
+  {{#each foreignList}}
+  <div class="item select_item">
+      <div class="item_thumb">
+        <img src="{{cont}}" alt="" class="hidden_mobile">
+      </div>
+      <div class="item_in">
+        <div class="titl">{{title}}</div>
+        
+      {{#writer}}
+        <div class="bottom_msg">
+          <i style="background: url('{{path}}'); background-size: cover;"
+            alt="outofmap" class="circle_photo"> </i>{{alias}}
+        </div>
+      {{/writer}}
+
+      </div>
+  </div>
+  {{/each}}
+</script>
+
+
+
+  <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="/node_modules/swiper/dist/js/swiper.min.js"></script>
+  <script src="/node_modules/swiper/dist/js/swiper.jquery.js"></script>
+  <script src="/node_modules/handlebars/dist/handlebars.min.js"></script>
+  <script src="/js/main/main.js"></script>
 </body>
 
 </html>

@@ -24,8 +24,16 @@ public class PostServiceImpl implements PostService {
     return postDao.ListandGood();
   }
   
-  public List<Post> list() throws Exception {
-    return postDao.selectList();
+  public List<Post> koreaList() throws Exception {
+    return postDao.selectKoreaList();
+  }
+  
+  public List<Post> foreignList() throws Exception {
+    return postDao.selectForeignList();
+  }
+  
+  public List<Post> foreignAllList() throws Exception {
+    return postDao.selectForeignAllList();
   }
   
   @Override

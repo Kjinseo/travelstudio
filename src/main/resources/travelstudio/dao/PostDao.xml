@@ -20,6 +20,8 @@
     <result column="good" property="good"/>
     <result column="adrs" property="address"/>
     <result column="confirm" property="confirm"/>
+    <result column="postcont" property="postcont"/>
+    <result column="detailcont" property="detailcont"/>
     <association property="writer" javaType="Member">
       <id property="mno" column="mno" />
       <result property="email" column="email" />
@@ -78,24 +80,40 @@
   <select id="selectOne" resultMap="postMap" parameterType="String">
     select * 
     from post natural join member where postno=#{postno}
-  <!--   <if test="search != null">
-	    <where>
-	      <choose>
-		      <when test="search == 'email'">email = #{value}</when>
-		     </choose>
-	    </where>
-    </if>    
-    order by name asc 
-    limit #{startIndex}, #{pageSize} -->
   </select>
-   <select id="selectList" resultMap="postMap" parameterType="map">
+  
+  
+<select id="selectKoreaList" resultMap="postMap">
     select p.postno, p.cont, p.title, p.good, m.path, m.alias, d.adrs
     from post p 
-		inner join member m on m.mno = p.mno
-		inner join detail d on p.postno = d.postno
-		group by d.adrs, p.postno
-		order by p.postno desc
-  </select> 
+    inner join member m on m.mno = p.mno
+    inner join detail d on p.postno = d.postno
+    group by d.adrs, p.postno
+    having d.adrs like '%한국%' or d.adrs like '%대한민국%'
+    order by p.postno desc
+    limit 3;
+  </select>
+  
+  <select id="selectForeignList" resultMap="postMap">
+    select p.postno, p.cont, p.title, p.good, m.path, m.alias, d.adrs
+    from post p 
+    inner join member m on m.mno = p.mno
+    inner join detail d on p.postno = d.postno
+    group by d.adrs, p.postno
+    having not d.adrs like '%한국%' and not d.adrs like '%대한민국%'
+    order by p.postno desc
+    limit 3;
+  </select>
+  
+  <select id="selectForeignAllList" resultMap="postMap">
+    select p.postno, p.cont as postcont, d.cont as detailcont, p.title, p.good, p.sdt, p.edt, p.tag, m.path, m.alias, d.adrs
+    from post p 
+    inner join member m on m.mno = p.mno
+    inner join detail d on p.postno = d.postno
+    group by d.adrs, p.postno
+    having not d.adrs like '%한국%' and not d.adrs like '%대한민국%'
+    order by p.postno desc
+  </select>
   
   
     <update id="BackgroundUpdate" parameterType="post">
@@ -110,68 +128,6 @@
     select * from post p inner join good g
                    
   </select> 
-
- 
-  
-  <!--   <if test="search != null">
-	    <where>
-	      <choose>
-		      <when test="search == 'email'">email = #{value}</when>
-		     </choose>
-	    </where>
-    </if>    
-    order by name asc 
-    limit #{startIndex}, #{pageSize} -->
-
-  <!--  
-  <select id="getWriteCount" resultMap="postMap" parameterType="map">
-  	select count(*) from post where mno=#{mno}
-  </select>
-  -->
-  <!-- 
-  <select id="selectListByNames" resultMap="memberMap" parameterType="map">
-    <include refid="select1"/>
-    <if test="names != null">
-      <where>
-        name in 
-        <foreach collection="names" item="name" open="(" close=")" separator=",">
-          #{name}
-        </foreach>
-      </where> 
-    </if>    
-    order by name asc 
-    limit #{startIndex}, #{pageSize}
-  </select>
-  
-  <select id="selectOne" resultMap="memberMap" parameterType="int">
-    <include refid="select1"/> 
-    where mno = #{memberNo}
-  </select>
-  
-  <select id="selectOneByEmailPassword" resultMap="memberMap" parameterType="map">
-    <include refid="select1"/> 
-    where email=#{email} and pwd=password(#{password})
-  </select>
-  
-  <insert id="insert" parameterType="member" 
-          useGeneratedKeys="true" keyColumn="mno" keyProperty="no">
-    insert into memb(name,tel,email,pwd) 
-    values(#{name},#{tel},#{email},password(#{password}))
-  </insert>
-  
-  <update id="update" parameterType="member">
-    update memb set 
-      name=#{name}, 
-      tel=#{tel}, 
-      email=#{email}, 
-      pwd=password(#{password}) 
-    where mno=#{no}
-  </update>
-  
-  <delete id="delete" parameterType="int">
-    delete from memb 
-    where mno=#{memberNo}
-  </delete> -->
 
 </mapper>
 
