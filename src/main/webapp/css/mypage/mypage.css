@@ -109,11 +109,13 @@ height: 40px;
   color: #777;
 }
 .info_nation{
-width:177px;
 display: inline-block;
 color: #777;
 }
 
+#numberOfFlag {
+	margin-left: 5px;
+}
 /*게시물 없을 때 시작*/
 .mypage-no-data {
   text-align: center;

@@ -15,15 +15,17 @@ $(function() {
 	
 	$('.footer-container').load('../main/footer.html')
 
-	
 	$.getJSON('/member/header.json', function(result) {
-	console.log('member/header.json 결과: ')
-	console.log(result.data)
-
-	var template = Handlebars.compile($('#user-info-template').html())
-	loginMemberNo=result.data.loginMember.mno
-	var generatedHTML = template(result.data.loginMember) 
-	userDesc.append(generatedHTML);
+		if (result) {
+			
+			console.log('member/header.json 결과: ')
+			console.log(result.data)
+			
+			var template = Handlebars.compile($('#user-info-template').html())
+			loginMemberNo=result.data.loginMember.mno
+			var generatedHTML = template(result.data.loginMember) 
+			userDesc.append(generatedHTML);
+		}
 
 	$(document.body).on('click', '#mysetting', function(event) {
 		location.href = 'user_setting.html'
@@ -38,6 +40,7 @@ $(function() {
 	}
 	
 	selectLoginUserPost()
+	
 })
 	
 	
@@ -106,17 +109,24 @@ function test(idMyDiv) {
 
 function selectLoginUserPost(){
 	$.post('/post/selectOneUserPost.json',{'number':loginMemberNo}, function(result) {
-		var resultLength = result.data.selectOneUserPost.length
-		console.log(resultLength)
-		$('.postNum').text(resultLength)
-		var template = Handlebars.compile($('#content-template').html())
-		if(result.data.selectOneUserPost.length<=0) {
-		  isListEmpty = true;
-		  displayNoData()
+		if (result) {
+			
+			var resultLength = result.data.selectOneUserPost.length
+			console.log(resultLength)
+			$('.postNum').text(resultLength)
+			var template = Handlebars.compile($('#content-template').html())
+			if(result.data.selectOneUserPost.length<=0) {
+				isListEmpty = true;
+				displayNoData()
+			}
+			var generatedHTML = template(result.data) 
+			$('.travle_list').append(generatedHTML) 
+			dropdown()
+			console.log("멤버넘버있냐?", loginMemberNo)
+//			address()
+			getMno()
 		}
-		var generatedHTML = template(result.data) 
-		$('.travle_list').append(generatedHTML) 
-		dropdown()
+		
 	})
 }
 
@@ -282,3 +292,82 @@ function displayNoData() {
   if(isListEmpty && isCoworkListEmpty)
     $('.mypage-no-data').show()
 }
+
+
+function getMno() {
+	$.getJSON('/member/header.json', function(result) {
+		if (result) {
+			loginMemberNo=result.data.loginMember.mno
+			console.log(loginMemberNo)
+			address()
+		}
+	})
+}
+//getMno()
+
+function address(){
+	
+	$.post('/detail/selectAddress.json', {
+		'mno': loginMemberNo
+	},
+	function(result) {
+		if (result) {
+			
+			console.log(result.data[loginMemberNo])
+			console.log(result.data[loginMemberNo][0])
+			var realData = result.data[loginMemberNo]
+			var uniqueNames = [];
+			var flag_list=[];
+			/*var flag_list_show=new Array();*/
+			var flag_count=0;
+			
+			for(i=0;i<realData.length;i++){
+				if(realData[i]!=null){
+					if(realData[i].address!=undefined){
+						flag_list[flag_count++]=realData[i].address
+						console.log(flag_list)
+						
+					}
+				}
+			}
+			for(i=0;i<flag_list.length;i++){
+				console.log(flag_list[i].indexOf("한국"))
+				if(flag_list[i]!=undefined){
+					if(flag_list[i].indexOf("한국")!=-1){
+						flag_list[i] ='../../image/flags/south-korea.png'
+					}else if(flag_list[i].indexOf("미국")!=-1){
+						flag_list[i]='../../image/flags/united-states-of-america.png'
+					}else if(flag_list[i].indexOf("일본")!=-1){
+						flag_list[i]='../../image/flags/japan.png'
+					}else if(flag_list[i].indexOf("영국")!=-1){
+						flag_list[i]='../../image/flags/united-kingdom.png'
+					}else if(flag_list[i].indexOf("프랑스")!=-1){
+						flag_list[i]='../../image/flags/france.png'
+					}else if(flag_list[i].indexOf("중국")!=-1){
+						flag_list[i]='../../image/flags/china.png'
+					}else if(flag_list[i].indexOf("조선")!=-1){
+						flag_list[i]='../../image/flags/north-korea.png'
+					}else if(flag_list[i].indexOf("스페인")!=-1){
+						flag_list[i]='../../image/flags/spain.png'
+					}
+				}
+				
+			}
+			
+			
+			$.each(flag_list, function(i, el){
+				if($.inArray(el, uniqueNames) === -1) uniqueNames.push(el);
+			});
+			console.log(uniqueNames)
+			console.log(uniqueNames.length)
+			numOfFlag=uniqueNames.length;
+			console.log(numOfFlag);
+			for(i=0;i<=uniqueNames.length;i++){
+				$('<img style=width:36px; height:36px;>').attr('src',uniqueNames[i]).css('margin-right','7px').appendTo($('#traveled_country'))
+			}
+			
+			$('<input id="numberOfFlag">').attr('value',numOfFlag).attr("readonly",true).attr("disabled",false).appendTo($('.countryNum'))
+		}
+		})
+		
+	}
