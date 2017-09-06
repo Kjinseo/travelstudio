@@ -82,14 +82,11 @@
   </select>
   
   <select id="selectForeignList" resultMap="postMap">
-    select p.postno, p.cont, p.title, p.good, m.path, m.alias, d.adrs
+    select distinct p.postno, p.cont, p.title, p.good, m.path, m.alias, d.adrs
     from post p 
     inner join member m on m.mno = p.mno
     inner join detail d on p.postno = d.postno
-    group by d.adrs, p.postno
-    having not d.adrs like '%한국%' and not d.adrs like '%대한민국%'
-    order by p.postno desc
-    limit 11;
+    where p.postno = 26 or p.postno = 25 or p.postno = 24;
   </select>
   
   <select id="selectForeignAllList" resultMap="postMap">

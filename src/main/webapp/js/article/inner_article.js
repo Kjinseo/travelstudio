@@ -11,6 +11,7 @@ $(function() {
  $('.header-container').load('../main/header.html')
  $('.footer-container').load('../main/footer.html')
 })
+
  
 $.post('/cowork/searchcoworker.json', {
  'no': no // 게시물 번호를 가지고 디테일 테이블에 가서 조회한다.

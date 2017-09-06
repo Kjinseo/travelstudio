@@ -384,6 +384,17 @@ $.getJSON('/member/header.json', function(result) {
     return
   }
   
+  
+  if(location.href.indexOf('inner_article') != -1){
+      
+      var no = location.href.split('?')[1].split('=')[1]
+         $(".start-my-journey").text("여행기수정");
+         $('.start-my-journey').off('click');
+         $('.start-my-journey').click(function(){
+            location.href="/desktop/article/edit.html?postno="+no})
+            return;
+  }
+  
   $('#slide_icon').css('display','inline-block');
   $(".start-my-journey").text("여행기작성");
   $('.start-my-journey').off('click');
