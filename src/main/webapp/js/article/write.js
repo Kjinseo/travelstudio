@@ -1368,7 +1368,7 @@ $('#fileAllUpload').fileupload({
 							+ "</div>"
 							+ "<div class='capt_output' id='txt-output-"+countPhoto+"'></div>"
 					).appendTo(textParent)
-					$('#collage1-1'+ countPhoto +'> img').attr('src',photo[i][0].path + "_600.png").css('width', '809px').css('height','606px');
+					$('#collage1-1'+ countPhoto +'> img').attr('src',photo[i][0].path + "_600.png").css('height','606px');
 					$('#detail-date-div-'+ countPhoto).attr("value", photo[i][0].time)
 					if(photo[i][0].lati != null && photo[i][0].longit != null) {
 						var lat = photo[i][0].lati
