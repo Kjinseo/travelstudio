@@ -69,7 +69,7 @@ body, table, div, p, textarea {
 					<h4>참여자</h4>
 					<div class="join_user_list">
 						<div>
-							<img src="/image/usercircle.png"></img>
+							<img class="userCircle" src="/image/usercircle.png"></img>
 						</div>
 					</div>
 					<hr>
@@ -281,8 +281,8 @@ body, table, div, p, textarea {
 <div id="invitePro">
 				<img src="{{path}}">
 </div>
-				{{email}}
-	<i data-no="{{mno}}" data-email="{{email}}" class="fa fa-plus-circle fa-2x modalForinv" aria-hidden="true"></i>
+			<span class="friend_email">	{{email}} </span>
+	<i data-no="{{mno}}" data-email="{{email}}" class="fa fa-plus-circle fa-2x modalForinv friend_img" aria-hidden="true"></i>
 	</div>
 	{{/each}}
 </script>

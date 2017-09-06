@@ -76,7 +76,10 @@ height: 40px;
  
 }
 
+#profile img{
+	object-fit: cover;
 
+	}
 .profile_photo{
   width:169px;
   height:171px;
@@ -379,10 +382,16 @@ box-shadow: 3px 3px 3px #888888;
 	margin-top: 13px;
 }
 
+#invitePro {
+	object-fit: cover;
+	position: absolute;
+  left: 65px;
+}
+
 .f_search{
   width: 270px;
   display: block;
-  margin: 0 auto;
+  margin: 5% auto;
 }
 
 .content_a{
@@ -391,20 +400,37 @@ box-shadow: 3px 3px 3px #888888;
 }
 
 #f_search_list {
-	height: 100px;
+	height: 40px;
 }
 
 #invitePro  img{
 	height: 45px;
 	width: 45px;
-  background-size: cover;
+  object-fit : cover;
 }
 
 .fa-plus-circle:before {
     content: "\f055";
-    position: absolute;
-    right: 85px;
-    top: 420px;
+    /* position: absolute; */
+    /* right: 85px;
+    top: 420px; */
+    
+}
+
+.select_friends {
+	margin-left: 58px
+}
+
+.friend_email {
+	position: absolute;
+  left: 125px;
+  top: 470px;
+}
+
+.friend_img {
+	position: absolute;
+    right: 100px;
+    top: 460px;
 }
 
 .save_btn{
@@ -654,4 +680,8 @@ z-index: 100;
 
 .footer-container {
 	margin-top: 50px;
+}
+
+.userCircle {
+  margin-top: 10px;
 }
