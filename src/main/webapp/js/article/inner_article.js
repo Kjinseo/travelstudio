@@ -122,6 +122,7 @@ $.post('/detail/selectedOneDetail.json', {
 			}
 			*/
 			for(i=1; i<array1.list.length;i++){ // 리스트 길이까지
+				console.log(i+"번째")
 				if((array1.list[i-1].srtno==array1.list[i].srtno)&&array1.list[i].picno!=0&&array1.list[i-1].picno!=0){ //만약 0번의 소트번호와 1번의 소트번호가 같다면  그게 사진이라면 배열에 담는다
 					if(Mapaa.get(array1.list[i-1].srtno)==undefined){//만약 소트번호가 0번의 소트번호가 정의되지 않았다면 
 						Mapaa.set(array1.list[i-1].srtno, array1.list[i-1].picno)//소트번호와 사진 패스로 저장한다 
@@ -132,6 +133,7 @@ $.post('/detail/selectedOneDetail.json', {
 					if(i==array1.list.length-1){ //마지막 번호라면 
 						if(array1.list[i].picno!=0&& array1.list[i-1].srtno!=array1.list[i].srtno){//사진이 있고 소트번호가 마지막 의 번호와 다르다면 1개짜리 사진이다
 							array1.list[i].writer=array1.list[i].picno
+							
 						}
 					}//연속된 번호는 아니지만 사진일때 한개씩 들어간다
 					else if(array1.list[i].picno!=0 && array1.list[i-1].srtno!=array1.list[i].srtno && array1.list[i+1].srtno!=array1.list[i].srtno){
@@ -472,7 +474,7 @@ function buttonHtml(){
 		})
 	}
 }
-
+console.log(array1)
 function coworkerbuttonHtml(paraMember){
 	console.log(paraMember)
 	if(paraMember!=null){
