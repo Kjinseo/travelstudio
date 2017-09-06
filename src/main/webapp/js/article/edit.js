@@ -996,7 +996,7 @@ function setFileUploadToInputTag() {
 					.html("<div  class='one_photo_col' id='collage1-1" +countPhoto +"'><img id='img_4' src=''></div>"
 							+ "</div>"
 					).appendTo(imagesDiv2)
-					$('#collage1-1'+ countPhoto +'> img').attr('src',data.result.fileList[0].filename + "_700.png").css('width', '809px').css('height','606px');
+					$('#collage1-1'+ countPhoto +'> img').attr('src',data.result.fileList[0].filename + "_700.png").css('height','606px');
 				} else if (data.result.fileList.length == 2) {
 					$("<div class='whole_collage2'>")
 					.html("<div  class='two_photo_col' id='collage2-1-count" +countPhoto +"'><img id='img_4' src=''></div>"
