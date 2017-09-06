@@ -385,6 +385,7 @@ float: left;
   border-radius: 100%;
   margin: 0px auto;
   background: url('/image/user_default.png') center center no-repeat;
+  object-fit: cover;
 }
 
 .travel_writer_slide .travel_writer_id {

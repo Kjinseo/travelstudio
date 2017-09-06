@@ -89,7 +89,7 @@
     group by d.adrs, p.postno
     having not d.adrs like '%한국%' and not d.adrs like '%대한민국%'
     order by p.postno desc
-    limit 3;
+    limit 11;
   </select>
   
   <select id="selectForeignAllList" resultMap="postMap">
@@ -100,6 +100,14 @@
     group by d.adrs, p.postno
     having not d.adrs like '%한국%' and not d.adrs like '%대한민국%'
     order by p.postno desc
+  </select>
+  
+  <select id="england" resultMap="postMap">
+    select p.postno, p.cont as postcont, d.cont as detailcont, p.title, p.good, p.sdt, p.edt, p.tag, m.path, m.alias, d.adrs
+    from post p 
+    inner join member m on m.mno = p.mno
+    inner join detail d on p.postno = d.postno
+    where p.postno = 26;
   </select>
   
     <update id="BackgroundUpdate" parameterType="post">

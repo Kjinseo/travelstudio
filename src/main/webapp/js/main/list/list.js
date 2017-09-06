@@ -13,12 +13,6 @@ $(function() {
   $('.header-container').load('../header.html')
   $('.footer-container').load('../footer.html')
   
-/*  $('.wrap').on('click', function() {
-    postno = $(this).attr('data-postno')
-    console.log('클릭')
-    console.log(postno)
-    location.href='../../article/inner_article.html?postno=' + postno
-  })*/
 })
 
 $(document).on("click",".wrap",function(){
@@ -27,6 +21,23 @@ $(document).on("click",".wrap",function(){
   console.log(postno)
   location.href='../../article/inner_article.html?postno=' + postno
 })
+
+$(document).on("click","#search_icon",function(){
+  $("#search_bar").val("")
+  
+  $.getJSON('/post/england.json', function(result) {
+    console.log(result);
+    
+    var template = Handlebars.compile($('#content-template').text())
+    var generatedHTML = template(result.data) // 템플릿 함수에 데이터를 넣고 HTML을 생성한다.
+    var container = $('.content-container')
+    container.html("")
+    var html = container.html()
+    container.html(html + generatedHTML) // 새 tr 태그들로 설정한다.
+  }) 
+  
+})
+
 
 $.getJSON('/post/foreignAllList.json', function(result) {
   console.log(result.data)

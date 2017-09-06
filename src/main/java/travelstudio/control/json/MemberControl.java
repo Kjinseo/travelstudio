@@ -110,7 +110,11 @@ public JsonResult add(Member member) throws Exception {
 public JsonResult header(HttpServletRequest req, HttpServletResponse res) throws Exception {
   HttpServletRequest httpRequest = (HttpServletRequest) req;
   Member loginMember = (Member)httpRequest.getSession().getAttribute("loginMember");
-  /*System.out.println(loginMember);*/
+  
+  if(loginMember == null) {
+    return new JsonResult(JsonResult.SUCCESS, "noLogin");
+  }
+  
   HashMap<String,Object> dataMap = new HashMap<>();
   dataMap.put("loginMember", loginMember);
   return new JsonResult(JsonResult.SUCCESS, dataMap);

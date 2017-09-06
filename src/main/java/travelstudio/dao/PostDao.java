@@ -22,6 +22,7 @@ public interface PostDao {
   List<Post> selectKoreaList();
   List<Post> selectForeignList();
   List<Post> selectForeignAllList();
+  List<Post> england();
   
 //  int getSize();
 //  List<Member> selectListByNames(Map<String,Object> valueMap);

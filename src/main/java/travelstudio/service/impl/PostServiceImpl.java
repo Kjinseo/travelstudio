@@ -36,6 +36,10 @@ public class PostServiceImpl implements PostService {
     return postDao.selectForeignAllList();
   }
   
+  public List<Post> england() throws Exception {
+    return postDao.england();
+  }
+  
   @Override
   public List<Post> info1(String number) throws Exception {
     return postDao.info1(number);

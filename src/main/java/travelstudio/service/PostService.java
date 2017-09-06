@@ -16,9 +16,10 @@ public interface PostService {
   List<Post> selectOneUserPost(int number) throws Exception;
   Post requestedPost(int postno) throws Exception;
   void like(Post post)throws Exception;
-  void BackgroundUpdate(Post post)throws Exception;
+  void BackgroundUpdate(Post post) throws Exception;
   List<Post> listCoworkPost(int no);//초대받은 게시물 리스트 가져오기
 //  int getSize() throws Exception;
+  List<Post> england() throws Exception;
 }
 
 

@@ -62,6 +62,13 @@ public class PostControl {
     dataMap.put("foreignAllList", postService.foreignAllList());
     return new JsonResult(JsonResult.SUCCESS, dataMap);
   }
+  
+  @RequestMapping("england")
+  public JsonResult england() throws Exception {
+    HashMap<String,Object> dataMap = new HashMap<>();
+    dataMap.put("foreignAllList", postService.england());
+    return new JsonResult(JsonResult.SUCCESS, dataMap);
+  } 
 
   @RequestMapping("selectOneUserPost")
   public JsonResult selectOneUserPost(int number) throws Exception {

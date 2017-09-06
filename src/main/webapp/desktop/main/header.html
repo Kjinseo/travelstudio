@@ -368,69 +368,33 @@ $(document).on("click",'.cover_dimmed' ,function(){
   $('.cover_dimmed').hide();
 })
 
-var loginMemberNo =0;
+$(document).on("click",'.headeLogo' ,function(){
+  location.href= "/desktop/main/main.html"
+})
+
 $.getJSON('/member/header.json', function(result) {
-	console.log("loginMember")
-	console.log(result.data.loginMember)
-	loginMemberNo=result.data.loginMember.mno;
-	mno=result.data.loginMember;
-	if(mno!=undefined){
-
-		      if(location.href.indexOf('inner_article') != -1){
-		     	 var no = location.href.split('?')[1].split('=')[1]
-		     	 $.post('/cowork/searchcoworker.json', {'no': no}
-		     	 ,function(result) {
-		     	 		console.log(result)
-		     	 		for(i=0;i<result.data.list.length;i++){
-		     	 			console.log("asdsadsad",result.data.list[i].mno)
-		     	 			 if(result.data.list[i].mno==loginMemberNo && result.data.list[i].confirm==1){
-			     				console.log(result.data.list[i].mno)
-			     				$('#slide_icon').css('display','inline-block');
-			     				$(".start-my-journey").text("여행기수정");
-			     				$('.start-my-journey').off('click');
-			     				$('.start-my-journey').click(function(){
-			     				   location.href="/desktop/article/edit.html?postno="+no})
-			     	 		} 
-		     	 		}
-		     	 		console.log("searchCoworker" + result)
-		     	 },'json')
-		     	 
-		     	 $.post('/post/info1.json',{'number': no}
-		     			,function(result){
-		     			if(result.data.info[0].mno==loginMemberNo){
-		     				console.log(result.data.info.mno)
-		     				$('#slide_icon').css('display','inline-block');
-		     				$(".start-my-journey").text("여행기수정");
-		     				$('.start-my-journey').off('click');
-		     				$('.start-my-journey').click(function(){
-		     				   location.href="/desktop/article/edit.html?postno="+no})
-		     	 		}
-		     		})
-		     			
-		     	}else {
-		         $('#slide_icon').css('display','inline-block');
-		         $(".start-my-journey").text("여행기작성");
-		         $('.start-my-journey').off('click');
-		         $('.start-my-journey').click(function(){
-		            location.href="/desktop/article/write.html"
-		         })
-		      } 
-		 
-		
-	} else {
+  console.log(result.data)
+  
+  if(result.data == "noLogin") {
     $('.headeLogo').css('margin-left', '32px');
-		$('.start-my-journey').off('click');
-		$('.start-my-journey').click(function(){
-		   location.href="/desktop/login/login.html"
-		})
-		return
-	} 
-
-	
-    var template = Handlebars.compile($('#tbody-template4').html())
-    var generatedHTML = template(result.data.loginMember) // 템플릿 함수에 데이터를 넣고 HTML을 생성한다.
-    $('.slide_bar_content').append(generatedHTML) // 새 tr 태그들로 설정한다.
-    
+    $('.start-my-journey').off('click');
+    $('.start-my-journey').click(function(){
+       location.href="/desktop/login/login.html"
+    })
+    return
+  }
+  
+  $('#slide_icon').css('display','inline-block');
+  $(".start-my-journey").text("여행기작성");
+  $('.start-my-journey').off('click');
+  $('.start-my-journey').click(function(){
+     location.href="/desktop/article/write.html"
+  })
+		
+  var template = Handlebars.compile($('#tbody-template4').html())
+  var generatedHTML = template(result.data.loginMember) // 템플릿 함수에 데이터를 넣고 HTML을 생성한다.
+  $('.slide_bar_content').append(generatedHTML) // 새 tr 태그들로 설정한다.
+  
 })
      
      
